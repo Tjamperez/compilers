@@ -11,7 +11,6 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = main.o lex.yy.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
@@ -26,4 +25,4 @@ etapa1: $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ 
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
