@@ -1,22 +1,27 @@
-IDIR =../include
+IDIR =./include
 CC=gcc
 CFLAGS=-I$(IDIR)
 
-ODIR=obj
-LDIR =../lib
+ODIR=./obj
+LDIR =./
 
-_DEPS = hellomake.h
+_DEPS = tokens.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = hellomake.o hellofunc.o 
+_OBJ = main.o lex.yy.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-hellomake: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+all: scanner etapa1
+
+scanner: scanner.l
+	flex scanner.l
+
+etapa1: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS) -ll
 
 .PHONY: clean
 
