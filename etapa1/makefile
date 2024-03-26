@@ -22,7 +22,12 @@ scanner: scanner.l
 etapa1: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) -ll
 
-.PHONY: clean
+.PHONY: clean clean_comments
+
+clean_comments:
+	for file in $(wildcard *.c); do \
+		sed -i '/\/\/.*\|\/\*.*\|printf\s*(/d' $$file; \
+	done
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
