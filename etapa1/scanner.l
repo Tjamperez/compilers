@@ -19,6 +19,16 @@
 "while" {return TK_PR_WHILE; }
 "return" {return TK_PR_RETURN; }
 
+    /* Catch C-style comments of either a single  or multiple lines and return nothing */
+
+"//".* { /* DO NOTHING */ }
+
+"/*"         BEGIN(comment);
+
+<comment>[^*\n]*        /* eat anything that's not a '*' */
+<comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
+<comment>"*"+"/"        BEGIN(INITIAL); { /* DO NOTHING */ }
+
     /* Catch the compilers special characters and return the token */
 
 "-" {return '-'; }
@@ -49,7 +59,7 @@
 
     /* Catch the compilers literals and return the token */
 
-[0-9]*    {return TK_LIT_INT; }
+[0-9]+    {return TK_LIT_INT; }
 [0-9]*\.[0-9]+    {return TK_LIT_FLOAT; }
 "false"     {return TK_LIT_FALSE; }
 "true"      {return TK_LIT_TRUE; }
@@ -58,22 +68,16 @@
 
 [_a-z][_a-z0-9]* {return TK_IDENTIFICADOR; }
 
-    /* Catch C-style comments of either a single  or multiple lines and return nothing */
-
-
-"/*"         BEGIN(comment);
-
-<comment>[^*\n]*        /* eat anything that's not a '*' */
-<comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
-<comment>"*"+"/"        BEGIN(INITIAL); { /* DO NOTHING */ }
-
     /* Actually make yylineno function */
 
 \n { /* DO NOTHING */ }
+\r { /* DO NOTHING */ }
+\t { /* DO NOTHING */ }
+" " { /* DO NOTHING */ }
 
     /* Catch anything with that is not one of the aforementioned lexems and return the error token */
 
-.     { return TK_ERRO; }
+.   { return TK_ERRO; }
 
 
 %%
