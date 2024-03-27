@@ -24,10 +24,14 @@ etapa1: $(OBJ)
 
 .PHONY: clean clean_comments
 
+#This is the function to clean comments, to add more files to be not cleaned append them where lex.yy.c is and continue accordingly
+
 clean_comments:
-	for file in $(wildcard *.c); do \
-		sed -i '/\/\/.*\|\/\*.*\|printf\s*(/d' $$file; \
+	for file in $(filter-out main.c lex.yy.c, $(wildcard *.c)); do \
+		sed -i -E '/\/\/.*|\/\*.*|printf\s*\(/d' $$file; \
 	done
+
+
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
