@@ -69,7 +69,6 @@ int print_token(int token) {
     case TK_OC_NE:         print_nome (_(TK_OC_NE));          break;
     case TK_OC_AND:        print_nome (_(TK_OC_AND));         break;
     case TK_OC_OR:         print_nome (_(TK_OC_OR));          break;
-    case TK_OC_MAP:        print_nome (_(TK_OC_MAP));         break;
     case TK_LIT_INT:       print_nome (_(TK_LIT_INT));        break;
     case TK_LIT_FLOAT:     print_nome (_(TK_LIT_FLOAT));      break;
     case TK_LIT_FALSE:     print_nome (_(TK_LIT_FALSE));      break;
