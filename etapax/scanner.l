@@ -1,3 +1,5 @@
+/* Autores: Thales Perez 00303035 e Vitor Vargas 0000000 */
+
 %{
 #include "tokens.h"
 %}
@@ -31,22 +33,13 @@
 
     /* Catch the compilers special characters and return the token */
 
-"-" {return '-'; }
-"!" {return '!'; }
-"*" {return '*'; }
-"/" {return '/'; }
-"%" {return '%'; }
-"+" {return '+'; }
-"_" {return '_'; }
-"<" {return '<'; }
-">" {return '>'; }
-"{" {return '{'; }
-"}" {return '}'; }
-"(" {return '('; }
-")" {return ')'; }
-"=" {return '='; }
-"," {return ','; }
-";" {return ';'; }
+[-!*/%[\+]<>{}[\(][\)]=,;] { return yytext[0]; }
+
+/* Actually make yylineno function */
+\n      { /* ignore newline characters */ }
+\t      { /* ignore tab characters */ }
+[ ]+    { /* ignore whitespace */ }
+.       { /* ignore any other character */ }
 
     /* Catch the compilers compound operators and return the token */
 
@@ -67,13 +60,6 @@
     /* Catch the compilers identificator and return the token */
 
 [_a-z][_a-z0-9]* {return TK_IDENTIFICADOR; }
-
-    /* Actually make yylineno function */
-
-\n { /* DO NOTHING */ }
-\r { /* DO NOTHING */ }
-\t { /* DO NOTHING */ }
-" " { /* DO NOTHING */ }
 
     /* Catch anything with that is not one of the aforementioned lexems and return the error token */
 
