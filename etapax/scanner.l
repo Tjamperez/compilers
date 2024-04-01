@@ -35,7 +35,8 @@
 
 [-!*/%[\+]<>{}[\(][\)]=,;] { return yytext[0]; }
 
-/* Actually make yylineno function */
+    /* Actually make yylineno function */
+
 \n      { /* ignore newline characters */ }
 \t      { /* ignore tab characters */ }
 [ ]+    { /* ignore whitespace */ }
