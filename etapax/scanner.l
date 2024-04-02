@@ -10,11 +10,10 @@
 %option yylineno
 %x COMMENT
 
-	/* Define ESPECIAL characters */
-ESPECIAL [-!*/%+-<>{}()=,;]
-
 %%
     /* Catch the compilers reserved words and return the token */
+
+	/* Define ESPECIAL characters */
 
 "int" { return TK_PR_INT; }
 "float" { return TK_PR_FLOAT; }
@@ -38,7 +37,7 @@ ESPECIAL [-!*/%+-<>{}()=,;]
 
     /* Catch the compilers special characters and return the token */
 
-ESPECIAL { return yytext[0]; }
+[-!*/%+<>\{\}()=,;] {return yytext[0];}
 
     /* Actually make yylineno function */
 
