@@ -1,4 +1,4 @@
-/* Autores: Thales Perez 00303035 e Vitor Vargas 0000000 */
+/* Autores: Thales Perez 00303035 e Vitor Vargas 00302162 */
 
 %{
 #include "tokens.h"
@@ -8,7 +8,10 @@
 
 %option noyywrap
 %option yylineno
-%x comment
+%x COMMENT
+
+	/* Define ESPECIAL characters */
+ESPECIAL [-!*/%+-<>{}()=,;]
 
 %%
     /* Catch the compilers reserved words and return the token */
@@ -23,24 +26,24 @@
 
     /* Catch C-style comments of either a single  or multiple lines and return nothing */
 
-"//".* { /* DO NOTHING */ }
+	/* Ignore single-line comment */
+\/\/.*
 
-"/*"         BEGIN(comment);
+\/\*  {BEGIN(COMMENT); }
+<COMMENT>[^*\n]* { /* DO NOTHING */ } /* Increment yylineno */
+<COMMENT>[ \n\t]   ; /* Increment yylineno */
+<COMMENT>"*"+[^*/\n]*	{ /* DO NOTHING */ }/* eat up '*'s not followed by '/'s */
 
-<comment>[^*\n]*        /* eat anything that's not a '*' */
-<comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
-<comment>"*"+"/"        BEGIN(INITIAL); { /* DO NOTHING */ }
+<COMMENT>"*"+"/"  {BEGIN(INITIAL); } /* Increment yylineno */
 
     /* Catch the compilers special characters and return the token */
 
-[-!*/%[\+]<>{}[\(][\)]=,;] { return yytext[0]; }
+ESPECIAL { return yytext[0]; }
 
     /* Actually make yylineno function */
 
-\n      { /* ignore newline characters */ }
-\t      { /* ignore tab characters */ }
-[ ]+    { /* ignore whitespace */ }
-.       { /* ignore any other character */ }
+
+[ \n\t]   ;      { /* Ignore newline,tab,whitespace characters */ }
 
     /* Catch the compilers compound operators and return the token */
 

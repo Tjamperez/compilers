@@ -1,8 +1,8 @@
 IDIR =./include
-CC=gcc
-CFLAGS=-I$(IDIR)
+CC = gcc
+CFLAGS = -I$(IDIR)
 
-ODIR=./obj
+ODIR = ./obj
 LDIR =./
 
 _DEPS = tokens.h
@@ -11,7 +11,7 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = main.o lex.yy.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 all: etapa1
@@ -25,9 +25,10 @@ lex.yy.c: scanner.l
 main.o: lex.yy.c
 	$(CC) -c -o $(ODIR)/$@ $< $(CFLAGS)
 
-.PHONY: clean clean_comments
+$(ODIR):
+	mkdir -p $(ODIR)
 
-#This is the function to clean comments, to add more files to be not cleaned append them where lex.yy.c is and continue accordingly
+.PHONY: clean clean_comments
 
 clean_comments:
 	for file in $(filter-out main.c lex.yy.c, $(wildcard *.c)); do \
