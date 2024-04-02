@@ -13,8 +13,6 @@
 %%
     /* Catch the compilers reserved words and return the token */
 
-	/* Define ESPECIAL characters */
-
 "int" { return TK_PR_INT; }
 "float" { return TK_PR_FLOAT; }
 "bool" {return TK_PR_BOOL; }
