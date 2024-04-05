@@ -1,7 +1,7 @@
-/* Autores: Thales Perez 00303035 e Vitor Vargas 00302162 */
+	/*Created by: Thales Perez 00303035 e Vitor Vargas 00302162 */
 
 %{
-#include "tokens.h"
+#include "parser.tab.h"
 %}
 
     /* Options for scanner.l */

@@ -1,9 +1,9 @@
 IDIR =./include
-CC=gcc
-CFLAGS=-I$(IDIR)
+CC = gcc
+CFLAGS = -I$(IDIR)
 
-ODIR=./obj
-LDIR =./
+ODIR = ./obj
+LDIR = ./
 
 _DEPS = tokens.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
@@ -11,27 +11,29 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ = main.o lex.yy.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-$(ODIR)/%.o: %.c $(DEPS)
+$(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-all: scanner etapa1
-
-scanner: scanner.l
-	flex scanner.l
+all: etapa1
 
 etapa1: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) -ll
 
-.PHONY: clean clean_comments
+lex.yy.c: scanner.l
+	flex -o $@ $<
 
-#This is the function to clean comments, to add more files to be not cleaned append them where lex.yy.c is and continue accordingly
+main.o: lex.yy.c
+	$(CC) -c -o $(ODIR)/$@ $< $(CFLAGS)
+
+$(ODIR):
+	mkdir -p $(ODIR)
+
+.PHONY: clean clean_comments
 
 clean_comments:
 	for file in $(filter-out main.c lex.yy.c, $(wildcard *.c)); do \
 		sed -i -E '/\/\/.*|\/\*.*|printf\s*\(/d' $$file; \
 	done
 
-
-
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa1 lex.yy.c

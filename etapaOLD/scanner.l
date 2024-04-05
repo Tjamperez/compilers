@@ -1,5 +1,3 @@
-/* Autores: Thales Perez 00303035 e Vitor Vargas 00302162 */
-
 %{
 #include "tokens.h"
 %}
@@ -8,7 +6,7 @@
 
 %option noyywrap
 %option yylineno
-%x COMMENT
+%x comment
 
 %%
     /* Catch the compilers reserved words and return the token */
@@ -23,24 +21,32 @@
 
     /* Catch C-style comments of either a single  or multiple lines and return nothing */
 
-	/* Ignore single-line comment */
-\/\/.*
+"//".* { /* DO NOTHING */ }
 
-\/\*  {BEGIN(COMMENT); }
-<COMMENT>[^*\n]* { /* DO NOTHING */ } /* Increment yylineno */
-<COMMENT>[ \n\t]   ; /* Increment yylineno */
-<COMMENT>"*"+[^*/\n]*	{ /* DO NOTHING */ }/* eat up '*'s not followed by '/'s */
+"/*"         BEGIN(comment);
 
-<COMMENT>"*"+"/"  {BEGIN(INITIAL); } /* Increment yylineno */
+<comment>[^*\n]*        /* eat anything that's not a '*' */
+<comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
+<comment>"*"+"/"        BEGIN(INITIAL); { /* DO NOTHING */ }
 
     /* Catch the compilers special characters and return the token */
 
-[-!*/%+<>\{\}()=,;] {return yytext[0];}
-
-    /* Actually make yylineno function */
-
-
-[ \n\t]   ;      { /* Ignore newline,tab,whitespace characters */ }
+"-" {return '-'; }
+"!" {return '!'; }
+"*" {return '*'; }
+"/" {return '/'; }
+"%" {return '%'; }
+"+" {return '+'; }
+"_" {return '_'; }
+"<" {return '<'; }
+">" {return '>'; }
+"{" {return '{'; }
+"}" {return '}'; }
+"(" {return '('; }
+")" {return ')'; }
+"=" {return '='; }
+"," {return ','; }
+";" {return ';'; }
 
     /* Catch the compilers compound operators and return the token */
 
@@ -61,6 +67,13 @@
     /* Catch the compilers identificator and return the token */
 
 [_a-z][_a-z0-9]* {return TK_IDENTIFICADOR; }
+
+    /* Actually make yylineno function */
+
+\n { /* DO NOTHING */ }
+\r { /* DO NOTHING */ }
+\t { /* DO NOTHING */ }
+" " { /* DO NOTHING */ }
 
     /* Catch anything with that is not one of the aforementioned lexems and return the error token */
 
