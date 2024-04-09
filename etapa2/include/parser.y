@@ -28,9 +28,12 @@ void yyerror (char const *mensagem);
 
 %%
 
+
+
+
 programa: lista_de_elementos | ;
 lista_de_elementos: lista_de_elementos elemento | elemento ;
-elemento: declaracao_global | /*definicao_de_funcao*/ ;
+elemento: declaracao_global | definicao_de_funcao ;
 declaracao_global: tipo lista_identificador ',' ;
 identificador: TK_IDENTIFICADOR ;
 tipo: INT | FLOAT | BOOL ;
@@ -38,14 +41,14 @@ INT: TK_PR_INT ;
 FLOAT: TK_PR_FLOAT ;
 BOOL: TK_PR_BOOL ;
 lista_identificador: lista_identificador ';' identificador | identificador ;
-//definicao_de_funcao: cabecalho corpo ;
-//cabecalho: '(' lista_de_parametros ')' OR tipo BARRA identificador ;
-//lista_de_parametros: parametro ;
-//lista_de_parametros:  lista_de_parametros ';' parametro  | ;
-//parametro: tipo identificador ;
-// corpo: bloco_de_comandos ;
-// bloco_de_comandos: bloco_de_comandos comando_simples ',' | '{' '}' ;
-// comando_simples: 
+definicao_de_funcao: cabecalho corpo ;
+cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador ;
+OR: TK_OC_OR ;
+lista_de_parametros: lista_de_parametros ';' parametro | parametro | ;
+parametro: tipo identificador ;
+corpo: '{' bloco_de_comandos '}';
+bloco_de_comandos: bloco_de_comandos ',' comando_simples ',' | comando_simples ',' | ;
+comando_simples: TK_LIT_TRUE ;  
 %%
 
 void yyerror (char const *mensagem)
