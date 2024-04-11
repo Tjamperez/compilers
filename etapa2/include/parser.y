@@ -47,8 +47,26 @@ OR: TK_OC_OR ;
 lista_de_parametros: lista_de_parametros ';' parametro | parametro | ;
 parametro: tipo identificador ;
 corpo: '{' bloco_de_comandos '}';
-bloco_de_comandos: bloco_de_comandos ',' comando_simples ',' | comando_simples ',' | ;
-comando_simples: TK_LIT_TRUE ;  
+bloco_de_comandos: bloco_de_comandos comando_simples | comando_simples | ;
+bloco_de_comandos_obrigatorio: bloco_de_comandos_obrigatorio comando_simples | comando_simples ;
+comando_simples: declaracao_variavel ',' | comando_atribuicao ',' | chamada_funcao ',' | comando_retorno ',' | comando_controle_fluxo ',' ;
+declaracao_variavel: tipo lista_identificador ;
+comando_atribuicao: identificador '=' expressao ;
+expressao: TK_LIT_TRUE ;
+nome_func: identificador ;
+chamada_funcao: nome_func '(' lista_expressao ')'
+lista_expressao: lista_expressao ';' expressao | expressao ;
+RETURN: TK_PR_RETURN ;
+comando_retorno: RETURN expressao ;
+comando_controle_fluxo: condicional | loop ;
+IF: TK_PR_IF
+ELSE: TK_PR_ELSE
+condicional: IF '(' expressao ')' bloco_de_comandos_obrigatorio | IF '(' expressao ')' bloco_de_comandos_obrigatorio ELSE bloco_de_comandos_obrigatorio ;
+WHILE: TK_PR_WHILE ;
+loop: WHILE '(' expressao ')' bloco_de_comandos ;
+
+
+
 %%
 
 void yyerror (char const *mensagem)
