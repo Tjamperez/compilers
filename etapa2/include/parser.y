@@ -1,4 +1,5 @@
-    /* Arquivo feito por Thales Perez 00303035 e Vitor Vargas 000000 */
+    /* Arquivo feito por Thales Perez 00303035 e Vitor Vargas 00302162 */
+%define parse.error verbose
 
 %{
 #include <stdlib.h>
@@ -113,41 +114,32 @@ lista_de_parametros: lista_de_parametros ';' parametro
 parametro: tipo identificador
          ;
 
-//##########################
+
 // Corpo da função
 corpo: '{' bloco_de_comandos '}'
      ;
-
 //##########################
-// Bloco de comandos
-bloco_de_comandos: bloco_de_comandos ',' comando_simples
-                 | comando_simples_com_virgula
-                 | /* vazio */
+// Bloco de Comandos que aceita vazio
+bloco_de_comandos: /* vazio */
+                 | lista_de_comandos
                  ;
-
 //##########################
-// Bloco de comandos obrigatório
-bloco_de_comandos_obrigatorio: bloco_de_comandos_obrigatorio ',' comando_simples
-                              | comando_simples_com_virgula
+// Bloco de comandos que não aceita vazio
+bloco_de_comandos_obrigatorio: lista_de_comandos
                               ;
-
 //##########################
-// Comando simples com virgula
-comando_simples_com_virgula: declaracao_variavel ','
-               | comando_atribuicao ','
-               | chamada_funcao ','
-               | comando_retorno ','
-               | comando_controle_fluxo ','
-			   ;
-
+// Definição de lista de comandos simples
+lista_de_comandos: comando_simples ','
+                 | lista_de_comandos comando_simples ','
+                 ;
 //##########################
-// Comando simples sem virgula
+// Definição de comando simples
 comando_simples: declaracao_variavel
                | comando_atribuicao
                | chamada_funcao
                | comando_retorno
                | comando_controle_fluxo
-			   ;
+               ;
 
 //##########################
 // Declaração de variável
@@ -185,64 +177,75 @@ loop: WHILE '(' expressao ')' bloco_de_comandos
 	;
 
 //##########################
-// Expressão
-expressao: termo
-         | expressao OR termo
+// Definição expressões, compostas de operando e operador
+
+expressao: operando ;
+
+operando: operador
+         | operando OR operador
          ;
 
 //##########################
-// Termo
-termo: fator
-     | termo AND fator
+// Definição de termos
+operador: comparacao
+     | operador AND comparacao
      ;
 
 //##########################
-// Fator
-fator: comparacao
-     | fator EQUAL comparacao
-     | fator NOTEQUAL comparacao
-     | fator LESSTHAN comparacao
-     | fator LESSEQUAL comparacao
-     | fator GREATERTHAN comparacao
-     | fator GREATEREQUAL comparacao
-     ;
-
-//##########################
-// Comparação
+// Comparações
 comparacao: adicaousub
-          | comparacao ADD adicaousub
-          | comparacao SUBTRACT adicaousub
-          ;
+           | comparacao op_comparacao adicaousub
+           ;
 
 //##########################
-// Adição ou Subtração
-adicaousub: multoudivoures
-      | adicaousub ADD multoudivoures
-      | adicaousub SUBTRACT multoudivoures
-      ;
-
-//##########################
-// Multiplicação ou Divisão ou Resto
-multoudivoures: unario
-             | multoudivoures MULTIPLY unario
-             | multoudivoures DIVIDE unario
-             | multoudivoures REMAINDER unario
+// Operadores de comparação
+op_comparacao: LESSTHAN
+             | GREATERTHAN
+             | LESSEQUAL
+             | GREATEREQUAL
+             | EQUAL
+             | NOTEQUAL
              ;
 
 //##########################
-// Unário
+// Adição ou subtração
+adicaousub: multoudivoures
+          | adicaousub op_adicaousub multoudivoures
+          ;
+
+//##########################
+// Operação de adição e subtração
+op_adicaousub: ADD
+             | SUBTRACT
+             ;
+
+//##########################
+// Multiplicação, divisão ou resto
+multoudivoures: unario
+              | multoudivoures op_multoudivoures unario
+              ;
+
+//##########################
+// Operação de multiplicação,divisão ou resto
+op_multoudivoures: MULTIPLY
+                  | DIVIDE
+                  | REMAINDER
+                  ;
+
+//##########################
+// Operações unárias
 unario: primario
       | INVERTSIG unario
       | NEGATE unario
       ;
 
 //##########################
-// Primário
+// Expressões primarias
 primario: identificador
-         | literais
-         | chamada_funcao
-         | '(' expressao ')'
-         ;
+        | literais
+        | chamada_funcao
+        | '(' expressao ')'
+        ;
 
 //##########################
 // Chamada de função
