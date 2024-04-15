@@ -14,7 +14,7 @@ ODIR = ./obj
 LDIR = ./
 
 # Header file dependencies
-_DEPS = parser.tab.h
+_DEPS = $(IDIR)/parser.tab.h
 DEPS = $(patsubst %,$(LDIR)/%,$(_DEPS))
 
 # Object files
@@ -32,8 +32,8 @@ etapa2: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 # Rule to generate parser using Bison
-$(LDIR)/parser.tab.c $(LDIR)/parser.tab.h: $(IDIR)/parser.y
-	bison -d -o $(LDIR)/parser.tab.c --header=$(LDIR)/parser.tab.h $(IDIR)/parser.y
+$(LDIR)/parser.tab.c $(IDIR)/parser.tab.h: $(LDIR)/parser.y
+	bison -d -o $(LDIR)/parser.tab.c --header=$(IDIR)/parser.tab.h $(LDIR)/parser.y
 
 # Rule to generate lexer using Flex
 $(LDIR)/lex.yy.c: $(LDIR)/scanner.l
@@ -53,4 +53,4 @@ clean_comments:
 
 # Clean build artifacts
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa2 lex.yy.c parser.tab.c parser.tab.h
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa2 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
