@@ -1,0 +1,238 @@
+
+GrupoA
+
+~/GrupoA ~
+./e2_make.sh: line 14: Manual: command not found
+flex scanner.l
+bison -d -v parser.y
+gcc -c -o main.o main.c -I. -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -O2 -g  
+gcc -c -o lex.yy.o lex.yy.c -I. -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -O2 -g  
+gcc -c -o parser.tab.o parser.tab.c -I. -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -O2 -g  
+gcc -o etapa2 main.o lex.yy.o parser.tab.o -I. -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -O2 -g  
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoB
+
+~/GrupoB ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+gcc -c parser.tab.c
+flex scanner.l
+gcc -c lex.yy.c
+gcc -c main.c
+gcc -o etapa2 parser.tab.o lex.yy.o main.o
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoC
+
+~/GrupoC ~
+./e2_make.sh: line 14: Manual: command not found
+make -C ./src
+make[1]: Entering directory '/home/user/GrupoC/src'
+flex scanner.l
+gcc -c -o obj/lex.yy.o lex.yy.c -I../include
+bison -d parser.y --report-file=.parser.output --verbose 
+gcc -c -o obj/parser.tab.o parser.tab.c -I../include
+gcc -c -o obj/main.o main.c -I../include
+gcc -o ../etapa2 obj/lex.yy.o obj/parser.tab.o obj/main.o -I../include -lm
+make[1]: Leaving directory '/home/user/GrupoC/src'
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoD
+
+~/GrupoD ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+gcc -I.   -c -o main.o main.c
+flex scanner.l
+gcc -I.   -c -o lex.yy.o lex.yy.c
+gcc -I.   -c -o parser.tab.o parser.tab.c
+gcc -o etapa2 main.o lex.yy.o parser.tab.o -I.
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoE
+
+~/GrupoE ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+bison -d parser.y
+flex scanner.l
+mkdir -p obj
+gcc -c -o obj/main.o main.c -Iinclude
+mkdir -p obj
+gcc -c -o obj/lex.yy.o lex.yy.c -Iinclude
+mkdir -p obj
+gcc -c -o obj/parser.tab.o parser.tab.c -Iinclude
+gcc -o etapa2 obj/main.o obj/lex.yy.o obj/parser.tab.o -Iinclude 	
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoF
+
+~/GrupoF ~
+./e2_make.sh: line 14: Manual: command not found
+flex scanner.l
+bison -d -t parser.y --report-file=FILE
+gcc -c -o lex.yy.o lex.yy.c -I.
+gcc -c -o main.o main.c -I.
+gcc -c -o parser.tab.o parser.tab.c -I.
+gcc -o etapa2 lex.yy.o main.o parser.tab.o -lfl
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoG
+
+~/GrupoG ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d -o .//parser.tab.c --header=.//parser.tab.h ./include/parser.y
+gcc -c -o obj/main.o main.c -I./include
+flex -o .//lex.yy.c .//scanner.l
+gcc -c -o obj/lex.yy.o lex.yy.c -I./include
+gcc -c -o obj/parser.tab.o parser.tab.c -I./include
+gcc -o etapa2 obj/main.o obj/lex.yy.o obj/parser.tab.o -I./include
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoH
+
+~/GrupoH ~
+./e2_make.sh: line 14: Manual: command not found
+Group sent the binary already compiled :( , so remove it.
+removed 'etapa2'
+gcc main.o lex.yy.o parser.tab.o -o etapa2
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoJ
+
+~/GrupoJ ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y -o .//parser.tab.c
+gcc -c -o main.o main.c -I./
+flex -o lex.yy.c scanner.l
+gcc -c lex.yy.c -o lex.yy.o -I./
+gcc -c parser.tab.c -o parser.tab.o -I./
+gcc -o etapa2 main.o lex.yy.o parser.tab.o -I./ 
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoK
+
+~/GrupoK ~
+./e2_make.sh: line 14: Manual: command not found
+bison -o src/parser.tab.c --defines=./include/parser.tab.h src/parser.y 
+flex -o src/lex.yy.c src/scanner.l
+gcc -c -o obj/main.o src/main.c -I./include
+gcc -c -o obj/lex.yy.o src/lex.yy.c -I./include
+gcc -c -o obj/parser.tab.o src/parser.tab.c -I./include
+gcc -o etapa2 obj/main.o obj/lex.yy.o obj/parser.tab.o -I./include
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoL
+
+~/GrupoL ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+flex scanner.l
+gcc -c .//parser.tab.c .//main.c .//lex.yy.c
+gcc -o etapa2 parser.tab.o main.o lex.yy.o -I./ 
+rm -f *.o parser.tab* lex.* 
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoP
+
+~/GrupoP ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y --report-file=parser.output #-Wcounterexamples
+flex scanner.l 
+gcc  -c -o parser.tab.o parser.tab.c -I.
+gcc  -c -o main.o main.c -I.
+gcc  -c -o lex.yy.o lex.yy.c -I.
+gcc  -o etapa2 parser.tab.o main.o lex.yy.o -I. -lm
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoS
+
+~/GrupoS ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+lex scanner.l
+gcc -c lex.yy.c parser.tab.c main.c -I.
+gcc -o etapa2 lex.yy.o parser.tab.o main.o -I.
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoV
+
+~/GrupoV ~
+./e2_make.sh: line 14: Manual: command not found
+Group sent the binary already compiled :( , so remove it.
+removed 'etapa2'
+flex -o ./lex.yy.c ./scanner.l
+bison -d -r all -v --report-file bison_output  -o ./parser.tab.c ./parser.y
+gcc -c -o ./parser.tab.o ./parser.tab.c -I./include -I. 
+gcc -I./include -I.    -c -o lex.yy.o lex.yy.c
+gcc -o etapa2 main.o lex.yy.o parser.tab.o -lm -lfl
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoW
+
+~/GrupoW ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+flex scanner.l
+gcc -c lex.yy.c parser.tab.c main.c
+gcc -o etapa2 parser.tab.o lex.yy.c main.o -lfl 
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoX
+
+~/GrupoX ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+gcc    -c -o main.o main.c
+flex  -t scanner.l > scanner.c
+gcc    -c -o scanner.o scanner.c
+gcc    -c -o parser.tab.o parser.tab.c
+gcc   main.o scanner.o parser.tab.o   -o main
+mv main etapa2
+rm parser.tab.c parser.tab.h
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoY
+
+~/GrupoY ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y
+parser.y: warning: 1 reduce/reduce conflict [-Wconflicts-rr]
+parser.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+gcc -c parser.tab.c
+flex scanner.l
+gcc -c lex.yy.c
+gcc main.c -c
+gcc -o etapa2 lex.yy.o parser.tab.o main.o
+'./tests' -> '/home/user/pc//tests'
+~
+
+GrupoZ
+
+~/GrupoZ ~
+./e2_make.sh: line 14: Manual: command not found
+bison -d parser.y --report-file=parser.output -Wcounterexamples -v
+gcc -c -o parser.tab.o parser.tab.c -I./
+flex scanner.l
+gcc -c -o lex.yy.o lex.yy.c -I./
+gcc -c -o main.o main.c -I./
+gcc -o etapa2 parser.tab.o lex.yy.o main.o -I./ 
+'./tests' -> '/home/user/pc//tests'
+~

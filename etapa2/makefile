@@ -43,6 +43,10 @@ $(LDIR)/lex.yy.c: $(LDIR)/scanner.l
 $(ODIR):
 	mkdir -p $(ODIR)
 
+# Create include directory if it doesn't exist
+$(IDIR):
+	mkdir -p $(IDIR)
+
 .PHONY: clean clean_comments
 
 # Clean comments from source files

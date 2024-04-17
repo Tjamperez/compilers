@@ -56,12 +56,12 @@ elemento: declaracao_global
 //##########################
 // Declaração global de variável
 declaracao_global: tipo lista_identificador ','
-                  ;
+                 ;
 
 //##########################
 // Identificador
 identificador: TK_IDENTIFICADOR
-              ;
+             ;
 
 //##########################
 // Tipos de dados
@@ -72,26 +72,29 @@ tipo: INT
 
 //##########################
 // Token INT
-INT: TK_PR_INT ;
+INT: TK_PR_INT 
+   ;
 
 //##########################
 // Token FLOAT
-FLOAT: TK_PR_FLOAT ;
+FLOAT: TK_PR_FLOAT 
+	 ;
 
 //##########################
 // Token BOOL
-BOOL: TK_PR_BOOL ;
+BOOL: TK_PR_BOOL 
+	;
 
 //##########################
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
-                    | identificador
-                    ;
+                   | identificador
+                   ;
 
 //##########################
 // Definição de função
 definicao_de_funcao: cabecalho corpo
-                    ;
+                   ;
 
 //##########################
 // Cabeçalho da função
@@ -100,38 +103,38 @@ cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
 
 //##########################
 // Token OR
-OR: TK_OC_OR ;
+OR: TK_OC_OR 
+  ;
 
 //##########################
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
-                    | parametro
-                    | /* vazio */
-                    ;
+                   | parametro
+                   | /* vazio */
+                   ;
 
 //##########################
 // Parâmetro da função
 parametro: tipo identificador
          ;
 
-
 // Corpo da função
 corpo: '{' bloco_de_comandos '}'
+	 |  corpo '{' bloco_de_comandos '}'
      ;
+	 
 //##########################
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
                  | lista_de_comandos
                  ;
-//##########################
-// Bloco de comandos que não aceita vazio
-bloco_de_comandos_obrigatorio: lista_de_comandos
-                              ;
+
 //##########################
 // Definição de lista de comandos simples
 lista_de_comandos: comando_simples ','
                  | lista_de_comandos comando_simples ','
                  ;
+
 //##########################
 // Definição de comando simples
 comando_simples: declaracao_variavel
@@ -139,47 +142,54 @@ comando_simples: declaracao_variavel
                | chamada_funcao
                | comando_retorno
                | comando_controle_fluxo
+			   | corpo
                ;
 
 //##########################
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador
-                    ;
+                   ;
 
 //##########################
 // Comando de atribuição
 comando_atribuicao: identificador '=' expressao
-                   ;
+                  ;
 
 //##########################
 // Comando de retorno
-RETURN: TK_PR_RETURN ;
-comando_retorno: RETURN expressao ;
+RETURN: TK_PR_RETURN
+	  ;
+comando_retorno: RETURN expressao
+			   ;
 
 //##########################
 // Comando de controle de fluxo
 comando_controle_fluxo: condicional 
-						| loop 
-						;
+			      	  | loop 
+					  ;
 
 //##########################
 // Comando de if e else
-IF: TK_PR_IF ;
-ELSE: TK_PR_ELSE ;
-condicional: IF '(' expressao ')' bloco_de_comandos_obrigatorio
-           | IF '(' expressao ')' bloco_de_comandos_obrigatorio ELSE bloco_de_comandos_obrigatorio 
+IF: TK_PR_IF 
+  ;
+ELSE: TK_PR_ELSE 
+	;
+condicional: IF '(' expressao ')' corpo
+           | IF '(' expressao ')' corpo ELSE corpo 
 		   ;
 
 //##########################
 // Comando de loop
-WHILE: TK_PR_WHILE ;
-loop: WHILE '(' expressao ')' bloco_de_comandos 
+WHILE: TK_PR_WHILE 
+	 ;
+loop: WHILE '(' expressao ')' corpo
 	;
 
 //##########################
 // Definição expressões, compostas de operando e operador
 
-expressao: operando ;
+expressao: operando 
+		 ;
 
 operando: operador
          | operando OR operador
@@ -188,14 +198,14 @@ operando: operador
 //##########################
 // Definição de termos
 operador: comparacao
-     | operador AND comparacao
-     ;
+        | operador AND comparacao
+        ;
 
 //##########################
 // Comparações
 comparacao: adicaousub
-           | comparacao op_comparacao adicaousub
-           ;
+          | comparacao op_comparacao adicaousub
+          ;
 
 //##########################
 // Operadores de comparação
@@ -228,9 +238,9 @@ multoudivoures: unario
 //##########################
 // Operação de multiplicação,divisão ou resto
 op_multoudivoures: MULTIPLY
-                  | DIVIDE
-                  | REMAINDER
-                  ;
+                 | DIVIDE
+                 | REMAINDER
+                 ;
 
 //##########################
 // Operações unárias
@@ -250,12 +260,13 @@ primario: identificador
 //##########################
 // Chamada de função
 chamada_funcao: nome_func '(' lista_expressao ')'
+			  | nome_func '('/*vazio*/')'
               ;
 
 //##########################
 // Lista de expressões
 lista_expressao: expressao
-               | lista_expressao ',' expressao
+               | lista_expressao ';' expressao
                ;
 
 //##########################
@@ -273,42 +284,60 @@ literais: LITINT
 
 //##########################
 // Token LITINT
-LITINT: TK_LIT_INT ;
+LITINT: TK_LIT_INT 
+	  ;
 
 //##########################
 // Token LITFLOAT
-LITFLOAT: TK_LIT_FLOAT ;
+LITFLOAT: TK_LIT_FLOAT 
+		;
 
 //##########################
 // Token LITFALSE
-LITFALSE: TK_LIT_FALSE ;
+LITFALSE: TK_LIT_FALSE 
+		;
 
 //##########################
 // Token LITTRUE
-LITTRUE: TK_LIT_TRUE ;
+LITTRUE: TK_LIT_TRUE 
+	   ;
 
 //##########################
 // Tokens de operadores
-INVERTSIG: '-' ;
-NEGATE: '!' ;
-MULTIPLY: '*' ;
-DIVIDE: '/' ;
-REMAINDER: '%' ;
-ADD: '+' ;
-SUBTRACT: '-' ;
-GREATERTHAN: '>' ;
-LESSTHAN: '<' ;
-LESSEQUAL: TK_OC_LE ;
-GREATEREQUAL: TK_OC_GE ;
-EQUAL: TK_OC_EQ ;
-NOTEQUAL: TK_OC_NE ;
-AND: TK_OC_AND ;
+INVERTSIG: '-' 
+	     ;
+NEGATE: '!' 
+	  ;
+MULTIPLY: '*' 
+	    ;
+DIVIDE: '/' 
+	  ;
+REMAINDER: '%' 
+		 ;
+ADD: '+' 
+   ;
+SUBTRACT: '-' 
+		;
+GREATERTHAN: '>' 
+		   ;
+LESSTHAN: '<' 
+		;
+LESSEQUAL: TK_OC_LE 
+		 ;
+GREATEREQUAL: TK_OC_GE 
+			;
+EQUAL: TK_OC_EQ 
+	 ;
+NOTEQUAL: TK_OC_NE 
+		;
+AND: TK_OC_AND 
+   ;
 
 %%
 
 //##########################
 // Função de tratamento de erro
 int yyerror(char const *s){
-    printf("%s on line %d Token UNKNOWN \"%s\" \n", s, get_line_number(), yytext);
+    printf("%s on line %d \n", s, get_line_number());
     return 1;
 }

@@ -1,0 +1,2754 @@
+GrupoA|asl001|0|
+GrupoA|asl002|1|[ERRO] Linha 2: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl003|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl004|1|[ERRO] Linha 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoA|asl005|1|[ERRO] Linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl006|1|[ERRO] Linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl007|1|[ERRO] Linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl008|1|[ERRO] Linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl009|0|
+GrupoA|asl010|0|
+GrupoA|asl011|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl012|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl013|1|[ERRO] Linha 3: syntax error, unexpected end of file, expecting ',' or ';' 
+GrupoA|asl014|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl015|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl016|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl017|1|[ERRO] Linha 5: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl018|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl019|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl020|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl021|1|[ERRO] Linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoA|asl022|1|[ERRO] Linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoA|asl023|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl024|1|[ERRO] Linha 2: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl025|0|
+GrupoA|asl026|1|[ERRO] Linha 6: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl027|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl028|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl029|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl030|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl031|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_BOOL, expecting ',' 
+GrupoA|asl032|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl033|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl034|1|[ERRO] Linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl035|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl036|1|[ERRO] Linha 4: syntax error, unexpected '=', expecting ')' 
+GrupoA|asl037|1|[ERRO] Linha 7: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl038|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl039|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl040|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl041|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl042|1|[ERRO] Linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoA|asl043|1|[ERRO] Linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoA|asl044|0|
+GrupoA|asl045|1|[ERRO] Linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoA|asl046|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl047|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl048|0|
+GrupoA|asl049|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl050|0|
+GrupoA|asl051|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting end of file 
+GrupoA|asl052|0|
+GrupoA|asl053|0|
+GrupoA|asl054|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl055|0|
+GrupoA|asl056|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl057|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl058|1|[ERRO] Linha 6: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl059|1|[ERRO] Linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl060|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' or ';' 
+GrupoA|asl061|1|[ERRO] Linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl062|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoA|asl063|1|[ERRO] Linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl064|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoA|asl065|1|[ERRO] Linha 4: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl066|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl067|1|[ERRO] Linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl068|1|[ERRO] Linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl069|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl070|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl071|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl072|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoA|asl073|0|
+GrupoA|asl074|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl075|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl076|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl077|0|
+GrupoA|asl078|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl079|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_RETURN, expecting ',' 
+GrupoA|asl080|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoA|asl081|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoA|asl082|1|[ERRO] Linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoA|asl083|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_IF, expecting ',' 
+GrupoA|asl085|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl086|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl087|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl088|0|
+GrupoA|asl089|1|[ERRO] Linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoA|asl090|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl091|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl092|1|[ERRO] Linha 4: syntax error, unexpected ',', expecting '}' 
+GrupoA|asl093|1|[ERRO] Linha 6: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl094|1|[ERRO] Linha 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoA|asl095|1|[ERRO] Linha 2: syntax error, unexpected '(', expecting ',' or ';' 
+GrupoA|asl096|1|[ERRO] Linha 2: syntax error, unexpected '(', expecting ',' or ';' 
+GrupoA|asl097|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl098|1|[ERRO] Linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl099|0|
+GrupoA|asl100|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl101|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl102|1|[ERRO] Linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoA|asl103|1|[ERRO] Linha 4: syntax error, unexpected '=', expecting ',' 
+GrupoA|asl104|1|[ERRO] Linha 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoA|asl105|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl106|0|
+GrupoA|asl107|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl108|0|
+GrupoA|asl109|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl110|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl111|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl112|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl113|1|[ERRO] Linha 6: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl114|1|[ERRO] Linha 4: syntax error, unexpected ')' 
+GrupoA|asl115|1|[ERRO] Linha 6: syntax error, unexpected '}', expecting ',' 
+GrupoA|asl116|1|[ERRO] Linha 4: syntax error, unexpected ',' 
+GrupoA|asl117|1|[ERRO] Linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoA|asl118|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_IF, expecting ',' 
+GrupoA|asl119|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoA|asl120|1|[ERRO] Linha 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoA|asl121|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl122|1|[ERRO] Linha 3: syntax error, unexpected ')' 
+GrupoA|asl123|1|[ERRO] Linha 3: syntax error, unexpected ',', expecting ')' 
+GrupoA|asl124|1|[ERRO] Linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoA|asl125|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl126|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl127|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl128|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl129|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl130|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl131|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl132|1|[ERRO] Linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoA|asl133|1|[ERRO] Linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoA|asl140|1|[ERRO] Linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoA|asl141|1|[ERRO] Linha 3: syntax error, unexpected TK_OC_OR 
+GrupoA|asl142|1|[ERRO] Linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoA|asl143|1|[ERRO] Linha 3: syntax error, unexpected TK_OC_AND 
+GrupoA|asl144|1|[ERRO] Linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl145|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoA|asl146|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl147|1|[ERRO] Linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoA|asl148|0|
+GrupoA|asl149|0|
+GrupoA|asl150|0|
+GrupoA|asl151|0|
+GrupoA|asl152|0|
+GrupoA|asl153|0|
+GrupoA|asl154|0|
+GrupoA|asl155|0|
+GrupoA|asl156|0|
+GrupoA|asl157|0|
+GrupoA|asl158|0|
+GrupoA|asl159|0|
+GrupoA|asl160|0|
+GrupoB|asl001|0|
+GrupoB|asl002|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl003|0|
+GrupoB|asl004|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoB|asl005|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl006|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl007|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl008|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl009|0|
+GrupoB|asl010|0|
+GrupoB|asl011|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl012|0|
+GrupoB|asl013|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected end of file, expecting ',' or ';' 
+GrupoB|asl014|0|
+GrupoB|asl015|0|
+GrupoB|asl016|0|
+GrupoB|asl017|0|
+GrupoB|asl018|0|
+GrupoB|asl019|0|
+GrupoB|asl020|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_LIT_INT 
+GrupoB|asl021|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ' ', expecting ',' 
+GrupoB|asl022|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ' ', expecting ',' 
+GrupoB|asl023|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl024|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl025|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected '}', expecting ',' 
+GrupoB|asl026|1| Erro de sintaxe detectado. Linha: 8 syntax error, unexpected '}', expecting ',' 
+GrupoB|asl027|0|
+GrupoB|asl028|0|
+GrupoB|asl029|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected TK_ERRO 
+GrupoB|asl030|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected TK_ERRO 
+GrupoB|asl031|0|
+GrupoB|asl032|1| Erro de sintaxe detectado. Linha: 6 syntax error, unexpected '*' 
+GrupoB|asl033|0|
+GrupoB|asl034|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl035|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl036|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '=' 
+GrupoB|asl037|0|
+GrupoB|asl038|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl039|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl040|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl041|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl042|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoB|asl043|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoB|asl044|0|
+GrupoB|asl045|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoB|asl046|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl047|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl048|0|
+GrupoB|asl049|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl050|0|
+GrupoB|asl051|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ',' 
+GrupoB|asl052|0|
+GrupoB|asl053|0|
+GrupoB|asl054|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl055|0|
+GrupoB|asl056|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl057|0|
+GrupoB|asl058|0|
+GrupoB|asl059|0|
+GrupoB|asl060|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected TK_PR_INT, expecting ',' or ';' 
+GrupoB|asl061|0|
+GrupoB|asl062|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoB|asl063|0|
+GrupoB|asl064|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoB|asl065|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl066|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl067|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl068|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl069|0|
+GrupoB|asl070|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl071|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl072|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting ',' or ';' 
+GrupoB|asl073|0|
+GrupoB|asl074|0|
+GrupoB|asl075|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl076|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected '<', expecting '(' or '=' 
+GrupoB|asl077|0|
+GrupoB|asl078|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected '>', expecting '(' or '=' 
+GrupoB|asl079|0|
+GrupoB|asl080|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ',', expecting '(' or '=' 
+GrupoB|asl081|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ',', expecting '(' or '=' 
+GrupoB|asl082|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoB|asl083|0|
+GrupoB|asl085|1| Erro de sintaxe detectado. Linha: 7 syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoB|asl086|0|
+GrupoB|asl087|0|
+GrupoB|asl088|0|
+GrupoB|asl089|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '<', expecting '(' or '=' 
+GrupoB|asl090|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl091|0|
+GrupoB|asl092|0|
+GrupoB|asl093|0|
+GrupoB|asl094|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoB|asl095|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '(', expecting ',' or ';' 
+GrupoB|asl096|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '(', expecting ',' or ';' 
+GrupoB|asl097|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl098|1| Erro de sintaxe detectado. Linha: 6 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl099|0|
+GrupoB|asl100|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl101|1| Erro de sintaxe detectado. Linha: 7 syntax error, unexpected ',', expecting '(' or '=' 
+GrupoB|asl102|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '<', expecting '(' or '=' 
+GrupoB|asl103|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '=', expecting ',' 
+GrupoB|asl104|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoB|asl105|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl106|0|
+GrupoB|asl107|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl108|0|
+GrupoB|asl109|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl110|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl111|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl112|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl113|1| Erro de sintaxe detectado. Linha: 7 syntax error, unexpected '}', expecting ',' 
+GrupoB|asl114|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ')' 
+GrupoB|asl115|1| Erro de sintaxe detectado. Linha: 6 syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoB|asl116|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected ',' 
+GrupoB|asl117|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoB|asl118|0|
+GrupoB|asl119|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoB|asl120|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected '+', expecting '(' or '=' 
+GrupoB|asl121|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl122|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected ')' 
+GrupoB|asl123|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected ',' 
+GrupoB|asl124|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoB|asl125|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '+' 
+GrupoB|asl126|0|
+GrupoB|asl127|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected invalid token 
+GrupoB|asl128|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '*' 
+GrupoB|asl129|0|
+GrupoB|asl130|0|
+GrupoB|asl131|0|
+GrupoB|asl132|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '<', expecting '(' or '=' 
+GrupoB|asl133|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected '<', expecting '(' or '=' 
+GrupoB|asl140|1| Erro de sintaxe detectado. Linha: 2 syntax error, unexpected TK_IDENTIFICADOR 
+GrupoB|asl141|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_OC_OR 
+GrupoB|asl142|1| Erro de sintaxe detectado. Linha: 6 syntax error, unexpected TK_OC_AND 
+GrupoB|asl143|1| Erro de sintaxe detectado. Linha: 3 syntax error, unexpected TK_OC_AND 
+GrupoB|asl144|1| Erro de sintaxe detectado. Linha: 5 syntax error, unexpected TK_OC_AND 
+GrupoB|asl145|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoB|asl146|0|
+GrupoB|asl147|1| Erro de sintaxe detectado. Linha: 4 syntax error, unexpected invalid token 
+GrupoB|asl148|0|
+GrupoB|asl149|0|
+GrupoB|asl150|0|
+GrupoB|asl151|0|
+GrupoB|asl152|0|
+GrupoB|asl153|0|
+GrupoB|asl154|0|
+GrupoB|asl155|0|
+GrupoB|asl156|0|
+GrupoB|asl157|0|
+GrupoB|asl158|0|
+GrupoB|asl159|0|
+GrupoB|asl160|0|
+GrupoC|asl001|0|0 
+GrupoC|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' line: 2 1 
+GrupoC|asl003|0|0 
+GrupoC|asl004|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR line: 3 1 
+GrupoC|asl005|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 3 1 
+GrupoC|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 3 1 
+GrupoC|asl007|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' line: 3 1 
+GrupoC|asl008|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' line: 3 1 
+GrupoC|asl009|0|0 
+GrupoC|asl010|0|0 
+GrupoC|asl011|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl012|0|0 
+GrupoC|asl013|1|syntax error, unexpected end of file, expecting ',' or ';' line: 3 1 
+GrupoC|asl014|0|0 
+GrupoC|asl015|0|0 
+GrupoC|asl016|0|0 
+GrupoC|asl017|0|0 
+GrupoC|asl018|0|0 
+GrupoC|asl019|0|0 
+GrupoC|asl020|1|syntax error, unexpected TK_LIT_INT, expecting ',' line: 4 1 
+GrupoC|asl021|1|syntax error, unexpected ' ', expecting ',' line: 4 1 
+GrupoC|asl022|1|syntax error, unexpected ' ', expecting ',' line: 4 1 
+GrupoC|asl023|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' line: 2 1 
+GrupoC|asl025|1|syntax error, unexpected '}', expecting ',' line: 5 1 
+GrupoC|asl026|1|syntax error, unexpected '}', expecting ',' line: 8 1 
+GrupoC|asl027|0|0 
+GrupoC|asl028|0|0 
+GrupoC|asl029|1|syntax error, unexpected TK_ERRO line: 5 1 
+GrupoC|asl030|1|syntax error, unexpected TK_ERRO line: 5 1 
+GrupoC|asl031|0|0 
+GrupoC|asl032|1|syntax error, unexpected '*' line: 6 1 
+GrupoC|asl033|0|0 
+GrupoC|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 4 1 
+GrupoC|asl035|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl036|1|syntax error, unexpected '=', expecting ')' line: 4 1 
+GrupoC|asl037|0|0 
+GrupoC|asl038|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl039|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl040|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl041|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' line: 2 1 
+GrupoC|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' line: 2 1 
+GrupoC|asl044|0|0 
+GrupoC|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' line: 2 1 
+GrupoC|asl046|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl047|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl048|0|0 
+GrupoC|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl050|0|0 
+GrupoC|asl051|1|syntax error, unexpected ',', expecting end of file line: 4 1 
+GrupoC|asl052|0|0 
+GrupoC|asl053|0|0 
+GrupoC|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl055|0|0 
+GrupoC|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl057|0|0 
+GrupoC|asl058|0|0 
+GrupoC|asl059|0|0 
+GrupoC|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' line: 5 1 
+GrupoC|asl061|0|0 
+GrupoC|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' line: 4 1 
+GrupoC|asl063|0|0 
+GrupoC|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' line: 4 1 
+GrupoC|asl065|1|syntax error, unexpected '<', expecting ',' line: 4 1 
+GrupoC|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 4 1 
+GrupoC|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 4 1 
+GrupoC|asl069|0|0 
+GrupoC|asl070|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl071|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl072|1|syntax error, unexpected '<', expecting ',' or ';' line: 2 1 
+GrupoC|asl073|0|0 
+GrupoC|asl074|0|0 
+GrupoC|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl076|1|syntax error, unexpected '<', expecting '(' or '=' line: 5 1 
+GrupoC|asl077|0|0 
+GrupoC|asl078|1|syntax error, unexpected '>', expecting '(' or '=' line: 5 1 
+GrupoC|asl079|0|0 
+GrupoC|asl080|1|syntax error, unexpected ',', expecting '(' or '=' line: 4 1 
+GrupoC|asl081|1|syntax error, unexpected ',', expecting '(' or '=' line: 4 1 
+GrupoC|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' or '=' line: 4 1 
+GrupoC|asl083|0|0 
+GrupoC|asl085|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' line: 7 1 
+GrupoC|asl086|0|0 
+GrupoC|asl087|0|0 
+GrupoC|asl088|0|0 
+GrupoC|asl089|1|syntax error, unexpected '<', expecting '(' or '=' line: 4 1 
+GrupoC|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl091|0|0 
+GrupoC|asl092|0|0 
+GrupoC|asl093|0|0 
+GrupoC|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR line: 2 1 
+GrupoC|asl095|1|syntax error, unexpected '(', expecting ',' or ';' line: 2 1 
+GrupoC|asl096|1|syntax error, unexpected '(', expecting ',' or ';' line: 2 1 
+GrupoC|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 6 1 
+GrupoC|asl099|0|0 
+GrupoC|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl101|1|syntax error, unexpected ',', expecting '(' or '=' line: 7 1 
+GrupoC|asl102|1|syntax error, unexpected '<', expecting '(' or '=' line: 4 1 
+GrupoC|asl103|1|syntax error, unexpected '=', expecting ',' line: 4 1 
+GrupoC|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR line: 2 1 
+GrupoC|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl106|0|0 
+GrupoC|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl108|0|0 
+GrupoC|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl113|1|syntax error, unexpected '}', expecting ',' line: 7 1 
+GrupoC|asl114|1|syntax error, unexpected ')' line: 4 1 
+GrupoC|asl115|1|syntax error, unexpected TK_PR_WHILE, expecting ',' line: 6 1 
+GrupoC|asl116|1|syntax error, unexpected ',' line: 4 1 
+GrupoC|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' line: 4 1 
+GrupoC|asl118|0|0 
+GrupoC|asl119|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' line: 5 1 
+GrupoC|asl120|1|syntax error, unexpected '+', expecting '(' or '=' line: 3 1 
+GrupoC|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl122|1|syntax error, unexpected ')' line: 3 1 
+GrupoC|asl123|1|syntax error, unexpected ',', expecting ')' line: 3 1 
+GrupoC|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' line: 3 1 
+GrupoC|asl125|1|syntax error, unexpected '+' line: 4 1 
+GrupoC|asl126|0|0 
+GrupoC|asl127|0|0 
+GrupoC|asl128|1|syntax error, unexpected '*' line: 4 1 
+GrupoC|asl129|0|0 
+GrupoC|asl130|0|0 
+GrupoC|asl131|0|0 
+GrupoC|asl132|1|syntax error, unexpected '<', expecting '(' or '=' line: 4 1 
+GrupoC|asl133|1|syntax error, unexpected '<', expecting '(' or '=' line: 4 1 
+GrupoC|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file line: 2 1 
+GrupoC|asl141|1|syntax error, unexpected TK_OC_OR line: 3 1 
+GrupoC|asl142|1|syntax error, unexpected TK_OC_AND line: 6 1 
+GrupoC|asl143|1|syntax error, unexpected TK_OC_AND line: 3 1 
+GrupoC|asl144|1|syntax error, unexpected TK_OC_AND line: 5 1 
+GrupoC|asl145|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' line: 4 1 
+GrupoC|asl146|1|syntax error, unexpected ' ' line: 4 1 
+GrupoC|asl147|1|syntax error, unexpected '!' line: 4 1 
+GrupoC|asl148|0|0 
+GrupoC|asl149|0|0 
+GrupoC|asl150|0|0 
+GrupoC|asl151|0|0 
+GrupoC|asl152|0|0 
+GrupoC|asl153|0|0 
+GrupoC|asl154|0|0 
+GrupoC|asl155|0|0 
+GrupoC|asl156|0|0 
+GrupoC|asl157|0|0 
+GrupoC|asl158|0|0 
+GrupoC|asl159|0|0 
+GrupoC|asl160|0|0 
+GrupoD|asl001|0|
+GrupoD|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 2. Token <= 
+GrupoD|asl003|0|
+GrupoD|asl004|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR Syntax error at line 3. Token , 
+GrupoD|asl005|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 3. Token <= 
+GrupoD|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 3. Token <= 
+GrupoD|asl007|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl008|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl009|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl010|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl011|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl012|0|
+GrupoD|asl013|1|syntax error, unexpected end of file, expecting ',' Syntax error at line 3. Token 
+GrupoD|asl014|0|
+GrupoD|asl015|0|
+GrupoD|asl016|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl017|1|syntax error, unexpected '}' Syntax error at line 5. Token } 
+GrupoD|asl018|0|
+GrupoD|asl019|0|
+GrupoD|asl020|1|syntax error, unexpected TK_LIT_INT, expecting ',' Syntax error at line 4. Token 1 
+GrupoD|asl021|1|syntax error, unexpected ')' Syntax error at line 4. Token ) 
+GrupoD|asl022|1|syntax error, unexpected ')' Syntax error at line 4. Token ) 
+GrupoD|asl023|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 2. Token <= 
+GrupoD|asl025|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl026|1|syntax error, unexpected '}' Syntax error at line 6. Token } 
+GrupoD|asl027|0|
+GrupoD|asl028|0|
+GrupoD|asl029|1|syntax error, unexpected TK_ERRO Syntax error at line 5. Token ' 
+GrupoD|asl030|1|syntax error, unexpected TK_ERRO Syntax error at line 5. Token ' 
+GrupoD|asl031|0|
+GrupoD|asl032|1|syntax error, unexpected '*' Syntax error at line 6. Token Makefile etapa2 lex.yy.c lex.yy.o main.c main.o parser.tab.c parser.tab.h parser.tab.o parser.y scanner.l teste.c tests 
+GrupoD|asl033|0|
+GrupoD|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 4. Token <= 
+GrupoD|asl035|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl036|1|syntax error, unexpected '=', expecting ')' Syntax error at line 4. Token = 
+GrupoD|asl037|1|syntax error, unexpected '}' Syntax error at line 6. Token } 
+GrupoD|asl038|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl039|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl040|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl041|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' Syntax error at line 2. Token ^ 
+GrupoD|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' Syntax error at line 2. Token : 
+GrupoD|asl044|0|
+GrupoD|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' Syntax error at line 2. Token : 
+GrupoD|asl046|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl047|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl048|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl050|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl051|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl052|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl053|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl055|0|
+GrupoD|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl057|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl058|1|syntax error, unexpected '}' Syntax error at line 6. Token } 
+GrupoD|asl059|0|
+GrupoD|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' Syntax error at line 5. Token int 
+GrupoD|asl061|0|
+GrupoD|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' Syntax error at line 4. Token a 
+GrupoD|asl063|0|
+GrupoD|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' Syntax error at line 4. Token a 
+GrupoD|asl065|1|syntax error, unexpected '<', expecting ',' Syntax error at line 4. Token < 
+GrupoD|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token char 
+GrupoD|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 4. Token <= 
+GrupoD|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 4. Token <= 
+GrupoD|asl069|0|
+GrupoD|asl070|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl071|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl072|1|syntax error, unexpected '<', expecting ',' Syntax error at line 2. Token < 
+GrupoD|asl073|1|syntax error, unexpected ')' Syntax error at line 4. Token ) 
+GrupoD|asl074|0|
+GrupoD|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl076|1|syntax error, unexpected '<', expecting '(' or '=' Syntax error at line 5. Token < 
+GrupoD|asl077|0|
+GrupoD|asl078|1|syntax error, unexpected '>', expecting '(' or '=' Syntax error at line 5. Token > 
+GrupoD|asl079|0|
+GrupoD|asl080|1|syntax error, unexpected ',', expecting '(' or '=' Syntax error at line 4. Token , 
+GrupoD|asl081|1|syntax error, unexpected ',', expecting '(' or '=' Syntax error at line 4. Token , 
+GrupoD|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' or '=' Syntax error at line 4. Token 245 
+GrupoD|asl083|1|syntax error, unexpected '}' Syntax error at line 5. Token } 
+GrupoD|asl085|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Syntax error at line 7. Token do 
+GrupoD|asl086|1|syntax error, unexpected '}' Syntax error at line 7. Token } 
+GrupoD|asl087|0|
+GrupoD|asl088|0|
+GrupoD|asl089|1|syntax error, unexpected '<', expecting '(' or '=' Syntax error at line 4. Token < 
+GrupoD|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl091|1|syntax error, unexpected '+', expecting ')' Syntax error at line 5. Token + 
+GrupoD|asl092|1|syntax error, unexpected '}' Syntax error at line 4. Token } 
+GrupoD|asl093|0|
+GrupoD|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR Syntax error at line 2. Token , 
+GrupoD|asl095|1|syntax error, unexpected '(', expecting ',' Syntax error at line 2. Token ( 
+GrupoD|asl096|1|syntax error, unexpected '(', expecting ',' Syntax error at line 2. Token ( 
+GrupoD|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 6. Token a 
+GrupoD|asl099|0|
+GrupoD|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token f 
+GrupoD|asl101|1|syntax error, unexpected ',', expecting '(' or '=' Syntax error at line 7. Token , 
+GrupoD|asl102|1|syntax error, unexpected '<', expecting '(' or '=' Syntax error at line 4. Token < 
+GrupoD|asl103|1|syntax error, unexpected '=', expecting ',' Syntax error at line 4. Token = 
+GrupoD|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR Syntax error at line 2. Token < 
+GrupoD|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token func 
+GrupoD|asl106|0|
+GrupoD|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token func 
+GrupoD|asl108|0|
+GrupoD|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token func 
+GrupoD|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token char 
+GrupoD|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token func 
+GrupoD|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token func 
+GrupoD|asl113|1|syntax error, unexpected '}', expecting ',' Syntax error at line 7. Token } 
+GrupoD|asl114|1|syntax error, unexpected ')' Syntax error at line 4. Token ) 
+GrupoD|asl115|1|syntax error, unexpected TK_PR_WHILE, expecting ',' Syntax error at line 6. Token while 
+GrupoD|asl116|1|syntax error, unexpected ',' Syntax error at line 4. Token , 
+GrupoD|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' Syntax error at line 4. Token 1 
+GrupoD|asl118|0|
+GrupoD|asl119|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Syntax error at line 5. Token x 
+GrupoD|asl120|1|syntax error, unexpected '+', expecting '(' or '=' Syntax error at line 3. Token + 
+GrupoD|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token string 
+GrupoD|asl122|1|syntax error, unexpected '*', expecting ')' Syntax error at line 3. Token Makefile etapa2 lex.yy.c lex.yy.o main.c main.o parser.tab.c parser.tab.h parser.tab.o parser.y scanner.l teste.c tests 
+GrupoD|asl123|1|syntax error, unexpected ',', expecting ')' Syntax error at line 3. Token , 
+GrupoD|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' Syntax error at line 3. Token <= 
+GrupoD|asl125|1|syntax error, unexpected '+' Syntax error at line 4. Token + 
+GrupoD|asl126|0|
+GrupoD|asl127|0|
+GrupoD|asl128|1|syntax error, unexpected '*' Syntax error at line 4. Token Makefile etapa2 lex.yy.c lex.yy.o main.c main.o parser.tab.c parser.tab.h parser.tab.o parser.y scanner.l teste.c tests 
+GrupoD|asl129|0|
+GrupoD|asl130|0|
+GrupoD|asl131|0|
+GrupoD|asl132|1|syntax error, unexpected '<', expecting '(' or '=' Syntax error at line 4. Token < 
+GrupoD|asl133|1|syntax error, unexpected '<', expecting '(' or '=' Syntax error at line 4. Token < 
+GrupoD|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Syntax error at line 2. Token main 
+GrupoD|asl141|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl142|1|syntax error, unexpected TK_OC_AND Syntax error at line 6. Token & 
+GrupoD|asl143|1|syntax error, unexpected '(' Syntax error at line 3. Token ( 
+GrupoD|asl144|1|syntax error, unexpected TK_OC_AND Syntax error at line 5. Token & 
+GrupoD|asl145|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Syntax error at line 4. Token then 
+GrupoD|asl146|0|
+GrupoD|asl147|0|
+GrupoD|asl148|0|
+GrupoD|asl149|0|
+GrupoD|asl150|0|
+GrupoD|asl151|0|
+GrupoD|asl152|0|
+GrupoD|asl153|0|
+GrupoD|asl154|0|
+GrupoD|asl155|0|
+GrupoD|asl156|0|
+GrupoD|asl157|0|
+GrupoD|asl158|0|
+GrupoD|asl159|0|
+GrupoD|asl160|0|
+GrupoE|asl001|0|
+GrupoE|asl002|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' or ';' na linha 2 
+GrupoE|asl003|0|
+GrupoE|asl004|1|Problema encontrado: syntax error, unexpected ',', expecting TK_IDENTIFICADOR na linha 3 
+GrupoE|asl005|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 3 
+GrupoE|asl006|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 3 
+GrupoE|asl007|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' na linha 3 
+GrupoE|asl008|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' na linha 3 
+GrupoE|asl009|0|
+GrupoE|asl010|0|
+GrupoE|asl011|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl012|0|
+GrupoE|asl013|1|Problema encontrado: syntax error, unexpected end of file, expecting ',' or ';' na linha 3 
+GrupoE|asl014|0|
+GrupoE|asl015|0|
+GrupoE|asl016|0|
+GrupoE|asl017|0|
+GrupoE|asl018|0|
+GrupoE|asl019|0|
+GrupoE|asl020|1|Problema encontrado: syntax error, unexpected TK_LIT_INT, expecting ',' na linha 4 
+GrupoE|asl021|1|Problema encontrado: syntax error, unexpected ' ', expecting ',' na linha 4 
+GrupoE|asl022|1|Problema encontrado: syntax error, unexpected ' ', expecting ',' na linha 4 
+GrupoE|asl023|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl024|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' or ';' na linha 2 
+GrupoE|asl025|1|Problema encontrado: syntax error, unexpected '}', expecting ',' na linha 5 
+GrupoE|asl026|1|Problema encontrado: syntax error, unexpected '}', expecting ',' na linha 8 
+GrupoE|asl027|0|
+GrupoE|asl028|0|
+GrupoE|asl029|1|Problema encontrado: syntax error, unexpected TK_ERRO na linha 5 
+GrupoE|asl030|1|Problema encontrado: syntax error, unexpected TK_ERRO na linha 5 
+GrupoE|asl031|0|
+GrupoE|asl032|1|Problema encontrado: syntax error, unexpected '*' na linha 6 
+GrupoE|asl033|0|
+GrupoE|asl034|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 4 
+GrupoE|asl035|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl036|1|Problema encontrado: syntax error, unexpected '=', expecting ')' na linha 4 
+GrupoE|asl037|1|Problema encontrado: syntax error, unexpected TK_ERRO, expecting '{' na linha 5 
+GrupoE|asl038|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl039|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl040|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl041|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl042|1|Problema encontrado: syntax error, unexpected TK_ERRO, expecting ',' or ';' na linha 2 
+GrupoE|asl043|1|Problema encontrado: syntax error, unexpected TK_ERRO, expecting ',' or ';' na linha 2 
+GrupoE|asl044|0|
+GrupoE|asl045|1|Problema encontrado: syntax error, unexpected TK_ERRO, expecting ',' or ';' na linha 2 
+GrupoE|asl046|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl047|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl048|0|
+GrupoE|asl049|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl050|0|
+GrupoE|asl051|1|Problema encontrado: syntax error, unexpected ',', expecting end of file na linha 4 
+GrupoE|asl052|0|
+GrupoE|asl053|0|
+GrupoE|asl054|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl055|0|
+GrupoE|asl056|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl057|0|
+GrupoE|asl058|0|
+GrupoE|asl059|0|
+GrupoE|asl060|1|Problema encontrado: syntax error, unexpected TK_PR_INT, expecting ',' na linha 5 
+GrupoE|asl061|0|
+GrupoE|asl062|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' na linha 4 
+GrupoE|asl063|0|
+GrupoE|asl064|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' na linha 4 
+GrupoE|asl065|1|Problema encontrado: syntax error, unexpected '<', expecting ',' na linha 4 
+GrupoE|asl066|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl067|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 4 
+GrupoE|asl068|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 4 
+GrupoE|asl069|0|
+GrupoE|asl070|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl071|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl072|1|Problema encontrado: syntax error, unexpected '<', expecting ',' or ';' na linha 2 
+GrupoE|asl073|0|
+GrupoE|asl074|0|
+GrupoE|asl075|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl076|1|Problema encontrado: syntax error, unexpected '<', expecting '(' or '=' na linha 5 
+GrupoE|asl077|0|
+GrupoE|asl078|1|Problema encontrado: syntax error, unexpected '>', expecting '(' or '=' na linha 5 
+GrupoE|asl079|0|
+GrupoE|asl080|1|Problema encontrado: syntax error, unexpected ',', expecting '(' or '=' na linha 4 
+GrupoE|asl081|1|Problema encontrado: syntax error, unexpected ',', expecting '(' or '=' na linha 4 
+GrupoE|asl082|1|Problema encontrado: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' na linha 4 
+GrupoE|asl083|0|
+GrupoE|asl085|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' na linha 7 
+GrupoE|asl086|0|
+GrupoE|asl087|0|
+GrupoE|asl088|0|
+GrupoE|asl089|1|Problema encontrado: syntax error, unexpected '<', expecting '(' or '=' na linha 4 
+GrupoE|asl090|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl091|0|
+GrupoE|asl092|0|
+GrupoE|asl093|0|
+GrupoE|asl094|1|Problema encontrado: syntax error, unexpected ',', expecting TK_IDENTIFICADOR na linha 2 
+GrupoE|asl095|1|Problema encontrado: syntax error, unexpected '(', expecting ',' or ';' na linha 2 
+GrupoE|asl096|1|Problema encontrado: syntax error, unexpected '(', expecting ',' or ';' na linha 2 
+GrupoE|asl097|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl098|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 6 
+GrupoE|asl099|0|
+GrupoE|asl100|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl101|1|Problema encontrado: syntax error, unexpected ',', expecting '(' or '=' na linha 7 
+GrupoE|asl102|1|Problema encontrado: syntax error, unexpected '<', expecting '(' or '=' na linha 4 
+GrupoE|asl103|1|Problema encontrado: syntax error, unexpected '=', expecting ',' na linha 4 
+GrupoE|asl104|1|Problema encontrado: syntax error, unexpected '<', expecting TK_IDENTIFICADOR na linha 2 
+GrupoE|asl105|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl106|0|
+GrupoE|asl107|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl108|0|
+GrupoE|asl109|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl110|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl111|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl112|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl113|1|Problema encontrado: syntax error, unexpected '}', expecting ',' na linha 7 
+GrupoE|asl114|1|Problema encontrado: syntax error, unexpected ')' na linha 4 
+GrupoE|asl115|1|Problema encontrado: syntax error, unexpected TK_PR_WHILE, expecting ',' na linha 6 
+GrupoE|asl116|1|Problema encontrado: syntax error, unexpected ',' na linha 4 
+GrupoE|asl117|1|Problema encontrado: syntax error, unexpected TK_LIT_INT, expecting '(' na linha 4 
+GrupoE|asl118|0|
+GrupoE|asl119|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' na linha 5 
+GrupoE|asl120|1|Problema encontrado: syntax error, unexpected '+', expecting '(' or '=' na linha 3 
+GrupoE|asl121|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl122|1|Problema encontrado: syntax error, unexpected ')' na linha 3 
+GrupoE|asl123|1|Problema encontrado: syntax error, unexpected ',', expecting ')' na linha 3 
+GrupoE|asl124|1|Problema encontrado: syntax error, unexpected TK_OC_LE, expecting ',' na linha 3 
+GrupoE|asl125|1|Problema encontrado: syntax error, unexpected '+' na linha 4 
+GrupoE|asl126|0|
+GrupoE|asl127|0|
+GrupoE|asl128|1|Problema encontrado: syntax error, unexpected '*' na linha 4 
+GrupoE|asl129|0|
+GrupoE|asl130|0|
+GrupoE|asl131|0|
+GrupoE|asl132|1|Problema encontrado: syntax error, unexpected '<', expecting '(' or '=' na linha 4 
+GrupoE|asl133|1|Problema encontrado: syntax error, unexpected '<', expecting '(' or '=' na linha 4 
+GrupoE|asl140|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file na linha 2 
+GrupoE|asl141|1|Problema encontrado: syntax error, unexpected TK_OC_OR na linha 3 
+GrupoE|asl142|1|Problema encontrado: syntax error, unexpected TK_OC_AND na linha 6 
+GrupoE|asl143|1|Problema encontrado: syntax error, unexpected TK_OC_AND na linha 3 
+GrupoE|asl144|1|Problema encontrado: syntax error, unexpected TK_OC_AND na linha 5 
+GrupoE|asl145|1|Problema encontrado: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' na linha 4 
+GrupoE|asl146|0|
+GrupoE|asl147|0|
+GrupoE|asl148|0|
+GrupoE|asl149|0|
+GrupoE|asl150|0|
+GrupoE|asl151|0|
+GrupoE|asl152|0|
+GrupoE|asl153|0|
+GrupoE|asl154|0|
+GrupoE|asl155|0|
+GrupoE|asl156|0|
+GrupoE|asl157|0|
+GrupoE|asl158|0|
+GrupoE|asl159|0|
+GrupoE|asl160|0|
+GrupoF|asl001|0|
+GrupoF|asl002|1|line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoF|asl003|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl004|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl005|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl006|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl007|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl008|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl009|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl010|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl011|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl012|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl013|1|line 3: syntax error, unexpected end of file, expecting ',' 
+GrupoF|asl014|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl015|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl016|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl017|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl018|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl019|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl020|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl021|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl022|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl023|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl024|1|line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoF|asl025|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl026|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl027|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl028|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl029|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl030|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl031|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl032|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl033|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl034|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl035|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl036|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl037|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl038|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl039|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl040|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl041|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl042|1|line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoF|asl043|1|line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoF|asl044|0|
+GrupoF|asl045|1|line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoF|asl046|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl047|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl048|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl049|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl050|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl051|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl052|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl053|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl054|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl055|0|
+GrupoF|asl056|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl057|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl058|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl059|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl060|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl061|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl062|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl063|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl064|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl065|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl066|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl067|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl068|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl069|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl070|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl071|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl072|1|line 2: syntax error, unexpected '<', expecting ',' 
+GrupoF|asl073|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl074|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl075|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl076|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl077|0|
+GrupoF|asl078|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl079|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl080|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl081|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl082|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl083|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl085|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl086|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl087|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl088|0|
+GrupoF|asl089|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl090|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl091|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl092|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl093|1|line 3: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl094|1|line 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoF|asl095|1|line 2: syntax error, unexpected '(', expecting ',' 
+GrupoF|asl096|1|line 2: syntax error, unexpected '(', expecting ',' 
+GrupoF|asl097|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl098|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl099|0|
+GrupoF|asl100|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl101|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl102|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl103|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl104|1|line 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoF|asl105|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl106|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl107|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl108|0|
+GrupoF|asl109|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl110|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl111|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl112|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl113|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl114|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl115|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl116|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl117|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl118|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl119|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl120|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl121|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl122|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl123|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl124|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl125|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl126|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl127|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl128|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl129|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl130|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl131|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl132|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl133|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl140|1|line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoF|asl141|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl142|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl143|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl144|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl145|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl146|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl147|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl148|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl149|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl150|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl151|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl152|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl153|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl154|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl155|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl156|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl157|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl158|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl159|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoF|asl160|1|line 2: syntax error, unexpected '/', expecting ' ' 
+GrupoG|asl001|0|
+GrupoG|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' on line 2 Token UNEXPECTED <= 
+GrupoG|asl003|0|
+GrupoG|asl004|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR on line 3 Token UNEXPECTED , 
+GrupoG|asl005|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 3 Token UNEXPECTED <= 
+GrupoG|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 3 Token UNEXPECTED <= 
+GrupoG|asl007|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' on line 3 Token UNEXPECTED and 
+GrupoG|asl008|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' on line 3 Token UNEXPECTED or 
+GrupoG|asl009|0|
+GrupoG|asl010|0|
+GrupoG|asl011|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl012|0|
+GrupoG|asl013|1|syntax error, unexpected end of file, expecting ',' or ';' on line 3 Token UNEXPECTED  
+GrupoG|asl014|0|
+GrupoG|asl015|0|
+GrupoG|asl016|1|syntax error, unexpected '{' on line 4 Token UNEXPECTED { 
+GrupoG|asl017|1|syntax error, unexpected '{' on line 4 Token UNEXPECTED { 
+GrupoG|asl018|0|
+GrupoG|asl019|1|syntax error, unexpected '{' on line 4 Token UNEXPECTED { 
+GrupoG|asl020|1|syntax error, unexpected TK_LIT_INT, expecting ',' on line 4 Token UNEXPECTED 1 
+GrupoG|asl021|1|syntax error, unexpected ' ', expecting ',' on line 4 Token UNEXPECTED   
+GrupoG|asl022|1|syntax error, unexpected ' ', expecting ',' on line 4 Token UNEXPECTED   
+GrupoG|asl023|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' on line 2 Token UNEXPECTED <= 
+GrupoG|asl025|1|syntax error, unexpected '{', expecting '}' on line 4 Token UNEXPECTED { 
+GrupoG|asl026|1|syntax error, unexpected '{', expecting '}' on line 4 Token UNEXPECTED { 
+GrupoG|asl027|0|
+GrupoG|asl028|0|
+GrupoG|asl029|1|syntax error, unexpected TK_ERRO on line 5 Token UNEXPECTED ' 
+GrupoG|asl030|1|syntax error, unexpected TK_ERRO on line 5 Token UNEXPECTED ' 
+GrupoG|asl031|0|
+GrupoG|asl032|1|syntax error, unexpected '*' on line 6 Token UNEXPECTED * 
+GrupoG|asl033|0|
+GrupoG|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 4 Token UNEXPECTED <= 
+GrupoG|asl035|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl036|1|syntax error, unexpected '=', expecting ')' on line 4 Token UNEXPECTED = 
+GrupoG|asl037|1|syntax error, unexpected '{' on line 5 Token UNEXPECTED { 
+GrupoG|asl038|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl039|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl040|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl041|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' on line 2 Token UNEXPECTED ^ 
+GrupoG|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' on line 2 Token UNEXPECTED : 
+GrupoG|asl044|0|
+GrupoG|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' on line 2 Token UNEXPECTED : 
+GrupoG|asl046|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl047|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl048|0|
+GrupoG|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl050|0|
+GrupoG|asl051|1|syntax error, unexpected ',', expecting end of file on line 4 Token UNEXPECTED , 
+GrupoG|asl052|0|
+GrupoG|asl053|0|
+GrupoG|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl055|0|
+GrupoG|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl057|1|syntax error, unexpected '{', expecting '}' on line 4 Token UNEXPECTED { 
+GrupoG|asl058|1|syntax error, unexpected '{', expecting '}' on line 4 Token UNEXPECTED { 
+GrupoG|asl059|0|
+GrupoG|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' on line 5 Token UNEXPECTED int 
+GrupoG|asl061|0|
+GrupoG|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' on line 4 Token UNEXPECTED a 
+GrupoG|asl063|0|
+GrupoG|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' on line 4 Token UNEXPECTED a 
+GrupoG|asl065|1|syntax error, unexpected '<', expecting ',' on line 4 Token UNEXPECTED < 
+GrupoG|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED char 
+GrupoG|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 4 Token UNEXPECTED <= 
+GrupoG|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 4 Token UNEXPECTED <= 
+GrupoG|asl069|0|
+GrupoG|asl070|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl071|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl072|1|syntax error, unexpected '<', expecting ',' or ';' on line 2 Token UNEXPECTED < 
+GrupoG|asl073|0|
+GrupoG|asl074|0|
+GrupoG|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl076|1|syntax error, unexpected '<', expecting '(' on line 5 Token UNEXPECTED < 
+GrupoG|asl077|0|
+GrupoG|asl078|1|syntax error, unexpected '>', expecting '(' on line 5 Token UNEXPECTED > 
+GrupoG|asl079|0|
+GrupoG|asl080|1|syntax error, unexpected ',', expecting '(' on line 4 Token UNEXPECTED , 
+GrupoG|asl081|1|syntax error, unexpected ',', expecting '(' on line 4 Token UNEXPECTED , 
+GrupoG|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' on line 4 Token UNEXPECTED 245 
+GrupoG|asl083|1|syntax error, unexpected '{' on line 5 Token UNEXPECTED { 
+GrupoG|asl085|1|syntax error, unexpected '{', expecting '(' on line 7 Token UNEXPECTED { 
+GrupoG|asl086|1|syntax error, unexpected '{', expecting ',' on line 7 Token UNEXPECTED { 
+GrupoG|asl087|0|
+GrupoG|asl088|0|
+GrupoG|asl089|1|syntax error, unexpected '<', expecting '(' on line 4 Token UNEXPECTED < 
+GrupoG|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl091|0|
+GrupoG|asl092|1|syntax error, unexpected '{' on line 4 Token UNEXPECTED { 
+GrupoG|asl093|0|
+GrupoG|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR on line 2 Token UNEXPECTED , 
+GrupoG|asl095|1|syntax error, unexpected '(', expecting ',' or ';' on line 2 Token UNEXPECTED ( 
+GrupoG|asl096|1|syntax error, unexpected '(', expecting ',' or ';' on line 2 Token UNEXPECTED ( 
+GrupoG|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 6 Token UNEXPECTED a 
+GrupoG|asl099|0|
+GrupoG|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED f 
+GrupoG|asl101|1|syntax error, unexpected ',', expecting '(' on line 7 Token UNEXPECTED , 
+GrupoG|asl102|1|syntax error, unexpected '<', expecting '(' on line 4 Token UNEXPECTED < 
+GrupoG|asl103|1|syntax error, unexpected '=', expecting ',' on line 4 Token UNEXPECTED = 
+GrupoG|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR on line 2 Token UNEXPECTED < 
+GrupoG|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED func 
+GrupoG|asl106|0|
+GrupoG|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED func 
+GrupoG|asl108|0|
+GrupoG|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED func 
+GrupoG|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED char 
+GrupoG|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED func 
+GrupoG|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED func 
+GrupoG|asl113|1|syntax error, unexpected '{', expecting ',' on line 4 Token UNEXPECTED { 
+GrupoG|asl114|1|syntax error, unexpected ')' on line 4 Token UNEXPECTED ) 
+GrupoG|asl115|1|syntax error, unexpected '{', expecting '}' on line 4 Token UNEXPECTED { 
+GrupoG|asl116|1|syntax error, unexpected ',' on line 4 Token UNEXPECTED , 
+GrupoG|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' on line 4 Token UNEXPECTED 1 
+GrupoG|asl118|1|syntax error, unexpected '{' on line 5 Token UNEXPECTED { 
+GrupoG|asl119|1|syntax error, unexpected '}', expecting ',' on line 6 Token UNEXPECTED } 
+GrupoG|asl120|1|syntax error, unexpected '+', expecting '(' on line 3 Token UNEXPECTED + 
+GrupoG|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED string 
+GrupoG|asl122|1|syntax error, unexpected ')' on line 3 Token UNEXPECTED ) 
+GrupoG|asl123|1|syntax error, unexpected ',', expecting ')' on line 3 Token UNEXPECTED , 
+GrupoG|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' on line 3 Token UNEXPECTED <= 
+GrupoG|asl125|1|syntax error, unexpected '+' on line 4 Token UNEXPECTED + 
+GrupoG|asl126|0|
+GrupoG|asl127|0|
+GrupoG|asl128|1|syntax error, unexpected '*' on line 4 Token UNEXPECTED * 
+GrupoG|asl129|0|
+GrupoG|asl130|0|
+GrupoG|asl131|0|
+GrupoG|asl132|1|syntax error, unexpected '<', expecting '(' on line 4 Token UNEXPECTED < 
+GrupoG|asl133|1|syntax error, unexpected '<', expecting '(' on line 4 Token UNEXPECTED < 
+GrupoG|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file on line 2 Token UNEXPECTED main 
+GrupoG|asl141|1|syntax error, unexpected TK_OC_OR on line 3 Token UNEXPECTED   
+GrupoG|asl142|1|syntax error, unexpected TK_OC_AND on line 6 Token UNEXPECTED & 
+GrupoG|asl143|1|syntax error, unexpected TK_OC_AND on line 3 Token UNEXPECTED & 
+GrupoG|asl144|1|syntax error, unexpected TK_OC_AND on line 5 Token UNEXPECTED & 
+GrupoG|asl145|1|syntax error, unexpected '{', expecting '(' on line 4 Token UNEXPECTED { 
+GrupoG|asl146|0|
+GrupoG|asl147|0|
+GrupoG|asl148|0|
+GrupoG|asl149|0|
+GrupoG|asl150|0|
+GrupoG|asl151|0|
+GrupoG|asl152|0|
+GrupoG|asl153|0|
+GrupoG|asl154|0|
+GrupoG|asl155|0|
+GrupoG|asl156|0|
+GrupoG|asl157|0|
+GrupoG|asl158|0|
+GrupoG|asl159|0|
+GrupoG|asl160|0|
+GrupoH|asl001|0|
+GrupoH|asl002|1| Error on line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl003|0|
+GrupoH|asl004|1| Error on line 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoH|asl005|1| Error on line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl006|1| Error on line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl007|1| Error on line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoH|asl008|1| Error on line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoH|asl009|0|
+GrupoH|asl010|0|
+GrupoH|asl011|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl012|0|
+GrupoH|asl013|1| Error on line 3: syntax error, unexpected end of file, expecting ',' 
+GrupoH|asl014|0|
+GrupoH|asl015|0|
+GrupoH|asl016|0|
+GrupoH|asl017|0|
+GrupoH|asl018|0|
+GrupoH|asl019|0|
+GrupoH|asl020|1| Error on line 4: syntax error, unexpected TK_LIT_INT, expecting ',' 
+GrupoH|asl021|1| Error on line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoH|asl022|1| Error on line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoH|asl023|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl024|1| Error on line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl025|1| Error on line 5: syntax error, unexpected '}', expecting ',' 
+GrupoH|asl026|1| Error on line 8: syntax error, unexpected '}', expecting ',' 
+GrupoH|asl027|0|
+GrupoH|asl028|0|
+GrupoH|asl029|1| Error on line 5: syntax error, unexpected TK_ERRO 
+GrupoH|asl030|1| Error on line 5: syntax error, unexpected TK_ERRO 
+GrupoH|asl031|0|
+GrupoH|asl032|1| Error on line 6: syntax error, unexpected '*' 
+GrupoH|asl033|0|
+GrupoH|asl034|1| Error on line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl035|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl036|1| Error on line 4: syntax error, unexpected '=', expecting ')' 
+GrupoH|asl037|0|
+GrupoH|asl038|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl039|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl040|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl041|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl042|1| Error on line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoH|asl043|1| Error on line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoH|asl044|0|
+GrupoH|asl045|1| Error on line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoH|asl046|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl047|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl048|0|
+GrupoH|asl049|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl050|0|
+GrupoH|asl051|1| Error on line 4: syntax error, unexpected ',', expecting end of file 
+GrupoH|asl052|0|
+GrupoH|asl053|0|
+GrupoH|asl054|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl055|0|
+GrupoH|asl056|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl057|0|
+GrupoH|asl058|0|
+GrupoH|asl059|0|
+GrupoH|asl060|1| Error on line 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoH|asl061|0|
+GrupoH|asl062|1| Error on line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoH|asl063|0|
+GrupoH|asl064|1| Error on line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoH|asl065|1| Error on line 4: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl066|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl067|1| Error on line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl068|1| Error on line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl069|0|
+GrupoH|asl070|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl071|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl072|1| Error on line 2: syntax error, unexpected '<', expecting ',' 
+GrupoH|asl073|0|
+GrupoH|asl074|0|
+GrupoH|asl075|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl076|1| Error on line 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoH|asl077|0|
+GrupoH|asl078|1| Error on line 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoH|asl079|0|
+GrupoH|asl080|1| Error on line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoH|asl081|1| Error on line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoH|asl082|1| Error on line 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoH|asl083|0|
+GrupoH|asl085|1| Error on line 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoH|asl086|0|
+GrupoH|asl087|0|
+GrupoH|asl088|0|
+GrupoH|asl089|1| Error on line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoH|asl090|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl091|0|
+GrupoH|asl092|0|
+GrupoH|asl093|0|
+GrupoH|asl094|1| Error on line 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoH|asl095|1| Error on line 2: syntax error, unexpected '(', expecting ',' 
+GrupoH|asl096|1| Error on line 2: syntax error, unexpected '(', expecting ',' 
+GrupoH|asl097|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl098|1| Error on line 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl099|0|
+GrupoH|asl100|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl101|1| Error on line 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoH|asl102|1| Error on line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoH|asl103|1| Error on line 4: syntax error, unexpected '=', expecting ',' 
+GrupoH|asl104|1| Error on line 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoH|asl105|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl106|0|
+GrupoH|asl107|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl108|0|
+GrupoH|asl109|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl110|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl111|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl112|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl113|1| Error on line 7: syntax error, unexpected '}', expecting ',' 
+GrupoH|asl114|1| Error on line 4: syntax error, unexpected ')' 
+GrupoH|asl115|1| Error on line 6: syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoH|asl116|1| Error on line 4: syntax error, unexpected ',' 
+GrupoH|asl117|1| Error on line 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoH|asl118|0|
+GrupoH|asl119|1| Error on line 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoH|asl120|1| Error on line 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoH|asl121|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl122|1| Error on line 3: syntax error, unexpected ')' 
+GrupoH|asl123|1| Error on line 3: syntax error, unexpected ',', expecting ')' 
+GrupoH|asl124|1| Error on line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoH|asl125|1| Error on line 4: syntax error, unexpected '+' 
+GrupoH|asl126|1| Error on line 4: syntax error, unexpected ' ' 
+GrupoH|asl127|0|
+GrupoH|asl128|1| Error on line 4: syntax error, unexpected '*' 
+GrupoH|asl129|0|
+GrupoH|asl130|0|
+GrupoH|asl131|0|
+GrupoH|asl132|1| Error on line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoH|asl133|1| Error on line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoH|asl140|1| Error on line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoH|asl141|1| Error on line 3: syntax error, unexpected TK_OC_OR 
+GrupoH|asl142|1| Error on line 6: syntax error, unexpected TK_OC_AND 
+GrupoH|asl143|1| Error on line 3: syntax error, unexpected TK_OC_AND 
+GrupoH|asl144|1| Error on line 5: syntax error, unexpected TK_OC_AND 
+GrupoH|asl145|1| Error on line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoH|asl146|1| Error on line 4: syntax error, unexpected ' ' 
+GrupoH|asl147|0|
+GrupoH|asl148|0|
+GrupoH|asl149|0|
+GrupoH|asl150|0|
+GrupoH|asl151|0|
+GrupoH|asl152|0|
+GrupoH|asl153|0|
+GrupoH|asl154|0|
+GrupoH|asl155|0|
+GrupoH|asl156|0|
+GrupoH|asl157|0|
+GrupoH|asl158|0|
+GrupoH|asl159|0|
+GrupoH|asl160|0|
+GrupoJ|asl001|0|
+GrupoJ|asl002|1|Erro encontrado na linha 2: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl003|0|
+GrupoJ|asl004|1|Erro encontrado na linha 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoJ|asl005|1|Erro encontrado na linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl006|1|Erro encontrado na linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl007|1|Erro encontrado na linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoJ|asl008|1|Erro encontrado na linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoJ|asl009|0|
+GrupoJ|asl010|0|
+GrupoJ|asl011|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl012|0|
+GrupoJ|asl013|1|Erro encontrado na linha 3: syntax error, unexpected end of file, expecting ',' or ';' 
+GrupoJ|asl014|0|
+GrupoJ|asl015|0|
+GrupoJ|asl016|0|
+GrupoJ|asl017|0|
+GrupoJ|asl018|0|
+GrupoJ|asl019|0|
+GrupoJ|asl020|1|Erro encontrado na linha 4: syntax error, unexpected TK_LIT_INT, expecting ',' 
+GrupoJ|asl021|1|Erro encontrado na linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoJ|asl022|1|Erro encontrado na linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoJ|asl023|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl024|1|Erro encontrado na linha 2: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl025|1|Erro encontrado na linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoJ|asl026|1|Erro encontrado na linha 8: syntax error, unexpected '}', expecting ',' 
+GrupoJ|asl027|0|
+GrupoJ|asl028|0|
+GrupoJ|asl029|1|Erro encontrado na linha 5: syntax error, unexpected TK_ERRO 
+GrupoJ|asl030|1|Erro encontrado na linha 5: syntax error, unexpected TK_ERRO 
+GrupoJ|asl031|0|
+GrupoJ|asl032|1|Erro encontrado na linha 6: syntax error, unexpected '*' 
+GrupoJ|asl033|0|
+GrupoJ|asl034|1|Erro encontrado na linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl035|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl036|1|Erro encontrado na linha 4: syntax error, unexpected '=', expecting ')' 
+GrupoJ|asl037|0|
+GrupoJ|asl038|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl039|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl040|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl041|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl042|1|Erro encontrado na linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoJ|asl043|1|Erro encontrado na linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoJ|asl044|0|
+GrupoJ|asl045|1|Erro encontrado na linha 2: syntax error, unexpected TK_ERRO, expecting ',' or ';' 
+GrupoJ|asl046|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl047|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl048|0|
+GrupoJ|asl049|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl050|0|
+GrupoJ|asl051|1|Erro encontrado na linha 4: syntax error, unexpected ',', expecting end of file 
+GrupoJ|asl052|0|
+GrupoJ|asl053|0|
+GrupoJ|asl054|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl055|0|
+GrupoJ|asl056|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl057|0|
+GrupoJ|asl058|0|
+GrupoJ|asl059|0|
+GrupoJ|asl060|1|Erro encontrado na linha 5: syntax error, unexpected TK_PR_INT, expecting ',' or ';' 
+GrupoJ|asl061|0|
+GrupoJ|asl062|1|Erro encontrado na linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoJ|asl063|0|
+GrupoJ|asl064|1|Erro encontrado na linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoJ|asl065|1|Erro encontrado na linha 4: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl066|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl067|1|Erro encontrado na linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl068|1|Erro encontrado na linha 4: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl069|0|
+GrupoJ|asl070|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl071|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl072|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting ',' or ';' 
+GrupoJ|asl073|0|
+GrupoJ|asl074|0|
+GrupoJ|asl075|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl076|1|Erro encontrado na linha 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoJ|asl077|0|
+GrupoJ|asl078|1|Erro encontrado na linha 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoJ|asl079|0|
+GrupoJ|asl080|1|Erro encontrado na linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoJ|asl081|1|Erro encontrado na linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoJ|asl082|1|Erro encontrado na linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoJ|asl083|0|
+GrupoJ|asl085|1|Erro encontrado na linha 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoJ|asl086|0|
+GrupoJ|asl087|0|
+GrupoJ|asl088|0|
+GrupoJ|asl089|1|Erro encontrado na linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoJ|asl090|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl091|0|
+GrupoJ|asl092|0|
+GrupoJ|asl093|0|
+GrupoJ|asl094|1|Erro encontrado na linha 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoJ|asl095|1|Erro encontrado na linha 2: syntax error, unexpected '(', expecting ',' or ';' 
+GrupoJ|asl096|1|Erro encontrado na linha 2: syntax error, unexpected '(', expecting ',' or ';' 
+GrupoJ|asl097|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl098|1|Erro encontrado na linha 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl099|0|
+GrupoJ|asl100|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl101|1|Erro encontrado na linha 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoJ|asl102|1|Erro encontrado na linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoJ|asl103|1|Erro encontrado na linha 4: syntax error, unexpected '=', expecting ',' 
+GrupoJ|asl104|1|Erro encontrado na linha 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoJ|asl105|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl106|0|
+GrupoJ|asl107|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl108|0|
+GrupoJ|asl109|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl110|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl111|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl112|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl113|1|Erro encontrado na linha 7: syntax error, unexpected '}', expecting ',' 
+GrupoJ|asl114|1|Erro encontrado na linha 4: syntax error, unexpected ')' 
+GrupoJ|asl115|1|Erro encontrado na linha 6: syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoJ|asl116|1|Erro encontrado na linha 4: syntax error, unexpected ',' 
+GrupoJ|asl117|1|Erro encontrado na linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoJ|asl118|0|
+GrupoJ|asl119|1|Erro encontrado na linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoJ|asl120|1|Erro encontrado na linha 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoJ|asl121|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl122|1|Erro encontrado na linha 3: syntax error, unexpected ')' 
+GrupoJ|asl123|1|Erro encontrado na linha 3: syntax error, unexpected ',', expecting ')' 
+GrupoJ|asl124|1|Erro encontrado na linha 3: syntax error, unexpected TK_OC_LE, expecting ',' or ';' 
+GrupoJ|asl125|1|Erro encontrado na linha 4: syntax error, unexpected '+' 
+GrupoJ|asl126|0|
+GrupoJ|asl127|0|
+GrupoJ|asl128|1|Erro encontrado na linha 4: syntax error, unexpected '*' 
+GrupoJ|asl129|0|
+GrupoJ|asl130|0|
+GrupoJ|asl131|0|
+GrupoJ|asl132|1|Erro encontrado na linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoJ|asl133|1|Erro encontrado na linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoJ|asl140|1|Erro encontrado na linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoJ|asl141|1|Erro encontrado na linha 3: syntax error, unexpected TK_OC_OR 
+GrupoJ|asl142|1|Erro encontrado na linha 6: syntax error, unexpected TK_OC_AND 
+GrupoJ|asl143|1|Erro encontrado na linha 3: syntax error, unexpected TK_OC_AND 
+GrupoJ|asl144|1|Erro encontrado na linha 5: syntax error, unexpected TK_OC_AND 
+GrupoJ|asl145|1|Erro encontrado na linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoJ|asl146|1|Erro encontrado na linha 4: syntax error, unexpected ' ' 
+GrupoJ|asl147|1|Erro encontrado na linha 4: syntax error, unexpected '!' 
+GrupoJ|asl148|0|
+GrupoJ|asl149|0|
+GrupoJ|asl150|0|
+GrupoJ|asl151|0|
+GrupoJ|asl152|0|
+GrupoJ|asl153|0|
+GrupoJ|asl154|0|
+GrupoJ|asl155|0|
+GrupoJ|asl156|0|
+GrupoJ|asl157|0|
+GrupoJ|asl158|0|
+GrupoJ|asl159|0|
+GrupoJ|asl160|0|
+GrupoK|asl001|0|
+GrupoK|asl002|1|At line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl003|0|
+GrupoK|asl004|1|At line 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoK|asl005|1|At line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl006|1|At line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl007|1|At line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoK|asl008|1|At line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoK|asl009|0|
+GrupoK|asl010|0|
+GrupoK|asl011|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl012|0|
+GrupoK|asl013|1|At line 3: syntax error, unexpected end of file, expecting ',' 
+GrupoK|asl014|0|
+GrupoK|asl015|0|
+GrupoK|asl016|0|
+GrupoK|asl017|0|
+GrupoK|asl018|0|
+GrupoK|asl019|0|
+GrupoK|asl020|1|At line 4: syntax error, unexpected TK_LIT_INT, expecting ',' 
+GrupoK|asl021|1|At line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoK|asl022|1|At line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoK|asl023|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl024|1|At line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl025|1|At line 5: syntax error, unexpected '}', expecting ',' 
+GrupoK|asl026|1|At line 8: syntax error, unexpected '}', expecting ',' 
+GrupoK|asl027|0|
+GrupoK|asl028|0|
+GrupoK|asl029|1|At line 5: syntax error, unexpected TK_ERRO 
+GrupoK|asl030|1|At line 5: syntax error, unexpected TK_ERRO 
+GrupoK|asl031|0|
+GrupoK|asl032|1|At line 6: syntax error, unexpected '*' 
+GrupoK|asl033|0|
+GrupoK|asl034|1|At line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl035|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl036|1|At line 4: syntax error, unexpected '=', expecting ')' 
+GrupoK|asl037|0|
+GrupoK|asl038|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl039|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl040|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl041|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl042|1|At line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoK|asl043|1|At line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoK|asl044|0|
+GrupoK|asl045|1|At line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoK|asl046|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl047|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl048|0|
+GrupoK|asl049|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl050|0|
+GrupoK|asl051|1|At line 4: syntax error, unexpected ',', expecting end of file 
+GrupoK|asl052|0|
+GrupoK|asl053|0|
+GrupoK|asl054|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl055|0|
+GrupoK|asl056|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl057|0|
+GrupoK|asl058|0|
+GrupoK|asl059|0|
+GrupoK|asl060|1|At line 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoK|asl061|0|
+GrupoK|asl062|1|At line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoK|asl063|0|
+GrupoK|asl064|1|At line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoK|asl065|1|At line 4: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl066|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl067|1|At line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl068|1|At line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl069|0|
+GrupoK|asl070|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl071|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl072|1|At line 2: syntax error, unexpected '<', expecting ',' 
+GrupoK|asl073|0|
+GrupoK|asl074|0|
+GrupoK|asl075|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl076|1|At line 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoK|asl077|0|
+GrupoK|asl078|1|At line 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoK|asl079|0|
+GrupoK|asl080|1|At line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoK|asl081|1|At line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoK|asl082|1|At line 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoK|asl083|0|
+GrupoK|asl085|1|At line 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoK|asl086|0|
+GrupoK|asl087|0|
+GrupoK|asl088|0|
+GrupoK|asl089|1|At line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoK|asl090|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl091|0|
+GrupoK|asl092|0|
+GrupoK|asl093|0|
+GrupoK|asl094|1|At line 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoK|asl095|1|At line 2: syntax error, unexpected '(', expecting ',' 
+GrupoK|asl096|1|At line 2: syntax error, unexpected '(', expecting ',' 
+GrupoK|asl097|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl098|1|At line 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl099|0|
+GrupoK|asl100|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl101|1|At line 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoK|asl102|1|At line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoK|asl103|1|At line 4: syntax error, unexpected '=', expecting ',' 
+GrupoK|asl104|1|At line 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoK|asl105|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl106|0|
+GrupoK|asl107|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl108|0|
+GrupoK|asl109|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl110|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl111|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl112|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl113|1|At line 7: syntax error, unexpected '}', expecting ',' 
+GrupoK|asl114|1|At line 4: syntax error, unexpected ')' 
+GrupoK|asl115|1|At line 6: syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoK|asl116|1|At line 4: syntax error, unexpected ',' 
+GrupoK|asl117|1|At line 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoK|asl118|0|
+GrupoK|asl119|1|At line 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoK|asl120|1|At line 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoK|asl121|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl122|1|At line 3: syntax error, unexpected ')' 
+GrupoK|asl123|1|At line 3: syntax error, unexpected ',', expecting ')' 
+GrupoK|asl124|1|At line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoK|asl125|1|At line 4: syntax error, unexpected '+' 
+GrupoK|asl126|0|
+GrupoK|asl127|0|
+GrupoK|asl128|1|At line 4: syntax error, unexpected '*' 
+GrupoK|asl129|0|
+GrupoK|asl130|0|
+GrupoK|asl131|0|
+GrupoK|asl132|1|At line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoK|asl133|1|At line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoK|asl140|1|At line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoK|asl141|1|At line 3: syntax error, unexpected TK_OC_OR 
+GrupoK|asl142|1|At line 6: syntax error, unexpected TK_OC_AND 
+GrupoK|asl143|1|At line 3: syntax error, unexpected TK_OC_AND 
+GrupoK|asl144|1|At line 5: syntax error, unexpected TK_OC_AND 
+GrupoK|asl145|1|At line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoK|asl146|0|
+GrupoK|asl147|0|
+GrupoK|asl148|0|
+GrupoK|asl149|0|
+GrupoK|asl150|0|
+GrupoK|asl151|0|
+GrupoK|asl152|0|
+GrupoK|asl153|0|
+GrupoK|asl154|0|
+GrupoK|asl155|0|
+GrupoK|asl156|0|
+GrupoK|asl157|0|
+GrupoK|asl158|0|
+GrupoK|asl159|0|
+GrupoK|asl160|0|
+GrupoL|asl001|0|
+GrupoL|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:2 
+GrupoL|asl003|0|
+GrupoL|asl004|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR at line:3 
+GrupoL|asl005|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:3 
+GrupoL|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:3 
+GrupoL|asl007|1|syntax error, unexpected TK_IDENTIFICADOR, expecting TK_OC_OR or ',' at line:3 
+GrupoL|asl008|1|syntax error, unexpected TK_IDENTIFICADOR, expecting TK_OC_OR or ',' at line:3 
+GrupoL|asl009|0|
+GrupoL|asl010|0|
+GrupoL|asl011|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl012|0|
+GrupoL|asl013|1|syntax error, unexpected end of file, expecting ',' or ';' at line:3 
+GrupoL|asl014|0|
+GrupoL|asl015|0|
+GrupoL|asl016|1|syntax error, unexpected ',' at line:4 
+GrupoL|asl017|1|syntax error, unexpected ',' at line:7 
+GrupoL|asl018|0|
+GrupoL|asl019|1|syntax error, unexpected ',' at line:4 
+GrupoL|asl020|1|syntax error, unexpected TK_LIT_INT, expecting TK_OC_OR or ',' at line:4 
+GrupoL|asl021|1|syntax error, unexpected ' ', expecting ',' at line:4 
+GrupoL|asl022|1|syntax error, unexpected ' ', expecting ',' at line:4 
+GrupoL|asl023|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:2 
+GrupoL|asl025|1|syntax error, unexpected '}', expecting ',' at line:5 
+GrupoL|asl026|1|syntax error, unexpected '}', expecting ',' at line:8 
+GrupoL|asl027|0|
+GrupoL|asl028|0|
+GrupoL|asl029|1|syntax error, unexpected TK_ERRO at line:5 
+GrupoL|asl030|1|syntax error, unexpected TK_ERRO at line:5 
+GrupoL|asl031|0|
+GrupoL|asl032|1|syntax error, unexpected '*' at line:6 
+GrupoL|asl033|0|
+GrupoL|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:4 
+GrupoL|asl035|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl036|1|syntax error, unexpected '=', expecting TK_OC_OR or ')' at line:4 
+GrupoL|asl037|1|syntax error, unexpected ',' at line:7 
+GrupoL|asl038|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl039|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl040|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl041|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' at line:2 
+GrupoL|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' at line:2 
+GrupoL|asl044|0|
+GrupoL|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' at line:2 
+GrupoL|asl046|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl047|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl048|0|
+GrupoL|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl050|0|
+GrupoL|asl051|1|syntax error, unexpected ',', expecting end of file at line:4 
+GrupoL|asl052|0|
+GrupoL|asl053|0|
+GrupoL|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl055|0|
+GrupoL|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl057|0|
+GrupoL|asl058|0|
+GrupoL|asl059|0|
+GrupoL|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' or ';' at line:5 
+GrupoL|asl061|0|
+GrupoL|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' at line:4 
+GrupoL|asl063|0|
+GrupoL|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' at line:4 
+GrupoL|asl065|1|syntax error, unexpected '<', expecting ',' or ';' at line:4 
+GrupoL|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:4 
+GrupoL|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:4 
+GrupoL|asl069|0|
+GrupoL|asl070|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl071|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl072|1|syntax error, unexpected '<', expecting ',' or ';' at line:2 
+GrupoL|asl073|0|
+GrupoL|asl074|0|
+GrupoL|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl076|1|syntax error, unexpected '<', expecting '(' or '=' at line:5 
+GrupoL|asl077|0|
+GrupoL|asl078|1|syntax error, unexpected '>', expecting '(' or '=' at line:5 
+GrupoL|asl079|0|
+GrupoL|asl080|1|syntax error, unexpected ',', expecting '(' or '=' at line:4 
+GrupoL|asl081|1|syntax error, unexpected ',', expecting '(' or '=' at line:4 
+GrupoL|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' or '=' at line:4 
+GrupoL|asl083|1|syntax error, unexpected ',' at line:5 
+GrupoL|asl085|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line:7 
+GrupoL|asl086|1|syntax error, unexpected ',' at line:7 
+GrupoL|asl087|0|
+GrupoL|asl088|0|
+GrupoL|asl089|1|syntax error, unexpected '<', expecting '(' or '=' at line:4 
+GrupoL|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl091|0|
+GrupoL|asl092|1|syntax error, unexpected ',' at line:4 
+GrupoL|asl093|0|
+GrupoL|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR at line:2 
+GrupoL|asl095|1|syntax error, unexpected '(', expecting ',' or ';' at line:2 
+GrupoL|asl096|1|syntax error, unexpected '(', expecting ',' or ';' at line:2 
+GrupoL|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:6 
+GrupoL|asl099|0|
+GrupoL|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl101|1|syntax error, unexpected ',', expecting '(' or '=' at line:7 
+GrupoL|asl102|1|syntax error, unexpected '<', expecting '(' or '=' at line:4 
+GrupoL|asl103|1|syntax error, unexpected '=', expecting ',' at line:4 
+GrupoL|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR at line:2 
+GrupoL|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl106|0|
+GrupoL|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl108|0|
+GrupoL|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl113|0|
+GrupoL|asl114|1|syntax error, unexpected ')' at line:4 
+GrupoL|asl115|1|syntax error, unexpected TK_PR_WHILE, expecting ',' at line:6 
+GrupoL|asl116|1|syntax error, unexpected ',' at line:4 
+GrupoL|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' at line:4 
+GrupoL|asl118|1|syntax error, unexpected ',' at line:7 
+GrupoL|asl119|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line:5 
+GrupoL|asl120|1|syntax error, unexpected '+', expecting '(' or '=' at line:3 
+GrupoL|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl122|1|syntax error, unexpected ')' at line:3 
+GrupoL|asl123|1|syntax error, unexpected ',', expecting TK_OC_OR or ')' at line:3 
+GrupoL|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' at line:3 
+GrupoL|asl125|1|syntax error, unexpected '+' at line:4 
+GrupoL|asl126|0|
+GrupoL|asl127|0|
+GrupoL|asl128|1|syntax error, unexpected '*' at line:4 
+GrupoL|asl129|0|
+GrupoL|asl130|0|
+GrupoL|asl131|0|
+GrupoL|asl132|1|syntax error, unexpected '<', expecting '(' or '=' at line:4 
+GrupoL|asl133|1|syntax error, unexpected '<', expecting '(' or '=' at line:4 
+GrupoL|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line:2 
+GrupoL|asl141|1|syntax error, unexpected TK_OC_OR at line:3 
+GrupoL|asl142|1|syntax error, unexpected TK_OC_AND at line:6 
+GrupoL|asl143|1|syntax error, unexpected TK_OC_AND at line:3 
+GrupoL|asl144|1|syntax error, unexpected TK_OC_AND at line:5 
+GrupoL|asl145|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line:4 
+GrupoL|asl146|0|
+GrupoL|asl147|0|
+GrupoL|asl148|0|
+GrupoL|asl149|0|
+GrupoL|asl150|0|
+GrupoL|asl151|0|
+GrupoL|asl152|0|
+GrupoL|asl153|0|
+GrupoL|asl154|0|
+GrupoL|asl155|0|
+GrupoL|asl156|0|
+GrupoL|asl157|0|
+GrupoL|asl158|0|
+GrupoL|asl159|0|
+GrupoL|asl160|0|
+GrupoP|asl001|0|
+GrupoP|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl003|0|
+GrupoP|asl004|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR Error found in line: [3] 
+GrupoP|asl005|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [3] 
+GrupoP|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [3] 
+GrupoP|asl007|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' Error found in line: [3] 
+GrupoP|asl008|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' Error found in line: [3] 
+GrupoP|asl009|0|
+GrupoP|asl010|0|
+GrupoP|asl011|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl012|0|
+GrupoP|asl013|1|syntax error, unexpected end of file, expecting ',' or ';' Error found in line: [3] 
+GrupoP|asl014|0|
+GrupoP|asl015|0|
+GrupoP|asl016|0|
+GrupoP|asl017|1|syntax error, unexpected TK_PR_ELSE, expecting ',' Error found in line: [10] 
+GrupoP|asl018|0|
+GrupoP|asl019|1|syntax error, unexpected TK_PR_ELSE, expecting ',' Error found in line: [4] 
+GrupoP|asl020|1|syntax error, unexpected TK_LIT_INT, expecting ',' Error found in line: [4] 
+GrupoP|asl021|1|syntax error, unexpected ' ', expecting ',' Error found in line: [4] 
+GrupoP|asl022|1|syntax error, unexpected ' ', expecting ',' Error found in line: [4] 
+GrupoP|asl023|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl025|1|syntax error, unexpected '}', expecting ',' Error found in line: [5] 
+GrupoP|asl026|1|syntax error, unexpected '}', expecting ',' Error found in line: [8] 
+GrupoP|asl027|0|
+GrupoP|asl028|0|
+GrupoP|asl029|1|syntax error, unexpected TK_ERRO Error found in line: [5] 
+GrupoP|asl030|1|syntax error, unexpected TK_ERRO Error found in line: [5] 
+GrupoP|asl031|0|
+GrupoP|asl032|1|syntax error, unexpected '*' Error found in line: [6] 
+GrupoP|asl033|0|
+GrupoP|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [4] 
+GrupoP|asl035|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl036|1|syntax error, unexpected '=', expecting ')' Error found in line: [4] 
+GrupoP|asl037|1|syntax error, unexpected TK_ERRO, expecting '{' Error found in line: [5] 
+GrupoP|asl038|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl039|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl040|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl041|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl044|0|
+GrupoP|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl046|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl047|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl048|0|
+GrupoP|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl050|0|
+GrupoP|asl051|1|syntax error, unexpected ',', expecting end of file Error found in line: [4] 
+GrupoP|asl052|0|
+GrupoP|asl053|0|
+GrupoP|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl055|0|
+GrupoP|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl057|0|
+GrupoP|asl058|0|
+GrupoP|asl059|0|
+GrupoP|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' or ';' Error found in line: [5] 
+GrupoP|asl061|0|
+GrupoP|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl063|0|
+GrupoP|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl065|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [4] 
+GrupoP|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [4] 
+GrupoP|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [4] 
+GrupoP|asl069|0|
+GrupoP|asl070|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl071|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl072|1|syntax error, unexpected '<', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl073|0|
+GrupoP|asl074|0|
+GrupoP|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl076|1|syntax error, unexpected '<', expecting '(' or '=' Error found in line: [5] 
+GrupoP|asl077|0|
+GrupoP|asl078|1|syntax error, unexpected '>', expecting '(' or '=' Error found in line: [5] 
+GrupoP|asl079|0|
+GrupoP|asl080|1|syntax error, unexpected ',', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl081|1|syntax error, unexpected ',', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl083|0|
+GrupoP|asl085|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Error found in line: [7] 
+GrupoP|asl086|0|
+GrupoP|asl087|0|
+GrupoP|asl088|0|
+GrupoP|asl089|1|syntax error, unexpected '<', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl091|0|
+GrupoP|asl092|0|
+GrupoP|asl093|0|
+GrupoP|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR Error found in line: [2] 
+GrupoP|asl095|1|syntax error, unexpected '(', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl096|1|syntax error, unexpected '(', expecting ',' or ';' Error found in line: [2] 
+GrupoP|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [6] 
+GrupoP|asl099|0|
+GrupoP|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl101|1|syntax error, unexpected ',', expecting '(' or '=' Error found in line: [7] 
+GrupoP|asl102|1|syntax error, unexpected '<', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl103|1|syntax error, unexpected '=', expecting ',' Error found in line: [4] 
+GrupoP|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR Error found in line: [2] 
+GrupoP|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl106|0|
+GrupoP|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl108|0|
+GrupoP|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl113|1|syntax error, unexpected '}', expecting ',' Error found in line: [7] 
+GrupoP|asl114|1|syntax error, unexpected ')' Error found in line: [4] 
+GrupoP|asl115|1|syntax error, unexpected TK_PR_WHILE, expecting ',' Error found in line: [6] 
+GrupoP|asl116|1|syntax error, unexpected ',' Error found in line: [4] 
+GrupoP|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' Error found in line: [4] 
+GrupoP|asl118|0|
+GrupoP|asl119|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Error found in line: [5] 
+GrupoP|asl120|1|syntax error, unexpected '+', expecting '(' or '=' Error found in line: [3] 
+GrupoP|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl122|1|syntax error, unexpected ')' Error found in line: [3] 
+GrupoP|asl123|1|syntax error, unexpected ',', expecting ')' Error found in line: [3] 
+GrupoP|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' or ';' Error found in line: [3] 
+GrupoP|asl125|1|syntax error, unexpected '+' Error found in line: [4] 
+GrupoP|asl126|0|
+GrupoP|asl127|0|
+GrupoP|asl128|1|syntax error, unexpected '*' Error found in line: [4] 
+GrupoP|asl129|0|
+GrupoP|asl130|0|
+GrupoP|asl131|0|
+GrupoP|asl132|1|syntax error, unexpected '<', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl133|1|syntax error, unexpected '<', expecting '(' or '=' Error found in line: [4] 
+GrupoP|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file Error found in line: [2] 
+GrupoP|asl141|1|syntax error, unexpected TK_OC_OR Error found in line: [3] 
+GrupoP|asl142|1|syntax error, unexpected TK_OC_AND Error found in line: [6] 
+GrupoP|asl143|1|syntax error, unexpected TK_OC_AND Error found in line: [3] 
+GrupoP|asl144|1|syntax error, unexpected TK_OC_AND Error found in line: [5] 
+GrupoP|asl145|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' Error found in line: [4] 
+GrupoP|asl146|0|
+GrupoP|asl147|0|
+GrupoP|asl148|0|
+GrupoP|asl149|0|
+GrupoP|asl150|0|
+GrupoP|asl151|0|
+GrupoP|asl152|0|
+GrupoP|asl153|0|
+GrupoP|asl154|0|
+GrupoP|asl155|0|
+GrupoP|asl156|0|
+GrupoP|asl157|0|
+GrupoP|asl158|0|
+GrupoP|asl159|0|
+GrupoP|asl160|0|
+GrupoS|asl001|0|
+GrupoS|asl002|1|Erro na linha 2. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl003|0|
+GrupoS|asl004|1|Erro na linha 3. syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoS|asl005|1|Erro na linha 3. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl006|1|Erro na linha 3. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl007|1|Erro na linha 3. syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoS|asl008|1|Erro na linha 3. syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoS|asl009|0|
+GrupoS|asl010|0|
+GrupoS|asl011|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl012|0|
+GrupoS|asl013|1|Erro na linha 3. syntax error, unexpected end of file, expecting ',' 
+GrupoS|asl014|0|
+GrupoS|asl015|0|
+GrupoS|asl016|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl017|1|Erro na linha 5. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl018|0|
+GrupoS|asl019|0|
+GrupoS|asl020|1|Erro na linha 4. syntax error, unexpected TK_LIT_INT, expecting ',' 
+GrupoS|asl021|1|Erro na linha 4. syntax error, unexpected ')' 
+GrupoS|asl022|1|Erro na linha 4. syntax error, unexpected ')' 
+GrupoS|asl023|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl024|1|Erro na linha 2. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl025|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl026|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl027|0|
+GrupoS|asl028|0|
+GrupoS|asl029|1|Erro na linha 5. syntax error, unexpected TK_ERRO 
+GrupoS|asl030|1|Erro na linha 5. syntax error, unexpected TK_ERRO 
+GrupoS|asl031|0|
+GrupoS|asl032|1|Erro na linha 6. syntax error, unexpected '*' 
+GrupoS|asl033|0|
+GrupoS|asl034|1|Erro na linha 4. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl035|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl036|1|Erro na linha 4. syntax error, unexpected '=', expecting ')' 
+GrupoS|asl037|0|
+GrupoS|asl038|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl039|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl040|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl041|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl042|1|Erro na linha 2. syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoS|asl043|1|Erro na linha 2. syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoS|asl044|0|
+GrupoS|asl045|1|Erro na linha 2. syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoS|asl046|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl047|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl048|0|
+GrupoS|asl049|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl050|0|
+GrupoS|asl051|1|Erro na linha 4. syntax error, unexpected ',', expecting end of file 
+GrupoS|asl052|0|
+GrupoS|asl053|0|
+GrupoS|asl054|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl055|0|
+GrupoS|asl056|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl057|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl058|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl059|0|
+GrupoS|asl060|1|Erro na linha 5. syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoS|asl061|0|
+GrupoS|asl062|1|Erro na linha 4. syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoS|asl063|0|
+GrupoS|asl064|1|Erro na linha 4. syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoS|asl065|1|Erro na linha 4. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl066|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl067|1|Erro na linha 4. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl068|1|Erro na linha 4. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl069|0|
+GrupoS|asl070|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl071|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl072|1|Erro na linha 2. syntax error, unexpected '<', expecting ',' 
+GrupoS|asl073|1|Erro na linha 4. syntax error, unexpected ')' 
+GrupoS|asl074|1|Erro na linha 6. syntax error, unexpected ';', expecting ')' 
+GrupoS|asl075|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl076|1|Erro na linha 5. syntax error, unexpected '<', expecting '(' or '=' 
+GrupoS|asl077|0|
+GrupoS|asl078|1|Erro na linha 5. syntax error, unexpected '>', expecting '(' or '=' 
+GrupoS|asl079|0|
+GrupoS|asl080|1|Erro na linha 4. syntax error, unexpected ',', expecting '(' or '=' 
+GrupoS|asl081|1|Erro na linha 4. syntax error, unexpected ',', expecting '(' or '=' 
+GrupoS|asl082|1|Erro na linha 4. syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoS|asl083|0|
+GrupoS|asl085|1|Erro na linha 7. syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoS|asl086|0|
+GrupoS|asl087|0|
+GrupoS|asl088|0|
+GrupoS|asl089|1|Erro na linha 4. syntax error, unexpected '<', expecting '(' or '=' 
+GrupoS|asl090|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl091|0|
+GrupoS|asl092|0|
+GrupoS|asl093|0|
+GrupoS|asl094|1|Erro na linha 2. syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoS|asl095|1|Erro na linha 2. syntax error, unexpected '(', expecting ',' 
+GrupoS|asl096|1|Erro na linha 2. syntax error, unexpected '(', expecting ',' 
+GrupoS|asl097|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl098|1|Erro na linha 6. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl099|0|
+GrupoS|asl100|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl101|1|Erro na linha 7. syntax error, unexpected ',', expecting '(' or '=' 
+GrupoS|asl102|1|Erro na linha 4. syntax error, unexpected '<', expecting '(' or '=' 
+GrupoS|asl103|1|Erro na linha 4. syntax error, unexpected '=', expecting ',' 
+GrupoS|asl104|1|Erro na linha 2. syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoS|asl105|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl106|0|
+GrupoS|asl107|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl108|0|
+GrupoS|asl109|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl110|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl111|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl112|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl113|1|Erro na linha 7. syntax error, unexpected '}', expecting ',' 
+GrupoS|asl114|1|Erro na linha 4. syntax error, unexpected ')' 
+GrupoS|asl115|1|Erro na linha 4. syntax error, unexpected '{', expecting '}' 
+GrupoS|asl116|1|Erro na linha 4. syntax error, unexpected ',' 
+GrupoS|asl117|1|Erro na linha 4. syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoS|asl118|0|
+GrupoS|asl119|1|Erro na linha 5. syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoS|asl120|1|Erro na linha 3. syntax error, unexpected '+', expecting '(' or '=' 
+GrupoS|asl121|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl122|1|Erro na linha 3. syntax error, unexpected ')' 
+GrupoS|asl123|1|Erro na linha 3. syntax error, unexpected ',', expecting ')' 
+GrupoS|asl124|1|Erro na linha 3. syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoS|asl125|1|Erro na linha 4. syntax error, unexpected '+' 
+GrupoS|asl126|0|
+GrupoS|asl127|0|
+GrupoS|asl128|1|Erro na linha 4. syntax error, unexpected '*' 
+GrupoS|asl129|0|
+GrupoS|asl130|0|
+GrupoS|asl131|0|
+GrupoS|asl132|1|Erro na linha 4. syntax error, unexpected '<', expecting '(' or '=' 
+GrupoS|asl133|1|Erro na linha 4. syntax error, unexpected '<', expecting '(' or '=' 
+GrupoS|asl140|1|Erro na linha 2. syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoS|asl141|1|Erro na linha 3. syntax error, unexpected TK_OC_OR 
+GrupoS|asl142|1|Erro na linha 6. syntax error, unexpected TK_OC_AND 
+GrupoS|asl143|1|Erro na linha 3. syntax error, unexpected TK_OC_AND 
+GrupoS|asl144|1|Erro na linha 5. syntax error, unexpected TK_OC_AND 
+GrupoS|asl145|1|Erro na linha 4. syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoS|asl146|0|
+GrupoS|asl147|0|
+GrupoS|asl148|0|
+GrupoS|asl149|0|
+GrupoS|asl150|0|
+GrupoS|asl151|0|
+GrupoS|asl152|0|
+GrupoS|asl153|0|
+GrupoS|asl154|0|
+GrupoS|asl155|0|
+GrupoS|asl156|0|
+GrupoS|asl157|0|
+GrupoS|asl158|0|
+GrupoS|asl159|0|
+GrupoS|asl160|0|
+GrupoV|asl001|0|
+GrupoV|asl002|1|Error at line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl003|1|Error at line 4: syntax error, unexpected TK_OC_OR, expecting ',' 
+GrupoV|asl004|1|Error at line 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoV|asl005|1|Error at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl006|1|Error at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl007|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl008|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl009|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl010|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl011|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl012|1|Error at line 5: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl013|1|Error at line 3: syntax error, unexpected end of file, expecting ',' 
+GrupoV|asl014|1|Error at line 5: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl015|1|Error at line 5: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl016|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl017|1|Error at line 5: syntax error, unexpected '{' 
+GrupoV|asl018|1|Error at line 5: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl019|1|Error at line 4: syntax error, unexpected ',', expecting '}' 
+GrupoV|asl020|1|Error at line 4: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl021|1|Error at line 4: syntax error, unexpected ')' 
+GrupoV|asl022|1|Error at line 4: syntax error, unexpected ')' 
+GrupoV|asl023|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl024|1|Error at line 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl025|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl026|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl027|0|
+GrupoV|asl028|0|
+GrupoV|asl029|1|Error at line 5: syntax error, unexpected TK_ERRO 
+GrupoV|asl030|1|Error at line 5: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl031|1|Error at line 6: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl032|1|Error at line 6: syntax error, unexpected '*' 
+GrupoV|asl033|1|Error at line 6: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl034|1|Error at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl035|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl036|1|Error at line 4: syntax error, unexpected '=', expecting ')' 
+GrupoV|asl037|1|Error at line 6: syntax error, unexpected '}' 
+GrupoV|asl038|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl039|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl040|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl041|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl042|1|Error at line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoV|asl043|1|Error at line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoV|asl044|0|
+GrupoV|asl045|1|Error at line 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoV|asl046|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl047|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl048|1|Error at line 4: syntax error, unexpected '}' 
+GrupoV|asl049|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl050|1|Error at line 4: syntax error, unexpected '}' 
+GrupoV|asl051|1|Error at line 4: syntax error, unexpected '}' 
+GrupoV|asl052|1|Error at line 4: syntax error, unexpected '}' 
+GrupoV|asl053|1|Error at line 4: syntax error, unexpected '}' 
+GrupoV|asl054|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl055|0|
+GrupoV|asl056|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl057|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl058|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl059|0|
+GrupoV|asl060|1|Error at line 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoV|asl061|0|
+GrupoV|asl062|1|Error at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoV|asl063|0|
+GrupoV|asl064|1|Error at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoV|asl065|1|Error at line 4: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl066|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl067|1|Error at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl068|1|Error at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl069|0|
+GrupoV|asl070|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl071|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl072|1|Error at line 2: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl073|1|Error at line 4: syntax error, unexpected ')' 
+GrupoV|asl074|0|
+GrupoV|asl075|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl076|1|Error at line 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoV|asl077|0|
+GrupoV|asl078|1|Error at line 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoV|asl079|0|
+GrupoV|asl080|1|Error at line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoV|asl081|1|Error at line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoV|asl082|1|Error at line 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoV|asl083|1|Error at line 5: syntax error, unexpected '}' 
+GrupoV|asl085|1|Error at line 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoV|asl086|1|Error at line 7: syntax error, unexpected '}' 
+GrupoV|asl087|0|
+GrupoV|asl088|0|
+GrupoV|asl089|1|Error at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoV|asl090|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl091|1|Error at line 5: syntax error, unexpected '(' 
+GrupoV|asl092|1|Error at line 4: syntax error, unexpected TK_OC_EQ, expecting ')' 
+GrupoV|asl093|0|
+GrupoV|asl094|1|Error at line 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoV|asl095|1|Error at line 2: syntax error, unexpected '(', expecting ',' 
+GrupoV|asl096|1|Error at line 2: syntax error, unexpected '(', expecting ',' 
+GrupoV|asl097|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl098|1|Error at line 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl099|0|
+GrupoV|asl100|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl101|1|Error at line 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoV|asl102|1|Error at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoV|asl103|1|Error at line 4: syntax error, unexpected '=', expecting ',' 
+GrupoV|asl104|1|Error at line 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoV|asl105|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl106|0|
+GrupoV|asl107|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl108|0|
+GrupoV|asl109|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl110|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl111|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl112|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl113|0|
+GrupoV|asl114|1|Error at line 4: syntax error, unexpected ')' 
+GrupoV|asl115|1|Error at line 4: syntax error, unexpected '{' 
+GrupoV|asl116|1|Error at line 4: syntax error, unexpected ',' 
+GrupoV|asl117|1|Error at line 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoV|asl118|1|Error at line 7: syntax error, unexpected ',', expecting '}' 
+GrupoV|asl119|1|Error at line 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoV|asl120|1|Error at line 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoV|asl121|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl122|1|Error at line 3: syntax error, unexpected ')' 
+GrupoV|asl123|1|Error at line 3: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl124|1|Error at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl125|1|Error at line 4: syntax error, unexpected '+' 
+GrupoV|asl126|0|
+GrupoV|asl127|0|
+GrupoV|asl128|1|Error at line 4: syntax error, unexpected '*' 
+GrupoV|asl129|0|
+GrupoV|asl130|0|
+GrupoV|asl131|1|Error at line 4: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl132|1|Error at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoV|asl133|1|Error at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoV|asl140|1|Error at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoV|asl141|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl142|1|Error at line 6: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl143|1|Error at line 3: syntax error, unexpected '+', expecting ')' 
+GrupoV|asl144|1|Error at line 5: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl145|1|Error at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoV|asl146|0|
+GrupoV|asl147|0|
+GrupoV|asl148|1|Error at line 3: syntax error, unexpected '+', expecting ',' 
+GrupoV|asl149|1|Error at line 3: syntax error, unexpected ' ', expecting ',' 
+GrupoV|asl150|1|Error at line 3: syntax error, unexpected '*', expecting ',' 
+GrupoV|asl151|1|Error at line 3: syntax error, unexpected '/', expecting ',' 
+GrupoV|asl152|1|Error at line 3: syntax error, unexpected '%', expecting ',' 
+GrupoV|asl153|1|Error at line 3: syntax error, unexpected TK_OC_AND, expecting ',' 
+GrupoV|asl154|1|Error at line 3: syntax error, unexpected TK_OC_OR, expecting ',' 
+GrupoV|asl155|1|Error at line 3: syntax error, unexpected TK_OC_EQ, expecting ',' 
+GrupoV|asl156|1|Error at line 3: syntax error, unexpected TK_OC_NE, expecting ',' 
+GrupoV|asl157|1|Error at line 3: syntax error, unexpected '<', expecting ',' 
+GrupoV|asl158|1|Error at line 3: syntax error, unexpected '>', expecting ',' 
+GrupoV|asl159|1|Error at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoV|asl160|1|Error at line 3: syntax error, unexpected TK_OC_GE, expecting ',' 
+GrupoW|asl001|0|
+GrupoW|asl002|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 2 TOKEN ERROR (<=) 
+GrupoW|asl003|0|
+GrupoW|asl004|1|syntax error, unexpected TK_IDENTIFICADOR, expecting TK_PR_INT or TK_PR_FLOAT or TK_PR_BOOL at line 3 TOKEN ERROR (b) 
+GrupoW|asl005|1|syntax error, unexpected TK_IDENTIFICADOR, expecting TK_PR_INT or TK_PR_FLOAT or TK_PR_BOOL at line 3 TOKEN ERROR (b) 
+GrupoW|asl006|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 3 TOKEN ERROR (<=) 
+GrupoW|asl007|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' at line 3 TOKEN ERROR (and) 
+GrupoW|asl008|1|syntax error, unexpected TK_IDENTIFICADOR, expecting ',' at line 3 TOKEN ERROR (or) 
+GrupoW|asl009|0|
+GrupoW|asl010|0|
+GrupoW|asl011|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl012|0|
+GrupoW|asl013|1|syntax error, unexpected end of file, expecting ',' at line 3 TOKEN ERROR () 
+GrupoW|asl014|0|
+GrupoW|asl015|0|
+GrupoW|asl016|0|
+GrupoW|asl017|0|
+GrupoW|asl018|0|
+GrupoW|asl019|0|
+GrupoW|asl020|1|syntax error, unexpected TK_LIT_INT, expecting ',' at line 4 TOKEN ERROR (1) 
+GrupoW|asl021|1|syntax error, unexpected ' ', expecting ',' at line 4 TOKEN ERROR ( ) 
+GrupoW|asl022|1|syntax error, unexpected ' ', expecting ',' at line 4 TOKEN ERROR ( ) 
+GrupoW|asl023|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl024|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 2 TOKEN ERROR (<=) 
+GrupoW|asl025|1|syntax error, unexpected '}', expecting ',' at line 5 TOKEN ERROR (}) 
+GrupoW|asl026|1|syntax error, unexpected '}', expecting ',' at line 8 TOKEN ERROR (}) 
+GrupoW|asl027|0|
+GrupoW|asl028|0|
+GrupoW|asl029|1|syntax error, unexpected TK_ERRO at line 5 TOKEN ERROR (') 
+GrupoW|asl030|1|syntax error, unexpected TK_ERRO at line 5 TOKEN ERROR (') 
+GrupoW|asl031|0|
+GrupoW|asl032|1|syntax error, unexpected '*' at line 6 TOKEN ERROR (*) 
+GrupoW|asl033|0|
+GrupoW|asl034|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 4 TOKEN ERROR (<=) 
+GrupoW|asl035|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl036|1|syntax error, unexpected '=', expecting TK_OC_OR or ')' at line 4 TOKEN ERROR (=) 
+GrupoW|asl037|0|
+GrupoW|asl038|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl039|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl040|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl041|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl042|1|syntax error, unexpected TK_ERRO, expecting ',' at line 2 TOKEN ERROR (^) 
+GrupoW|asl043|1|syntax error, unexpected TK_ERRO, expecting ',' at line 2 TOKEN ERROR (:) 
+GrupoW|asl044|0|
+GrupoW|asl045|1|syntax error, unexpected TK_ERRO, expecting ',' at line 2 TOKEN ERROR (:) 
+GrupoW|asl046|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl047|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl048|0|
+GrupoW|asl049|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl050|0|
+GrupoW|asl051|1|syntax error, unexpected ',', expecting end of file at line 4 TOKEN ERROR (,) 
+GrupoW|asl052|0|
+GrupoW|asl053|0|
+GrupoW|asl054|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl055|0|
+GrupoW|asl056|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl057|0|
+GrupoW|asl058|0|
+GrupoW|asl059|0|
+GrupoW|asl060|1|syntax error, unexpected TK_PR_INT, expecting ',' at line 5 TOKEN ERROR (int) 
+GrupoW|asl061|0|
+GrupoW|asl062|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' at line 4 TOKEN ERROR (a) 
+GrupoW|asl063|0|
+GrupoW|asl064|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' at line 4 TOKEN ERROR (a) 
+GrupoW|asl065|1|syntax error, unexpected '<', expecting ',' at line 4 TOKEN ERROR (<) 
+GrupoW|asl066|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (char) 
+GrupoW|asl067|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 4 TOKEN ERROR (<=) 
+GrupoW|asl068|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 4 TOKEN ERROR (<=) 
+GrupoW|asl069|0|
+GrupoW|asl070|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl071|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl072|1|syntax error, unexpected '<', expecting ',' at line 2 TOKEN ERROR (<) 
+GrupoW|asl073|0|
+GrupoW|asl074|0|
+GrupoW|asl075|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl076|1|syntax error, unexpected '<', expecting '(' or '=' at line 5 TOKEN ERROR (<) 
+GrupoW|asl077|0|
+GrupoW|asl078|1|syntax error, unexpected '>', expecting '(' or '=' at line 5 TOKEN ERROR (>) 
+GrupoW|asl079|0|
+GrupoW|asl080|1|syntax error, unexpected ',', expecting '(' or '=' at line 4 TOKEN ERROR (,) 
+GrupoW|asl081|1|syntax error, unexpected ',', expecting '(' or '=' at line 4 TOKEN ERROR (,) 
+GrupoW|asl082|1|syntax error, unexpected TK_LIT_INT, expecting '(' or '=' at line 4 TOKEN ERROR (245) 
+GrupoW|asl083|0|
+GrupoW|asl085|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line 7 TOKEN ERROR (do) 
+GrupoW|asl086|0|
+GrupoW|asl087|0|
+GrupoW|asl088|0|
+GrupoW|asl089|1|syntax error, unexpected '<', expecting '(' or '=' at line 4 TOKEN ERROR (<) 
+GrupoW|asl090|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl091|0|
+GrupoW|asl092|0|
+GrupoW|asl093|0|
+GrupoW|asl094|1|syntax error, unexpected ',', expecting TK_IDENTIFICADOR at line 2 TOKEN ERROR (,) 
+GrupoW|asl095|1|syntax error, unexpected '(', expecting ',' at line 2 TOKEN ERROR (() 
+GrupoW|asl096|1|syntax error, unexpected '(', expecting ',' at line 2 TOKEN ERROR (() 
+GrupoW|asl097|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl098|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 6 TOKEN ERROR (a) 
+GrupoW|asl099|0|
+GrupoW|asl100|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (f) 
+GrupoW|asl101|1|syntax error, unexpected ',', expecting '(' or '=' at line 7 TOKEN ERROR (,) 
+GrupoW|asl102|1|syntax error, unexpected '<', expecting '(' or '=' at line 4 TOKEN ERROR (<) 
+GrupoW|asl103|1|syntax error, unexpected '=', expecting ',' at line 4 TOKEN ERROR (=) 
+GrupoW|asl104|1|syntax error, unexpected '<', expecting TK_IDENTIFICADOR at line 2 TOKEN ERROR (<) 
+GrupoW|asl105|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (func) 
+GrupoW|asl106|0|
+GrupoW|asl107|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (func) 
+GrupoW|asl108|0|
+GrupoW|asl109|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (func) 
+GrupoW|asl110|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (char) 
+GrupoW|asl111|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (func) 
+GrupoW|asl112|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (func) 
+GrupoW|asl113|1|syntax error, unexpected '}', expecting ',' at line 7 TOKEN ERROR (}) 
+GrupoW|asl114|1|syntax error, unexpected ')' at line 4 TOKEN ERROR ()) 
+GrupoW|asl115|1|syntax error, unexpected TK_PR_WHILE, expecting ',' at line 6 TOKEN ERROR (while) 
+GrupoW|asl116|1|syntax error, unexpected ',' at line 4 TOKEN ERROR (,) 
+GrupoW|asl117|1|syntax error, unexpected TK_LIT_INT, expecting '(' at line 4 TOKEN ERROR (1) 
+GrupoW|asl118|0|
+GrupoW|asl119|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line 5 TOKEN ERROR (x) 
+GrupoW|asl120|1|syntax error, unexpected '+', expecting '(' or '=' at line 3 TOKEN ERROR (+) 
+GrupoW|asl121|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (string) 
+GrupoW|asl122|1|syntax error, unexpected ')' at line 3 TOKEN ERROR ()) 
+GrupoW|asl123|1|syntax error, unexpected ',', expecting TK_OC_OR or ')' at line 3 TOKEN ERROR (,) 
+GrupoW|asl124|1|syntax error, unexpected TK_OC_LE, expecting ',' at line 3 TOKEN ERROR (<=) 
+GrupoW|asl125|1|syntax error, unexpected '+' at line 4 TOKEN ERROR (+) 
+GrupoW|asl126|0|
+GrupoW|asl127|0|
+GrupoW|asl128|1|syntax error, unexpected '*' at line 4 TOKEN ERROR (*) 
+GrupoW|asl129|0|
+GrupoW|asl130|0|
+GrupoW|asl131|0|
+GrupoW|asl132|1|syntax error, unexpected '<', expecting '(' or '=' at line 4 TOKEN ERROR (<) 
+GrupoW|asl133|1|syntax error, unexpected '<', expecting '(' or '=' at line 4 TOKEN ERROR (<) 
+GrupoW|asl140|1|syntax error, unexpected TK_IDENTIFICADOR, expecting end of file at line 2 TOKEN ERROR (main) 
+GrupoW|asl141|1|syntax error, unexpected TK_OC_OR at line 3 TOKEN ERROR ( ) 
+GrupoW|asl142|1|syntax error, unexpected TK_OC_AND at line 6 TOKEN ERROR (&) 
+GrupoW|asl143|1|syntax error, unexpected TK_OC_AND at line 3 TOKEN ERROR (&) 
+GrupoW|asl144|1|syntax error, unexpected TK_OC_AND at line 5 TOKEN ERROR (&) 
+GrupoW|asl145|1|syntax error, unexpected TK_IDENTIFICADOR, expecting '{' at line 4 TOKEN ERROR (then) 
+GrupoW|asl146|1|syntax error, unexpected ' ' at line 4 TOKEN ERROR ( ) 
+GrupoW|asl147|1|syntax error, unexpected '!' at line 4 TOKEN ERROR (!) 
+GrupoW|asl148|0|
+GrupoW|asl149|0|
+GrupoW|asl150|0|
+GrupoW|asl151|0|
+GrupoW|asl152|0|
+GrupoW|asl153|0|
+GrupoW|asl154|0|
+GrupoW|asl155|0|
+GrupoW|asl156|0|
+GrupoW|asl157|0|
+GrupoW|asl158|0|
+GrupoW|asl159|0|
+GrupoW|asl160|0|
+GrupoX|asl001|0|
+GrupoX|asl002|1|linha 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl003|0|
+GrupoX|asl004|1|linha 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoX|asl005|1|linha 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl006|1|linha 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl007|1|linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoX|asl008|1|linha 3: syntax error, unexpected TK_IDENTIFICADOR, expecting ',' 
+GrupoX|asl009|0|
+GrupoX|asl010|0|
+GrupoX|asl011|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl012|0|
+GrupoX|asl013|1|linha 3: syntax error, unexpected end of file, expecting ',' 
+GrupoX|asl014|0|
+GrupoX|asl015|0|
+GrupoX|asl016|0|
+GrupoX|asl017|0|
+GrupoX|asl018|0|
+GrupoX|asl019|0|
+GrupoX|asl020|1|linha 4: syntax error, unexpected TK_LIT_INT, expecting ',' 
+GrupoX|asl021|1|linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoX|asl022|1|linha 4: syntax error, unexpected ' ', expecting ',' 
+GrupoX|asl023|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl024|1|linha 2: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl025|1|linha 5: syntax error, unexpected '}', expecting ',' 
+GrupoX|asl026|1|linha 8: syntax error, unexpected '}', expecting ',' 
+GrupoX|asl027|0|
+GrupoX|asl028|0|
+GrupoX|asl029|1|linha 5: syntax error, unexpected TK_ERRO 
+GrupoX|asl030|1|linha 5: syntax error, unexpected TK_ERRO 
+GrupoX|asl031|0|
+GrupoX|asl032|1|linha 6: syntax error, unexpected '*' 
+GrupoX|asl033|0|
+GrupoX|asl034|1|linha 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl035|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl036|1|linha 4: syntax error, unexpected '=', expecting ')' 
+GrupoX|asl037|1|linha 5: syntax error, unexpected TK_ERRO, expecting '{' 
+GrupoX|asl038|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl039|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl040|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl041|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl042|1|linha 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoX|asl043|1|linha 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoX|asl044|0|
+GrupoX|asl045|1|linha 2: syntax error, unexpected TK_ERRO, expecting ',' 
+GrupoX|asl046|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl047|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl048|0|
+GrupoX|asl049|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl050|0|
+GrupoX|asl051|1|linha 4: syntax error, unexpected ',', expecting end of file 
+GrupoX|asl052|0|
+GrupoX|asl053|0|
+GrupoX|asl054|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl055|0|
+GrupoX|asl056|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl057|0|
+GrupoX|asl058|0|
+GrupoX|asl059|0|
+GrupoX|asl060|1|linha 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoX|asl061|0|
+GrupoX|asl062|1|linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoX|asl063|0|
+GrupoX|asl064|1|linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoX|asl065|1|linha 4: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl066|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl067|1|linha 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl068|1|linha 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl069|0|
+GrupoX|asl070|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl071|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl072|1|linha 2: syntax error, unexpected '<', expecting ',' 
+GrupoX|asl073|0|
+GrupoX|asl074|0|
+GrupoX|asl075|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl076|1|linha 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoX|asl077|0|
+GrupoX|asl078|1|linha 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoX|asl079|0|
+GrupoX|asl080|1|linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoX|asl081|1|linha 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoX|asl082|1|linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoX|asl083|0|
+GrupoX|asl085|1|linha 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoX|asl086|0|
+GrupoX|asl087|0|
+GrupoX|asl088|0|
+GrupoX|asl089|1|linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoX|asl090|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl091|0|
+GrupoX|asl092|0|
+GrupoX|asl093|0|
+GrupoX|asl094|1|linha 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoX|asl095|1|linha 2: syntax error, unexpected '(', expecting ',' 
+GrupoX|asl096|1|linha 2: syntax error, unexpected '(', expecting ',' 
+GrupoX|asl097|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl098|1|linha 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl099|0|
+GrupoX|asl100|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl101|1|linha 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoX|asl102|1|linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoX|asl103|1|linha 4: syntax error, unexpected '=', expecting ',' 
+GrupoX|asl104|1|linha 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoX|asl105|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl106|0|
+GrupoX|asl107|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl108|0|
+GrupoX|asl109|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl110|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl111|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl112|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl113|1|linha 7: syntax error, unexpected '}', expecting ',' 
+GrupoX|asl114|1|linha 4: syntax error, unexpected ')' 
+GrupoX|asl115|1|linha 6: syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoX|asl116|1|linha 4: syntax error, unexpected ',' 
+GrupoX|asl117|1|linha 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoX|asl118|0|
+GrupoX|asl119|1|linha 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoX|asl120|1|linha 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoX|asl121|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl122|1|linha 3: syntax error, unexpected ')' 
+GrupoX|asl123|1|linha 3: syntax error, unexpected ',', expecting ')' 
+GrupoX|asl124|1|linha 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoX|asl125|1|linha 4: syntax error, unexpected '+' 
+GrupoX|asl126|0|
+GrupoX|asl127|0|
+GrupoX|asl128|1|linha 4: syntax error, unexpected '*' 
+GrupoX|asl129|0|
+GrupoX|asl130|0|
+GrupoX|asl131|0|
+GrupoX|asl132|1|linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoX|asl133|1|linha 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoX|asl140|1|linha 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoX|asl141|1|linha 3: syntax error, unexpected TK_OC_OR 
+GrupoX|asl142|1|linha 6: syntax error, unexpected TK_OC_AND 
+GrupoX|asl143|1|linha 3: syntax error, unexpected TK_OC_AND 
+GrupoX|asl144|1|linha 5: syntax error, unexpected TK_OC_AND 
+GrupoX|asl145|1|linha 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoX|asl146|0|
+GrupoX|asl147|0|
+GrupoX|asl148|0|
+GrupoX|asl149|0|
+GrupoX|asl150|0|
+GrupoX|asl151|0|
+GrupoX|asl152|0|
+GrupoX|asl153|0|
+GrupoX|asl154|0|
+GrupoX|asl155|0|
+GrupoX|asl156|0|
+GrupoX|asl157|0|
+GrupoX|asl158|0|
+GrupoX|asl159|0|
+GrupoX|asl160|0|
+GrupoY|asl001|1|syntax error
+GrupoY|asl002|1|syntax error
+GrupoY|asl003|1|syntax error
+GrupoY|asl004|1|syntax error
+GrupoY|asl005|1|syntax error
+GrupoY|asl006|1|syntax error
+GrupoY|asl007|1|syntax error
+GrupoY|asl008|1|syntax error
+GrupoY|asl009|1|syntax error
+GrupoY|asl010|1|syntax error
+GrupoY|asl011|1|syntax error
+GrupoY|asl012|1|syntax error
+GrupoY|asl013|1|syntax error
+GrupoY|asl014|1|syntax error
+GrupoY|asl015|1|syntax error
+GrupoY|asl016|1|syntax error
+GrupoY|asl017|1|syntax error
+GrupoY|asl018|1|syntax error
+GrupoY|asl019|1|syntax error
+GrupoY|asl020|1|syntax error
+GrupoY|asl021|1|syntax error
+GrupoY|asl022|1|syntax error
+GrupoY|asl023|1|syntax error
+GrupoY|asl024|1|syntax error
+GrupoY|asl025|1|syntax error
+GrupoY|asl026|1|syntax error
+GrupoY|asl027|1|syntax error
+GrupoY|asl028|1|syntax error
+GrupoY|asl029|1|syntax error
+GrupoY|asl030|1|syntax error
+GrupoY|asl031|1|syntax error
+GrupoY|asl032|1|syntax error
+GrupoY|asl033|1|syntax error
+GrupoY|asl034|1|syntax error
+GrupoY|asl035|1|syntax error
+GrupoY|asl036|1|syntax error
+GrupoY|asl037|1|syntax error
+GrupoY|asl038|1|syntax error
+GrupoY|asl039|1|syntax error
+GrupoY|asl040|1|syntax error
+GrupoY|asl041|1|syntax error
+GrupoY|asl042|1|syntax error
+GrupoY|asl043|1|syntax error
+GrupoY|asl044|1|syntax error
+GrupoY|asl045|1|syntax error
+GrupoY|asl046|1|syntax error
+GrupoY|asl047|1|syntax error
+GrupoY|asl048|1|syntax error
+GrupoY|asl049|1|syntax error
+GrupoY|asl050|1|syntax error
+GrupoY|asl051|1|syntax error
+GrupoY|asl052|1|syntax error
+GrupoY|asl053|1|syntax error
+GrupoY|asl054|1|syntax error
+GrupoY|asl055|1|syntax error
+GrupoY|asl056|1|syntax error
+GrupoY|asl057|1|syntax error
+GrupoY|asl058|1|syntax error
+GrupoY|asl059|1|syntax error
+GrupoY|asl060|1|syntax error
+GrupoY|asl061|1|syntax error
+GrupoY|asl062|1|syntax error
+GrupoY|asl063|1|syntax error
+GrupoY|asl064|1|syntax error
+GrupoY|asl065|1|syntax error
+GrupoY|asl066|1|syntax error
+GrupoY|asl067|1|syntax error
+GrupoY|asl068|1|syntax error
+GrupoY|asl069|1|syntax error
+GrupoY|asl070|1|syntax error
+GrupoY|asl071|1|syntax error
+GrupoY|asl072|1|syntax error
+GrupoY|asl073|1|syntax error
+GrupoY|asl074|1|syntax error
+GrupoY|asl075|1|syntax error
+GrupoY|asl076|1|syntax error
+GrupoY|asl077|1|syntax error
+GrupoY|asl078|1|syntax error
+GrupoY|asl079|1|syntax error
+GrupoY|asl080|1|syntax error
+GrupoY|asl081|1|syntax error
+GrupoY|asl082|1|syntax error
+GrupoY|asl083|1|syntax error
+GrupoY|asl085|1|syntax error
+GrupoY|asl086|1|syntax error
+GrupoY|asl087|1|syntax error
+GrupoY|asl088|1|syntax error
+GrupoY|asl089|1|syntax error
+GrupoY|asl090|1|syntax error
+GrupoY|asl091|1|syntax error
+GrupoY|asl092|1|syntax error
+GrupoY|asl093|1|syntax error
+GrupoY|asl094|1|syntax error
+GrupoY|asl095|1|syntax error
+GrupoY|asl096|1|syntax error
+GrupoY|asl097|1|syntax error
+GrupoY|asl098|1|syntax error
+GrupoY|asl099|1|syntax error
+GrupoY|asl100|1|syntax error
+GrupoY|asl101|1|syntax error
+GrupoY|asl102|1|syntax error
+GrupoY|asl103|1|syntax error
+GrupoY|asl104|1|syntax error
+GrupoY|asl105|1|syntax error
+GrupoY|asl106|1|syntax error
+GrupoY|asl107|1|syntax error
+GrupoY|asl108|1|syntax error
+GrupoY|asl109|1|syntax error
+GrupoY|asl110|1|syntax error
+GrupoY|asl111|1|syntax error
+GrupoY|asl112|1|syntax error
+GrupoY|asl113|1|syntax error
+GrupoY|asl114|1|syntax error
+GrupoY|asl115|1|syntax error
+GrupoY|asl116|1|syntax error
+GrupoY|asl117|1|syntax error
+GrupoY|asl118|1|syntax error
+GrupoY|asl119|1|syntax error
+GrupoY|asl120|1|syntax error
+GrupoY|asl121|1|syntax error
+GrupoY|asl122|1|syntax error
+GrupoY|asl123|1|syntax error
+GrupoY|asl124|1|syntax error
+GrupoY|asl125|1|syntax error
+GrupoY|asl126|1|syntax error
+GrupoY|asl127|1|syntax error
+GrupoY|asl128|1|syntax error
+GrupoY|asl129|1|syntax error
+GrupoY|asl130|1|syntax error
+GrupoY|asl131|1|syntax error
+GrupoY|asl132|1|syntax error
+GrupoY|asl133|1|syntax error
+GrupoY|asl140|1|syntax error
+GrupoY|asl141|1|syntax error
+GrupoY|asl142|1|syntax error
+GrupoY|asl143|1|syntax error
+GrupoY|asl144|1|syntax error
+GrupoY|asl145|1|syntax error
+GrupoY|asl146|1|syntax error
+GrupoY|asl147|1|syntax error
+GrupoY|asl148|1|syntax error
+GrupoY|asl149|1|syntax error
+GrupoY|asl150|1|syntax error
+GrupoY|asl151|1|syntax error
+GrupoY|asl152|1|syntax error
+GrupoY|asl153|1|syntax error
+GrupoY|asl154|1|syntax error
+GrupoY|asl155|1|syntax error
+GrupoY|asl156|1|syntax error
+GrupoY|asl157|1|syntax error
+GrupoY|asl158|1|syntax error
+GrupoY|asl159|1|syntax error
+GrupoY|asl160|1|syntax error
+GrupoZ|asl001|0|
+GrupoZ|asl002|1|ERROR at line 2: syntax error, unexpected TK_OC_LE, expecting ';' or ',' 
+GrupoZ|asl003|0|
+GrupoZ|asl004|1|ERROR at line 3: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoZ|asl005|1|ERROR at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl006|1|ERROR at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl007|1|ERROR at line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting TK_OC_OR or ',' 
+GrupoZ|asl008|1|ERROR at line 3: syntax error, unexpected TK_IDENTIFICADOR, expecting TK_OC_OR or ',' 
+GrupoZ|asl009|0|
+GrupoZ|asl010|0|
+GrupoZ|asl011|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl012|0|
+GrupoZ|asl013|1|ERROR at line 3: syntax error, unexpected end of file, expecting ';' or ',' 
+GrupoZ|asl014|0|
+GrupoZ|asl015|0|
+GrupoZ|asl016|0|
+GrupoZ|asl017|0|
+GrupoZ|asl018|0|
+GrupoZ|asl019|0|
+GrupoZ|asl020|1|ERROR at line 4: syntax error, unexpected TK_LIT_INT, expecting TK_OC_OR or ',' 
+GrupoZ|asl021|1|ERROR at line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoZ|asl022|1|ERROR at line 4: syntax error, unexpected ' ', expecting ',' 
+GrupoZ|asl023|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl024|1|ERROR at line 2: syntax error, unexpected TK_OC_LE, expecting ';' or ',' 
+GrupoZ|asl025|1|ERROR at line 5: syntax error, unexpected '}', expecting ',' 
+GrupoZ|asl026|1|ERROR at line 8: syntax error, unexpected '}', expecting ',' 
+GrupoZ|asl027|0|
+GrupoZ|asl028|0|
+GrupoZ|asl029|1|ERROR at line 5: syntax error, unexpected TK_ERRO 
+GrupoZ|asl030|1|ERROR at line 5: syntax error, unexpected TK_ERRO 
+GrupoZ|asl031|0|
+GrupoZ|asl032|1|ERROR at line 6: syntax error, unexpected '*' 
+GrupoZ|asl033|0|
+GrupoZ|asl034|1|ERROR at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl035|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl036|1|ERROR at line 4: syntax error, unexpected '=', expecting TK_OC_OR or ')' 
+GrupoZ|asl037|0|
+GrupoZ|asl038|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl039|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl040|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl041|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl042|1|ERROR at line 2: syntax error, unexpected TK_ERRO, expecting ';' or ',' 
+GrupoZ|asl043|1|ERROR at line 2: syntax error, unexpected TK_ERRO, expecting ';' or ',' 
+GrupoZ|asl044|0|
+GrupoZ|asl045|1|ERROR at line 2: syntax error, unexpected TK_ERRO, expecting ';' or ',' 
+GrupoZ|asl046|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl047|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl048|0|
+GrupoZ|asl049|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl050|0|
+GrupoZ|asl051|1|ERROR at line 4: syntax error, unexpected ',', expecting end of file 
+GrupoZ|asl052|0|
+GrupoZ|asl053|0|
+GrupoZ|asl054|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl055|0|
+GrupoZ|asl056|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl057|0|
+GrupoZ|asl058|0|
+GrupoZ|asl059|0|
+GrupoZ|asl060|1|ERROR at line 5: syntax error, unexpected TK_PR_INT, expecting ',' 
+GrupoZ|asl061|0|
+GrupoZ|asl062|1|ERROR at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoZ|asl063|0|
+GrupoZ|asl064|1|ERROR at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '(' or '=' 
+GrupoZ|asl065|1|ERROR at line 4: syntax error, unexpected '<', expecting ',' 
+GrupoZ|asl066|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl067|1|ERROR at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl068|1|ERROR at line 4: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl069|0|
+GrupoZ|asl070|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl071|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl072|1|ERROR at line 2: syntax error, unexpected '<', expecting ';' or ',' 
+GrupoZ|asl073|0|
+GrupoZ|asl074|0|
+GrupoZ|asl075|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl076|1|ERROR at line 5: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoZ|asl077|0|
+GrupoZ|asl078|1|ERROR at line 5: syntax error, unexpected '>', expecting '(' or '=' 
+GrupoZ|asl079|0|
+GrupoZ|asl080|1|ERROR at line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoZ|asl081|1|ERROR at line 4: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoZ|asl082|1|ERROR at line 4: syntax error, unexpected TK_LIT_INT, expecting '(' or '=' 
+GrupoZ|asl083|0|
+GrupoZ|asl085|1|ERROR at line 7: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoZ|asl086|0|
+GrupoZ|asl087|0|
+GrupoZ|asl088|0|
+GrupoZ|asl089|1|ERROR at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoZ|asl090|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl091|0|
+GrupoZ|asl092|0|
+GrupoZ|asl093|0|
+GrupoZ|asl094|1|ERROR at line 2: syntax error, unexpected ',', expecting TK_IDENTIFICADOR 
+GrupoZ|asl095|1|ERROR at line 2: syntax error, unexpected '(', expecting ';' or ',' 
+GrupoZ|asl096|1|ERROR at line 2: syntax error, unexpected '(', expecting ';' or ',' 
+GrupoZ|asl097|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl098|1|ERROR at line 6: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl099|0|
+GrupoZ|asl100|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl101|1|ERROR at line 7: syntax error, unexpected ',', expecting '(' or '=' 
+GrupoZ|asl102|1|ERROR at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoZ|asl103|1|ERROR at line 4: syntax error, unexpected '=', expecting ',' 
+GrupoZ|asl104|1|ERROR at line 2: syntax error, unexpected '<', expecting TK_IDENTIFICADOR 
+GrupoZ|asl105|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl106|0|
+GrupoZ|asl107|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl108|0|
+GrupoZ|asl109|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl110|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl111|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl112|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl113|1|ERROR at line 7: syntax error, unexpected '}', expecting ',' 
+GrupoZ|asl114|1|ERROR at line 4: syntax error, unexpected ')' 
+GrupoZ|asl115|1|ERROR at line 6: syntax error, unexpected TK_PR_WHILE, expecting ',' 
+GrupoZ|asl116|1|ERROR at line 4: syntax error, unexpected ',' 
+GrupoZ|asl117|1|ERROR at line 4: syntax error, unexpected TK_LIT_INT, expecting '(' 
+GrupoZ|asl118|0|
+GrupoZ|asl119|1|ERROR at line 5: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoZ|asl120|1|ERROR at line 3: syntax error, unexpected '+', expecting '(' or '=' 
+GrupoZ|asl121|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl122|1|ERROR at line 3: syntax error, unexpected ')' 
+GrupoZ|asl123|1|ERROR at line 3: syntax error, unexpected ',', expecting TK_OC_OR or ')' 
+GrupoZ|asl124|1|ERROR at line 3: syntax error, unexpected TK_OC_LE, expecting ',' 
+GrupoZ|asl125|1|ERROR at line 4: syntax error, unexpected '+' 
+GrupoZ|asl126|0|
+GrupoZ|asl127|0|
+GrupoZ|asl128|1|ERROR at line 4: syntax error, unexpected '*' 
+GrupoZ|asl129|0|
+GrupoZ|asl130|0|
+GrupoZ|asl131|0|
+GrupoZ|asl132|1|ERROR at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoZ|asl133|1|ERROR at line 4: syntax error, unexpected '<', expecting '(' or '=' 
+GrupoZ|asl140|1|ERROR at line 2: syntax error, unexpected TK_IDENTIFICADOR, expecting end of file 
+GrupoZ|asl141|1|ERROR at line 3: syntax error, unexpected TK_OC_OR 
+GrupoZ|asl142|1|ERROR at line 6: syntax error, unexpected TK_OC_AND 
+GrupoZ|asl143|1|ERROR at line 3: syntax error, unexpected TK_OC_AND 
+GrupoZ|asl144|1|ERROR at line 5: syntax error, unexpected TK_OC_AND 
+GrupoZ|asl145|1|ERROR at line 4: syntax error, unexpected TK_IDENTIFICADOR, expecting '{' 
+GrupoZ|asl146|1|ERROR at line 4: syntax error, unexpected ' ' 
+GrupoZ|asl147|1|ERROR at line 4: syntax error, unexpected '!' 
+GrupoZ|asl148|0|
+GrupoZ|asl149|0|
+GrupoZ|asl150|0|
+GrupoZ|asl151|0|
+GrupoZ|asl152|0|
+GrupoZ|asl153|0|
+GrupoZ|asl154|0|
+GrupoZ|asl155|0|
+GrupoZ|asl156|0|
+GrupoZ|asl157|0|
+GrupoZ|asl158|0|
+GrupoZ|asl159|0|
+GrupoZ|asl160|0|
