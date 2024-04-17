@@ -142,7 +142,7 @@ comando_simples: declaracao_variavel
                | chamada_funcao
                | comando_retorno
                | comando_controle_fluxo
-			   | corpo
+	       | corpo
                ;
 
 //##########################
