@@ -12,6 +12,7 @@ asd_tree_t *asd_new(const char *label)
     ret->label = strdup(label);
     ret->number_of_children = 0;
     ret->children = NULL;
+	ret->result = 0.0;
   }
   return ret;
 }
@@ -65,16 +66,15 @@ void asd_print(asd_tree_t *tree)
   }
 }
 
-static void _asd_print_graphviz (FILE *foutput, asd_tree_t *tree)
-{
+static void _asd_print_graphviz(FILE *foutput, asd_tree_t *tree) {
   int i;
-  if (tree != NULL){
-    fprintf(foutput, "  %ld [ label=\"%s\" ];\n", (long)tree, tree->label);
-    for (i = 0; i < tree->number_of_children; i++){
+  if (tree != NULL) {
+    fprintf(foutput, "  %ld [ label=\"%s (%.2f)\" ];\n", (long)tree, tree->label, tree->result);
+    for (i = 0; i < tree->number_of_children; i++) {
       fprintf(foutput, "  %ld -> %ld;\n", (long)tree, (long)tree->children[i]);
       _asd_print_graphviz(foutput, tree->children[i]);
     }
-  }else{
+  } else {
     printf("Erro: %s recebeu parâmetro tree = %p.\n", __FUNCTION__, tree);
   }
 }
@@ -94,3 +94,46 @@ void asd_print_graphviz(asd_tree_t *tree)
     printf("Erro: %s recebeu parâmetro tree = %p.\n", __FUNCTION__, tree);
   }
 }
+
+// Include necessary headers
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "asd.h"
+
+// Helper function to evaluate the AST recursively
+double evaluate_ast(asd_tree_t *tree) {
+  if (tree == NULL) {
+    return 0.0; // Base case: empty node or leaf node
+  }
+
+  if (tree->number_of_children == 0) {
+    // Leaf node representing a numeric value
+    return atof(tree->label); // Convert label to double
+  }
+
+  // Evaluate child nodes based on the operation (either '+' or '*')
+  double result = 0.0;
+  char *operation = tree->label;
+
+  if (strcmp(operation, "+") == 0) {
+    // Addition operation
+    for (int i = 0; i < tree->number_of_children; i++) {
+      result += evaluate_ast(tree->children[i]);
+    }
+  } else if (strcmp(operation, "*") == 0) {
+    // Multiplication operation
+    if (tree->number_of_children > 0) {
+      result = 1.0; // Initialize result with identity for multiplication
+      for (int i = 0; i < tree->number_of_children; i++) {
+        result *= evaluate_ast(tree->children[i]);
+      }
+    }
+  }
+
+  // Update the result field of the current node
+  tree->result = result;
+
+  return result;
+}
+

@@ -40,4 +40,10 @@ void asd_print(asd_tree_t *tree);
  * Função asd_print_graphviz, idem, em formato DOT
  */
 void asd_print_graphviz (asd_tree_t *tree);
+
+/*
+ * Função para validar o resultado da operação aritmética, percorrendo a árvore recursivamente
+*/
+double evaluate_ast(asd_tree_t *node);
+
 #endif //_ARVORE_H_

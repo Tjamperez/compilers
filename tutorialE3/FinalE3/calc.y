@@ -32,16 +32,16 @@ Input: Input Line
 
 Line: END
 Line: END_OF_FILE { return EOF; }
-Line: E END { fprintf(stdout, "Expressão aritmética reconhecida com sucesso.\n"); }
+Line: E END { printf("Expressão aritmética reconhecida com sucesso.\n"); asd_print_graphviz($1); asd_free($1); }
 
-E: E PLUS T
-E: T
+E: E PLUS T { $$ = asd_new("+"); asd_add_child($$, $1); asd_add_child($$, $3); $$->result = $1->result + $3->result; }
+E: T { $$ = $1; }
 
-T: T TIMES F
-T: F
+T: T TIMES F { $$ = asd_new("*"); asd_add_child($$, $1); asd_add_child($$, $3);  $$->result = $1->result * $3->result; }
+T: F { $$ = $1; }
 
-F: LEFT E RIGHT
-F: NUMBER { $$->result = $1; }
+F: LEFT E RIGHT { $$ = $2; }
+F: NUMBER { char num_str[20]; sprintf(num_str, "%.6g", $1);  $$ = asd_new(num_str); $$->result = $1; }
 
 %%
 

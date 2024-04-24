@@ -1347,18 +1347,48 @@ yyreduce:
 
   case 6: /* Line: E END  */
 #line 35 "calc.y"
-            { fprintf(stdout, "Expressão aritmética reconhecida com sucesso.\n"); }
+            { printf("Expressão aritmética reconhecida com sucesso.\n"); asd_print_graphviz((yyvsp[-1].arvore)); asd_free((yyvsp[-1].arvore)); }
 #line 1352 "calc.tab.c"
+    break;
+
+  case 7: /* E: E PLUS T  */
+#line 37 "calc.y"
+            { (yyval.arvore) = asd_new("+"); asd_add_child((yyval.arvore), (yyvsp[-2].arvore)); asd_add_child((yyval.arvore), (yyvsp[0].arvore)); (yyval.arvore)->result = (yyvsp[-2].arvore)->result + (yyvsp[0].arvore)->result; }
+#line 1358 "calc.tab.c"
+    break;
+
+  case 8: /* E: T  */
+#line 38 "calc.y"
+     { (yyval.arvore) = (yyvsp[0].arvore); }
+#line 1364 "calc.tab.c"
+    break;
+
+  case 9: /* T: T TIMES F  */
+#line 40 "calc.y"
+             { (yyval.arvore) = asd_new("*"); asd_add_child((yyval.arvore), (yyvsp[-2].arvore)); asd_add_child((yyval.arvore), (yyvsp[0].arvore));  (yyval.arvore)->result = (yyvsp[-2].arvore)->result * (yyvsp[0].arvore)->result; }
+#line 1370 "calc.tab.c"
+    break;
+
+  case 10: /* T: F  */
+#line 41 "calc.y"
+     { (yyval.arvore) = (yyvsp[0].arvore); }
+#line 1376 "calc.tab.c"
+    break;
+
+  case 11: /* F: LEFT E RIGHT  */
+#line 43 "calc.y"
+                { (yyval.arvore) = (yyvsp[-1].arvore); }
+#line 1382 "calc.tab.c"
     break;
 
   case 12: /* F: NUMBER  */
 #line 44 "calc.y"
-          { (yyval.arvore)->result = (yyvsp[0].valor); }
-#line 1358 "calc.tab.c"
+          { char num_str[20]; sprintf(num_str, "%.6g", (yyvsp[0].valor));  (yyval.arvore) = asd_new(num_str); (yyval.arvore)->result = (yyvsp[0].valor); }
+#line 1388 "calc.tab.c"
     break;
 
 
-#line 1362 "calc.tab.c"
+#line 1392 "calc.tab.c"
 
       default: break;
     }
