@@ -45,14 +45,31 @@ ast_tree_t *ast_root = NULL;
 %token <valor_lexico> TK_LIT_TRUE
 %token TK_ERRO
 
-%type <tree> programa
-%type <tree> lista_de_elementos
-%type <tree> elemento
-%type <tree> 
-%type <tree>
-%type <tree>
-%type <tree>
-%type <tree>
+programa: %type <tree> programa
+lista_de_elementos: %type <tree> lista_de_elementos
+elemento: %type <tree> elemento
+definicao_de_funcao: %type <tree> definicao_de_funcao
+cabecalho: %type <tree> cabecalho
+lista_de_parametros: %type <tree> lista_de_parametros
+parametro: %type <tree> parametro
+corpo: %type <tree> corpo
+bloco_de_comandos: %type <tree> bloco_de_comandos
+lista_de_comandos: %type <tree> lista_de_comandos
+comando_simples: %type <tree> comando_simples
+declaracao_variavel: %type <tree> declaracao_variavel
+comando_atribuicao: %type <tree> comando_atribuicao
+chamada_funcao: %type <tree> chamada_funcao
+comando_retorno: %type <tree> comando_retorno
+condicional: %type <tree> condicional
+loop: %type <tree> loop
+expressao: %type <tree> expressao
+operador: %type <tree> operador
+unario: %type <tree> unario
+operando: %type <tree> operando
+primario: %type <tree> primario
+lista_expressao: %type <tree> lista_expressao
+nome_func: %type <tree> nome_func
+literais: %type <tree> literais
 
 %%
 
