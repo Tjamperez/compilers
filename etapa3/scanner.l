@@ -13,8 +13,8 @@
 %%
     /* Catch the compilers reserved words and return the token */
 
-"int" { return TK_PR_INT; }
-"float" { return TK_PR_FLOAT; }
+"int" {return TK_PR_INT; }
+"float" {return TK_PR_FLOAT; }
 "bool" {return TK_PR_BOOL; }
 "if" {return TK_PR_IF; }
 "else" {return TK_PR_ELSE; }
@@ -53,14 +53,14 @@
 
     /* Catch the compilers literals and return the token */
 
-[0-9]+    {return TK_LIT_INT; }
-[0-9]*\.[0-9]+    {return TK_LIT_FLOAT; }
-"false"     {return TK_LIT_FALSE; }
-"true"      {return TK_LIT_TRUE; }
+[0-9]+    {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_INT , yytext); return TK_LIT_INT; }
+[0-9]*\.[0-9]+    { yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_FLOAT , yytext); return TK_LIT_FLOAT; }
+"false"     {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_FALSE; }
+"true"      {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_TRUE; }
 
     /* Catch the compilers identificator and return the token */
 
-[_a-z][_a-z0-9]* {return TK_IDENTIFICADOR; }
+[_a-z][_a-z0-9]* {yyval.valor_lexico = get_val (get_line_number() , IDENTIFIER_TYPE , yytext) ; return TK_IDENTIFICADOR; }
 
     /* Catch anything with that is not one of the aforementioned lexems and return the error token */
 

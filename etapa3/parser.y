@@ -22,6 +22,8 @@ extern void *tree;
   ast_tree_t *tree;
 }
 
+ast_tree_t *ast_root = NULL;
+
 // Definição dos tokens
 %token TK_PR_INT
 %token TK_PR_FLOAT
@@ -43,7 +45,14 @@ extern void *tree;
 %token <valor_lexico> TK_LIT_TRUE
 %token TK_ERRO
 
-%type <arvore> 
+%type <tree> programa
+%type <tree> lista_de_elementos
+%type <tree> elemento
+%type <tree> 
+%type <tree>
+%type <tree>
+%type <tree>
+%type <tree>
 
 %%
 

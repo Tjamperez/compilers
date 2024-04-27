@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#define NOT_LIT	 	 		0
+#define IDENTIFIER_TYPE 	0
 #define LIT_TYPE_INT 		1
 #define LIT_TYPE_BOOL 		2
-#define LIT_TYPE_STRING		5
+#define LIT_TYPE_FLOAT		3
 
 
 typedef struct val_lex{
@@ -15,5 +15,5 @@ int type;
 char *token_value;
 } val_lex_t;
 
-val_lex_t* gen_val(int line, int type);
+val_lex_t *gen_val(int line, int type, const char *text);
 
