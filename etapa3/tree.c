@@ -10,7 +10,7 @@ tree_node_t *ast_new(val_lex_t *valor_lexico) {
         ret->children = NULL;
         ret->num_children = 0;
     }
-    return node;
+    return ret;
 }
 
 void ast_free(tree_node_t *root) {
