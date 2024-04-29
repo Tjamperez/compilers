@@ -7,23 +7,20 @@ typedef struct tree_node {
     struct tree_node **children;
     int num_children;
 } tree_node_t;
-/*
- * Função ast_new, cria um nó sem filhos com o valor léxico.
- */
+
+// Cria um nó sem filhos com o valor léxico.
 tree_node_t *ast_new(val_lex_t *valor_lexico);
 
-/*
- * Função ast_tree, libera recursivamente o nó e seus filhos, inclusive o valor lexico.
- */
+// Libera recursivamente o nó e seus filhos, incluindo o valor lexico.
 void ast_free(tree_node_t *root);
-/*
- * Função ast_add_child, adiciona child como filho de tree.
- */
+
+// Adiciona child como filho de tree.
 void ast_add_child(tree_node_t *parent, tree_node_t *child);
 
-/*
- * Função ast_print, imprime recursivamente a árvore.
- */
+// Imprime recursivamente a árvore.
 void ast_print_dot(tree_node_t *root, const char *filename);
+
+// Função para exportar a árvore em saída padrão.
+void exporta(tree_node_t *node);
 
 #endif //_TREE_H_

@@ -1,4 +1,4 @@
-    /* Arquivo feito por Thales Perez 00303035 e Vitor Vargas 00302162 */
+/* Arquivo feito por Thales Perez 00303035 e Vitor Vargas 00302162 */
 
 %define parse.error verbose
 
@@ -18,8 +18,8 @@ extern void *tree;
 %}
 
 %union {
-  val_lex_t valor_lexico;
-  ast_tree_t *tree;
+  val_lex_t *valor_lexico;
+  tree_node_t *tree;
 }
 
 ast_tree_t *ast_root = NULL;
@@ -45,44 +45,31 @@ ast_tree_t *ast_root = NULL;
 %token <valor_lexico> TK_LIT_TRUE
 %token TK_ERRO
 
-programa: %type <tree> programa
-lista_de_elementos: %type <tree> lista_de_elementos
-elemento: %type <tree> elemento
-definicao_de_funcao: %type <tree> definicao_de_funcao
-cabecalho: %type <tree> cabecalho
-lista_de_parametros: %type <tree> lista_de_parametros
-parametro: %type <tree> parametro
-corpo: %type <tree> corpo
-bloco_de_comandos: %type <tree> bloco_de_comandos
-lista_de_comandos: %type <tree> lista_de_comandos
-comando_simples: %type <tree> comando_simples
-declaracao_variavel: %type <tree> declaracao_variavel
-comando_atribuicao: %type <tree> comando_atribuicao
-chamada_funcao: %type <tree> chamada_funcao
-comando_retorno: %type <tree> comando_retorno
-condicional: %type <tree> condicional
-loop: %type <tree> loop
-expressao: %type <tree> expressao
-operador: %type <tree> operador
-unario: %type <tree> unario
-operando: %type <tree> operando
-primario: %type <tree> primario
-lista_expressao: %type <tree> lista_expressao
-nome_func: %type <tree> nome_func
-literais: %type <tree> literais
+%type <tree> programa lista_de_elementos elemento definicao_de_funcao cabecalho lista_de_parametros parametro corpo bloco_de_comandos lista_de_comandos comando_simples declaracao_variavel comando_atribuicao chamada_funcao comando_retorno condicional loop expressao operador unario operando primario lista_expressao nome_func literais
 
 %%
 
 //##########################
 // Definição de programa
 programa: lista_de_elementos
+        {
+            ast_root = $1;
+        }
         | /* vazio */
         ;
 
 //##########################
 // Lista de elementos
 lista_de_elementos: lista_de_elementos elemento
+                  {
+                      ast_add_child($1, $2);
+                      $$ = $1;
+                  }
                   | elemento
+                  {
+                      $$ = ast_new(NULL); // Criando nó com valor nulo
+                      ast_add_child($$, $1);
+                  }
                   ;
 
 //##########################
@@ -99,6 +86,9 @@ declaracao_global: tipo lista_identificador ','
 //##########################
 // Identificador
 identificador: TK_IDENTIFICADOR
+             {
+                 $$ = ast_new($1);
+             }
              ;
 
 //##########################
@@ -132,11 +122,24 @@ lista_identificador: lista_identificador ';' identificador
 //##########################
 // Definição de função
 definicao_de_funcao: cabecalho corpo
+                   {
+                       $$ = ast_new(NULL); // Criar nó genérico
+                       ast_add_child($$, $1);
+                       ast_add_child($$, $2);
+                       if (ast_root == NULL) {
+                           ast_root = $$;
+                       }
+                   }
                    ;
 
 //##########################
 // Cabeçalho da função
 cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
+         {
+             $$ = ast_new(NULL); // Criar nó genérico
+             ast_add_child($$, $3);
+             ast_add_child($$, $5);
+         }
          ;
 
 //##########################
@@ -154,23 +157,47 @@ lista_de_parametros: lista_de_parametros ';' parametro
 //##########################
 // Parâmetro da função
 parametro: tipo identificador
+         {
+             $$ = ast_new(NULL); // Criar nó genérico
+             ast_add_child($$, $1);
+             ast_add_child($$, $2);
+         }
          ;
 
 // Corpo da função
 corpo: '{' bloco_de_comandos '}'
+	 {
+	     $$ = ast_new(NULL); // Criar nó genérico
+	     ast_add_child($$, $2);
+	 }
 	 |  corpo '{' bloco_de_comandos '}'
+     {
+         ast_add_child($1, $3);
+         $$ = $1;
+     }
      ;
-	 
+
 //##########################
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
                  | lista_de_comandos
+                 {
+                     $$ = $1;
+                 }
                  ;
 
 //##########################
 // Definição de lista de comandos simples
-lista_de_comandos: comando_simples ','
-                 | lista_de_comandos comando_simples ','
+lista_de_comandos: lista_de_comandos comando_simples ','
+                 {
+                     ast_add_child($1, $2);
+                     $$ = $1;
+                 }
+                 | comando_simples ','
+                 {
+                     $$ = ast_new(NULL); // Criar nó genérico
+                     ast_add_child($$, $1);
+                 }
                  ;
 
 //##########################
@@ -179,70 +206,106 @@ comando_simples: declaracao_variavel
                | comando_atribuicao
                | chamada_funcao
                | comando_retorno
-               | comando_controle_fluxo
-	       | corpo
+               | condicional
+               | loop
+               | corpo
                ;
 
 //##########################
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador
+                   {
+                       $$ = ast_new(NULL); // Criar nó genérico
+                       ast_add_child($$, $1);
+                       ast_add_child($$, $2);
+                   }
                    ;
 
 //##########################
 // Comando de atribuição
 comando_atribuicao: identificador '=' expressao
+                  {
+                      $$ = ast_new(NULL); // Criar nó genérico
+                      ast_add_child($$, $1);
+                      ast_add_child($$, $3);
+                  }
                   ;
 
 //##########################
 // Comando de retorno
 RETURN: TK_PR_RETURN
-	  ;
+      ;
 comando_retorno: RETURN expressao
-			   ;
+               {
+                   $$ = ast_new(NULL); // Criar nó genérico
+                   ast_add_child($$, $2);
+               }
+               ;
 
 //##########################
 // Comando de controle de fluxo
-comando_controle_fluxo: condicional 
-			      	  | loop 
-					  ;
-
-//##########################
-// Comando de if e else
-IF: TK_PR_IF 
-  ;
-ELSE: TK_PR_ELSE 
-	;
 condicional: IF '(' expressao ')' corpo
            | IF '(' expressao ')' corpo ELSE corpo 
-		   ;
+           {
+               $$ = ast_new(NULL); // Criar nó genérico
+               ast_add_child($$, $3);
+               ast_add_child($$, $5);
+               if ($7) {
+                   ast_add_child($$, $7);
+               }
+           }
+           ;
 
 //##########################
 // Comando de loop
 WHILE: TK_PR_WHILE 
-	 ;
+     ;
 loop: WHILE '(' expressao ')' corpo
-	;
+    {
+        $$ = ast_new(NULL); // Criar nó genérico
+        ast_add_child($$, $3);
+        ast_add_child($$, $5);
+    }
+    ;
 
 //##########################
 // Definição expressões, compostas de operando e operador
 
 expressao: operando 
-		 ;
+         {
+             $$ = $1;
+         }
+         ;
 
 operando: operador
          | operando OR operador
+         {
+             $$ = ast_new(NULL); // Criar nó genérico
+             ast_add_child($$, $1);
+             ast_add_child($$, $3);
+         }
          ;
 
 //##########################
 // Definição de termos
 operador: comparacao
         | operador AND comparacao
+        {
+            $$ = ast_new(NULL); // Criar nó genérico
+            ast_add_child($$, $1);
+            ast_add_child($$, $3);
+        }
         ;
 
 //##########################
 // Comparações
 comparacao: adicaousub
           | comparacao op_comparacao adicaousub
+          {
+              $$ = ast_new(NULL); // Criar nó genérico
+              ast_add_child($$, $1);
+              ast_add_child($$, $3);
+          }
           ;
 
 //##########################
@@ -259,6 +322,11 @@ op_comparacao: LESSTHAN
 // Adição ou subtração
 adicaousub: multoudivoures
           | adicaousub op_adicaousub multoudivoures
+          {
+              $$ = ast_new(NULL); // Criar nó genérico
+              ast_add_child($$, $1);
+              ast_add_child($$, $3);
+          }
           ;
 
 //##########################
@@ -271,6 +339,11 @@ op_adicaousub: ADD
 // Multiplicação, divisão ou resto
 multoudivoures: unario
               | multoudivoures op_multoudivoures unario
+              {
+                  $$ = ast_new(NULL); // Criar nó genérico
+                  ast_add_child($$, $1);
+                  ast_add_child($$, $3);
+              }
               ;
 
 //##########################
@@ -285,6 +358,10 @@ op_multoudivoures: MULTIPLY
 unario: primario
       | INVERTSIG unario
       | NEGATE unario
+      {
+          $$ = ast_new(NULL); // Criar nó genérico
+          ast_add_child($$, $2);
+      }
       ;
 
 //##########################
@@ -293,18 +370,35 @@ primario: identificador
         | literais
         | chamada_funcao
         | '(' expressao ')'
+        {
+            $$ = ast_new(NULL); // Criar nó genérico
+            ast_add_child($$, $2);
+        }
         ;
 
 //##########################
 // Chamada de função
 chamada_funcao: nome_func '(' lista_expressao ')'
-			  | nome_func '('/*vazio*/')'
+              {
+                  $$ = ast_new(NULL); // Criar nó genérico
+                  ast_add_child($$, $1);
+                  ast_add_child($$, $3);
+              }
+              | nome_func '('/*vazio*/')'
+              {
+                  $$ = ast_new(NULL); // Criar nó genérico
+                  ast_add_child($$, $1);
+              }
               ;
 
 //##########################
 // Lista de expressões
 lista_expressao: expressao
                | lista_expressao ';' expressao
+               {
+                   ast_add_child($1, $3);
+                   $$ = $1;
+               }
                ;
 
 //##########################
@@ -315,59 +409,71 @@ nome_func: identificador
 //##########################
 // Literais (tokens)
 literais: LITINT 
+        {
+            $$ = ast_new($1);
+        }
         | LITFLOAT 
+        {
+            $$ = ast_new($1);
+        }
         | LITFALSE 
+        {
+            $$ = ast_new($1);
+        }
         | LITTRUE 
+        {
+            $$ = ast_new($1);
+        }
         ;
 
 //##########################
 // Token LITINT
 LITINT: TK_LIT_INT 
-	  ;
+      ;
 
 //##########################
 // Token LITFLOAT
 LITFLOAT: TK_LIT_FLOAT 
-		;
+        ;
 
 //##########################
 // Token LITFALSE
 LITFALSE: TK_LIT_FALSE 
-		;
+        ;
 
 //##########################
 // Token LITTRUE
 LITTRUE: TK_LIT_TRUE 
-	   ;
+       ;
 
 //##########################
 // Tokens de operadores
 INVERTSIG: '-' 
-	     ;
+         ;
 NEGATE: '!' 
-	  ;
+      ;
 MULTIPLY: '*' 
-	    ;
+        ;
 DIVIDE: '/' 
-	  ;
+      ;
 REMAINDER: '%' 
-		 ;
+         ;
 ADD: '+' 
    ;
 SUBTRACT: '-' 
-		;
+        ;
 GREATERTHAN: '>' 
-		   ;
+           ;
 LESSTHAN: '<' 
-		;
+        ;
 LESSEQUAL: TK_OC_LE 
-		 ;
+         ;
 GREATEREQUAL: TK_OC_GE 
-			;
+            ;
 EQUAL: TK_OC_EQ 
-	 ;
+     ;
 NOTEQUAL: TK_OC_NE 
-		;
+        ;
 AND: TK_OC_AND 
    ;
 
