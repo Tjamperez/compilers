@@ -14,11 +14,11 @@ ODIR = ./obj
 LDIR = ./
 
 # Header file dependencies
-_DEPS = $(IDIR)/parser.tab.h
+_DEPS = $(IDIR)/parser.tab.h $(IDIR)/val_lex.h $(IDIR)/tree.h
 DEPS = $(patsubst %,$(LDIR)/%,$(_DEPS))
 
 # Object files
-_OBJ = main.o lex.yy.o parser.tab.o
+_OBJ = main.o lex.yy.o parser.tab.o val_lex.o tree.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Rule to compile source files to object files
@@ -26,9 +26,9 @@ $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Default target to execute make
-all: etapa2
+all: etapa3
 
-etapa2: $(OBJ)
+etapa3: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 # Rule to generate parser using Bison
@@ -39,6 +39,12 @@ $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h: $(LDIR)/parser.y
 $(LDIR)/lex.yy.c: $(LDIR)/scanner.l
 	flex -o $(LDIR)/lex.yy.c $(LDIR)/scanner.l
 
+$(ODIR)/val_lex.o: $(LDIR)/val_lex.c $(IDIR)/val_lex.h | $(ODIR)
+	$(CC) -c -o $@ $(LDIR)/val_lex.c $(CFLAGS)
+
+$(ODIR)/tree.o: $(LDIR)/tree.c $(IDIR)/tree.h | $(ODIR)
+	$(CC) -c -o $@ $(LDIR)/tree.c $(CFLAGS)
+
 # Create object directory if it doesn't exist
 $(ODIR):
 	mkdir -p $(ODIR)
@@ -46,6 +52,11 @@ $(ODIR):
 # Create include directory if it doesn't exist
 $(IDIR):
 	mkdir -p $(IDIR)
+
+move_headers:
+	if [ -d "$(IDIR)" ]; then \
+		mv *.h $(IDIR)/; \
+	fi
 
 .PHONY: clean clean_comments
 
