@@ -26,7 +26,7 @@ $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Default target to execute make
-all: etapa3
+all: move_headers etapa3
 
 etapa3: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
@@ -34,10 +34,12 @@ etapa3: $(OBJ)
 # Rule to generate parser using Bison
 $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h: $(LDIR)/parser.y
 	bison -d -o $(LDIR)/parser.tab.c --header=$(IDIR)/parser.tab.h $(LDIR)/parser.y
+	touch $@
 
 # Rule to generate lexer using Flex
 $(LDIR)/lex.yy.c: $(LDIR)/scanner.l
 	flex -o $(LDIR)/lex.yy.c $(LDIR)/scanner.l
+	touch $@
 
 $(ODIR)/val_lex.o: $(LDIR)/val_lex.c $(IDIR)/val_lex.h | $(ODIR)
 	$(CC) -c -o $@ $(LDIR)/val_lex.c $(CFLAGS)
@@ -53,9 +55,9 @@ $(ODIR):
 $(IDIR):
 	mkdir -p $(IDIR)
 
-move_headers:
-	if [ -d "$(IDIR)" ]; then \
-		mv *.h $(IDIR)/; \
+move_headers: $(wildcard *.h) | $(IDIR)
+	if [ -n "$^" ] && [ -d "$(IDIR)" ]; then \
+		mv $^ $(IDIR)/; \
 	fi
 
 .PHONY: clean clean_comments
@@ -69,3 +71,4 @@ clean_comments:
 # Clean build artifacts
 clean:
 	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa2 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
+

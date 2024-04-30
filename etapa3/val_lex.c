@@ -4,7 +4,7 @@
 #include "lex.yy.h"  // Tirar erro do compilador pois lex só é gerado na compilação
 #endif
 
-val_lex_t *gen_val(int line, int type) {
+val_lex_t *gen_val(int line, int type, const char *token) {
     // Alocamos memória para um novo objeto val_lex_t
     val_lex_t *new_val = malloc(sizeof(val_lex_t));
     

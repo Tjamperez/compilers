@@ -2,6 +2,9 @@
 
 %{
 #include "parser.tab.h"
+#include "val_lex.h"
+#include  <string.h>
+int get_line_number();
 %}
 
     /* Options for scanner.l */
@@ -53,14 +56,14 @@
 
     /* Catch the compilers literals and return the token */
 
-[0-9]+    {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_INT , yytext); return TK_LIT_INT; }
-[0-9]*\.[0-9]+    { yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_FLOAT , yytext); return TK_LIT_FLOAT; }
-"false"     {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_FALSE; }
-"true"      {yyval.valor_lexico = get_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_TRUE; }
+[0-9]+    {yylval.valor_lexico = gen_val (get_line_number() , LIT_TYPE_INT , yytext); return TK_LIT_INT; }
+[0-9]*\.[0-9]+    { yylval.valor_lexico = gen_val (get_line_number() , LIT_TYPE_FLOAT , yytext); return TK_LIT_FLOAT; }
+"false"     {yylval.valor_lexico = gen_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_FALSE; }
+"true"      {yylval.valor_lexico = gen_val (get_line_number() , LIT_TYPE_BOOL , yytext) ; return TK_LIT_TRUE; }
 
     /* Catch the compilers identificator and return the token */
 
-[_a-z][_a-z0-9]* {yyval.valor_lexico = get_val (get_line_number() , IDENTIFIER_TYPE , yytext) ; return TK_IDENTIFICADOR; }
+[_a-z][_a-z0-9]* {yylval.valor_lexico = gen_val (get_line_number() , IDENTIFIER_TYPE , yytext) ; return TK_IDENTIFICADOR; }
 
     /* Catch anything with that is not one of the aforementioned lexems and return the error token */
 

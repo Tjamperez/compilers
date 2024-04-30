@@ -2,6 +2,13 @@
 
 %define parse.error verbose
 
+%code requires { #include "tree.h" }
+
+%union {
+  val_lex_t *valor_lexico;
+  tree_node_t *tree;
+}
+
 %{
 
 #include <stdlib.h>
@@ -15,14 +22,9 @@ extern int get_line_number(void);
 extern char *yytext;
 extern void *tree;
 
+tree_node_t *ast_root = NULL;
+
 %}
-
-%union {
-  val_lex_t *valor_lexico;
-  tree_node_t *tree;
-}
-
-ast_tree_t *ast_root = NULL;
 
 // Definição dos tokens
 %token TK_PR_INT
@@ -45,7 +47,37 @@ ast_tree_t *ast_root = NULL;
 %token <valor_lexico> TK_LIT_TRUE
 %token TK_ERRO
 
-%type <tree> programa lista_de_elementos elemento definicao_de_funcao cabecalho lista_de_parametros parametro corpo bloco_de_comandos lista_de_comandos comando_simples declaracao_variavel comando_atribuicao chamada_funcao comando_retorno condicional loop expressao operador unario operando primario lista_expressao nome_func literais
+%type <valor_lexico> identificador
+%type <valor_lexico> LITINT
+%type <valor_lexico> LITFLOAT
+%type <valor_lexico> LITTRUE
+%type <valor_lexico> LITFALSE
+
+%type <tree> programa 
+%type <tree> lista_de_elementos 
+%type <tree> definicao_de_funcao 
+%type <tree> cabecalho 
+%type <tree> lista_de_parametros 
+%type <tree> parametro 
+%type <tree> corpo
+%type <tree> lista_de_comandos 
+%type <tree> comando_simples 
+%type <tree> comando_atribuicao 
+%type <tree> chamada_funcao 
+%type <tree> comando_retorno 
+%type <tree> condicional 
+%type <tree> loop 
+%type <tree> expressao
+%type <tree> operador 
+%type <tree> unario
+%type <tree> comparacao  
+%type <tree> operando 
+%type <tree> primario 
+%type <tree> lista_expressao 
+%type <tree> nome_func 
+%type <tree> literais 
+%type <tree> adicaousub
+%type <tree> multoudivoures
 
 %%
 
@@ -56,19 +88,20 @@ programa: lista_de_elementos
             ast_root = $1;
         }
         | /* vazio */
+		{
+			ast_root = NULL;
+		}
         ;
 
 //##########################
 // Lista de elementos
 lista_de_elementos: lista_de_elementos elemento
                   {
-                      ast_add_child($1, $2);
-                      $$ = $1;
+					  $$ = $1;
                   }
                   | elemento
                   {
                       $$ = ast_new(NULL); // Criando nó com valor nulo
-                      ast_add_child($$, $1);
                   }
                   ;
 
@@ -87,7 +120,7 @@ declaracao_global: tipo lista_identificador ','
 // Identificador
 identificador: TK_IDENTIFICADOR
              {
-                 $$ = ast_new($1);
+                $$ = ast_new($1);
              }
              ;
 
@@ -137,8 +170,8 @@ definicao_de_funcao: cabecalho corpo
 cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
          {
              $$ = ast_new(NULL); // Criar nó genérico
-             ast_add_child($$, $3);
-             ast_add_child($$, $5);
+             ast_add_child($$, $2);
+             ast_add_child($$, $7);
          }
          ;
 
@@ -150,8 +183,19 @@ OR: TK_OC_OR
 //##########################
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
+				   {
+						 $$ = ast_new(NULL);
+						 ast_add_child($$, $1);
+             			 ast_add_child($$, $3);
+				   }
                    | parametro
+				   {
+					 $$ = $1;
+				   }
                    | /* vazio */
+				   {
+					 $$ = NULL;
+				   }
                    ;
 
 //##########################
@@ -159,7 +203,6 @@ lista_de_parametros: lista_de_parametros ';' parametro
 parametro: tipo identificador
          {
              $$ = ast_new(NULL); // Criar nó genérico
-             ast_add_child($$, $1);
              ast_add_child($$, $2);
          }
          ;
@@ -168,11 +211,9 @@ parametro: tipo identificador
 corpo: '{' bloco_de_comandos '}'
 	 {
 	     $$ = ast_new(NULL); // Criar nó genérico
-	     ast_add_child($$, $2);
 	 }
 	 |  corpo '{' bloco_de_comandos '}'
      {
-         ast_add_child($1, $3);
          $$ = $1;
      }
      ;
@@ -181,9 +222,6 @@ corpo: '{' bloco_de_comandos '}'
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
                  | lista_de_comandos
-                 {
-                     $$ = $1;
-                 }
                  ;
 
 //##########################
@@ -203,8 +241,7 @@ lista_de_comandos: lista_de_comandos comando_simples ','
 //##########################
 // Definição de comando simples
 comando_simples: declaracao_variavel
-               | comando_atribuicao
-               | chamada_funcao
+               | comando_atribuicao 
                | comando_retorno
                | condicional
                | loop
@@ -214,11 +251,6 @@ comando_simples: declaracao_variavel
 //##########################
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador
-                   {
-                       $$ = ast_new(NULL); // Criar nó genérico
-                       ast_add_child($$, $1);
-                       ast_add_child($$, $2);
-                   }
                    ;
 
 //##########################
@@ -244,7 +276,19 @@ comando_retorno: RETURN expressao
 
 //##########################
 // Comando de controle de fluxo
+IF: TK_PR_IF
+  ;
+
+ELSE: TK_PR_ELSE
+	;
+
+
 condicional: IF '(' expressao ')' corpo
+		   {
+			   $$ = ast_new(NULL); // Criar nó genérico
+               ast_add_child($$, $3);
+               ast_add_child($$, $5);
+		   }
            | IF '(' expressao ')' corpo ELSE corpo 
            {
                $$ = ast_new(NULL); // Criar nó genérico
@@ -357,6 +401,10 @@ op_multoudivoures: MULTIPLY
 // Operações unárias
 unario: primario
       | INVERTSIG unario
+	  {
+		$$ = ast_new(NULL); // Criar nó genérico
+        ast_add_child($$, $2);
+	  }
       | NEGATE unario
       {
           $$ = ast_new(NULL); // Criar nó genérico
@@ -367,6 +415,9 @@ unario: primario
 //##########################
 // Expressões primarias
 primario: identificador
+		{
+			$$ = $1;
+		}
         | literais
         | chamada_funcao
         | '(' expressao ')'
@@ -404,6 +455,9 @@ lista_expressao: expressao
 //##########################
 // Nome da função
 nome_func: identificador
+		 {
+			$$ = $1;
+		 }
          ;
 
 //##########################

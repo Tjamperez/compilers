@@ -1,3 +1,6 @@
+#ifndef VAL_LEX_H
+#define VAL_LEX_H
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,5 +18,6 @@ int type;
 char *token_value;
 } val_lex_t;
 
-val_lex_t *gen_val(int line, int type, const char *text);
+val_lex_t *gen_val(int line, int type, const char *token);
 
+#endif /* VAL_LEX_H */
