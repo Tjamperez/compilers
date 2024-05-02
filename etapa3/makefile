@@ -26,7 +26,7 @@ $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Default target to execute make
-all: move_headers etapa3
+all: etapa3
 
 etapa3: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
@@ -70,5 +70,5 @@ clean_comments:
 
 # Clean build artifacts
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa2 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa3 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
 

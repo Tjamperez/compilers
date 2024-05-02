@@ -20,9 +20,7 @@ int yylex(void);
 int yyerror(char const *s);
 extern int get_line_number(void);
 extern char *yytext;
-extern void *tree;
-
-tree_node_t *ast_root = NULL;
+extern void *arvore;
 
 %}
 
@@ -47,37 +45,49 @@ tree_node_t *ast_root = NULL;
 %token <valor_lexico> TK_LIT_TRUE
 %token TK_ERRO
 
-%type <valor_lexico> identificador
-%type <valor_lexico> LITINT
-%type <valor_lexico> LITFLOAT
-%type <valor_lexico> LITTRUE
-%type <valor_lexico> LITFALSE
 
-%type <tree> programa 
-%type <tree> lista_de_elementos 
-%type <tree> definicao_de_funcao 
-%type <tree> cabecalho 
-%type <tree> lista_de_parametros 
-%type <tree> parametro 
+%type <tree> LITINT
+%type <tree> LITFLOAT
+%type <tree> LITTRUE
+%type <tree> LITFALSE
+
+
+%type <tree> identificador
+%type <tree> programa
+%type <tree> lista_de_elementos
+%type <tree> elemento
+%type <tree> declaracao_global
+%type <tree> tipo
+%type <tree> lista_identificador
+%type <tree> definicao_de_funcao
+%type <tree> cabecalho
+%type <tree> lista_de_parametros
+%type <tree> parametro
 %type <tree> corpo
-%type <tree> lista_de_comandos 
-%type <tree> comando_simples 
-%type <tree> comando_atribuicao 
-%type <tree> chamada_funcao 
-%type <tree> comando_retorno 
-%type <tree> condicional 
-%type <tree> loop 
+%type <tree> bloco_de_comandos
+%type <tree> lista_de_comandos
+%type <tree> comando_simples
+%type <tree> declaracao_variavel
+%type <tree> comando_atribuicao
+%type <tree> comando_retorno
+%type <tree> condicional
+%type <tree> loop
 %type <tree> expressao
-%type <tree> operador 
-%type <tree> unario
-%type <tree> comparacao  
-%type <tree> operando 
-%type <tree> primario 
-%type <tree> lista_expressao 
-%type <tree> nome_func 
-%type <tree> literais 
+%type <tree> operando
+%type <tree> operador
+%type <tree> comparacao
+%type <tree> op_comparacao
 %type <tree> adicaousub
+%type <tree> op_adicaousub
 %type <tree> multoudivoures
+%type <tree> op_multoudivoures
+%type <tree> lista_expressao
+%type <tree> unario
+%type <tree> primario
+%type <tree> literais
+%type <tree> chamada_funcao
+%type <tree> nome_func
+
 
 %%
 
@@ -85,11 +95,11 @@ tree_node_t *ast_root = NULL;
 // Definição de programa
 programa: lista_de_elementos
         {
-            ast_root = $1;
+            arvore = $1;
         }
         | /* vazio */
 		{
-			ast_root = NULL;
+			arvore = NULL;
 		}
         ;
 
@@ -127,8 +137,17 @@ identificador: TK_IDENTIFICADOR
 //##########################
 // Tipos de dados
 tipo: INT
+	{
+		$$ = NULL;
+	}
     | FLOAT
+	{
+		$$ = NULL;
+	}
     | BOOL
+	{
+		$$ = NULL;
+	}
     ;
 
 //##########################
@@ -149,7 +168,16 @@ BOOL: TK_PR_BOOL
 //##########################
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
+					{
+					   $$ = ast_new(NULL); // Criar nó genérico
+                       ast_add_child($$, $1);
+                       ast_add_child($$,$3);
+					}
                    | identificador
+				   {
+						$$ = ast_new(NULL);
+						$$ = $1;
+				   }
                    ;
 
 //##########################
@@ -159,8 +187,8 @@ definicao_de_funcao: cabecalho corpo
                        $$ = ast_new(NULL); // Criar nó genérico
                        ast_add_child($$, $1);
                        ast_add_child($$, $2);
-                       if (ast_root == NULL) {
-                           ast_root = $$;
+                       if (arvore == NULL) {
+                           arvore = $$;
                        }
                    }
                    ;
@@ -171,7 +199,7 @@ cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
          {
              $$ = ast_new(NULL); // Criar nó genérico
              ast_add_child($$, $2);
-             ast_add_child($$, $7);
+             $$ = $7;
          }
          ;
 
@@ -203,7 +231,7 @@ lista_de_parametros: lista_de_parametros ';' parametro
 parametro: tipo identificador
          {
              $$ = ast_new(NULL); // Criar nó genérico
-             ast_add_child($$, $2);
+             $$ = $2;
          }
          ;
 
@@ -221,6 +249,9 @@ corpo: '{' bloco_de_comandos '}'
 //##########################
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
+				 {
+					 $$ = NULL;
+				 }
                  | lista_de_comandos
                  ;
 
@@ -258,7 +289,7 @@ declaracao_variavel: tipo lista_identificador
 comando_atribuicao: identificador '=' expressao
                   {
                       $$ = ast_new(NULL); // Criar nó genérico
-                      ast_add_child($$, $1);
+                      $$ = $1;
                       ast_add_child($$, $3);
                   }
                   ;
@@ -355,11 +386,29 @@ comparacao: adicaousub
 //##########################
 // Operadores de comparação
 op_comparacao: LESSTHAN
+			{
+				 $$ = NULL;
+			}
              | GREATERTHAN
+			{
+				 $$ = NULL;
+			}
              | LESSEQUAL
+			{
+				 $$ = NULL;
+			}
              | GREATEREQUAL
+			{
+				 $$ = NULL;
+			}
              | EQUAL
+			{
+				 $$ = NULL;
+			}
              | NOTEQUAL
+			{
+				 $$ = NULL;
+			}
              ;
 
 //##########################
@@ -376,7 +425,13 @@ adicaousub: multoudivoures
 //##########################
 // Operação de adição e subtração
 op_adicaousub: ADD
+			 {
+				$$ = NULL;
+			 }
              | SUBTRACT
+			 {
+				$$ = NULL;
+			 }
              ;
 
 //##########################
@@ -393,8 +448,17 @@ multoudivoures: unario
 //##########################
 // Operação de multiplicação,divisão ou resto
 op_multoudivoures: MULTIPLY
+				 {
+					 $$ = NULL;
+			 	 }
                  | DIVIDE
+				 {
+					 $$ = NULL;
+			 	 }
                  | REMAINDER
+				 {
+					 $$ = NULL;
+			 	 }
                  ;
 
 //##########################
@@ -416,6 +480,7 @@ unario: primario
 // Expressões primarias
 primario: identificador
 		{
+			$$ = NULL;
 			$$ = $1;
 		}
         | literais
@@ -456,7 +521,8 @@ lista_expressao: expressao
 // Nome da função
 nome_func: identificador
 		 {
-			$$ = $1;
+			$$ = NULL;
+			$1;
 		 }
          ;
 
@@ -464,40 +530,52 @@ nome_func: identificador
 // Literais (tokens)
 literais: LITINT 
         {
-            $$ = ast_new($1);
+            $$ = $1;
         }
         | LITFLOAT 
         {
-            $$ = ast_new($1);
+            $$ = $1;
         }
         | LITFALSE 
         {
-            $$ = ast_new($1);
+            $$ = $1;
         }
         | LITTRUE 
         {
-            $$ = ast_new($1);
+            $$ = $1;
         }
         ;
 
 //##########################
 // Token LITINT
-LITINT: TK_LIT_INT 
+LITINT: TK_LIT_INT
+		{
+             $$ = ast_new($1);
+        } 
       ;
 
 //##########################
 // Token LITFLOAT
-LITFLOAT: TK_LIT_FLOAT 
+LITFLOAT: TK_LIT_FLOAT
+		{
+             $$ = ast_new($1);
+        }
         ;
 
 //##########################
 // Token LITFALSE
 LITFALSE: TK_LIT_FALSE 
+		{
+             $$ = ast_new($1);
+        }
         ;
 
 //##########################
 // Token LITTRUE
 LITTRUE: TK_LIT_TRUE 
+	   {
+        	 $$ = ast_new($1);
+       }
        ;
 
 //##########################
