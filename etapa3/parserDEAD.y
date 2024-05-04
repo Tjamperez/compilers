@@ -105,131 +105,264 @@ extern void *arvore;
 %type <tree> WHILE
 %type <tree> ELSE
 
+
 %%
 
 //##########################
 // Definição de programa
 programa: lista_de_elementos
+		{
+			arvore = $1;
+			ast_add_child($$, $1);
+		}
         | /* vazio */
+		{
+			arvore = NULL;
+		}
         ;
 
 //##########################
 // Lista de elementos
 lista_de_elementos: lista_de_elementos elemento
+				  {
+					ast_add_child($1, $2);
+				  }
                   | elemento
+				  {
+					$$ = $1;
+            		ast_add_child($$, $1); // Assuming ast_add_child adds $1 as a child to $$
+				  }
                   ;
 
 //##########################
 // Elemento do programa
 elemento: declaracao_global
+		{
+            $$ = $1;
+        }
         | definicao_de_funcao
+		{
+            $$ = $1;
+        }
         ;
 
 //##########################
 // Declaração global de variável
 declaracao_global: tipo lista_identificador ','
+				 {
+					$$ = $2;
+				 }
                  ;
 
 //##########################
 // Identificador
 identificador: TK_IDENTIFICADOR
+			 {
+				$$ = ast_new(NULL);
+				$$->valor_lexico = $1;
+			 }
              ;
 
 //##########################
 // Tipos de dados
 tipo: INT
+	{
+		$$ = NULL;
+	}
     | FLOAT
+	{
+		$$ = NULL;
+	}
     | BOOL
+	{
+		$$ = NULL;
+	}
     ;
 
 //##########################
 // Token INT
-INT: TK_PR_INT 
+INT: TK_PR_INT
+   {
+   		$$ = NULL;
+   }
    ;
 
 //##########################
 // Token FLOAT
-FLOAT: TK_PR_FLOAT 
+FLOAT: TK_PR_FLOAT
+	 {
+	  	$$ = NULL;
+	 }
 	 ;
 
 //##########################
 // Token BOOL
-BOOL: TK_PR_BOOL 
+BOOL: TK_PR_BOOL
+	{
+		$$ = NULL;
+	}
 	;
 
 //##########################
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
+				   {
+						$$ = $1;
+						ast_add_child($$, $3);
+				   }
                    | identificador
+				   {
+						$$ = ast_new(NULL);
+						ast_add_child($$, $1);
+				   }
                    ;
 
 //##########################
 // Definição de função
 definicao_de_funcao: cabecalho corpo
+				   {
+						ast_add_child($$, $1);
+						ast_add_child($$, $2);
+				   }
                    ;
 
 //##########################
 // Cabeçalho da função
 cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
+		 {
+		 	ast_add_child($$, $2);
+			ast_add_child($$, $7);
+		 }
          ;
 
 //##########################
 // Token OR
-OR: TK_OC_OR 
+OR: TK_OC_OR
+  {
+  	 $$ = NULL;
+  }
   ;
 
 //##########################
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
+				   {
+						$$ = $1;
+						ast_add_child($$, $3);
+				   }
                    | parametro
+				   {
+						$$ = ast_new(NULL);
+						ast_add_child($$, $1);
+				   }
                    | /* vazio */
+				   {
+						$$ = NULL;
+				   }
                    ;
 
 //##########################
 // Parâmetro da função
 parametro: tipo identificador
+		 {
+			$$ = $2;
+		 }
          ;
 
 // Corpo da função
 corpo: '{' bloco_de_comandos '}'
+	 {
+		$$ = ast_new(NULL);
+		ast_add_child($$, $2);
+	 }
 	 |  corpo '{' bloco_de_comandos '}'
+	 {
+		$$ = $1;
+		ast_add_child($$, $3);
+	 }
      ;
 	 
 //##########################
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
+				 {
+					$$ = NULL;
+				 }
                  | lista_de_comandos
+				 {
+					$$ = $1;
+				 }
                  ;
 
 //##########################
 // Definição de lista de comandos simples
 lista_de_comandos: comando_simples ','
+				 {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+				 }
                  | lista_de_comandos comando_simples ','
+				 {
+					$$ = $1;
+					ast_add_child($$, $2);
+				 }
                  ;
 
 //##########################
 // Definição de comando simples
 comando_simples: declaracao_variavel
+			   {
+					$$ = $1;
+			   }
                | comando_atribuicao
+			   {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+			   }
                | chamada_funcao
+			   {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+			   }
                | comando_retorno
+			   {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+			   }
                | comando_controle_fluxo
-	       | corpo
+			   {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+			   }
+	       	   | corpo
+			   {
+					$$ = ast_new(NULL);
+					ast_add_child($$, $1);
+			   }
                ;
 
 //##########################
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador
+					{
+						$$ = $2;
+					}
                    ;
 
 //##########################
 // Comando de atribuição
 comando_atribuicao: identificador '=' expressao
+				  {
+						$$ = $1;
+				  }
                   ;
 
 //##########################
 // Comando de retorno
 RETURN: TK_PR_RETURN
+	  {
+		$$ = NULL;
+	  }
 	  ;
 comando_retorno: RETURN expressao
 			   ;
@@ -348,58 +481,30 @@ nome_func: identificador
 
 //##########################
 // Literais (tokens)
-literais: LITINT
-		{
-			ast_add_child($$, $1);
-		}
-        | LITFLOAT
-		{
-			ast_add_child($$, $1);
-		} 
-        | LITFALSE
-		{
-			ast_add_child($$, $1);
-		} 
-        | LITTRUE
-		{
-			ast_add_child($$, $1);
-		} 
+literais: LITINT 
+        | LITFLOAT 
+        | LITFALSE 
+        | LITTRUE 
         ;
 
 //##########################
 // Token LITINT
-LITINT: TK_LIT_INT
-	  {
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
-	  }
+LITINT: TK_LIT_INT 
 	  ;
 
 //##########################
 // Token LITFLOAT
-LITFLOAT: TK_LIT_FLOAT
-		{
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
-		}
+LITFLOAT: TK_LIT_FLOAT 
 		;
 
 //##########################
 // Token LITFALSE
-LITFALSE: TK_LIT_FALSE
-		{
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
-		}
+LITFALSE: TK_LIT_FALSE 
 		;
 
 //##########################
 // Token LITTRUE
-LITTRUE: TK_LIT_TRUE
-	   {
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
-	   }
+LITTRUE: TK_LIT_TRUE 
 	   ;
 
 //##########################

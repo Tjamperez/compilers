@@ -28,10 +28,10 @@ val_lex_t *gen_val(int line, int type, const char *token) {
         free(new_val);  // Libera a memória alocada para new_val
         return NULL;
     }
-	// Handle error or provide alternative behavior if yytext is not available
+	// Se yytext n'ao for poss[ivel de ser acessado, cuidamos do erro
 	else{
 		fprintf(stderr, "Erro: yytext não está definido (lex.yy.h não foi incluido)\n");
-    	new_val->token_value = NULL;  // Set token_value to NULL or handle appropriately
+    	new_val->token_value = NULL;  // Setamos o token_value para NULL
 	}
     	
     #endif
