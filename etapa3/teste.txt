@@ -1,3 +1,4 @@
-(int a; int b) | int / f
-{
+() | int / main {
+  int x,
+  x = x|3,
 }

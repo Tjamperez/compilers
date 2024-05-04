@@ -15,7 +15,7 @@
 typedef struct val_lex{
 int lineno;
 int type;
-char *token_value;
+const char *token_value;
 } val_lex_t;
 
 val_lex_t *gen_val(int line, int type, const char *token);

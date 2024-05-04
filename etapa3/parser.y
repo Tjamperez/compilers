@@ -110,259 +110,688 @@ extern void *arvore;
 //##########################
 // Definição de programa
 programa: lista_de_elementos
+		{
+			arvore = $1;
+			printf("Created ARVORE node\n"); // Debug print
+		}
         | /* vazio */
+		{
+			arvore = NULL;
+			printf("Empty arvore\n"); // Debug print
+		}
         ;
 
 //##########################
 // Lista de elementos
 lista_de_elementos: lista_de_elementos elemento
+				  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					printf("Added elemento to lista_de_elementos\n"); // Debug print
+				  }
                   | elemento
+				  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added elemento to lista_de_elementos\n"); // Debug print
+				  }
                   ;
 
 //##########################
 // Elemento do programa
 elemento: declaracao_global
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added declaracao_global to elemento\n"); // Debug print
+		}
         | definicao_de_funcao
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added definicao_de_funcao to elemento\n"); // Debug print
+		}
         ;
 
 //##########################
 // Declaração global de variável
 declaracao_global: tipo lista_identificador ','
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					printf("Added tipo and lista_identificador to declaracao_global\n"); // Debug print
+				 }
                  ;
 
 //##########################
 // Identificador
 identificador: TK_IDENTIFICADOR
+			 {
+				$$ = ast_new($1);
+				printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
+			 }
              ;
 
 //##########################
 // Tipos de dados
 tipo: INT
+	{
+		$$ = $1;
+		ast_add_child($$, $1);
+		printf("Added INT to tipo\n"); // Debug print
+	}
     | FLOAT
+	{
+		$$ = $1;
+		ast_add_child($$, $1);
+		printf("Added FLOAT to tipo\n"); // Debug print
+	}
     | BOOL
+	{
+		$$ = $1;
+		ast_add_child($$, $1);
+		printf("Added BOOL to tipo\n"); // Debug print
+	}
     ;
 
 //##########################
 // Token INT
-INT: TK_PR_INT 
+INT: TK_PR_INT
+   {
+		$$ = NULL;
+		printf("Empty INT\n"); // Debug print
+   }
    ;
 
 //##########################
 // Token FLOAT
-FLOAT: TK_PR_FLOAT 
+FLOAT: TK_PR_FLOAT
+	 {
+		$$ = NULL;
+		printf("Empty FLOAT\n"); // Debug print
+	 }
 	 ;
 
 //##########################
 // Token BOOL
-BOOL: TK_PR_BOOL 
+BOOL: TK_PR_BOOL
+	{
+		$$ = NULL;
+		printf("Empty BOOL\n"); // Debug print
+	}
 	;
+
 
 //##########################
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
+				   {
+					 $$ = $1;
+					 ast_add_child($$, $1);
+					 ast_add_child($$, $3);
+					 printf("Added identificador to lista_identificador\n"); // Debug print
+				   }
                    | identificador
+				   {
+					 $$ = $1;
+					 ast_add_child($$, $1);
+					 printf("Added identificador to lista_identificador\n"); // Debug print
+				   }
                    ;
 
 //##########################
 // Definição de função
 definicao_de_funcao: cabecalho corpo
+				   {
+						$$ = $1;
+					 	ast_add_child($$, $1);
+						ast_add_child($$, $2);
+						printf("Added cabecalho and corpo to definicao_de_funcao\n"); // Debug print
+				   }
                    ;
 
 //##########################
 // Cabeçalho da função
 cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
+		 {
+			$$ = $2;
+			ast_add_child($$, $5);
+			ast_add_child($$, $7);
+			printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
+		 }
          ;
 
 //##########################
 // Token OR
-OR: TK_OC_OR 
+OR: TK_OC_OR
+  {
+  	$$ = NULL;
+	printf("Empty OR\n"); // Debug print
+  }
   ;
 
 //##########################
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
+					{
+						$$ = $1;
+						ast_add_child($$, $3);
+						printf("Added parametro to lista_de_parametros\n"); // Debug print
+					}
                    | parametro
+				   {
+						$$ = $1;
+						ast_add_child($$, $1);
+						printf("Added parametro to lista_de_parametros\n"); // Debug print
+				   }
                    | /* vazio */
+				   {
+						$$ = NULL;
+						printf("lista_de_parametros is empty\n"); // Debug print
+				   }
                    ;
 
 //##########################
 // Parâmetro da função
 parametro: tipo identificador
+         {
+			$$ = $1;
+			ast_add_child($$, $1);
+			ast_add_child($$, $2);
+			printf("Added tipo and identificador to parametro\n"); // Debug print
+		 }
          ;
 
 // Corpo da função
 corpo: '{' bloco_de_comandos '}'
+	 {
+		$$ = $2;
+		ast_add_child($$, $2);
+		printf("Added bloco_de_comandos to corpo\n"); // Debug print
+	 }
 	 |  corpo '{' bloco_de_comandos '}'
+	 {
+		$$ = $1;
+		ast_add_child($$, $1);
+		ast_add_child($$, $3);
+		printf("Added bloco_de_comandos to corpo\n"); // Debug print
+	 }
      ;
 	 
 //##########################
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */
+				 {
+					$$ = NULL;
+					printf("Empty bloco_de_comandos\n"); // Debug print
+				 }
                  | lista_de_comandos
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added lista_de_comandos to bloco_de_comandos\n"); // Debug print
+				 }
                  ;
 
 //##########################
 // Definição de lista de comandos simples
 lista_de_comandos: comando_simples ','
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added comando_simples to lista_de_comandos\n"); // Debug print
+				 }
                  | lista_de_comandos comando_simples ','
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					printf("Added lista_de_comandos and comando_simples to lista_de_comandos\n"); // Debug print
+				 }
                  ;
 
 //##########################
 // Definição de comando simples
 comando_simples: declaracao_variavel
+			   {
+					$$ = $1;
+				    ast_add_child($$, $1);
+					printf("Added declaracao_variavel to comando_simples\n"); // Debug print
+			   }
                | comando_atribuicao
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added comando_atribuicao to comando_simples\n"); // Debug print
+			   }
                | chamada_funcao
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added comando_funcao to comando_simples\n"); // Debug print
+			   }
                | comando_retorno
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added comando_retorno to comando_simples\n"); // Debug print
+			   }
                | comando_controle_fluxo
-	       | corpo
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added comando_controle_fluxo to comando_simples\n"); // Debug print
+			   }
+	       	   | corpo
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added corpo to comando_simples\n"); // Debug print
+			   }
                ;
 
 //##########################
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador
+					{
+						$$ = NULL;
+						printf("Empty declaracao_variavel\n"); // Debug print
+					}
                    ;
 
 //##########################
 // Comando de atribuição
 comando_atribuicao: identificador '=' expressao
+				  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $3);
+					printf("Added expressao to comando_atribuicao\n"); // Debug print
+				  }
                   ;
 
 //##########################
 // Comando de retorno
 RETURN: TK_PR_RETURN
+	  {
+		$$ = NULL;
+		printf("Empty RETURN\n"); // Debug print
+	  }
 	  ;
 comando_retorno: RETURN expressao
+			   {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					printf("Added expressao to comando_retorno\n"); // Debug print
+			   }
 			   ;
 
 //##########################
 // Comando de controle de fluxo
-comando_controle_fluxo: condicional 
-			      	  | loop 
+comando_controle_fluxo: condicional
+					  {
+						$$ = $1;
+						ast_add_child($$, $1);
+						printf("Added condicional to comando_controle_fluxo\n"); // Debug print
+					  }
+			      	  | loop
+					  {
+						$$ = $1;
+						ast_add_child($$, $1);
+						printf("Added loop to comando_controle_fluxo\n"); // Debug print
+					  } 
 					  ;
 
 //##########################
 // Comando de if e else
-IF: TK_PR_IF 
+IF: TK_PR_IF
+  {
+  	$$ = NULL;
+	printf("Empty IF\n"); // Debug print
+  }
   ;
-ELSE: TK_PR_ELSE 
+ELSE: TK_PR_ELSE
+	{
+		$$ = NULL;
+		printf("Empty ELSE\n"); // Debug print
+	}
 	;
 condicional: IF '(' expressao ')' corpo
+			{
+				$$ = $1;
+				ast_add_child($$, $1);
+				ast_add_child($$, $3);
+				ast_add_child($$, $5);
+				printf("Added expressao and corpo to condicional\n"); // Debug print
+			}
            | IF '(' expressao ')' corpo ELSE corpo 
+		   {
+				$$ = $1;
+				ast_add_child($$, $1);
+				ast_add_child($$, $3);
+				ast_add_child($$, $5);
+				ast_add_child($$, $7);
+				printf("Added expressao, corpo, and corpo to condicional\n"); // Debug print
+		   }
 		   ;
 
 //##########################
 // Comando de loop
 WHILE: TK_PR_WHILE 
+	 {
+		$$ = NULL;
+		printf("Empty WHILE\n"); // Debug print
+	 }
 	 ;
 loop: WHILE '(' expressao ')' corpo
+	{
+		$$ = $1;
+		ast_add_child($$, $1);
+		ast_add_child($$, $3);
+		ast_add_child($$, $5);
+		printf("Added expressao and corpo to loop\n"); // Debug print
+	}
 	;
 
 //##########################
 // Definição expressões, compostas de operando e operador
 
-expressao: operando 
+expressao: operando
+		 {
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added operando to expressao\n"); // Debug print
+		 }
 		 ;
 
 operando: operador
-         | operando OR operador
-         ;
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added operador to operando\n"); // Debug print
+		}
+        | operando OR operador
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			ast_add_child($$, $3);
+			printf("Added operando and operador to operando\n"); // Debug print
+		}
+        ;
 
 //##########################
 // Definição de termos
 operador: comparacao
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added comparacao to operador\n"); // Debug print
+		}
         | operador AND comparacao
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			ast_add_child($$, $3);
+			printf("Added operador and comparacao to operador\n"); // Debug print
+		}
         ;
 
 //##########################
 // Comparações
 comparacao: adicaousub
+		  {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added adicaousub to comparacao\n"); // Debug print
+		  }
           | comparacao op_comparacao adicaousub
+		  {
+				$$ = $1;
+				ast_add_child($$, $1);
+				ast_add_child($$, $2);
+				ast_add_child($$, $3);
+				printf("Added comparacao, op_comparacao, and adicaousub to comparacao\n"); // Debug print
+		  }
           ;
 
 //##########################
 // Operadores de comparação
 op_comparacao: LESSTHAN
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added LESSTHAN to op_comparacao\n"); // Debug print
+			 }
              | GREATERTHAN
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added GREATERTHAN to op_comparacao\n"); // Debug print
+			 }
              | LESSEQUAL
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added LESSEQUAL to op_comparacao\n"); // Debug print
+			 }
              | GREATEREQUAL
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added GREATEREQUAL to op_comparacao\n"); // Debug print
+			 }
              | EQUAL
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added EQUAL to op_comparacao\n"); // Debug print
+			 }
              | NOTEQUAL
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added NOTEQUAL to op_comparacao\n"); // Debug print
+			 }
              ;
 
 //##########################
 // Adição ou subtração
 adicaousub: multoudivoures
+		  {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added multoudivoures to adicaousub\n"); // Debug print
+		  }
           | adicaousub op_adicaousub multoudivoures
+		  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					ast_add_child($$, $3);
+					printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
+		  }
           ;
 
 //##########################
 // Operação de adição e subtração
 op_adicaousub: ADD
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added ADD to op_adicaousub\n"); // Debug print
+			 }
              | SUBTRACT
+			 {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added SUBTRACT to op_adicaousub\n"); // Debug print
+			 }
              ;
 
 //##########################
 // Multiplicação, divisão ou resto
 multoudivoures: unario
+			  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added unario to multoudivoures\n"); // Debug print
+			  }
               | multoudivoures op_multoudivoures unario
+			  {
+					$$ = $1;
+					ast_add_child($$, $1);
+					ast_add_child($$, $2);
+					ast_add_child($$, $3);
+					printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
+			  }
               ;
 
 //##########################
 // Operação de multiplicação,divisão ou resto
 op_multoudivoures: MULTIPLY
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added MULTIPLY to op_multoudivoures\n"); // Debug print
+				 }
                  | DIVIDE
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added DIVIDE to op_multoudivoures\n"); // Debug print
+				 }
                  | REMAINDER
+				 {
+					$$ = $1;
+					ast_add_child($$, $1);
+					printf("Added REMAINDER to op_multoudivoures\n"); // Debug print
+				 }
                  ;
 
 //##########################
 // Operações unárias
 unario: primario
+	  {
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added primario to unario\n"); // Debug print
+	  }
       | INVERTSIG unario
+	  {
+			$$ = $1;
+			ast_add_child($$, $1);
+		    ast_add_child($$, $2);
+		    printf("Added INVERTSIG and unario to unario\n"); // Debug print
+	  }
       | NEGATE unario
+	  {
+			$$ = $1;
+			ast_add_child($$, $1);
+		    ast_add_child($$, $2);
+		    printf("Added NEGATE and unario to unario\n"); // Debug print
+	  }
       ;
 
 //##########################
 // Expressões primarias
 primario: identificador
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added identificador to primario\n");
+		}
         | literais
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added literais to primario\n"); // Debug print
+		}
         | chamada_funcao
+		{
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added chamada_funcao to primario\n"); // Debug print
+		}
         | '(' expressao ')'
+		{
+			$$ = $2;
+			ast_add_child($$, $2);
+			printf("Added expressao to primario\n"); // Debug print
+		}
         ;
 
 //##########################
 // Chamada de função
 chamada_funcao: nome_func '(' lista_expressao ')'
+			  {
+				$$ = $1;
+				ast_add_child($$, $1);
+				ast_add_child($$, $3);
+				printf("Added nome_func and lista_expressao to chamada_funcao\n"); // Debug print
+			  }
 			  | nome_func '('/*vazio*/')'
+			  {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added nome_func to chamada_funcao\n"); // Debug print
+			  }
               ;
 
 //##########################
 // Lista de expressões
 lista_expressao: expressao
+			   {
+				$$ = $1;
+				ast_add_child($$, $1);
+				printf("Added expressao to lista_expressao\n"); // Debug print
+			   }
                | lista_expressao ';' expressao
+			   {
+				$$ = $1;
+				ast_add_child($$, $1);
+				ast_add_child($$, $3);
+				printf("Added lista_expressao and expressao to lista_expressao\n"); // Debug print
+			   }
                ;
 
 //##########################
 // Nome da função
 nome_func: identificador
+		 {
+			$$ = $1;
+			ast_add_child($$, $1);
+			printf("Added identificador to nome_func\n"); // Debug print
+		 }
          ;
 
 //##########################
 // Literais (tokens)
 literais: LITINT
 		{
+			$$ = $1;
 			ast_add_child($$, $1);
+			printf("Added LITINT to literais\n"); // Debug print
 		}
         | LITFLOAT
 		{
+			$$ = $1;
 			ast_add_child($$, $1);
+			printf("Added LITFLOAT to literais\n"); // Debug print
 		} 
         | LITFALSE
 		{
+			$$ = $1;
 			ast_add_child($$, $1);
+			printf("Added LITFALSE to literais\n"); // Debug print
 		} 
         | LITTRUE
 		{
+			$$ = $1;
 			ast_add_child($$, $1);
+			printf("Added LITTRUE to literais\n"); // Debug print
 		} 
         ;
 
@@ -370,8 +799,8 @@ literais: LITINT
 // Token LITINT
 LITINT: TK_LIT_INT
 	  {
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
+			$$ = ast_new($1);
+			printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 	  }
 	  ;
 
@@ -379,8 +808,8 @@ LITINT: TK_LIT_INT
 // Token LITFLOAT
 LITFLOAT: TK_LIT_FLOAT
 		{
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
+			$$ = ast_new($1);
+			printf("Added TK_LIT_FLOAT to LITFLOAT\n"); // Debug print
 		}
 		;
 
@@ -388,8 +817,8 @@ LITFLOAT: TK_LIT_FLOAT
 // Token LITFALSE
 LITFALSE: TK_LIT_FALSE
 		{
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
+			$$ = ast_new($1);
+			printf("Added TK_LIT_FALSE to LITFALSE\n"); // Debug print
 		}
 		;
 
@@ -397,42 +826,97 @@ LITFALSE: TK_LIT_FALSE
 // Token LITTRUE
 LITTRUE: TK_LIT_TRUE
 	   {
-			$$ = ast_new(NULL);
-			$$->valor_lexico = $1;
+			$$ = ast_new($1);
+			printf("Added TK_LIT_TRUE to LITTRUE\n"); // Debug print
 	   }
 	   ;
 
 //##########################
 // Tokens de operadores
-INVERTSIG: '-' 
+INVERTSIG: '-'
+		 {
+				$$ = NULL;
+				printf("Empty INVERTSIG\n"); // Debug print
+		 }
 	     ;
-NEGATE: '!' 
+NEGATE: '!'
+	  {
+			$$ = NULL;
+			printf("Empty NEGATE\n"); // Debug print
+	  }
 	  ;
-MULTIPLY: '*' 
+MULTIPLY: '*'
+		{
+			$$ = NULL;
+			printf("Empty MULTIPLY\n"); // Debug print
+		}
 	    ;
-DIVIDE: '/' 
+DIVIDE: '/'
+	  {
+			$$ = NULL;
+			printf("Empty DIVIDE\n"); // Debug print
+	  }
 	  ;
-REMAINDER: '%' 
+REMAINDER: '%'
+		 {
+				$$ = NULL;
+				printf("Empty REMAINDER\n"); // Debug print
+		 }
 		 ;
-ADD: '+' 
+ADD: '+'
+   {
+		$$ = NULL;
+		printf("Empty ADD\n"); // Debug print
+   }
    ;
-SUBTRACT: '-' 
+SUBTRACT: '-'
+		{
+			$$ = NULL;
+			printf("Empty SUBTRACT\n"); // Debug print
+		}
 		;
-GREATERTHAN: '>' 
+GREATERTHAN: '>'
+		   {
+				$$ = NULL;
+				printf("Empty GREATERTHAN\n"); // Debug print
+		   }
 		   ;
-LESSTHAN: '<' 
+LESSTHAN: '<'
+		{
+			$$ = NULL;
+			printf("Empty LESSTHAN\n"); // Debug print
+		}
 		;
 LESSEQUAL: TK_OC_LE 
+		 {
+		 	$$ = NULL;
+			printf("Empty 'LESSEQUAL'\n"); // Debug print
+		 }
 		 ;
 GREATEREQUAL: TK_OC_GE 
+			{
+				$$ = NULL;
+				printf("Empty 'GREATEREQUAL'\n"); // Debug print
+			}
 			;
 EQUAL: TK_OC_EQ 
+	 {
+		$$ = NULL;
+		printf("Empty 'EQUAL'\n"); // Debug print
+	 }
 	 ;
 NOTEQUAL: TK_OC_NE 
+		{
+			$$ = NULL;
+			printf("Empty 'NOTEQUAL'\n"); // Debug print
+		}
 		;
 AND: TK_OC_AND 
+   {
+		$$ = NULL;
+		printf("Empty 'AND'\n"); // Debug print
+   }
    ;
-
 %%
 
 //##########################

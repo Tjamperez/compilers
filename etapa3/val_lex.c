@@ -17,10 +17,8 @@ val_lex_t *gen_val(int line, int type, const char *token) {
     // Preenchemos os campos da estrutura com os valores fornecidos(literais ou identificadores)
     new_val->lineno = line;
     new_val->type = type;
-
-	#ifdef HAVE_LEX_YY_H
     // Alocamos memória para armazenar uma cópia do token_value
-    new_val->token_value = strdup(yytext);
+    new_val->token_value = token;
     
     // Verificamos se a cópia do token_value foi bem-sucedida
     if (new_val->token_value == NULL) {
@@ -28,13 +26,6 @@ val_lex_t *gen_val(int line, int type, const char *token) {
         free(new_val);  // Libera a memória alocada para new_val
         return NULL;
     }
-	// Se yytext n'ao for poss[ivel de ser acessado, cuidamos do erro
-	else{
-		fprintf(stderr, "Erro: yytext não está definido (lex.yy.h não foi incluido)\n");
-    	new_val->token_value = NULL;  // Setamos o token_value para NULL
-	}
-    	
-    #endif
     // Retornamos o novo objeto val_lex_t criado para as próximas funções
     return new_val;
 }
