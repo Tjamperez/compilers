@@ -7,6 +7,7 @@ tree_node_t *ast_new(val_lex_t *valor_lexico) {
     tree_node_t *ret = calloc(1, sizeof(tree_node_t));
     if (ret) {
         ret->valor_lexico = valor_lexico;
+		//printf("\n\n\n\n\nWE CRAZYYYYYYYYYYY   %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
         ret->children = NULL;
         ret->num_children = 0;
     }
@@ -39,6 +40,8 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child) {
         exit(EXIT_FAILURE);
     }
     parent->children[parent->num_children - 1] = child;
+	//printf("\n\n\n\n\nWE BALLINGGGGGGGGGG  %d\n\n\n\n\n",parent->num_children); //print test
+	//printf("\n\n\n\n\nWE GRIDDYYYYYYYYY   %s\n\n\n\n\n",parent->children[parent->num_children - 1]->valor_lexico->token_value); //print test
 }
 
 void print_node(FILE *fp, tree_node_t *node) {
@@ -68,6 +71,7 @@ void ast_print_dot(tree_node_t *root, const char *filename) {
 }
 
 void exporta(tree_node_t *arvore) {
+	printf("\nWHAT IS GOING NOWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\n");
     if (arvore == NULL) return;
 
     // Print o label do nodo da árvore
