@@ -21,6 +21,6 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child);
 void ast_print_dot(tree_node_t *root, const char *filename);
 
 // Função para exportar a árvore em saída padrão.
-void exporta(tree_node_t *arvore);
+void exporta(void *arvore);
 
 #endif //_TREE_H_

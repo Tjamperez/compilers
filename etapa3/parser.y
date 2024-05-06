@@ -125,7 +125,7 @@ programa: lista_de_elementos
 			arvore = $$;
 			printf("Created ARVORE node\n"); // Debug print
 		}
-        | /* vazio */
+		| /* vazio */
 		{
 			$$ = NULL;
 			arvore = NULL;
@@ -261,7 +261,8 @@ lista_identificador: lista_identificador ';' identificador
 // Definição de função
 definicao_de_funcao: cabecalho corpo
 				   {
-						ast_add_child($$, $1);
+						// ast_add_child($$, $1);
+						$$ = $1;
 						if ($2 != NULL){
 							ast_add_child($$, $2);
 						}
@@ -273,7 +274,8 @@ definicao_de_funcao: cabecalho corpo
 // Cabeçalho da função
 cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
 		 {
-			ast_add_child($$, $7);
+			//ast_add_child($$, $7);
+			$$ = $7;
 			printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
          ;

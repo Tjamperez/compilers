@@ -16,13 +16,13 @@ int get_line_number();
 %%
     /* Catch the compilers reserved words and return the token */
 
-"int" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_INT , strdup(yytext)); return TK_PR_INT; }
-"float" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_FLOAT , strdup(yytext)); return TK_PR_FLOAT; }
-"bool" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_BOOL , strdup(yytext)); return TK_PR_BOOL; }
-"if" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_IF , strdup(yytext)); return TK_PR_IF; }
-"else" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_ELSE , strdup(yytext)); return TK_PR_ELSE; }
-"while" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_WHILE , strdup(yytext)); return TK_PR_WHILE; }
-"return" {yylval.valor_lexico = gen_val (get_line_number() , PR_TYPE_RETURN , strdup(yytext)); return TK_PR_RETURN; }
+"int" {return TK_PR_INT; }
+"float" {return TK_PR_FLOAT; }
+"bool" {return TK_PR_BOOL; }
+"if" {return TK_PR_IF; }
+"else" {return TK_PR_ELSE; }
+"while" {return TK_PR_WHILE; }
+"return" {return TK_PR_RETURN; }
 
     /* Catch C-style comments of either a single  or multiple lines and return nothing */
 
@@ -38,7 +38,7 @@ int get_line_number();
 
     /* Catch the compilers special characters and return the token */
 
-[-!*/%+<>\{\}()=,;] {yylval.valor_lexico = gen_val (get_line_number() , SPECIAL_CHAR , strdup(yytext)); return yytext[0];}
+[-!*/%+<>\{\}()=,;] {return yytext[0];}
 
     /* Actually make yylineno function */
 
@@ -47,12 +47,12 @@ int get_line_number();
 
     /* Catch the compilers compound operators and return the token */
 
-"<=" {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_LE , strdup(yytext)); return TK_OC_LE; }
-">=" {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_GE , strdup(yytext)); return TK_OC_GE; }
-"==" {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_EQ , strdup(yytext)); return TK_OC_EQ; }
-"!=" {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_NE , strdup(yytext)); return TK_OC_NE; }
-"&"  {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_AND , strdup(yytext)); return TK_OC_AND; }
-"|"  {yylval.valor_lexico = gen_val (get_line_number() , OC_TYPE_OR , strdup(yytext)); return TK_OC_OR; }
+"<=" {return TK_OC_LE; }
+">=" {return TK_OC_GE; }
+"==" {return TK_OC_EQ; }
+"!=" {return TK_OC_NE; }
+"&"  {return TK_OC_AND; }
+"|"  {return TK_OC_OR; }
 
     /* Catch the compilers literals and return the token */
 
