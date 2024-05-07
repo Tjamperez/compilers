@@ -29,7 +29,7 @@ $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 all: etapa3
 
 etapa3: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -g -o $@ $^ $(CFLAGS)
 
 # Rule to generate parser using Bison
 $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h: $(LDIR)/parser.y

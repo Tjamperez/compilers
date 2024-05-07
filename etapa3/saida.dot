@@ -1,0 +1,31 @@
+# Executado assim: ./output2dot.sh 
+# https://graphviz.org/doc/info/lang.html
+digraph {
+  x55cb61a71420 [label="factorial"];
+  x55cb61a71420 -> x55cb61a71680
+  x55cb61a71680 [label="RETURN"];
+  x55cb61a71680 -> x55cb61a71720
+  x55cb61a71680 -> x55cb61a71440
+  x55cb61a71720 [label="*"];
+  x55cb61a71720 -> x55cb61a71700
+  x55cb61a71720 -> x55cb61a717a0
+  x55cb61a71700 [label="a"];
+  x55cb61a717a0 [label="factorial"];
+  x55cb61a717a0 -> x55cb61a71820
+  x55cb61a71820 [label="-"];
+  x55cb61a71820 -> x55cb61a71800
+  x55cb61a71820 -> x55cb61a718a0
+  x55cb61a71800 [label="a"];
+  x55cb61a718a0 [label="1"];
+  x55cb61a71440 [label="IF"];
+  x55cb61a71440 -> x55cb61a714e0
+  x55cb61a71440 -> x55cb61a715a0
+  x55cb61a714e0 [label="<"];
+  x55cb61a714e0 -> x55cb61a714c0
+  x55cb61a714e0 -> x55cb61a71560
+  x55cb61a714c0 [label="a"];
+  x55cb61a71560 [label="1"];
+  x55cb61a715a0 [label="RETURN"];
+  x55cb61a715a0 -> x55cb61a71620
+  x55cb61a71620 [label="1"];
+}

@@ -14,6 +14,19 @@ tree_node_t *ast_new(val_lex_t *valor_lexico) {
     return ret;
 }
 
+tree_node_t *ast_new_label_only(char *label) {
+    tree_node_t *ret = calloc(1, sizeof(tree_node_t));
+	val_lex_t *aux = calloc(1, sizeof(val_lex_t));
+    if (ret) {
+		aux->token_value = label;
+        ret->valor_lexico =  aux;
+		//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
+        ret->children = NULL;
+        ret->num_children = 0;
+    }
+    return ret;
+}
+
 void ast_free(tree_node_t *tree)
 {
   if (tree != NULL){

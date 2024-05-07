@@ -20,30 +20,30 @@ extern char *yytext;
 extern void *arvore;
 %}
 
-%token <valor_lexico> TK_PR_INT
-%token <valor_lexico> TK_PR_FLOAT
-%token <valor_lexico> TK_PR_BOOL
-%token <valor_lexico> TK_PR_IF
-%token <valor_lexico> TK_PR_ELSE
-%token <valor_lexico> TK_PR_WHILE
-%token <valor_lexico> TK_PR_RETURN
-%token <valor_lexico> TK_OC_LE
-%token <valor_lexico> TK_OC_GE
-%token <valor_lexico> TK_OC_EQ
-%token <valor_lexico> TK_OC_NE
-%token <valor_lexico> TK_OC_AND
-%token <valor_lexico> TK_OC_OR
-%token <valor_lexico> TK_ERRO
+%token  TK_PR_INT
+%token  TK_PR_FLOAT
+%token  TK_PR_BOOL
+%token  TK_PR_IF
+%token  TK_PR_ELSE
+%token  TK_PR_WHILE
+%token  TK_PR_RETURN
+%token  TK_OC_LE
+%token  TK_OC_GE
+%token  TK_OC_EQ
+%token  TK_OC_NE
+%token  TK_OC_AND
+%token  TK_OC_OR
+%token  TK_ERRO
 
-%token<valor_lexico> '='
-%token<valor_lexico> '<'
-%token<valor_lexico> '>'
-%token<valor_lexico> '+'
-%token<valor_lexico> '*'
-%token<valor_lexico> '/'
-%token<valor_lexico> '%'
-%token<valor_lexico> '!'
-%token<valor_lexico> '-'
+%token '='
+%token '<'
+%token '>'
+%token '+'
+%token '*'
+%token '/'
+%token '%'
+%token '!'
+%token '-'
 
 %token <valor_lexico> TK_IDENTIFICADOR
 %token <valor_lexico> TK_LIT_INT
@@ -218,7 +218,7 @@ tipo: INT
 // Token INT
 INT: TK_PR_INT
    {
-		$$ = ast_new($1);
+		$$ = NULL; // Espero que seja null mesmo.
 		printf("Empty INT\n"); // Debug print
    }
    ;
@@ -227,7 +227,7 @@ INT: TK_PR_INT
 // Token FLOAT
 FLOAT: TK_PR_FLOAT
 	 {
-		$$ = ast_new($1);
+		$$ = NULL; // Espero que seja null mesmo.
 		printf("Empty FLOAT\n"); // Debug print
 	 }
 	 ;
@@ -236,7 +236,7 @@ FLOAT: TK_PR_FLOAT
 // Token BOOL
 BOOL: TK_PR_BOOL
 	{
-		$$ = ast_new($1);
+		$$ = NULL; // Espero que seja null mesmo.
 		printf("Empty BOOL\n"); // Debug print
 	}
 	;
@@ -246,8 +246,8 @@ BOOL: TK_PR_BOOL
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
 				   {
-					 $$ = $1;
-					 ast_add_child($$, $3);
+					 $$ = $1; // Não podemos ter em declarações, mas ao mesmo tempo pode ser um identificador só??????
+					 //ast_add_child($$, $3); Não cria nó??
 					 printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
 				   }
                    | identificador
@@ -284,8 +284,8 @@ cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
 // Token OR
 OR: TK_OC_OR
   {
-  	$$ = ast_new($1);
-	printf("Empty OR\n"); // Debug print
+  	$$ = ast_new_label_only("OR");
+	printf("Label OR\n"); // Debug print
   }
   ;
 
@@ -293,7 +293,21 @@ OR: TK_OC_OR
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
 					{
-						$$ = $1;
+						if ($1 = NULL){
+							$$ = $3;
+						}
+						else 
+						{
+							if ($3 == NULL)
+							{
+								$$ = $1;
+							}
+							else
+							{
+								 $$ = $1; // or $$ = $3?
+              					 //ast_add_child($3, $1); // Imagino que seja similar ao lista_de_comandos
+							}
+						}
 						printf("Added parametro to lista_de_parametros\n"); // Debug print
 					}
                    | parametro
@@ -359,11 +373,18 @@ lista_de_comandos: comando_simples ','
 					{
             			$$ = $2;
         		    }
-        		 	else
-				 	{
-						$$ = $1;
-            			ast_add_child($1, $2); 
-       			  	}
+					else
+					{
+						if ($2 == NULL) 
+						{
+            				$$ = $1;  // Faz todo sentido pois $$ tem que receber algo na cadeia.
+        		    	}
+						else
+				 		{
+							$$ = $2; //  $$ = $1;
+            				ast_add_child($2, $1); //	ast_add_child($1, $2); Mudamos a ordem pois de acordo com meus prints fazemos da raiz ao topo, entao o primeiro comando_simples voltando da recursão acaba virando o pai do "lista de comandos" devido a essa inversao ACHO.
+       			  		}
+					} 	
 				 }
                  ;
 
@@ -414,7 +435,7 @@ declaracao_variavel: tipo lista_identificador
 // Comando de atribuição
 comando_atribuicao: identificador '=' expressao
 				  {
-					$$ = ast_new($2);
+					$$ = ast_new_label_only("=");
 					ast_add_child($$, $1);
 					ast_add_child($$, $3);
 					printf("Added expressao to comando_atribuicao\n"); // Debug print
@@ -425,8 +446,8 @@ comando_atribuicao: identificador '=' expressao
 // Comando de retorno
 RETURN: TK_PR_RETURN
 	  {
-		$$ = ast_new($1);
-		printf("Empty RETURN\n"); // Debug print
+		$$ = ast_new_label_only("RETURN"); // Espero que seja de label e não Null mesmo.
+		printf("Label RETURN\n"); // Debug print
 	  }
 	  ;
 comando_retorno: RETURN expressao
@@ -455,14 +476,14 @@ comando_controle_fluxo: condicional
 // Comando de if e else
 IF: TK_PR_IF
   {
-  	$$ = ast_new($1);
-	printf("Empty IF\n"); // Debug print
+  	$$ = ast_new_label_only("IF");
+	printf("Label IF\n"); // Debug print
   }
   ;
 ELSE: TK_PR_ELSE
 	{
-		$$ = ast_new($1);
-		printf("Empty ELSE\n"); // Debug print
+		$$ = ast_new_label_only("ELSE");
+		printf("Label ELSE\n"); // Debug print
 	}
 	;
 condicional: IF '(' expressao ')' corpo
@@ -486,8 +507,8 @@ condicional: IF '(' expressao ')' corpo
 // Comando de loop
 WHILE: TK_PR_WHILE 
 	 {
-		$$ = ast_new($1);
-		printf("Empty WHILE\n"); // Debug print
+		$$ = ast_new_label_only("WHILE");
+		printf("Label WHILE\n"); // Debug print
 	 }
 	 ;
 loop: WHILE '(' expressao ')' corpo
@@ -808,86 +829,86 @@ LITTRUE: TK_LIT_TRUE
 // Tokens de operadores
 INVERTSIG: '-'
 		 {
-				$$ = ast_new($1);
-				printf("Empty INVERTSIG\n"); // Debug print
+				$$ = ast_new_label_only("-");
+				printf("Label INVERTSIG\n"); // Debug print
 		 }
 	     ;
 NEGATE: '!'
 	  {
-			$$ = ast_new($1);
-			printf("Empty NEGATE\n"); // Debug print
+			$$ = ast_new_label_only("!");
+			printf("Label NEGATE\n"); // Debug print
 	  }
 	  ;
 MULTIPLY: '*'
 		{
-			$$ = ast_new($1);
-			printf("Empty MULTIPLY\n"); // Debug print
+			$$ = ast_new_label_only("*");
+			printf("Label MULTIPLY\n"); // Debug print
 		}
 	    ;
 DIVIDE: '/'
 	  {
-			$$ = ast_new($1);
-			printf("Empty DIVIDE\n"); // Debug print
+			$$ = ast_new_label_only("/");
+			printf("Label DIVIDE\n"); // Debug print
 	  }
 	  ;
 REMAINDER: '%'
 		 {
-				$$ = ast_new($1);
-				printf("Empty REMAINDER\n"); // Debug print
+				$$ = ast_new_label_only("%");
+				printf("Label REMAINDER\n"); // Debug print
 		 }
 		 ;
 ADD: '+'
    {
-		$$ = ast_new($1);
-		printf("Empty ADD\n"); // Debug print
+		$$ = ast_new_label_only("+");
+		printf("Label ADD\n"); // Debug print
    }
    ;
 SUBTRACT: '-'
 		{
-			$$ = ast_new($1);
-			printf("Empty SUBTRACT\n"); // Debug print
+			$$ = ast_new_label_only("-");
+			printf("Label SUBTRACT\n"); // Debug print
 		}
 		;
 GREATERTHAN: '>'
 		   {
-				$$ = ast_new($1);
-				printf("Empty GREATERTHAN\n"); // Debug print
+				$$ = ast_new_label_only(">");
+				printf("Label GREATERTHAN\n"); // Debug print
 		   }
 		   ;
 LESSTHAN: '<'
 		{
-			$$ = ast_new($1);
-			printf("Empty LESSTHAN\n"); // Debug print
+			$$ = ast_new_label_only("<");
+			printf("Label LESSTHAN\n"); // Debug print
 		}
 		;
 LESSEQUAL: TK_OC_LE 
 		 {
-		 	$$ = ast_new($1);
-			printf("Empty 'LESSEQUAL'\n"); // Debug print
+		 	$$ = ast_new_label_only("<=");
+			printf("Label 'LESSEQUAL'\n"); // Debug print
 		 }
 		 ;
 GREATEREQUAL: TK_OC_GE 
 			{
-				$$ = ast_new($1);
-				printf("Empty 'GREATEREQUAL'\n"); // Debug print
+				$$ = ast_new_label_only("=>");
+				printf("Label 'GREATEREQUAL'\n"); // Debug print
 			}
 			;
 EQUAL: TK_OC_EQ 
 	 {
-		$$ = ast_new($1);
-		printf("Empty 'EQUAL'\n"); // Debug print
+		$$ = ast_new_label_only("==");
+		printf("Label 'EQUAL'\n"); // Debug print
 	 }
 	 ;
 NOTEQUAL: TK_OC_NE 
 		{
-			$$ = ast_new($1);
-			printf("Empty 'NOTEQUAL'\n"); // Debug print
+			$$ = ast_new_label_only("!=");
+			printf("Label 'NOTEQUAL'\n"); // Debug print
 		}
 		;
 AND: TK_OC_AND 
    {
-		$$ = ast_new($1);
-		printf("Empty 'AND'\n"); // Debug print
+		$$ = ast_new_label_only("AND");
+		printf("Label 'AND'\n"); // Debug print
    }
    ;
 %%
