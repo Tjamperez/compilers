@@ -52,6 +52,7 @@ extern void *arvore;
 %token <valor_lexico> TK_LIT_TRUE
 
 %type <tree> identificador
+%type <tree> call_identificador
 %type <tree> LITINT
 %type <tree> LITFLOAT
 %type <tree> LITTRUE
@@ -137,24 +138,23 @@ programa: lista_de_elementos
 // Lista de elementos
 lista_de_elementos: lista_de_elementos elemento
 				  {
-					if ($1 != NULL && $2 != NULL ){
-						$$ = $1;
-						ast_add_child($$, $2);
-						printf("Added elemento to lista_de_elementos\n"); // Debug print
-					}
-					else if ($1 != NULL)
+					if ($1 == NULL)
 						 {
-						 	$$ = $1;
-						 } 
-						else if ($2 != NULL)
-							 {
-								$$ = $2;
-							 }
-							 else
-							 	{
-									$$ = NULL;
-							 	}
-					
+						 	$$ = $2;
+						 }
+					else
+					{
+						if ($2 == NULL)
+						{
+							$$ = $1;
+						}
+						else
+						{
+							$$ = $2; // $$ = $1 Invertido pois é lista
+							ast_add_child($$, $1); // ast_add_child($$, $2) invertido pois é lista
+							printf("Added elemento to lista_de_elementos\n"); // Debug print
+						}
+					}	
 				  }
                   | elemento
 				  {
@@ -194,6 +194,11 @@ identificador: TK_IDENTIFICADOR
 				printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
 			 }
              ;
+call_identificador: TK_IDENTIFICADOR
+			{
+				$$ = ast_new_call_func($1); // como concatenar essa bagaça na frenteeeeeeeeeeeeeeee
+				printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
+			}
 
 //##########################
 // Tipos de dados
@@ -284,7 +289,7 @@ cabecalho: '(' lista_de_parametros ')' OR tipo '/' identificador
 // Token OR
 OR: TK_OC_OR
   {
-  	$$ = ast_new_label_only("OR");
+  	$$ = ast_new_label_only("|");
 	printf("Label OR\n"); // Debug print
   }
   ;
@@ -304,7 +309,7 @@ lista_de_parametros: lista_de_parametros ';' parametro
 							}
 							else
 							{
-								 $$ = $1; // or $$ = $3?
+								 $$ = $1; // or $$ = $3? // tomou fatality pq era parte de declaração , mas tem que ver se ta certo ou não mds
               					 //ast_add_child($3, $1); // Imagino que seja similar ao lista_de_comandos
 							}
 						}
@@ -340,8 +345,8 @@ corpo: '{' bloco_de_comandos '}'
 	 }
 	 |  corpo '{' bloco_de_comandos '}'
 	 {
-		$$ = $1;
-		ast_add_child($$, $3);
+		$$ = $1;	//$$ = $3; // TALVEZ INVERTER
+		ast_add_child($$, $3);	//ast_add_child($$, $1); // TALVEZ INVERTER
 		printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
      ;
@@ -446,7 +451,7 @@ comando_atribuicao: identificador '=' expressao
 // Comando de retorno
 RETURN: TK_PR_RETURN
 	  {
-		$$ = ast_new_label_only("RETURN"); // Espero que seja de label e não Null mesmo.
+		$$ = ast_new_label_only("return"); // Espero que seja de label e não Null mesmo.
 		printf("Label RETURN\n"); // Debug print
 	  }
 	  ;
@@ -476,13 +481,13 @@ comando_controle_fluxo: condicional
 // Comando de if e else
 IF: TK_PR_IF
   {
-  	$$ = ast_new_label_only("IF");
+  	$$ = ast_new_label_only("if");
 	printf("Label IF\n"); // Debug print
   }
   ;
 ELSE: TK_PR_ELSE
 	{
-		$$ = ast_new_label_only("ELSE");
+		$$ = ast_new_label_only("else");
 		printf("Label ELSE\n"); // Debug print
 	}
 	;
@@ -507,7 +512,7 @@ condicional: IF '(' expressao ')' corpo
 // Comando de loop
 WHILE: TK_PR_WHILE 
 	 {
-		$$ = ast_new_label_only("WHILE");
+		$$ = ast_new_label_only("while");
 		printf("Label WHILE\n"); // Debug print
 	 }
 	 ;
@@ -521,6 +526,8 @@ loop: WHILE '(' expressao ')' corpo
 
 //##########################
 // Definição expressões, compostas de operando e operador
+
+// VER SE TEM QUE INVERTER A PARTIR DESSA
 
 expressao: operando
 		 {
@@ -743,14 +750,21 @@ lista_expressao: expressao
 			   }
                | lista_expressao ';' expressao
 			   {
-				if ($1 != NULL)
+				if ($1 == NULL)
 				{
-					$$ = $1; 
-					ast_add_child($$, $3);
+					$$ = $3; 
 				}
 				else
 				{
-					$$ = $3;
+					if ($3 == NULL)
+					{
+						$$ = $1;
+					}
+					else
+					{
+						$$ = $3;		//$$ = $1;  Invertemos por causa da recursão
+						ast_add_child($$, $1); 		//ast_add_child($$, $3);Invertemos por causa da recursão
+					}
 				}
 				printf("Added lista_expressao and expressao to lista_expressao\n"); // Debug print
 			   }
@@ -758,7 +772,7 @@ lista_expressao: expressao
 
 //##########################
 // Nome da função
-nome_func: identificador
+nome_func: call_identificador
 		 {
 			$$ = $1;
 			printf("Added identificador to nome_func\n"); // Debug print
@@ -889,7 +903,7 @@ LESSEQUAL: TK_OC_LE
 		 ;
 GREATEREQUAL: TK_OC_GE 
 			{
-				$$ = ast_new_label_only("=>");
+				$$ = ast_new_label_only(">=");
 				printf("Label 'GREATEREQUAL'\n"); // Debug print
 			}
 			;
@@ -907,7 +921,7 @@ NOTEQUAL: TK_OC_NE
 		;
 AND: TK_OC_AND 
    {
-		$$ = ast_new_label_only("AND");
+		$$ = ast_new_label_only("&");
 		printf("Label 'AND'\n"); // Debug print
    }
    ;

@@ -1,0 +1,79 @@
+# Executado assim: ./output2dot.sh 
+# https://graphviz.org/doc/info/lang.html
+digraph {
+  x55add059f420 [label="factorial"];
+  x55add059f420 -> x55add05a0100
+  x55add05a0100 [label="RETURN"];
+  x55add05a0100 -> x55add05a01a0
+  x55add05a0100 -> x55add05a00a0
+  x55add05a01a0 [label="*"];
+  x55add05a01a0 -> x55add05a0180
+  x55add05a01a0 -> x55add05a0220
+  x55add05a0180 [label="a"];
+  x55add05a0220 [label="factorial"];
+  x55add05a0220 -> x55add05a02a0
+  x55add05a02a0 [label="-"];
+  x55add05a02a0 -> x55add05a0280
+  x55add05a02a0 -> x55add05a0320
+  x55add05a0280 [label="a"];
+  x55add05a0320 [label="1"];
+  x55add05a00a0 [label="="];
+  x55add05a00a0 -> x55add059ff60
+  x55add05a00a0 -> x55add059ffe0
+  x55add05a00a0 -> x55add059fec0
+  x55add059ff60 [label="x3"];
+  x55add059ffe0 [label="+"];
+  x55add059ffe0 -> x55add059ffc0
+  x55add059ffe0 -> x55add05a0060
+  x55add059ffc0 [label="a3"];
+  x55add05a0060 [label="b3"];
+  x55add059fec0 [label="="];
+  x55add059fec0 -> x55add059fd80
+  x55add059fec0 -> x55add059fe00
+  x55add059fec0 -> x55add059fce0
+  x55add059fd80 [label="x2"];
+  x55add059fe00 [label="+"];
+  x55add059fe00 -> x55add059fde0
+  x55add059fe00 -> x55add059fe80
+  x55add059fde0 [label="a2"];
+  x55add059fe80 [label="b2"];
+  x55add059fce0 [label="="];
+  x55add059fce0 -> x55add059fa20
+  x55add059fce0 -> x55add059fc20
+  x55add059fce0 -> x55add059f7a0
+  x55add059fa20 [label="x1"];
+  x55add059fc20 [label="+"];
+  x55add059fc20 -> x55add059faa0
+  x55add059fc20 -> x55add059fca0
+  x55add059faa0 [label="+"];
+  x55add059faa0 -> x55add059fa80
+  x55add059faa0 -> x55add059fb40
+  x55add059fa80 [label="a1"];
+  x55add059fb40 [label="*"];
+  x55add059fb40 -> x55add059fb20
+  x55add059fb40 -> x55add059fbc0
+  x55add059fb20 [label="b1"];
+  x55add059fbc0 [label="c1"];
+  x55add059fca0 [label="d1"];
+  x55add059f7a0 [label="IF"];
+  x55add059f7a0 -> x55add059f840
+  x55add059f7a0 -> x55add059f900
+  x55add059f7a0 -> x55add059f740
+  x55add059f840 [label="<"];
+  x55add059f840 -> x55add059f820
+  x55add059f840 -> x55add059f8c0
+  x55add059f820 [label="a"];
+  x55add059f8c0 [label="1"];
+  x55add059f900 [label="RETURN"];
+  x55add059f900 -> x55add059f980
+  x55add059f980 [label="1"];
+  x55add059f740 [label="="];
+  x55add059f740 -> x55add059f600
+  x55add059f740 -> x55add059f680
+  x55add059f600 [label="x1"];
+  x55add059f680 [label="+"];
+  x55add059f680 -> x55add059f660
+  x55add059f680 -> x55add059f700
+  x55add059f660 [label="a1"];
+  x55add059f700 [label="b1"];
+}

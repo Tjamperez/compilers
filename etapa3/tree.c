@@ -27,6 +27,35 @@ tree_node_t *ast_new_label_only(char *label) {
     return ret;
 }
 
+tree_node_t *ast_new_call_func(val_lex_t *valor_lexico) {
+    tree_node_t *ret = calloc(1, sizeof(tree_node_t));
+    val_lex_t *aux_val = calloc(1, sizeof(val_lex_t));
+
+    *aux_val = *valor_lexico;
+
+    char *result = malloc(strlen("call ") + strlen(aux_val->token_value) + 1);
+    if (result) {
+        strcpy(result, "call ");
+        strcat(result, aux_val->token_value);
+        aux_val->token_value = result;
+		//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
+
+        if (ret) {
+			//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
+            ret->valor_lexico = aux_val;
+            ret->children = NULL;
+            ret->num_children = 0;
+        }
+    } else {
+        fprintf(stderr, "Failed to allocate memory for result.\n");
+        free(aux_val);
+        free(ret);
+        ret = NULL;
+    }
+
+    return ret;
+}
+
 void ast_free(tree_node_t *tree)
 {
   if (tree != NULL){
@@ -75,6 +104,7 @@ void exporta(void *arvore) {
         exporta(root->children[i]);
     }
 }
+
 //Exporta turbinado
 
 // void exporta_helper(tree_node_t *node, int depth) {

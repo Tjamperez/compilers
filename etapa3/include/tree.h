@@ -25,4 +25,6 @@ void exporta(void *arvore);
 
 tree_node_t *ast_new_label_only(char *label);
 
+tree_node_t *ast_new_call_func(val_lex_t *valor_lexico);
+
 #endif //_TREE_H_
