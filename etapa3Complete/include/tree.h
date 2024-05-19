@@ -17,6 +17,9 @@ void ast_free(tree_node_t *root);
 // Adiciona child como filho de tree.
 void ast_add_child(tree_node_t *parent, tree_node_t *child);
 
+// Imprime recursivamente a árvore.
+void ast_print_dot(tree_node_t *root, const char *filename);
+
 // Função para exportar a árvore em saída padrão.
 void exporta(void *arvore);
 

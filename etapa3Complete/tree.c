@@ -3,31 +3,30 @@
 #include <stdio.h>
 #include "tree.h"
 
-// Função para criar um novo nó na árvore, com um valor léxico fornecido
 tree_node_t *ast_new(val_lex_t *valor_lexico) {
     tree_node_t *ret = calloc(1, sizeof(tree_node_t));
     if (ret) {
         ret->valor_lexico = valor_lexico;
+		//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
         ret->children = NULL;
         ret->num_children = 0;
     }
     return ret;
 }
 
-// Função para criar um novo nó na árvore com apenas um rótulo (sem valor léxico)
 tree_node_t *ast_new_label_only(char *label) {
     tree_node_t *ret = calloc(1, sizeof(tree_node_t));
-    val_lex_t *aux = calloc(1, sizeof(val_lex_t));
+	val_lex_t *aux = calloc(1, sizeof(val_lex_t));
     if (ret) {
-        aux->token_value = label;
+		aux->token_value = label;
         ret->valor_lexico =  aux;
+		//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
         ret->children = NULL;
         ret->num_children = 0;
     }
     return ret;
 }
 
-// Função para criar um novo nó representando uma chamada de função
 tree_node_t *ast_new_call_func(val_lex_t *valor_lexico) {
     tree_node_t *ret = calloc(1, sizeof(tree_node_t));
     val_lex_t *aux_val = calloc(1, sizeof(val_lex_t));
@@ -39,8 +38,10 @@ tree_node_t *ast_new_call_func(val_lex_t *valor_lexico) {
         strcpy(result, "call ");
         strcat(result, aux_val->token_value);
         aux_val->token_value = result;
+		//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
 
         if (ret) {
+			//printf("\n\n\n\n\nTesting ast_new  %s\n\n\n\n\n",ret->valor_lexico->token_value); //print test
             ret->valor_lexico = aux_val;
             ret->children = NULL;
             ret->num_children = 0;
@@ -55,22 +56,23 @@ tree_node_t *ast_new_call_func(val_lex_t *valor_lexico) {
     return ret;
 }
 
-// Função para liberar a memória alocada para a árvore
-void ast_free(tree_node_t *tree) {
-    if (tree != NULL) {
-        int i;
-        for (i = 0; i < tree->num_children; i++) {
-            ast_free(tree->children[i]);
-        }
-        free(tree->children);
-        free(tree->valor_lexico);
-        free(tree);
-    } else {
-        printf("Erro: %s recebeu parâmetro tree = %p.\n", __FUNCTION__, tree);
+void ast_free(tree_node_t *tree)
+{
+  if (tree != NULL){
+    int i;
+    for (i = 0; i < tree->num_children; i++){
+      ast_free(tree->children[i]);
     }
+    free(tree->children);
+    free(tree->valor_lexico);
+    free(tree);
+  }else{
+    printf("Erro: %s recebeu parâmetro tree = %p.\n", __FUNCTION__, tree);
+  }
 }
 
-// Função para adicionar um filho a um nó na árvore
+
+
 void ast_add_child(tree_node_t *parent, tree_node_t *child) {
     if (parent == NULL || child == NULL) return;
     parent->num_children++;
@@ -80,9 +82,11 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child) {
         exit(EXIT_FAILURE);
     }
     parent->children[parent->num_children - 1] = child;
+	//printf("\n\n\n\n\testing ast_add_child  %d\n\n\n\n\n",parent->num_children); //print test
+	//printf("\n\n\n\n\ntesting ast_add_child token value   %s\n\n\n\n\n",parent->children[parent->num_children - 1]->valor_lexico->token_value); //print test
 }
 
-// Função para exportar a árvore para visualização
+// Exporta mais elaborada
 void exporta(void *arvore) {
     if (arvore == NULL)
         return;
@@ -100,3 +104,23 @@ void exporta(void *arvore) {
         exporta(root->children[i]);
     }
 }
+
+//Exporta turbinado
+
+// void exporta_helper(tree_node_t *node, int depth) {
+//     if (node == NULL) return;
+//     // Print the current node
+//     printf("Node %p [Line: %d, Type: %d, Value: %s]\n", (void*)node, node->valor_lexico->lineno, node->valor_lexico->type, node->valor_lexico->token_value);
+//     for (int i = 0; i < node->num_children; i++) {
+//         for (int j = 0; j < depth; j++) {
+//             printf("  "); // Indentation for better visualization
+//         }
+//         printf("Child of %p -> %p\n", (void*)node, (void*)(node->children[i]));
+//         exporta_helper(node->children[i], depth + 1);
+//     }
+// }
+
+// void exporta(tree_node_t *node) {
+//     printf("Printing tree:\n");
+//     exporta_helper(node, 0);
+// }

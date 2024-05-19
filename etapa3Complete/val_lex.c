@@ -17,6 +17,8 @@ val_lex_t *gen_val(int line, int type, const char *token) {
     // Preenchemos os campos da estrutura com os valores fornecidos(literais ou identificadores)
     new_val->lineno = line;
     new_val->type = type;
+    // Alocamos memória para armazenar uma cópia do token_value
+	// printf("\n\n\n\n\n%s\n\n\n\n\n",token); //PRINT DE TESTEEEEEEEEEEEEEEE
     new_val->token_value = token;
     
     // Verificamos se a cópia do token_value foi bem-sucedida
