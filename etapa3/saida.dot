@@ -1,4 +1,149 @@
 # Executado assim: ./output2dot.sh 
 # https://graphviz.org/doc/info/lang.html
 digraph {
+  x559f6fb64410 [label="factorial"];
+  x559f6fb64410 -> x559f6fb64730
+  x559f6fb64410 -> x559f6fb65490
+  x559f6fb64730 [label="="];
+  x559f6fb64730 -> x559f6fb645f0
+  x559f6fb64730 -> x559f6fb64670
+  x559f6fb64730 -> x559f6fb64790
+  x559f6fb645f0 [label="x1"];
+  x559f6fb64670 [label="+"];
+  x559f6fb64670 -> x559f6fb64650
+  x559f6fb64670 -> x559f6fb646f0
+  x559f6fb64650 [label="a1"];
+  x559f6fb646f0 [label="b1"];
+  x559f6fb64790 [label="if"];
+  x559f6fb64790 -> x559f6fb64830
+  x559f6fb64790 -> x559f6fb648f0
+  x559f6fb64790 -> x559f6fb64cd0
+  x559f6fb64830 [label="<"];
+  x559f6fb64830 -> x559f6fb64810
+  x559f6fb64830 -> x559f6fb648b0
+  x559f6fb64810 [label="a"];
+  x559f6fb648b0 [label="1"];
+  x559f6fb648f0 [label="return"];
+  x559f6fb648f0 -> x559f6fb64970
+  x559f6fb64970 [label="1"];
+  x559f6fb64cd0 [label="="];
+  x559f6fb64cd0 -> x559f6fb64a10
+  x559f6fb64cd0 -> x559f6fb64a90
+  x559f6fb64cd0 -> x559f6fb64eb0
+  x559f6fb64a10 [label="x1"];
+  x559f6fb64a90 [label="+"];
+  x559f6fb64a90 -> x559f6fb64a70
+  x559f6fb64a90 -> x559f6fb64bf0
+  x559f6fb64a70 [label="a1"];
+  x559f6fb64bf0 [label="+"];
+  x559f6fb64bf0 -> x559f6fb64b30
+  x559f6fb64bf0 -> x559f6fb64c70
+  x559f6fb64b30 [label="*"];
+  x559f6fb64b30 -> x559f6fb64b10
+  x559f6fb64b30 -> x559f6fb64bb0
+  x559f6fb64b10 [label="b1"];
+  x559f6fb64bb0 [label="c1"];
+  x559f6fb64c70 [label="d1"];
+  x559f6fb64eb0 [label="="];
+  x559f6fb64eb0 -> x559f6fb64d70
+  x559f6fb64eb0 -> x559f6fb64df0
+  x559f6fb64eb0 -> x559f6fb65090
+  x559f6fb64d70 [label="x2"];
+  x559f6fb64df0 [label="+"];
+  x559f6fb64df0 -> x559f6fb64dd0
+  x559f6fb64df0 -> x559f6fb64e70
+  x559f6fb64dd0 [label="a2"];
+  x559f6fb64e70 [label="b2"];
+  x559f6fb65090 [label="="];
+  x559f6fb65090 -> x559f6fb64f50
+  x559f6fb65090 -> x559f6fb64fd0
+  x559f6fb65090 -> x559f6fb650f0
+  x559f6fb64f50 [label="x3"];
+  x559f6fb64fd0 [label="+"];
+  x559f6fb64fd0 -> x559f6fb64fb0
+  x559f6fb64fd0 -> x559f6fb65050
+  x559f6fb64fb0 [label="a3"];
+  x559f6fb65050 [label="b3"];
+  x559f6fb650f0 [label="return"];
+  x559f6fb650f0 -> x559f6fb65190
+  x559f6fb65190 [label="*"];
+  x559f6fb65190 -> x559f6fb65170
+  x559f6fb65190 -> x559f6fb65210
+  x559f6fb65170 [label="a"];
+  x559f6fb65210 [label="call factorial"];
+  x559f6fb65210 -> x559f6fb652d0
+  x559f6fb652d0 [label="-"];
+  x559f6fb652d0 -> x559f6fb652b0
+  x559f6fb652d0 -> x559f6fb65350
+  x559f6fb652b0 [label="a"];
+  x559f6fb65350 [label="1"];
+  x559f6fb65490 [label="execute"];
+  x559f6fb65490 -> x559f6fb654b0
+  x559f6fb65490 -> x559f6fb66170
+  x559f6fb654b0 [label="if"];
+  x559f6fb654b0 -> x559f6fb65530
+  x559f6fb654b0 -> x559f6fb65570
+  x559f6fb65530 [label="true"];
+  x559f6fb65570 [label="if"];
+  x559f6fb65570 -> x559f6fb655f0
+  x559f6fb65570 -> x559f6fb656d0
+  x559f6fb65570 -> x559f6fb65730
+  x559f6fb65570 -> x559f6fb658d0
+  x559f6fb655f0 [label="true"];
+  x559f6fb656d0 [label="="];
+  x559f6fb656d0 -> x559f6fb65650
+  x559f6fb656d0 -> x559f6fb656b0
+  x559f6fb65650 [label="x"];
+  x559f6fb656b0 [label="2"];
+  x559f6fb65730 [label="else"];
+  x559f6fb65730 -> x559f6fb65830
+  x559f6fb65830 [label="="];
+  x559f6fb65830 -> x559f6fb657b0
+  x559f6fb65830 -> x559f6fb65810
+  x559f6fb657b0 [label="x"];
+  x559f6fb65810 [label="3"];
+  x559f6fb658d0 [label="if"];
+  x559f6fb658d0 -> x559f6fb65950
+  x559f6fb658d0 -> x559f6fb65a30
+  x559f6fb658d0 -> x559f6fb65a90
+  x559f6fb658d0 -> x559f6fb65c30
+  x559f6fb65950 [label="false"];
+  x559f6fb65a30 [label="="];
+  x559f6fb65a30 -> x559f6fb659b0
+  x559f6fb65a30 -> x559f6fb65a10
+  x559f6fb659b0 [label="x"];
+  x559f6fb65a10 [label="2"];
+  x559f6fb65a90 [label="else"];
+  x559f6fb65a90 -> x559f6fb65b90
+  x559f6fb65b90 [label="="];
+  x559f6fb65b90 -> x559f6fb65b10
+  x559f6fb65b90 -> x559f6fb65b70
+  x559f6fb65b10 [label="x"];
+  x559f6fb65b70 [label="3"];
+  x559f6fb65c30 [label="while"];
+  x559f6fb65c30 -> x559f6fb65cd0
+  x559f6fb65c30 -> x559f6fb65f10
+  x559f6fb65cd0 [label=">="];
+  x559f6fb65cd0 -> x559f6fb65cb0
+  x559f6fb65cd0 -> x559f6fb65d50
+  x559f6fb65cb0 [label="x"];
+  x559f6fb65d50 [label="2"];
+  x559f6fb65f10 [label="="];
+  x559f6fb65f10 -> x559f6fb65dd0
+  x559f6fb65f10 -> x559f6fb65e50
+  x559f6fb65dd0 [label="x"];
+  x559f6fb65e50 [label="-"];
+  x559f6fb65e50 -> x559f6fb65e30
+  x559f6fb65e50 -> x559f6fb65ed0
+  x559f6fb65e30 [label="x"];
+  x559f6fb65ed0 [label="1"];
+  x559f6fb66170 [label="f"];
+  x559f6fb66170 -> x559f6fb661d0
+  x559f6fb661d0 [label="call f"];
+  x559f6fb661d0 -> x559f6fb66270
+  x559f6fb66270 [label="a"];
+  x559f6fb66270 -> x559f6fb662d0
+  x559f6fb662d0 [label="b"];
+  x559f6fb662d0 -> x559f6fb66330
+  x559f6fb66330 [label="c"];
 }
