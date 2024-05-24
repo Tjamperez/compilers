@@ -81,7 +81,8 @@ extern void *arvore;
 %type <tree> expressao
 %type <tree> operando
 %type <tree> operador
-%type <tree> comparacao
+%type <tree> greater_or_less
+%type <tree> equal_or_not
 %type <tree> adicaousub
 %type <tree> op_adicaousub
 %type <tree> multoudivoures
@@ -92,8 +93,8 @@ extern void *arvore;
 %type <tree> lista_de_argumentos
 %type <tree> nome_func
 %type <tree> literais
-%type <tree> op_comparacao
-%type <tree> nodeelse
+%type <tree> comparacao_1
+%type <tree> comparacao_2
 %type <tree> INVERTSIG
 %type <tree> NEGATE
 %type <tree> MULTIPLY
@@ -484,7 +485,7 @@ IF: TK_PR_IF
   ;
 ELSE: TK_PR_ELSE
 	{
-		$$ = ast_new_label_only("else"); // Cria um novo nó com o rótulo "else"
+		$$ = NULL; // Cria um novo nó com o rótulo "else"
 		//printf("Label ELSE\n"); // Debug print
 	}
 	;
@@ -495,20 +496,15 @@ condicional: IF '(' expressao ')' corpo
 				ast_add_child($$, $5); // Adiciona o corpo como filho do nó "if"
 				//printf("Added expressao and corpo to condicional\n"); // Debug print
 		   }
-           | IF '(' expressao ')' corpo nodeelse 
+           | IF '(' expressao ')' corpo ELSE corpo 
 		   {
 				$$ = $1;
 				ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
 				ast_add_child($$, $5); // Adiciona o corpo do "if" como filho do nó "if"
-				ast_add_child($$, $6); // Adiciona o nó "else" como filho do nó "if"
+				ast_add_child($$, $7); // Adiciona o nó "else" como filho do nó "if"
 				//printf("Added expressao, corpo, and corpo to condicional\n"); // Debug print
 		   }
 		   ;
-nodeelse: ELSE corpo
-		{
-			$$ = $1;
-			ast_add_child($$, $2); // Adiciona o corpo como filho do nó "else"
-		}
 
 //##########################
 // Comando de loop
@@ -537,7 +533,6 @@ loop: WHILE '(' expressao ')' corpo
 //criar uma estrutura hierárquica que 
 //reflete a hierarquia de operadores na linguagem de expressões.
 
-
 expressao: operando
 		 {
 			$$ = $1;
@@ -561,12 +556,12 @@ operando: operador
 
 //##########################
 // Definição de termos
-operador: comparacao
+operador: comparacao_1
 		{
 			$$ = $1;
 			//printf("Added comparacao to operador\n"); // Debug print
 		}
-        | operador AND comparacao
+        | operador AND comparacao_1
 		{
 			$$ = $2;
 			ast_add_child($$, $1);
@@ -576,52 +571,67 @@ operador: comparacao
         ;
 
 //##########################
-// Comparações
-comparacao: adicaousub
+// Comparações NOTEQUAL e EQUAL
+comparacao_1: comparacao_2
 		  {
 				$$ = $1;
-				//printf("Added adicaousub to comparacao\n"); // Debug print
+				//printf("Added comparacao_1 to comparacao_2\n"); // Debug print
 		  }
-          | adicaousub op_comparacao comparacao
+          |   comparacao_1 equal_or_not comparacao_2
 		  {
 				$$ = $2;
 				ast_add_child($$, $1);
 				ast_add_child($$, $3);
-				//printf("Added comparacao, op_comparacao, and adicaousub to comparacao\n"); // Debug print
+				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
 		  }
           ;
-
-//##########################
-// Operadores de comparação
-op_comparacao: LESSTHAN
+equal_or_not:  EQUAL
 			 {
 				$$ = $1;
-				//printf("Added LESSTHAN to op_comparacao\n"); // Debug print
-			 }
-             | GREATERTHAN
-			 {
-				$$ = $1;
-				//printf("Added GREATERTHAN to op_comparacao\n"); // Debug print
-			 }
-             | LESSEQUAL
-			 {
-				$$ = $1;
-				//printf("Added LESSEQUAL to op_comparacao\n"); // Debug print
-			 }
-             | GREATEREQUAL
-			 {
-				$$ = $1;
-				//printf("Added GREATEREQUAL to op_comparacao\n"); // Debug print
-			 }
-             | EQUAL
-			 {
-				$$ = $1;
-				//printf("Added EQUAL to op_comparacao\n"); // Debug print
+				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
 			 }
              | NOTEQUAL
 			 {
 				$$ = $1;
-				//printf("Added NOTEQUAL to op_comparacao\n"); // Debug print
+				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
+			 }
+             ;
+
+//##########################
+// Comparações de GREATEREQUAL,LESSEQUAL,GREATERTHAN,LESSTHAN
+comparacao_2: adicaousub
+		  {
+				$$ = $1;
+				//printf("Added adicaousub to comparacao_2\n"); // Debug print
+		  }
+          |   comparacao_2 greater_or_less adicaousub
+
+		  {
+				$$ = $2;
+				ast_add_child($$, $1);
+				ast_add_child($$, $3);
+				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
+		  }
+          ;
+greater_or_less:  GREATEREQUAL
+			 {
+				$$ = $1;
+				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
+			 }
+             | 	  LESSEQUAL
+			 {
+				$$ = $1;
+				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
+			 }
+			 | 	  GREATERTHAN
+			 {
+				$$ = $1;
+				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
+			 }
+			 | 	  LESSTHAN
+			 {
+				$$ = $1;
+				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
              ;
 
