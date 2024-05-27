@@ -1,0 +1,71 @@
+# Executado assim: ./output2dot.sh 
+# https://graphviz.org/doc/info/lang.html
+digraph {
+  x55b4bde133b0 [label="f"];
+  x55b4bde133b0 -> x55b4bde13e50
+  x55b4bde13e50 [label="="];
+  x55b4bde13e50 -> x55b4bde13ad0
+  x55b4bde13e50 -> x55b4bde13d90
+  x55b4bde13e50 -> x55b4bde14270
+  x55b4bde13ad0 [label="x"];
+  x55b4bde13d90 [label="-"];
+  x55b4bde13d90 -> x55b4bde13cd0
+  x55b4bde13d90 -> x55b4bde13e10
+  x55b4bde13cd0 [label="-"];
+  x55b4bde13cd0 -> x55b4bde13c10
+  x55b4bde13cd0 -> x55b4bde13d50
+  x55b4bde13c10 [label="+"];
+  x55b4bde13c10 -> x55b4bde13b50
+  x55b4bde13c10 -> x55b4bde13c90
+  x55b4bde13b50 [label="+"];
+  x55b4bde13b50 -> x55b4bde13b30
+  x55b4bde13b50 -> x55b4bde13bd0
+  x55b4bde13b30 [label="a"];
+  x55b4bde13bd0 [label="b"];
+  x55b4bde13c90 [label="c"];
+  x55b4bde13d50 [label="d"];
+  x55b4bde13e10 [label="e"];
+  x55b4bde14270 [label="="];
+  x55b4bde14270 -> x55b4bde13ef0
+  x55b4bde14270 -> x55b4bde141b0
+  x55b4bde14270 -> x55b4bde14690
+  x55b4bde13ef0 [label="y"];
+  x55b4bde141b0 [label="/"];
+  x55b4bde141b0 -> x55b4bde140f0
+  x55b4bde141b0 -> x55b4bde14230
+  x55b4bde140f0 [label="/"];
+  x55b4bde140f0 -> x55b4bde14030
+  x55b4bde140f0 -> x55b4bde14170
+  x55b4bde14030 [label="*"];
+  x55b4bde14030 -> x55b4bde13f70
+  x55b4bde14030 -> x55b4bde140b0
+  x55b4bde13f70 [label="*"];
+  x55b4bde13f70 -> x55b4bde13f50
+  x55b4bde13f70 -> x55b4bde13ff0
+  x55b4bde13f50 [label="f"];
+  x55b4bde13ff0 [label="g"];
+  x55b4bde140b0 [label="h"];
+  x55b4bde14170 [label="i"];
+  x55b4bde14230 [label="j"];
+  x55b4bde14690 [label="="];
+  x55b4bde14690 -> x55b4bde14310
+  x55b4bde14690 -> x55b4bde145d0
+  x55b4bde14310 [label="z"];
+  x55b4bde145d0 [label="+"];
+  x55b4bde145d0 -> x55b4bde14510
+  x55b4bde145d0 -> x55b4bde14650
+  x55b4bde14510 [label="+"];
+  x55b4bde14510 -> x55b4bde14450
+  x55b4bde14510 -> x55b4bde14590
+  x55b4bde14450 [label="*"];
+  x55b4bde14450 -> x55b4bde14390
+  x55b4bde14450 -> x55b4bde144d0
+  x55b4bde14390 [label="*"];
+  x55b4bde14390 -> x55b4bde14370
+  x55b4bde14390 -> x55b4bde14410
+  x55b4bde14370 [label="k"];
+  x55b4bde14410 [label="l"];
+  x55b4bde144d0 [label="m"];
+  x55b4bde14590 [label="n"];
+  x55b4bde14650 [label="o"];
+}

@@ -1,0 +1,71 @@
+# Executado assim: ./output2dot.sh 
+# https://graphviz.org/doc/info/lang.html
+digraph {
+  x55ecbc9c13b0 [label="f"];
+  x55ecbc9c13b0 -> x55ecbc9c1e50
+  x55ecbc9c1e50 [label="="];
+  x55ecbc9c1e50 -> x55ecbc9c1ad0
+  x55ecbc9c1e50 -> x55ecbc9c1d90
+  x55ecbc9c1e50 -> x55ecbc9c2270
+  x55ecbc9c1ad0 [label="x"];
+  x55ecbc9c1d90 [label="-"];
+  x55ecbc9c1d90 -> x55ecbc9c1cd0
+  x55ecbc9c1d90 -> x55ecbc9c1e10
+  x55ecbc9c1cd0 [label="-"];
+  x55ecbc9c1cd0 -> x55ecbc9c1c10
+  x55ecbc9c1cd0 -> x55ecbc9c1d50
+  x55ecbc9c1c10 [label="+"];
+  x55ecbc9c1c10 -> x55ecbc9c1b50
+  x55ecbc9c1c10 -> x55ecbc9c1c90
+  x55ecbc9c1b50 [label="+"];
+  x55ecbc9c1b50 -> x55ecbc9c1b30
+  x55ecbc9c1b50 -> x55ecbc9c1bd0
+  x55ecbc9c1b30 [label="a"];
+  x55ecbc9c1bd0 [label="b"];
+  x55ecbc9c1c90 [label="c"];
+  x55ecbc9c1d50 [label="d"];
+  x55ecbc9c1e10 [label="e"];
+  x55ecbc9c2270 [label="="];
+  x55ecbc9c2270 -> x55ecbc9c1ef0
+  x55ecbc9c2270 -> x55ecbc9c21b0
+  x55ecbc9c2270 -> x55ecbc9c2690
+  x55ecbc9c1ef0 [label="y"];
+  x55ecbc9c21b0 [label="/"];
+  x55ecbc9c21b0 -> x55ecbc9c20f0
+  x55ecbc9c21b0 -> x55ecbc9c2230
+  x55ecbc9c20f0 [label="/"];
+  x55ecbc9c20f0 -> x55ecbc9c2030
+  x55ecbc9c20f0 -> x55ecbc9c2170
+  x55ecbc9c2030 [label="*"];
+  x55ecbc9c2030 -> x55ecbc9c1f70
+  x55ecbc9c2030 -> x55ecbc9c20b0
+  x55ecbc9c1f70 [label="*"];
+  x55ecbc9c1f70 -> x55ecbc9c1f50
+  x55ecbc9c1f70 -> x55ecbc9c1ff0
+  x55ecbc9c1f50 [label="f"];
+  x55ecbc9c1ff0 [label="g"];
+  x55ecbc9c20b0 [label="h"];
+  x55ecbc9c2170 [label="i"];
+  x55ecbc9c2230 [label="j"];
+  x55ecbc9c2690 [label="="];
+  x55ecbc9c2690 -> x55ecbc9c2310
+  x55ecbc9c2690 -> x55ecbc9c25d0
+  x55ecbc9c2310 [label="z"];
+  x55ecbc9c25d0 [label="+"];
+  x55ecbc9c25d0 -> x55ecbc9c2510
+  x55ecbc9c25d0 -> x55ecbc9c2650
+  x55ecbc9c2510 [label="+"];
+  x55ecbc9c2510 -> x55ecbc9c2450
+  x55ecbc9c2510 -> x55ecbc9c2590
+  x55ecbc9c2450 [label="*"];
+  x55ecbc9c2450 -> x55ecbc9c2390
+  x55ecbc9c2450 -> x55ecbc9c24d0
+  x55ecbc9c2390 [label="*"];
+  x55ecbc9c2390 -> x55ecbc9c2370
+  x55ecbc9c2390 -> x55ecbc9c2410
+  x55ecbc9c2370 [label="k"];
+  x55ecbc9c2410 [label="l"];
+  x55ecbc9c24d0 [label="m"];
+  x55ecbc9c2590 [label="n"];
+  x55ecbc9c2650 [label="o"];
+}
