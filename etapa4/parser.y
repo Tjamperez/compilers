@@ -288,13 +288,13 @@ cabecalho:   criar_scope '(' lista_de_parametros ')' OR tipo '/' identificador
 
             const char* new_key = strdup($8->valor_lexico->token_value);
 
-            if(find_symbol(scope->top, new_key) != NULL)
+            if(find_symbol(scope, new_key) != NULL)
             {
-                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", symbol_key, get_line_number());
+                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
                 exit(ERR_DECLARED);
             }
 
-            insert_symbol(scope->top, new_key, create_symbol($8->token_value,TOKEN_NATURE_FUNCTION));
+            insert_symbol(scope, new_key, create_symbol($8->valor_lexico,TOKEN_NATURE_FUNCTION));
 
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }

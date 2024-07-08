@@ -46,6 +46,7 @@ void free_stack_of_tables(stack_of_tables_t* stack) {
     free(stack);
 }
 
+// Procurar símbolo na pilha de tabelas de símbolos.
 symbol_dictionary_t* search_symbol_stack(stack_of_tables_t *stack, char* key) {
 
     if (stack->size == 0)
@@ -64,6 +65,7 @@ symbol_dictionary_t* search_symbol_stack(stack_of_tables_t *stack, char* key) {
     return symbol_found;
 }
 
+// Checar natureza dos identificadores e ver se temos erro.
 void check_identifiers(stack_of_tables_t *stack, int naturezaSymbolo, const char *identificador) {
 
 	symbol_dictionary_t *item = search_symbol_stack(stack,identificador);
@@ -87,6 +89,8 @@ void check_identifiers(stack_of_tables_t *stack, int naturezaSymbolo, const char
 	}
 } 
 
+
+// Comparar tipos para retornar o novo tipo.
 int check_types(val_lex_t *val_lex_1 , val_lex_t *val_lex_2) {
 	int type_1, type_2;
     type_1 = val_lex_1->type;
@@ -117,6 +121,7 @@ int check_types(val_lex_t *val_lex_1 , val_lex_t *val_lex_2) {
 }
 }
 
+// Pegar o novo tipo e retornar.
 int new_type(tree_node_t* nodo_origem, tree_node_t* nodo_destino) {
 	int origem, destino;
     origem = nodo_origem->valor_lexico->type;
