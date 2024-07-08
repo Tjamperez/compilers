@@ -47,12 +47,12 @@ void free_stack_of_tables(stack_of_tables_t* stack) {
 }
 
 // Procurar símbolo na pilha de tabelas de símbolos.
-symbol_dictionary_t* search_symbol_stack(stack_of_tables_t *stack, char* key) {
+symbol_t* search_symbol_stack(stack_of_tables_t *stack, char* key) {
 
     if (stack->size == 0)
         return NULL;
     
-    symbol_dictionary_t* symbol_found = NULL;
+    symbol_t* symbol_found = NULL;
     for(int thisScope = stack->size - 1; thisScope >= 0; thisScope--) {
         
     	symbol_found = find_symbol(stack->tables[thisScope], key);
@@ -68,10 +68,10 @@ symbol_dictionary_t* search_symbol_stack(stack_of_tables_t *stack, char* key) {
 // Checar natureza dos identificadores e ver se temos erro.
 void check_identifiers(stack_of_tables_t *stack, int naturezaSymbolo, const char *identificador) {
 
-	symbol_dictionary_t *item = search_symbol_stack(stack,identificador);
+	symbol_t *item = search_symbol_stack(stack,(char*)identificador);
 	
 	if(item != NULL) {
-		int natureza = item->content->nature;
+		int natureza = item->nature;
 		
 		if(naturezaSymbolo != natureza) {
 			switch(natureza) {
@@ -127,9 +127,9 @@ int new_type(tree_node_t* nodo_origem, tree_node_t* nodo_destino) {
     origem = nodo_origem->valor_lexico->type;
     destino = nodo_destino->valor_lexico->type;
 
-	int tipoFinal  = check_types(nodo_destino,nodo_origem);
+	int tipoFinal  = check_types(nodo_destino->valor_lexico,nodo_origem->valor_lexico);
 	
-	check_types(nodo_destino,nodo_origem);
+	check_types(nodo_destino->valor_lexico,nodo_origem->valor_lexico);
 		
 	return tipoFinal;
 }

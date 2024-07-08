@@ -1756,7 +1756,7 @@ yyreduce:
                 exit(ERR_DECLARED);
             }
 
-            insert_symbol(scope, new_key, create_symbol((yyvsp[0].tree)->valor_lexico,TOKEN_NATURE_FUNCTION));
+            insert_symbol(scope, new_key, create_symbol((yyvsp[0].tree),TOKEN_NATURE_FUNCTION));
 
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }

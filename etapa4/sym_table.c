@@ -5,9 +5,9 @@
 #include "sym_stack.h"
 
 
-symbol_t* create_symbol(val_lex_t* tree_node_values, int nature) {
+symbol_t* create_symbol(tree_node_t* tree_node, int nature) {
     symbol_t *symbol = (symbol_t *)malloc(sizeof(symbol_t));
-    symbol->tree_node_values = tree_node_values;
+    symbol->tree_node = tree_node;
     symbol->nature = nature;
     symbol->following = NULL;
     return symbol;
@@ -15,13 +15,21 @@ symbol_t* create_symbol(val_lex_t* tree_node_values, int nature) {
 
 
 
-int insert_symbol(table_of_symbols_t* table, const char* key, val_lex_t* tree_node_values, int nature) {
+int insert_symbol(table_of_symbols_t* table, const char* key, symbol_t *symbol) {
     if (table->size == table->capacity) {
         table->capacity *= 2;
         table->items = (symbol_dictionary_t **)realloc(table->items, sizeof(symbol_dictionary_t *) * table->capacity);
+        if (table->items == NULL) {
+            // Handle realloc failure
+            return -1;
+        }
     }
-    symbol_t *symbol = create_symbol(tree_node_values, nature);
+    
     symbol_dictionary_t *identity = create_symbol_dictionary(key, symbol);
+    if (identity == NULL) {
+        return -1;
+    }
+    
     table->items[table->size++] = identity;
     return 0;
 }
@@ -57,7 +65,7 @@ symbol_t* find_symbol(table_of_symbols_t* table, const char* key) {
 
 
 void free_symbol(symbol_t* symbol) {
-    free(symbol->tree_node_values);
+    free(symbol->tree_node);
     free(symbol);
 }
 

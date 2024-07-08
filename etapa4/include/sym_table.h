@@ -12,7 +12,7 @@
 
 // Estrutura do símbolo
 typedef struct symbol{
-    val_lex_t* tree_node_values;
+    tree_node_t* tree_node;
     int nature;
     struct symbol *following;
 } symbol_t;
@@ -36,10 +36,10 @@ typedef struct table_of_symbols {
 table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent);
 
 //Funçã opara criar símbolo
-symbol_t* create_symbol(val_lex_t* tree_node_values, int nature);
+symbol_t* create_symbol(tree_node_t* tree_node, int nature);
 
 // Insere um novo símbolo na tabela de símbolos especificada.
-int insert_symbol(table_of_symbols_t* table, const char* key, val_lex_t* tree_node_values, int nature);
+int insert_symbol(table_of_symbols_t* table, const char* key, symbol_t *symbol);
 
 // Busca um símbolo na tabela de símbolos especificada pelo seu lexema (chave).
 symbol_t* find_symbol(table_of_symbols_t* table, const char* key);
@@ -55,5 +55,8 @@ void cleanup_symbol_table(table_of_symbols_t* table);
 
 //Inicializa a pilha de tabela de símbolos.
 table_of_symbols_t* initialize_symbol_table();
+
+//Cria o dicionário pro símbolo.
+symbol_dictionary_t* create_symbol_dictionary(const char *key, symbol_t *content);
 
 #endif // _SYM_TABLE_H_

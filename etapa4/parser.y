@@ -294,7 +294,7 @@ cabecalho:   criar_scope '(' lista_de_parametros ')' OR tipo '/' identificador
                 exit(ERR_DECLARED);
             }
 
-            insert_symbol(scope, new_key, create_symbol($8->valor_lexico,TOKEN_NATURE_FUNCTION));
+            insert_symbol(scope, new_key, create_symbol($8,TOKEN_NATURE_FUNCTION));
 
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
