@@ -2,9 +2,17 @@
 #define _TREE_H_
 #include "val_lex.h"
 
+#define  NODE_TYPE_INT 1
+#define  NODE_TYPE_FLOAT 2
+#define  NODE_TYPE_BOOL 3
+#define  NODE_TYPE_UNDECLARED 4
+
+
 typedef struct tree_node {
     val_lex_t *valor_lexico;
     struct tree_node **children;
+    int node_type;
+    int data_type;
     int num_children;
 } tree_node_t;
 

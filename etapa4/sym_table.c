@@ -5,9 +5,10 @@
 #include "sym_stack.h"
 
 
-symbol_t* create_symbol(tree_node_t* tree_node, int nature) {
+symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type) {
     symbol_t *symbol = (symbol_t *)malloc(sizeof(symbol_t));
     symbol->tree_node = tree_node;
+    symbol->data_type = data_type;
     symbol->nature = nature;
     symbol->following = NULL;
     return symbol;
@@ -15,7 +16,7 @@ symbol_t* create_symbol(tree_node_t* tree_node, int nature) {
 
 
 
-int insert_symbol(table_of_symbols_t* table, const char* key, symbol_t *symbol) {
+int insert_symbol(table_of_symbols_t* table, char* key, symbol_t *symbol) {
     if (table->size == table->capacity) {
         table->capacity *= 2;
         table->items = (symbol_dictionary_t **)realloc(table->items, sizeof(symbol_dictionary_t *) * table->capacity);
@@ -35,7 +36,7 @@ int insert_symbol(table_of_symbols_t* table, const char* key, symbol_t *symbol) 
 }
 
 
-symbol_dictionary_t* create_symbol_dictionary(const char *key, symbol_t *content) {
+symbol_dictionary_t* create_symbol_dictionary(char *key, symbol_t *content) {
     symbol_dictionary_t *identity = (symbol_dictionary_t *)malloc(sizeof(symbol_dictionary_t));
     identity->key = key;
     identity->content = content;
@@ -54,7 +55,7 @@ table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent) {
 }
 
 
-symbol_t* find_symbol(table_of_symbols_t* table, const char* key) {
+symbol_t* find_symbol(table_of_symbols_t* table, char* key) {
     for (int i = 0; i < table->size; i++) {
         if (strcmp(table->items[i]->key, key) == 0) {
             return table->items[i]->content;
@@ -96,7 +97,7 @@ void cleanup_symbol_table(table_of_symbols_t* table) {
     free_table_of_symbols(table);
 }
 
-symbol_t* delete_symbol(table_of_symbols_t* table, const char* key) {
+symbol_t* delete_symbol(table_of_symbols_t* table, char* key) {
     for (int i = 0; i < table->size; i++) {
         if (strcmp(table->items[i]->key, key) == 0) {
             symbol_t* deleted_symbol = table->items[i]->content;

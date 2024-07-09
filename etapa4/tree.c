@@ -9,6 +9,7 @@ tree_node_t *ast_new(val_lex_t *valor_lexico) {
     if (ret) {
         ret->valor_lexico = valor_lexico;
         ret->children = NULL;
+        ret->node_type = NODE_TYPE_UNDECLARED;
         ret->num_children = 0;
     }
     return ret;

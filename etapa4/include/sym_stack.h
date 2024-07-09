@@ -23,7 +23,7 @@ typedef struct stack_of_tables {
 stack_of_tables_t* create_stack_of_tables();
 
 // Cria uma nova tabela de símbolos e a empilha na pilha de escopos.
-int push_scope(stack_of_tables_t* stack);
+int push_scope(stack_of_tables_t* stack ,table_of_symbols_t* table);
 
 // Desempilha a tabela de símbolos do escopo atual e libera a memória associada.
 table_of_symbols_t* pop_scope(stack_of_tables_t* stack);
@@ -31,7 +31,10 @@ table_of_symbols_t* pop_scope(stack_of_tables_t* stack);
 // Libera toda a memória associada à pilha de tabelas de símbolos.
 void free_stack_of_tables(stack_of_tables_t* stack);
 
-int check_types(val_lex_t *val_lex_1 , val_lex_t *val_lex_2);
+int check_types(tree_node_t* destiny_node , tree_node_t * origin_node);
 
+int new_type(tree_node_t* destiny_node, tree_node_t* origin_node);
+
+symbol_t* search_symbol_stack(stack_of_tables_t *stack, char* key);
 
 #endif // _SYM_STACK_H_

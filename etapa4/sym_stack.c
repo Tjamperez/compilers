@@ -16,12 +16,11 @@ stack_of_tables_t* create_stack_of_tables() {
 
 
 // Inserir na pilha.
-int push_scope(stack_of_tables_t* stack) {
+int push_scope(stack_of_tables_t* stack, table_of_symbols_t *new_table) {
     if (stack->size == stack->capacity) {
         stack->capacity *= 2;
         stack->tables = (table_of_symbols_t **)realloc(stack->tables, sizeof(table_of_symbols_t *) * stack->capacity);
     }
-    table_of_symbols_t *new_table = create_table_of_symbols(stack->top);
     stack->tables[stack->size++] = new_table;
     stack->top = new_table;
     return 0;
@@ -82,7 +81,7 @@ void check_identifiers(stack_of_tables_t *stack, int naturezaSymbolo, const char
 					exit(ERR_FUNCTION);
 					break;
                 default:
-                    printf("Wtf?");
+                    printf("Nunca deve acontecer");
                     break;
 			}
 		}
@@ -91,45 +90,40 @@ void check_identifiers(stack_of_tables_t *stack, int naturezaSymbolo, const char
 
 
 // Comparar tipos para retornar o novo tipo.
-int check_types(val_lex_t *val_lex_1 , val_lex_t *val_lex_2) {
-	int type_1, type_2;
-    type_1 = val_lex_1->type;
-    type_2 = val_lex_2->type;
-
-	switch (type_1) {
-    case LIT_TYPE_BOOL:
-        switch (type_2) {
-            case LIT_TYPE_INT:
-                return LIT_TYPE_INT;
-            case LIT_TYPE_FLOAT:
-                return LIT_TYPE_FLOAT;
-            default: // Qualquer caso que cair aqui é bool.
-                return LIT_TYPE_BOOL;
+int check_types(tree_node_t* destiny_node, tree_node_t* origin_node) {
+	int destino,origem;
+    destino = destiny_node->node_type;
+    origem = origin_node->node_type;
+    
+    switch (destino) {
+    case NODE_TYPE_INT:
+        switch (origem) {
+            case NODE_TYPE_FLOAT:
+                return NODE_TYPE_FLOAT;
+            default:  // Inclui NODE_TYPE_INT, NODE_TYPE_BOOL, e qualquer outro caso.
+                return NODE_TYPE_INT;
         }
-    case LIT_TYPE_FLOAT:
-        return LIT_TYPE_FLOAT; // Float é extremamente dominante.
-    case LIT_TYPE_INT:
-        switch (type_2) {
-            case LIT_TYPE_FLOAT:
-                return LIT_TYPE_FLOAT;
-            default:
-                return LIT_TYPE_INT; // Qualquer caso que cair aqui é int, seja um bool ou int.
+    case NODE_TYPE_FLOAT:
+        return NODE_TYPE_FLOAT; // Float é dominante em todos os casos.
+    case NODE_TYPE_BOOL:
+        switch (origem) {
+            case NODE_TYPE_INT:
+                return NODE_TYPE_INT;
+            case NODE_TYPE_FLOAT:
+                return NODE_TYPE_FLOAT;
+            default:  // Inclui quaisquer casos que faltam, incluso NODE_TYPE_BOOL.
+                return NODE_TYPE_BOOL;
         }
+    
     default:
-        // Qualquer coisa que cair aqui é porque não deu bom...
-        break;
-}
+        printf("Esse caso não deve acontecer.");
+        return 10; // Erro generalizado.
+    }
+
 }
 
 // Pegar o novo tipo e retornar.
-int new_type(tree_node_t* nodo_origem, tree_node_t* nodo_destino) {
-	int origem, destino;
-    origem = nodo_origem->valor_lexico->type;
-    destino = nodo_destino->valor_lexico->type;
-
-	int tipoFinal  = check_types(nodo_destino->valor_lexico,nodo_origem->valor_lexico);
-	
-	check_types(nodo_destino->valor_lexico,nodo_origem->valor_lexico);
-		
+int new_type(tree_node_t* destiny_node, tree_node_t* origin_node) {
+	int tipoFinal  = check_types(destiny_node,origin_node);
 	return tipoFinal;
 }

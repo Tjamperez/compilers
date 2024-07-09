@@ -17,10 +17,13 @@
 int yylex(void);
 int yyerror(char const *s);
 extern int get_line_number(void);
+
+int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
+
 extern char *yytext;
 extern void *arvore;
-extern void *global_sym_table;
-extern void *scope;
+extern table_of_symbols_t *global_sym_table;
+extern stack_of_tables_t *stack_of_tables;
 %}
 
 %token  TK_PR_INT
@@ -61,6 +64,7 @@ extern void *scope;
 %type <tree> LITTRUE
 %type <tree> LITFALSE
 
+%type <tree> criar_scope;
 %type <tree> programa
 %type <tree> lista_de_elementos
 %type <tree> elemento
@@ -210,16 +214,21 @@ call_identificador: TK_IDENTIFICADOR
 tipo: INT
 	{
 		$$ = $1;
+        symbol_type_now = TYPE_INT;
+
 		//printf("Added INT to tipo\n"); // Debug print
 	}
     | FLOAT
 	{
 		$$ = $1;
+        symbol_type_now = TYPE_FLOAT;
+
 		//printf("Added FLOAT to tipo\n"); // Debug print
 	}
     | BOOL
 	{
 		$$ = $1;
+        symbol_type_now = TYPE_BOOL;
 		//printf("Added BOOL to tipo\n"); // Debug print
 	}
     ;
@@ -275,36 +284,44 @@ definicao_de_funcao: cabecalho corpo
 						if ($2 != NULL){
 							ast_add_child($$, $2); // Se houver corpo , adiciona o corpo como filho da definição de função
 						}
-                        free_table_of_symbols(pop_scope(scope));
+                        free_table_of_symbols(pop_scope(stack_of_tables));
 						//printf("Added cabecalho and corpo to definicao_de_funcao\n"); // Debug print
 				   }
                    ;
 
 //##########################
 // Cabeçalho da função
-cabecalho:   criar_scope '(' lista_de_parametros ')' OR tipo '/' identificador
+cabecalho:   criar_scope '(' lista_de_parametros ')' OR tipo '/' identificador //empilhar_identificador
 		 {
 			$$ = $8; // Define o cabeçalho como o identificador
+            char *new_key = strdup($8->valor_lexico->token_value);
 
-            const char* new_key = strdup($8->valor_lexico->token_value);
-
-            if(find_symbol(scope, new_key) != NULL)
+            if(find_symbol(stack_of_tables->top, new_key) != NULL)
             {
                 printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
                 exit(ERR_DECLARED);
             }
 
-            insert_symbol(scope, new_key, create_symbol($8,TOKEN_NATURE_FUNCTION));
+            insert_symbol(stack_of_tables->top, new_key, create_symbol($8,TOKEN_NATURE_FUNCTION, symbol_type_now));
 
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
          ;
 
 //##########################
+// Cabeçalho da função
+empilhar_identificador: // Jogar identificador pra empilhar o nome no escopo certo
+                      {
+                        // push_nome_func()
+                      }
+
+//##########################
 // Criar novo scope
 criar_scope: 
            {
-                push_scope(scope);
+                $$ = NULL;
+                table_of_symbols_t *new_scope = create_table_of_symbols(stack_of_tables->top);
+                push_scope(stack_of_tables,new_scope);
            }
 //##########################
 // Token OR
@@ -353,6 +370,14 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
          {
 			$$ = $1;
 			ast_add_child($$, $2);
+            char *new_key = strdup($2->valor_lexico->token_value);
+            if(find_symbol(stack_of_tables->top, new_key) != NULL)
+            {
+                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
+                exit(ERR_DECLARED);
+            }
+
+            insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 			//printf("Added tipo and identificador to parametro\n"); // Debug print
 		 }
          ;
@@ -463,6 +488,7 @@ comando_atribuicao: identificador '=' expressao
 					$$ = ast_new_label_only("="); // Cria um novo nó com o rótulo "="
 					ast_add_child($$, $1); // Adiciona o identificador como filho do nó
 					ast_add_child($$, $3); // Adiciona a expressão como filho do nó
+                    $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
 				  }
                   ;
@@ -479,6 +505,7 @@ comando_retorno: RETURN expressao
 			   {
 					$$ = $1;
 					ast_add_child($$, $2);
+                    $$->node_type = $2->node_type;
 					//printf("Added expressao to comando_retorno\n"); // Debug print
 			   }
 			   ;
@@ -516,6 +543,7 @@ condicional: IF '(' expressao ')' corpo
 				$$ = $1; // Define a condicional como o nó "if"
 				ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
 				ast_add_child($$, $5); // Adiciona o corpo como filho do nó "if"
+                $$->node_type = $3->node_type;
 				//printf("Added expressao and corpo to condicional\n"); // Debug print
 		   }
            | IF '(' expressao ')' corpo ELSE corpo 
@@ -524,6 +552,7 @@ condicional: IF '(' expressao ')' corpo
 				ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
 				ast_add_child($$, $5); // Adiciona o corpo do "if" como filho do nó "if"
 				ast_add_child($$, $7); // Adiciona o nó "else" como filho do nó "if"
+                $$->node_type = $3->node_type;
 				//printf("Added expressao, corpo, and corpo to condicional\n"); // Debug print
 		   }
 		   ;
@@ -541,6 +570,7 @@ loop: WHILE '(' expressao ')' corpo
 		$$ = $1;
 		ast_add_child($$, $3); // Adiciona a expressão como filho do nó "while"
 		ast_add_child($$, $5); // Adiciona o corpo como filho do nó "while"
+        $$->node_type = $3->node_type;
 		//printf("Added expressao and corpo to loop\n"); // Debug print
 	}
 	;
@@ -572,6 +602,7 @@ operando: operador
 			$$ = $2;
 			ast_add_child($$, $1);
 			ast_add_child($$, $3);
+            $$->node_type = new_type($1,$3);
 			//printf("Added operando and operador to operando\n"); // Debug print
 		}
         ;
@@ -588,6 +619,7 @@ operador: comparacao_1
 			$$ = $2;
 			ast_add_child($$, $1);
 			ast_add_child($$, $3);
+            $$->node_type = new_type($1,$3);
 			//printf("Added operador and comparacao to operador\n"); // Debug print
 		}
         ;
@@ -604,6 +636,7 @@ comparacao_1: comparacao_2
 				$$ = $2;
 				ast_add_child($$, $1);
 				ast_add_child($$, $3);
+                $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
 		  }
           ;
@@ -632,6 +665,7 @@ comparacao_2: adicaousub
 				$$ = $2;
 				ast_add_child($$, $1);
 				ast_add_child($$, $3);
+                $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
 		  }
           ;
@@ -669,6 +703,7 @@ adicaousub: multoudivoures
 					$$ = $2;
 					ast_add_child($$, $1);
 					ast_add_child($$, $3);
+                    $$->node_type = new_type($1,$3);
 					//printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
 		  }
           ;
@@ -699,6 +734,7 @@ multoudivoures: unario
 					$$ = $2;
 					ast_add_child($$, $1);
 					ast_add_child($$, $3);
+                    $$->node_type = new_type($1,$3);
 					//printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
 			  }
               ;
@@ -733,12 +769,14 @@ unario: primario
 	  {
 			$$ = $1;
 		    ast_add_child($$, $2);
+            $$->node_type = $2->node_type;
 		    //printf("Added INVERTSIG and unario to unario\n"); // Debug print
 	  }
       | NEGATE unario
 	  {
 			$$ = $1;
 		    ast_add_child($$, $2);
+            $$->node_type = $2->node_type;
 		    //printf("Added NEGATE and unario to unario\n"); // Debug print
 	  }
       ;
@@ -760,9 +798,10 @@ primario: identificador
 			$$ = $1;
 			//printf("Added chamada_funcao to primario\n"); // Debug print
 		}
-        | '(' expressao ')'
+        | '(' expressao ')' // Loop de expressoes, menor prioridade de todos.
 		{
 			$$ = $2;
+            $$->node_type = $2->node_type;
 			//printf("Added expressao to primario\n"); // Debug print
 		}
         ;
@@ -773,7 +812,19 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 			  {
 				$$ = $1;
 				ast_add_child($$, $3);
+                char *new_key = (char*)$1->valor_lexico->token_value;
+                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+                if(result == NULL)
+                {
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+    				exit(ERR_UNDECLARED);
+                }
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
+                else
+                {
+                    int nature = result->nature;
+                    $$->node_type = result->data_type;
+                }
 			  }
 			  | nome_func '('/*vazio*/')'
 			  {
@@ -849,6 +900,7 @@ literais: LITINT
 LITINT: TK_LIT_INT
 	  {
 			$$ = ast_new($1);
+            $$->node_type = NODE_TYPE_INT;
 			//printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 	  }
 	  ;
@@ -858,6 +910,7 @@ LITINT: TK_LIT_INT
 LITFLOAT: TK_LIT_FLOAT
 		{
 			$$ = ast_new($1);
+            $$->node_type = NODE_TYPE_FLOAT;
 			//printf("Added TK_LIT_FLOAT to LITFLOAT\n"); // Debug print
 		}
 		;
@@ -867,6 +920,7 @@ LITFLOAT: TK_LIT_FLOAT
 LITFALSE: TK_LIT_FALSE
 		{
 			$$ = ast_new($1);
+            $$->node_type = NODE_TYPE_BOOL;
 			//printf("Added TK_LIT_FALSE to LITFALSE\n"); // Debug print
 		}
 		;
@@ -876,6 +930,7 @@ LITFALSE: TK_LIT_FALSE
 LITTRUE: TK_LIT_TRUE
 	   {
 			$$ = ast_new($1);
+            $$->node_type = NODE_TYPE_BOOL;
 			//printf("Added TK_LIT_TRUE to LITTRUE\n"); // Debug print
 	   }
 	   ;

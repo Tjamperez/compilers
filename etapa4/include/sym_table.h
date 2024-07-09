@@ -10,16 +10,21 @@
 #define TOKEN_NATURE_IDENTIFIER 1
 #define TOKEN_NATURE_FUNCTION 2
 
+#define TYPE_INT 1
+#define TYPE_FLOAT 2
+#define TYPE_BOOL 3
+
 // Estrutura do símbolo
 typedef struct symbol{
     tree_node_t* tree_node;
     int nature;
+    int data_type;
     struct symbol *following;
 } symbol_t;
 
 // Estrutura do par chave,conteudo do símbolo
 typedef struct symbol_dictionary{
-    const char *key;
+    char *key;
     symbol_t *content;
 } symbol_dictionary_t;
 
@@ -36,13 +41,13 @@ typedef struct table_of_symbols {
 table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent);
 
 //Funçã opara criar símbolo
-symbol_t* create_symbol(tree_node_t* tree_node, int nature);
+symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type);
 
 // Insere um novo símbolo na tabela de símbolos especificada.
-int insert_symbol(table_of_symbols_t* table, const char* key, symbol_t *symbol);
+int insert_symbol(table_of_symbols_t* table, char* key, symbol_t *symbol);
 
 // Busca um símbolo na tabela de símbolos especificada pelo seu lexema (chave).
-symbol_t* find_symbol(table_of_symbols_t* table, const char* key);
+symbol_t* find_symbol(table_of_symbols_t* table, char* key);
 
 // Libera a memória associada a um símbolo.
 void free_symbol(symbol_t* symbol);
@@ -57,6 +62,6 @@ void cleanup_symbol_table(table_of_symbols_t* table);
 table_of_symbols_t* initialize_symbol_table();
 
 //Cria o dicionário pro símbolo.
-symbol_dictionary_t* create_symbol_dictionary(const char *key, symbol_t *content);
+symbol_dictionary_t* create_symbol_dictionary(char *key, symbol_t *content);
 
 #endif // _SYM_TABLE_H_
