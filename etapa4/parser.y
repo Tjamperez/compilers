@@ -22,8 +22,7 @@ int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
 
 extern char *yytext;
 extern void *arvore;
-extern table_of_symbols_t *global_sym_table;
-extern stack_of_tables_t *stack_of_tables;
+stack_of_tables_t *stack_of_tables;
 %}
 
 %token  TK_PR_INT
@@ -64,7 +63,10 @@ extern stack_of_tables_t *stack_of_tables;
 %type <tree> LITTRUE
 %type <tree> LITFALSE
 
-%type <tree> criar_scope;
+%type <tree> inserir_identificador
+%type <tree> fechar_escopo
+%type <tree> raiz
+%type <tree> criar_escopo
 %type <tree> programa
 %type <tree> lista_de_elementos
 %type <tree> elemento
@@ -126,13 +128,20 @@ extern stack_of_tables_t *stack_of_tables;
 %type <tree> ELSE
 
 %%
+//##########################
+raiz: criar_escopo programa fechar_escopo
+	{
+    	stack_of_tables = create_stack_of_tables();
+		$$ = $2;
+		arvore = $$;
+		free_stack_of_tables(stack_of_tables);
+	}
 
 //##########################
 // Definição de programa
 programa: lista_de_elementos
 		{
 			$$ = $1;
-			arvore = $$;
 			//printf("Created ARVORE node\n"); // Debug print
 		}
 		| /* vazio */
@@ -277,52 +286,57 @@ lista_identificador: lista_identificador ';' identificador
 
 //##########################
 // Definição de função
-definicao_de_funcao: cabecalho corpo
+definicao_de_funcao: cabecalho corpo fechar_escopo
 				   {
 
 						$$ = $1; // Define a definição de função como o cabeçalho
 						if ($2 != NULL){
 							ast_add_child($$, $2); // Se houver corpo , adiciona o corpo como filho da definição de função
 						}
-                        free_table_of_symbols(pop_scope(stack_of_tables));
 						//printf("Added cabecalho and corpo to definicao_de_funcao\n"); // Debug print
 				   }
                    ;
 
 //##########################
 // Cabeçalho da função
-cabecalho:   criar_scope '(' lista_de_parametros ')' OR tipo '/' identificador //empilhar_identificador
+cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador inserir_identificador
 		 {
 			$$ = $8; // Define o cabeçalho como o identificador
-            char *new_key = strdup($8->valor_lexico->token_value);
-
-            if(find_symbol(stack_of_tables->top, new_key) != NULL)
-            {
-                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
-                exit(ERR_DECLARED);
-            }
-
-            insert_symbol(stack_of_tables->top, new_key, create_symbol($8,TOKEN_NATURE_FUNCTION, symbol_type_now));
-
+			$9 = $8;
+        
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
          ;
 
+// Inserir o identificador
 //##########################
-// Cabeçalho da função
-empilhar_identificador: // Jogar identificador pra empilhar o nome no escopo certo
-                      {
-                        // push_nome_func()
-                      }
+inserir_identificador: // Insere nome da função
+					 {
+						char *new_key = strdup($$->valor_lexico->token_value);
+						if(find_symbol(stack_of_tables->tables[0], new_key) != NULL)
+            			{
+                			printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
+                			exit(ERR_DECLARED);
+            			}
+						insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($$,TOKEN_NATURE_FUNCTION, symbol_type_now));
+						$$ = NULL;
+					 }
 
-//##########################
 // Criar novo scope
-criar_scope: 
+criar_escopo: 
            {
                 $$ = NULL;
                 table_of_symbols_t *new_scope = create_table_of_symbols(stack_of_tables->top);
                 push_scope(stack_of_tables,new_scope);
            }
+
+//##########################
+// Criar novo scope
+fechar_escopo: 
+           {
+                $$ = NULL;
+                pop_scope(stack_of_tables);
+           }		   
 //##########################
 // Token OR
 OR: TK_OC_OR
@@ -388,10 +402,10 @@ corpo: '{' bloco_de_comandos '}' // Define o corpo como um bloco de comandos den
 		$$ = $2;
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
-	 |  corpo '{' bloco_de_comandos '}'
+	 |  criar_escopo corpo '{' bloco_de_comandos '}' fechar_escopo
 	 {
-		$$ = $1;
-		ast_add_child($$, $3);
+		$$ = $2;
+		ast_add_child($$, $4);
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
      ;
@@ -465,9 +479,9 @@ comando_simples: declaracao_variavel
 					$$ = $1;
 					//printf("Added comando_controle_fluxo to comando_simples\n"); // Debug print
 			   }
-	       	   | corpo
+	       	   | criar_escopo corpo fechar_escopo
 			   {
-					$$ = $1;
+					$$ = $2;
 					//printf("Added corpo to comando_simples\n"); // Debug print
 			   }
                ;
@@ -812,7 +826,7 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 			  {
 				$$ = $1;
 				ast_add_child($$, $3);
-                char *new_key = (char*)$1->valor_lexico->token_value;
+                char *new_key = $1->valor_lexico->token_value;
                 symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
                 if(result == NULL)
                 {
@@ -830,6 +844,19 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 			  {
 				$$ = $1;
 				//printf("Added nome_func to chamada_funcao\n"); // Debug print
+				char *new_key = $1->valor_lexico->token_value;
+                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+                if(result == NULL)
+                {
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+    				exit(ERR_UNDECLARED);
+                }
+				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
+                else
+                {
+                    int nature = result->nature;
+                    $$->node_type = result->data_type;
+                }
 			  }
               ;
 

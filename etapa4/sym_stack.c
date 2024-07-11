@@ -29,7 +29,7 @@ int push_scope(stack_of_tables_t* stack, table_of_symbols_t *new_table) {
 // Retirar da pilha.
 table_of_symbols_t* pop_scope(stack_of_tables_t* stack) {
     if (stack->size == 0) {
-        return NULL; // Erro: não a escopo a ser retirado.
+        return NULL; // Erro: não há escopo a ser retirado.
     }
     table_of_symbols_t *top_table = stack->tables[--stack->size];
     stack->top = (stack->size == 0) ? NULL : stack->tables[stack->size - 1];
