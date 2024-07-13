@@ -59,6 +59,7 @@ stack_of_tables_t *stack_of_tables;
 %token <valor_lexico> TK_LIT_FALSE
 %token <valor_lexico> TK_LIT_TRUE
 
+%type <tree> identificador_func
 %type <tree> identificador
 %type <tree> call_identificador
 %type <tree> LITINT
@@ -217,6 +218,23 @@ identificador: TK_IDENTIFICADOR
 				//printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
 			 }
              ;
+
+//##########################
+// Identificador
+identificador_func: TK_IDENTIFICADOR	
+                  {
+                        $$ = ast_new($1); // Cria um novo nó na árvore com o identificador
+				        //printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
+						char *new_key = strdup($$->valor_lexico->token_value);
+						if(find_symbol(stack_of_tables->tables[0], new_key) != NULL)
+            			{
+                			printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
+                			exit(ERR_DECLARED);
+            			}
+						insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($$,TOKEN_NATURE_FUNCTION, symbol_type_now));
+                  }
+                  ;
+
 call_identificador: TK_IDENTIFICADOR
 			{
 				$$ = ast_new_call_func($1); // Cria um novo nó representando uma chamada de função com o identificador
@@ -304,29 +322,13 @@ definicao_de_funcao: cabecalho corpo
 
 //##########################
 // Cabeçalho da função
-cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador inserir_identificador
+cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_func
 		 {
 			$$ = $8; // Define o cabeçalho como o identificador
-			$9 = $8;
         
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
          ;
-
-//##########################
-// Inserir o identificador
-inserir_identificador: // Insere nome da função
-					 {
-						//char *new_key = strdup($$->valor_lexico->token_value);
-						//if(find_symbol(stack_of_tables->tables[0], new_key) != NULL)
-            			//{
-                		//	printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
-                		//	exit(ERR_DECLARED);
-            			//}
-						//insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($$,TOKEN_NATURE_FUNCTION, symbol_type_now));
-						$$ = NULL;
-					 }
-                     ;
 
 //##########################
 // Criar novo scope
