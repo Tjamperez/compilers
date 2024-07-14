@@ -82,7 +82,6 @@ stack_of_tables_t *stack_of_tables;
 %type <tree> lista_identificador
 %type <tree> tipo
 %type <tree> cabecalho
-%type <tree> inserir_identificador
 %type <tree> lista_de_parametros
 %type <tree> parametro
 %type <tree> corpo
@@ -220,10 +219,11 @@ identificador: TK_IDENTIFICADOR
              ;
 
 //##########################
-// Identificador
+// Identificador para pegar nome da função e inserir na tabela global
 identificador_func: TK_IDENTIFICADOR	
                   {
                         $$ = ast_new($1); // Cria um novo nó na árvore com o identificador
+
 				        //printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
 						char *new_key = strdup($$->valor_lexico->token_value);
 						if(find_symbol(stack_of_tables->tables[0], new_key) != NULL)
@@ -309,7 +309,7 @@ lista_identificador: lista_identificador ';' identificador
 
 //##########################
 // Definição de função
-definicao_de_funcao: cabecalho corpo
+definicao_de_funcao: cabecalho corpo fechar_escopo
 				   {
 
 						$$ = $1; // Define a definição de função como o cabeçalho
@@ -325,7 +325,6 @@ definicao_de_funcao: cabecalho corpo
 cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_func
 		 {
 			$$ = $8; // Define o cabeçalho como o identificador
-        
 			//printf("Added lista_de_parametros, tipo and identificador to cabecalho\n"); // Debug print
 		 }
          ;
@@ -415,14 +414,17 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
 			$$ = $1;
 			ast_add_child($$, $2);
             char *new_key = strdup($2->valor_lexico->token_value);
-          //  if(find_symbol(stack_of_tables->top, new_key) != NULL)
-            //{
-             //   printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
-              //  exit(ERR_DECLARED);
-            //}
+            if(find_symbol(stack_of_tables->top, new_key) != NULL)
+            {
+               printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
+               exit(ERR_DECLARED);
+            }
 
-           // insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+            insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 			//printf("Added tipo and identificador to parametro\n"); // Debug print
+            //free($2->valor_lexico->token_value); 
+            //free($2->valor_lexico); 
+            //free($2);
 		 }
          ;
 
@@ -509,9 +511,9 @@ comando_simples: declaracao_variavel
 					$$ = $1;
 					//printf("Added comando_controle_fluxo to comando_simples\n"); // Debug print
 			   }
-	       	   | corpo
+	       	   | criar_escopo corpo fechar_escopo
 			   {
-					$$ = $1;
+					$$ = $2;
 					//printf("Added corpo to comando_simples\n"); // Debug print
 			   }
                ;
@@ -522,6 +524,17 @@ declaracao_variavel: tipo lista_identificador
 				   {
 						$$ = NULL;
 						//printf("Empty declaracao_variavel\n"); // Debug print
+                        char* new_key = strdup($2->valor_lexico->token_value);
+
+                        if(find_symbol(stack_of_tables->top, new_key) != NULL){
+                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+                            exit(ERR_DECLARED);
+                        }
+                            
+                        insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+                        //free($2->valor_lexico->token_value);
+                        //free($2->valor_lexico);
+                        //free($2);
 				   }
                    ;
 
@@ -532,7 +545,26 @@ comando_atribuicao: identificador '=' expressao
 					$$ = ast_new_label_only("="); // Cria um novo nó com o rótulo "="
 					ast_add_child($$, $1); // Adiciona o identificador como filho do nó
 					ast_add_child($$, $3); // Adiciona a expressão como filho do nó
-                    // $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
+						
+                    char* new_key = $1->valor_lexico->token_value;
+							  
+					symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+//Dessa linha					//if(result == NULL){
+                    //    printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+                    //    exit(ERR_UNDECLARED);
+                    //}
+                   // else {
+                    //    int natureza = result->nature;
+                   //     $$->node_type = result->data_type;
+                            
+                   //     if(natureza == TOKEN_NATURE_FUNCTION){
+                   //         printf("[ERR_VARIABLE] Funcao [%s] na linha %d esta sendo usada como variavel\n", new_key, get_line_number());
+                   //         exit(ERR_FUNCTION);
+                   //     }
+                   // }
+                //  $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
+//ate aqui temque ser comentado 
+//pra ver se nao quebrou a arvore em tese funciona                 
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
 				  }
                   ;

@@ -71,7 +71,7 @@ void free_symbol(symbol_t* symbol) {
 }
 
 
-void free_table_of_symbols(table_of_symbols_t* table) {
+void free_table_of_symbols(table_of_symbols_t* table) {  // Why does this cause Seg fault sometimes and not the others????
     for (int i = 0; i < table->size; i++) {
         free_symbol(table->items[i]->content);
         free((char *)table->items[i]->key);
