@@ -94,8 +94,8 @@ int check_types(tree_node_t* destiny_node, tree_node_t* origin_node) {
 	int destino,origem;
     destino = destiny_node->node_type;
     origem = origin_node->node_type;
-    printf("Destino : %d\n", destino);
-    printf("Origem : %d\n", origem);
+    printf("Destino : %d\n\n", destino);
+    printf("Origem : %d\n\n", origem);
     
     switch (destino) {
     case NODE_TYPE_INT:

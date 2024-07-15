@@ -299,10 +299,26 @@ lista_identificador: lista_identificador ';' identificador
 				   {
 					 $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
 					 //printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
+                     char* new_key = strdup($1->valor_lexico->token_value);
+                      
+                        if(find_symbol(stack_of_tables->top, new_key) != NULL){
+                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+                            exit(ERR_DECLARED);
+                        }
+
+                     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 				   }
                    | identificador
 				   {
 					 $$ = $1;
+                      char* new_key = strdup($1->valor_lexico->token_value);
+                      
+                        if(find_symbol(stack_of_tables->top, new_key) != NULL){
+                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+                            exit(ERR_DECLARED);
+                        }
+
+                     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 					 //printf("Added identificador to lista_identificador\n"); // Debug print
 				   }
                    ;
@@ -429,12 +445,12 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
          ;
 
 // Corpo da função
-corpo: '{' bloco_de_comandos '}' // Define o corpo como um bloco de comandos dentro de chaves
+corpo: criar_escopo '{' bloco_de_comandos '}' fechar_escopo// Define o corpo como um bloco de comandos dentro de chaves
 	 {
-		$$ = $2;
+		$$ = $3;
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
-	 |  corpo '{' bloco_de_comandos '}'
+	 |  criar_escopo corpo fechar_escopo criar_escopo'{' bloco_de_comandos '}' fechar_escopo
 	 {
 		$$ = $1;
 		ast_add_child($$, $3);
@@ -549,20 +565,21 @@ comando_atribuicao: identificador '=' expressao
                     char* new_key = $1->valor_lexico->token_value;
 							  
 					symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
-//Dessa linha					//if(result == NULL){
-                    //    printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
-                    //    exit(ERR_UNDECLARED);
-                    //}
-                   // else {
-                    //    int natureza = result->nature;
-                   //     $$->node_type = result->data_type;
+//Dessa linha					
+                    if(result == NULL){
+                        printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+                        exit(ERR_UNDECLARED);
+                    }
+                    else {
+                        int nature = result->nature;
+                        $$->node_type = result->data_type;
                             
-                   //     if(natureza == TOKEN_NATURE_FUNCTION){
-                   //         printf("[ERR_VARIABLE] Funcao [%s] na linha %d esta sendo usada como variavel\n", new_key, get_line_number());
-                   //         exit(ERR_FUNCTION);
-                   //     }
-                   // }
-                //  $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
+                        if(nature == TOKEN_NATURE_FUNCTION){
+                            printf("[ERR_VARIABLE] Funcao [%s] na linha %d esta sendo usada como variavel\n", new_key, get_line_number());
+                            exit(ERR_FUNCTION);
+                        }
+                    }
+                    $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
 //ate aqui temque ser comentado 
 //pra ver se nao quebrou a arvore em tese funciona                 
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
@@ -581,7 +598,7 @@ comando_retorno: RETURN expressao
 			   {
 					$$ = $1;
 					ast_add_child($$, $2);
-                    // $$->node_type = $2->node_type;
+                    $$->node_type = $2->node_type;
 					//printf("Added expressao to comando_retorno\n"); // Debug print
 			   }
 			   ;
@@ -614,21 +631,21 @@ ELSE: TK_PR_ELSE
 		//printf("Label ELSE\n"); // Debug print
 	}
 	;
-condicional: IF '(' expressao ')' corpo
+condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
 		   {
 				$$ = $1; // Define a condicional como o nó "if"
 				ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
 				ast_add_child($$, $5); // Adiciona o corpo como filho do nó "if"
-                // $$->node_type = $3->node_type;
+                $$->node_type = $3->node_type;
 				//printf("Added expressao and corpo to condicional\n"); // Debug print
 		   }
-           | IF '(' expressao ')' corpo ELSE corpo 
+           | IF '(' expressao ')' criar_escopo corpo fechar_escopo ELSE criar_escopo corpo fechar_escopo
 		   {
 				$$ = $1;
 				ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
 				ast_add_child($$, $5); // Adiciona o corpo do "if" como filho do nó "if"
 				ast_add_child($$, $7); // Adiciona o nó "else" como filho do nó "if"
-                // $$->node_type = $3->node_type;
+                $$->node_type = $3->node_type;
 				//printf("Added expressao, corpo, and corpo to condicional\n"); // Debug print
 		   }
 		   ;
@@ -641,12 +658,12 @@ WHILE: TK_PR_WHILE
 		//printf("Label WHILE\n"); // Debug print
 	 }
 	 ;
-loop: WHILE '(' expressao ')' corpo
+loop: WHILE '(' expressao ')' criar_escopo corpo fechar_escopo
 	{
 		$$ = $1;
 		ast_add_child($$, $3); // Adiciona a expressão como filho do nó "while"
 		ast_add_child($$, $5); // Adiciona o corpo como filho do nó "while"
-        // $$->node_type = $3->node_type;
+        $$->node_type = $3->node_type;
 		//printf("Added expressao and corpo to loop\n"); // Debug print
 	}
 	;
@@ -678,7 +695,7 @@ operando: operador
 			$$ = $2;
 			ast_add_child($$, $1);
 			ast_add_child($$, $3);
-            // $$->node_type = new_type($1,$3);
+            $$->node_type = new_type($1,$3);
 			//printf("Added operando and operador to operando\n"); // Debug print
 		}
         ;
@@ -695,7 +712,7 @@ operador: comparacao_1
 			$$ = $2;
 			ast_add_child($$, $1);
 			ast_add_child($$, $3);
-            // $$->node_type = new_type($1,$3);
+            $$->node_type = new_type($1,$3);
 			//printf("Added operador and comparacao to operador\n"); // Debug print
 		}
         ;
@@ -712,7 +729,7 @@ comparacao_1: comparacao_2
 				$$ = $2;
 				ast_add_child($$, $1);
 				ast_add_child($$, $3);
-                // $$->node_type = new_type($1,$3);
+                $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
 		  }
           ;
@@ -741,7 +758,7 @@ comparacao_2: adicaousub
 				$$ = $2;
 				ast_add_child($$, $1);
 				ast_add_child($$, $3);
-                // $$->node_type = new_type($1,$3);
+                $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
 		  }
           ;
@@ -779,7 +796,7 @@ adicaousub: multoudivoures
 					$$ = $2;
 					ast_add_child($$, $1);
 					ast_add_child($$, $3);
-                    // $$->node_type = new_type($1,$3);
+                    $$->node_type = new_type($1,$3);
 					//printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
 		  }
           ;
@@ -810,7 +827,7 @@ multoudivoures: unario
 					$$ = $2;
 					ast_add_child($$, $1);
 					ast_add_child($$, $3);
-                    // $$->node_type = new_type($1,$3);
+                    $$->node_type = new_type($1,$3);
 					//printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
 			  }
               ;
@@ -845,14 +862,14 @@ unario: primario
 	  {
 			$$ = $1;
 		    ast_add_child($$, $2);
-            // $$->node_type = $2->node_type;
+            $$->node_type = $2->node_type;
 		    //printf("Added INVERTSIG and unario to unario\n"); // Debug print
 	  }
       | NEGATE unario
 	  {
 			$$ = $1;
 		    ast_add_child($$, $2);
-            // $$->node_type = $2->node_type;
+            $$->node_type = $2->node_type;
 		    //printf("Added NEGATE and unario to unario\n"); // Debug print
 	  }
       ;
@@ -861,8 +878,25 @@ unario: primario
 // Expressões primarias
 primario: identificador
 		{
-			$$ = $1;
+            $$ = $1;
 			//printf("Added identificador to primario\n");
+            
+			char* new_key = $1->valor_lexico->token_value;
+							  
+            symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+			if(result == NULL){
+               printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+               exit(ERR_UNDECLARED);
+            }
+            else {
+                int nature = result->nature;
+                $$->node_type = result->data_type;
+                    
+                if(nature == TOKEN_NATURE_FUNCTION){
+                    printf("[ERR_VARIABLE] Funcao [%s] na linha %d esta sendo usada como variavel\n", new_key, get_line_number());
+                    exit(ERR_FUNCTION);
+                }
+            }
 		}
         | literais
 		{
@@ -877,7 +911,7 @@ primario: identificador
         | '(' expressao ')' // Loop de expressoes, menor prioridade de todos.
 		{
 			$$ = $2;
-            // $$->node_type = $2->node_type;
+            $$->node_type = $2->node_type;
 			//printf("Added expressao to primario\n"); // Debug print
 		}
         ;
@@ -888,37 +922,41 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 			  {
 				$$ = $1;
 				ast_add_child($$, $3);
-              //  char *new_key = $1->valor_lexico->token_value;
-               // symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
-               // if(result == NULL)
-             //   {
-              //      printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
-    		//		exit(ERR_UNDECLARED);
-            //    }
+                char *new_key = $1->valor_lexico->token_value;
+                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+                if(result == NULL)
+                {
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+    				exit(ERR_UNDECLARED);
+                }
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
-               // else
-               // {
-                    //int nature = result->nature;
-                  //  // $$->node_type = result->data_type;
-                //}
+                else
+                {
+                    int nature = result->nature;
+                    $$->node_type = result->data_type;
+                    if(nature == TOKEN_NATURE_IDENTIFIER){
+                        printf("[ERR_FUNCTION] Variavel [%s] na linha %d esta sendo usada como funcao\n", new_key, get_line_number());
+                        exit(ERR_VARIABLE);
+                    }
+                }
 			  }
 			  | nome_func '('/*vazio*/')'
 			  {
 				$$ = $1;
 				//printf("Added nome_func to chamada_funcao\n"); // Debug print
-			//	char *new_key = $1->valor_lexico->token_value;
-               // symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
-                //if(result == NULL)
-                //{
-              //      printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
-    		//		exit(ERR_UNDECLARED);
-            //    }
+				char *new_key = $1->valor_lexico->token_value;
+                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+                if(result == NULL)
+                {
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+    				exit(ERR_UNDECLARED);
+                }
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
-                //else
-               // {
-                   // int nature = result->nature;
-                 //   // $$->node_type = result->data_type;
-               // }
+                else
+                {
+                    int nature = result->nature;
+                    $$->node_type = result->data_type;
+                }
 			  }
               ;
 
@@ -989,7 +1027,7 @@ literais: LITINT
 LITINT: TK_LIT_INT
 	  {
 			$$ = ast_new($1);
-            // $$->node_type = NODE_TYPE_INT;
+            $$->node_type = NODE_TYPE_INT;
 			//printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 	  }
 	  ;
@@ -999,7 +1037,7 @@ LITINT: TK_LIT_INT
 LITFLOAT: TK_LIT_FLOAT
 		{
 			$$ = ast_new($1);
-            // $$->node_type = NODE_TYPE_FLOAT;
+            $$->node_type = NODE_TYPE_FLOAT;
 			//printf("Added TK_LIT_FLOAT to LITFLOAT\n"); // Debug print
 		}
 		;
@@ -1009,7 +1047,7 @@ LITFLOAT: TK_LIT_FLOAT
 LITFALSE: TK_LIT_FALSE
 		{
 			$$ = ast_new($1);
-            // $$->node_type = NODE_TYPE_BOOL;
+            $$->node_type = NODE_TYPE_BOOL;
 			//printf("Added TK_LIT_FALSE to LITFALSE\n"); // Debug print
 		}
 		;
@@ -1019,7 +1057,7 @@ LITFALSE: TK_LIT_FALSE
 LITTRUE: TK_LIT_TRUE
 	   {
 			$$ = ast_new($1);
-            // $$->node_type = NODE_TYPE_BOOL;
+            $$->node_type = NODE_TYPE_BOOL;
 			//printf("Added TK_LIT_TRUE to LITTRUE\n"); // Debug print
 	   }
 	   ;
