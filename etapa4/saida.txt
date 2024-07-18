@@ -1,19 +1,17 @@
-In the Hood [a]
+In the Hood We ballling[g]
 
-In the Hood We ballling[factorial]
+In the Hood We ballling[f]
 
-In the Hood [a1]
-
-In the Hood [a2]
-
-In the Hood [a3]
-
-In the Hood [a4]
-
-In the Hood [x1]
-
-In the Hood [x2]
-
-In the Hood [x3]
-
-[ERR_UNDECLARED] Var [b1] na linha 6 nao foi declarada
+0x558b5e034560 [label="g"];
+0x558b5e034560, 0x558b5e035690
+0x558b5e034560, 0x558b5e0358b0
+0x558b5e035690 [label="return"];
+0x558b5e035690, 0x558b5e035720
+0x558b5e035720 [label="0"];
+0x558b5e0358b0 [label="f"];
+0x558b5e0358b0, 0x558b5e035a10
+0x558b5e035a10 [label="call g"];
+0x558b5e035a10, 0x558b5e035a80
+0x558b5e035a80 [label="return"];
+0x558b5e035a80, 0x558b5e035b10
+0x558b5e035b10 [label="0"];

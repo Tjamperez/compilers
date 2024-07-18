@@ -32,4 +32,6 @@ tree_node_t *ast_new_label_only(char *label);
 
 tree_node_t *ast_new_call_func(val_lex_t *valor_lexico);
 
+char* ast_parse_function_call(char *token_value);
+
 #endif //_TREE_H_

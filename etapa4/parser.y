@@ -940,10 +940,15 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 				$$ = $1;
 				ast_add_child($$, $3);
                 char *new_key = $1->valor_lexico->token_value;
-                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+
+                char *parsed_key = ast_parse_function_call(new_key);
+
+
+
+                symbol_t* result = search_symbol_stack(stack_of_tables, parsed_key);
                 if(result == NULL)
                 {
-                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", parsed_key, get_line_number());
     				exit(ERR_UNDECLARED);
                 }
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
@@ -962,10 +967,13 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 				$$ = $1;
 				//printf("Added nome_func to chamada_funcao\n"); // Debug print
 				char *new_key = $1->valor_lexico->token_value;
-                symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+
+                char *parsed_key = ast_parse_function_call(new_key);
+
+                symbol_t* result = search_symbol_stack(stack_of_tables, parsed_key);
                 if(result == NULL)
                 {
-                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+                    printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", parsed_key, get_line_number());
     				exit(ERR_UNDECLARED);
                 }
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print

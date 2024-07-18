@@ -83,6 +83,21 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child) {
     parent->children[parent->num_children - 1] = child;
 }
 
+// Função para retirarmos o call da chamada de função para analise na tabela
+char* ast_parse_function_call(char *token_value) {
+    
+    char *function_name = strstr(token_value, " ");
+    
+    if (function_name != NULL) {
+        // Pulamos o espaço
+        function_name++;
+    }
+    
+    return function_name;
+}
+
+
+
 // Função para exportar a árvore para visualização
 void exporta(void *arvore) {
     if (arvore == NULL)
