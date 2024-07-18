@@ -80,6 +80,7 @@ stack_of_tables_t *stack_of_tables;
 %type <tree> declaracao_global
 %type <tree> definicao_de_funcao
 %type <tree> lista_identificador
+%type <tree> lista_identificador_local
 %type <tree> tipo
 %type <tree> cabecalho
 %type <tree> lista_de_parametros
@@ -223,9 +224,9 @@ identificador: TK_IDENTIFICADOR
 identificador_func: TK_IDENTIFICADOR	
                   {
                         $$ = ast_new($1); // Cria um novo nó na árvore com o identificador
-
 				        //printf("Added TK_IDENTIFICADOR to identificador\n"); // Debug print
 						char *new_key = strdup($$->valor_lexico->token_value);
+                        //printf("In the Hood We ballling[%s]\n\n", new_key);
 						if(find_symbol(stack_of_tables->tables[0], new_key) != NULL)
             			{
                 			printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
@@ -297,29 +298,28 @@ BOOL: TK_PR_BOOL
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
 				   {
-					 $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
-					 //printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
-                     char* new_key = strdup($1->valor_lexico->token_value);
-                      
+					    $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
+					    //printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
+                        char* new_key = strdup($3->valor_lexico->token_value);
+                        //printf("In the Hood [%s]\n\n", new_key);
                         if(find_symbol(stack_of_tables->top, new_key) != NULL){
                             printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
                             exit(ERR_DECLARED);
                         }
-
-                     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+                        insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($3,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 				   }
                    | identificador
 				   {
-					 $$ = $1;
-                      char* new_key = strdup($1->valor_lexico->token_value);
-                      
+					    $$ = $1;
+                        char* new_key = strdup($1->valor_lexico->token_value);
+                        //printf("In the Hood [%s]\n\n", new_key);
                         if(find_symbol(stack_of_tables->top, new_key) != NULL){
                             printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
                             exit(ERR_DECLARED);
                         }
 
-                     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
-					 //printf("Added identificador to lista_identificador\n"); // Debug print
+                        insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+					    //printf("Added identificador to lista_identificador\n"); // Debug print
 				   }
                    ;
 
@@ -435,7 +435,7 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
                exit(ERR_DECLARED);
             }
-
+            //printf("In the Hood [%s]\n\n", new_key);
             insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 			//printf("Added tipo and identificador to parametro\n"); // Debug print
             //free($2->valor_lexico->token_value); 
@@ -450,10 +450,10 @@ corpo: criar_escopo '{' bloco_de_comandos '}' fechar_escopo// Define o corpo com
 		$$ = $3;
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
-	 |  criar_escopo corpo fechar_escopo criar_escopo'{' bloco_de_comandos '}' fechar_escopo
+	 | corpo criar_escopo'{' bloco_de_comandos '}' fechar_escopo
 	 {
 		$$ = $1;
-		ast_add_child($$, $3);
+		ast_add_child($$, $4);
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
      ;
@@ -536,21 +536,38 @@ comando_simples: declaracao_variavel
 
 //##########################
 // Declaração de variável
-declaracao_variavel: tipo lista_identificador
+declaracao_variavel: tipo lista_identificador_local
 				   {
 						$$ = NULL;
 						//printf("Empty declaracao_variavel\n"); // Debug print
-                        char* new_key = strdup($2->valor_lexico->token_value);
+				   }
+                   ;
 
+lista_identificador_local: lista_identificador_local ';' identificador
+				   {
+					    $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
+					    //printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
+                        char* new_key = strdup($3->valor_lexico->token_value);
+                      
+                        if(find_symbol(stack_of_tables->top, new_key) != NULL){
+                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+                            exit(ERR_DECLARED);
+                         }
+                        //printf("In the Hood [%s]\n\n", new_key);
+                        insert_symbol(stack_of_tables->top, new_key, create_symbol($3,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+				   }
+                   | identificador
+				   {
+					    $$ = $1;
+                        char* new_key = strdup($1->valor_lexico->token_value);
+                      
                         if(find_symbol(stack_of_tables->top, new_key) != NULL){
                             printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
                             exit(ERR_DECLARED);
                         }
-                            
-                        insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
-                        //free($2->valor_lexico->token_value);
-                        //free($2->valor_lexico);
-                        //free($2);
+                        //printf("In the Hood [%s]\n\n", new_key);
+                        insert_symbol(stack_of_tables->top, new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+					    //printf("Added identificador to lista_identificador\n"); // Debug print
 				   }
                    ;
 

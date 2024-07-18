@@ -1,1 +1,19 @@
+In the Hood [a]
+
+In the Hood We ballling[factorial]
+
+In the Hood [a1]
+
+In the Hood [a2]
+
+In the Hood [a3]
+
+In the Hood [a4]
+
+In the Hood [x1]
+
+In the Hood [x2]
+
+In the Hood [x3]
+
 [ERR_UNDECLARED] Var [b1] na linha 6 nao foi declarada
