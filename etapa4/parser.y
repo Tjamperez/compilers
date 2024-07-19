@@ -422,6 +422,7 @@ lista_de_parametros: lista_de_parametros ';' parametro
 						//printf("lista_de_parametros is empty\n"); // Debug print
 				   }
                    ;
+                   
 
 //##########################
 // Parâmetro da função
@@ -435,8 +436,10 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
                exit(ERR_DECLARED);
             }
-            //printf("In the Hood [%s]\n\n", new_key);
+            printf("In the Hood Param [%s]\n\n", new_key);
             insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
+            int nature = stack_of_tables->top->items[0]->content->nature;
+            //printf("Nature Wtf %d\n\n" , nature);
 			//printf("Added tipo and identificador to parametro\n"); // Debug print
             //free($2->valor_lexico->token_value); 
             //free($2->valor_lexico); 
@@ -445,15 +448,15 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
          ;
 
 // Corpo da função
-corpo: criar_escopo '{' bloco_de_comandos '}' fechar_escopo// Define o corpo como um bloco de comandos dentro de chaves
+corpo: '{' bloco_de_comandos '}' // Define o corpo como um bloco de comandos dentro de chaves
 	 {
-		$$ = $3;
+		$$ = $2;
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
-	 | corpo criar_escopo'{' bloco_de_comandos '}' fechar_escopo
+	 | corpo'{' bloco_de_comandos '}'
 	 {
 		$$ = $1;
-		ast_add_child($$, $4);
+		ast_add_child($$, $3);
 		//printf("Added bloco_de_comandos to corpo\n"); // Debug print
 	 }
      ;
@@ -548,12 +551,11 @@ lista_identificador_local: lista_identificador_local ';' identificador
 					    $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
 					    //printf("Added identificador and lista_identificador to lista_identificador\n"); // Debug print
                         char* new_key = strdup($3->valor_lexico->token_value);
-                      
+                        //printf("In the Hood Local List[%s]\n\n", new_key);
                         if(find_symbol(stack_of_tables->top, new_key) != NULL){
                             printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
                             exit(ERR_DECLARED);
                          }
-                        //printf("In the Hood [%s]\n\n", new_key);
                         insert_symbol(stack_of_tables->top, new_key, create_symbol($3,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 				   }
                    | identificador
@@ -565,7 +567,7 @@ lista_identificador_local: lista_identificador_local ';' identificador
                             printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
                             exit(ERR_DECLARED);
                         }
-                        //printf("In the Hood [%s]\n\n", new_key);
+                        //printf("In the Hood Local Ident[%s]\n\n", new_key);
                         insert_symbol(stack_of_tables->top, new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
 					    //printf("Added identificador to lista_identificador\n"); // Debug print
 				   }
@@ -588,7 +590,9 @@ comando_atribuicao: identificador '=' expressao
                         exit(ERR_UNDECLARED);
                     }
                     else {
+                        
                         int nature = result->nature;
+                        //printf("Nature: [%d]\n\n", nature);
                         $$->node_type = result->data_type;
                             
                         if(nature == TOKEN_NATURE_FUNCTION){
@@ -597,7 +601,7 @@ comando_atribuicao: identificador '=' expressao
                         }
                     }
                     $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
-//ate aqui temque ser comentado 
+//ate aqui tem que ser comentado 
 //pra ver se nao quebrou a arvore em tese funciona                 
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
 				  }
@@ -907,6 +911,7 @@ primario: identificador
             }
             else {
                 int nature = result->nature;
+                //printf("Nature: [%d]\n\n", nature);
                 $$->node_type = result->data_type;
                     
                 if(nature == TOKEN_NATURE_FUNCTION){
@@ -955,9 +960,10 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
                 else
                 {
                     int nature = result->nature;
+                    //printf("Nature: [%d]\n\n", nature);
                     $$->node_type = result->data_type;
                     if(nature == TOKEN_NATURE_IDENTIFIER){
-                        printf("[ERR_FUNCTION] Variavel [%s] na linha %d esta sendo usada como funcao\n", new_key, get_line_number());
+                        printf("[ERR_FUNCTION] Variavel [%s] na linha %d esta sendo usada como funcao\n", parsed_key, get_line_number());
                         exit(ERR_VARIABLE);
                     }
                 }
@@ -980,7 +986,12 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
                 else
                 {
                     int nature = result->nature;
+                    //printf("Nature: [%d]\n\n", nature);
                     $$->node_type = result->data_type;
+                    if(nature == TOKEN_NATURE_IDENTIFIER){
+                        printf("[ERR_FUNCTION] Variavel [%s] na linha %d esta sendo usada como funcao\n", parsed_key, get_line_number());
+                        exit(ERR_VARIABLE);
+                    }
                 }
 			  }
               ;

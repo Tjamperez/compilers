@@ -1,17 +1,11 @@
-In the Hood We ballling[g]
+In the Hood Param [k]
 
-In the Hood We ballling[f]
+Nature Wtf 1
 
-0x558b5e034560 [label="g"];
-0x558b5e034560, 0x558b5e035690
-0x558b5e034560, 0x558b5e0358b0
-0x558b5e035690 [label="return"];
-0x558b5e035690, 0x558b5e035720
-0x558b5e035720 [label="0"];
-0x558b5e0358b0 [label="f"];
-0x558b5e0358b0, 0x558b5e035a10
-0x558b5e035a10 [label="call g"];
-0x558b5e035a10, 0x558b5e035a80
-0x558b5e035a80 [label="return"];
-0x558b5e035a80, 0x558b5e035b10
-0x558b5e035b10 [label="0"];
+In the Hood Param [j]
+
+Nature Wtf 1
+
+Nature: [2]
+
+[ERR_VARIABLE] Funcao [g] na linha 3 esta sendo usada como variavel

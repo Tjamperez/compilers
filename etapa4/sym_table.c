@@ -58,6 +58,7 @@ table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent) {
 symbol_t* find_symbol(table_of_symbols_t* table, char* key) {
     for (int i = 0; i < table->size; i++) {
         if (strcmp(table->items[i]->key, key) == 0) {
+            //printf("\n\n%s\n\n", table->items[i]->content->tree_node->valor_lexico->token_value);
             return table->items[i]->content;
         }
     }
