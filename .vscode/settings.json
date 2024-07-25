@@ -2,6 +2,7 @@
 	"files.associations": {
         "stdio.h": "c",
         "tree.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "gen_code.h": "c"
     }
 }

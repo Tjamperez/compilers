@@ -25,6 +25,8 @@ int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
 extern char *yytext;
 extern void *arvore;
 stack_of_tables_t *stack_of_tables;
+int label_counter = 0;
+int temp_counter = 0;
 
 %}
 
