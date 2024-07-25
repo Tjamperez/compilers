@@ -1,0 +1,11 @@
+In the Hood Param [k]
+
+Nature Wtf 1
+
+In the Hood Param [j]
+
+Nature Wtf 1
+
+Nature: [2]
+
+[ERR_VARIABLE] Funcao [g] na linha 3 esta sendo usada como variavel
