@@ -32,6 +32,7 @@ typedef struct symbol_dictionary{
 typedef struct table_of_symbols {
     int size;
     int capacity;
+    int address_displacement;
     symbol_dictionary_t **items;
     struct table_of_symbols *next;
     struct table_of_symbols *parent;

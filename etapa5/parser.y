@@ -438,7 +438,7 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
                printf("[ERR_DECLARED] Funcao [%s] na linha %d ja foi declarada neste scope\n", new_key, get_line_number());
                exit(ERR_DECLARED);
             }
-            printf("In the Hood Param [%s]\n\n", new_key);
+            //printf("In the Hood Param [%s]\n\n", new_key);
             insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now));
             int nature = stack_of_tables->top->items[0]->content->nature;
             //printf("Nature Wtf %d\n\n" , nature);
