@@ -39,8 +39,8 @@ void free_operation(operation_t* operation);
 // Transformar o opcode em Label para display
 const char* opcode_to_string(iloc_opcode_t opcode);
 
-// Linkar operações
-void append_operation(operation_t** head, operation_t* new_operation);
+// Linkar Operações
+operation_t* append_operation(operation_t* father_operation, operation_t* son_operation);
 
 // Limpar todas operações
 void free_operations_list(operation_t* head);

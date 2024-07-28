@@ -84,16 +84,23 @@ const char* opcode_to_string(iloc_opcode_t opcode) {
     }
 }
 
-void append_operation(operation_t** head, operation_t* new_operation) {
-    if (*head == NULL) {
-        *head = new_operation;
-    } else {
-        operation_t* current = *head;
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = new_operation;
+operation_t* append_operation(operation_t* father_operation, operation_t* son_operation) {
+
+    if (father_operation == NULL) {
+        return son_operation;
     }
+
+    if (son_operation == NULL) {
+        return father_operation;
+    }
+
+    operation_t* current = father_operation;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    current->next = son_operation;
+    return father_operation;
 }
 
 void free_operations_list(operation_t* head) {

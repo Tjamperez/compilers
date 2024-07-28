@@ -14,6 +14,7 @@
 #include "sym_stack.h"
 #include "sym_table.h"
 #include "tree.h"
+#include "gen_code.h"
 
 // Protótipos das funções necessárias
 int yylex(void);
@@ -178,6 +179,7 @@ lista_de_elementos: elemento lista_de_elementos
 						{
 							$$ = $1; // Caso contrário, o elementos é o primeiro elemento
 							ast_add_child($$, $2); // Adiciona a lista_de_elementos como filho do primeiro
+                            $$->code = append_node_operation($1, $2);
 							//printf("Added elemento to lista_de_elementos\n"); // Debug print
 						}
 					}	

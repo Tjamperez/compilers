@@ -14,11 +14,11 @@ ODIR = ./obj
 LDIR = ./
 
 # Header file dependencies
-_DEPS = $(IDIR)/parser.tab.h $(IDIR)/val_lex.h $(IDIR)/tree.h $(IDIR)/sym_stack.h $(IDIR)/sym_table.h
+_DEPS = $(IDIR)/parser.tab.h $(IDIR)/val_lex.h $(IDIR)/tree.h $(IDIR)/sym_stack.h $(IDIR)/sym_table.h $(IDIR)/gen_code.h
 DEPS = $(patsubst %,$(LDIR)/%,$(_DEPS))
 
 # Object files
-_OBJ = main.o lex.yy.o parser.tab.o val_lex.o tree.o sym_table.o sym_stack.o
+_OBJ = main.o lex.yy.o parser.tab.o val_lex.o tree.o sym_table.o sym_stack.o gen_code.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Rule to compile source files to object files
@@ -51,6 +51,9 @@ $(ODIR)/sym_table.o: $(LDIR)/sym_table.c $(IDIR)/sym_table.h | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(ODIR)/sym_stack.o: $(LDIR)/sym_stack.c $(IDIR)/sym_stack.h | $(ODIR)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/gen_code.o: $(LDIR)/gen_code.c $(IDIR)/gen_code.h | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Create object directory if it doesn't exist
