@@ -6,18 +6,18 @@
 #include <string.h>
 
 typedef enum {
-    NOP, // Não tem operação
-    ADD, SUB, MULT, DIV, // Operações Aritméticas
-    ADDI, SUBI, RSUBI, MULTI, DIVI, RDIVI, // Operações Aritméticas Imediatas
-    LSHIFT, LSHIFTI, RSHIFT, RSHIFTI, // Operações de Deslocamento
-    AND, ANDI, OR, ORI, XOR, XORI, // Operações Lógicas
-    LOADI, LOAD, LOADAI, LOADA0, // Operações de Consulta
-    CLOAD, CLOADAI, CLOADA0, // Operações de Consulta para Caractéres
-    STORE, STOREAI, STOREAO, // Operações de Armazenamento
-    CSTORE, CSTOREAI, CSTOREAO, // Operações de Armazenamento de Caractéres
-    I2I, C2C, C2I, I2C, // Operações de Cópia e Mudança de Tipo de Instruções
-    JUMPI, JUMP, CBR, // Operações de Pulo
-    CMP_LT, CMP_LE, CMP_EQ, CMP_GE, CMP_GT, CMP_NE // Operações de Comparação
+    nop, // Não tem operação
+    add, sub, mult, div, // Operações Aritméticas
+    addi, subi, rsubi, multi, divi, rdivi, // Operações Aritméticas Imediatas
+    lshift, lshifti, rshift, rshifti, // Operações de Deslocamento
+    and, andi, or, ori, xor, xori, // Operações Lógicas
+    loadi, load, loadai, loada0, // Operações de Consulta
+    cload, cloadai, cloada0, // Operações de Consulta para Caractéres
+    store, storeai, storeao, // Operações de Armazenamento
+    cstore, cstoreai, cstoreao, // Operações de Armazenamento de Caractéres
+    i2i, c2c, c2i, i2c, // Operações de Cópia e Mudança de Tipo de Instruções
+    jumpi, jump, cbr, // Operações de Pulo
+    cmp_lt, cmp_le, cmp_eq, cmp_ge, cmp_gt, cmp_ne // Operações de Comparação
 } iloc_opcode_t;
 
 typedef struct operation {

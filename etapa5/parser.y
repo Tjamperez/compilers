@@ -16,6 +16,12 @@
 #include "tree.h"
 #include "gen_code.h"
 
+
+//Tamanho do Buffer para Operações
+
+OPCODE_SIZZE_OF_BUFFER = 64;
+
+
 // Protótipos das funções necessárias
 int yylex(void);
 int yyerror(char const *s);
@@ -26,8 +32,8 @@ int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
 extern char *yytext;
 extern void *arvore;
 stack_of_tables_t *stack_of_tables;
-int label_counter = 0;
-int temp_counter = 0;
+static int label_counter = 0;
+static int temp_counter = 0;
 
 %}
 
@@ -1068,6 +1074,13 @@ LITINT: TK_LIT_INT
 	  {
 			$$ = ast_new($1);
             $$->node_type = NODE_TYPE_INT;
+            char* temp = generate_temp(temp_counter)
+            $$->temp = temp;
+
+            char* op1 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+            sprintf(op1, "%d", $$->valor_lexico->token_value);
+            operation_t* codigoGerado = create_operation(NULL, loadI, op1, strdup(temp), NULL);
+
 			//printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 	  }
 	  ;
