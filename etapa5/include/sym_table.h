@@ -19,7 +19,9 @@ typedef struct symbol{
     tree_node_t* tree_node;
     int nature;
     int data_type;
+    int adress_displacement;
     struct symbol *following;
+    char* label;
 } symbol_t;
 
 // Estrutura do par chave,conteudo do símbolo
@@ -32,7 +34,9 @@ typedef struct symbol_dictionary{
 typedef struct table_of_symbols {
     int size;
     int capacity;
-    int address_displacement;
+    int current_adress_displacement;
+    int base_displacement;
+    bool is_global;
     symbol_dictionary_t **items;
     struct table_of_symbols *next;
     struct table_of_symbols *parent;

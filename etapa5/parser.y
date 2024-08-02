@@ -1,4 +1,7 @@
     /* Arquivo feito por Thales Perez 00303035 e Vitor Vargas 00302162 */
+
+    /* Bozhe, spasi menya, potomu chto nikto drugoy ne mozhet. */
+
 %define parse.error verbose
 
 %code requires { #include "tree.h" }
@@ -19,7 +22,7 @@
 
 //Tamanho do Buffer para Operações
 
-OPCODE_SIZZE_OF_BUFFER = 64;
+#define OPCODE_SIZE_OF_BUFFER 64
 
 
 // Protótipos das funções necessárias
@@ -32,8 +35,11 @@ int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
 extern char *yytext;
 extern void *arvore;
 stack_of_tables_t *stack_of_tables;
-static int label_counter = 0;
-static int temp_counter = 0;
+static int *label_counter = 0;
+static int *temp_counter = 0;
+int initial_space = 0;
+int final_space = 0;
+int current_opcode = 0;
 
 %}
 
@@ -696,6 +702,38 @@ loop: WHILE '(' expressao ')' criar_escopo corpo fechar_escopo
 		ast_add_child($$, $5); // Adiciona o corpo como filho do nó "while"
         $$->node_type = $3->node_type;
 		//printf("Added expressao and corpo to loop\n"); // Debug print
+
+        char* test_label = generate_label(label_counter);
+        char* true_label = generate_label(label_counter);
+        char* after_label = generate_label(label_counter);
+        
+        char* temp = generate_temp(temp_counter);
+        char* temp_opaque = generate_temp(temp_counter);
+        char* op1 = strdup("0");
+        operation_t* generated_code1 = initialize_operation(NULL, LOADI, op1, temp, NULL);
+
+        operation_t* generated_code_test = initialize_operation(strdup(test_label), NOP, NULL, NULL, NULL);
+        append_operations(generated_code1, generated_code_test);
+        
+        operation_t* generated_code2 = initialize_operation(NULL, CMP_NE, strdup($3->temp), strdup(temp), temp_opaque);
+        append_operations(generated_code1, generated_code2);
+        
+        operation_t* generated_code3 = initialize_operation(NULL, CBR, strdup(temp_opaque), true_label, after_label);
+        append_operations(generated_code1, generated_code3);
+        
+        operation_t* generated_code4 = initialize_operation(true_label, NOP, NULL, NULL, NULL);
+        append_operations(generated_code1, generated_code4);
+
+        if ($6 != NULL)
+            append_operations(generated_code1, $6->code);
+
+        operation_t* generated_code5 = initialize_operation(NULL, JUMPI, test_label, NULL, NULL);
+        append_operations(generated_code1, generated_code5);
+
+        operation_t* generated_code6 = initialize_operation(strdup(after_label), NOP, NULL, NULL, NULL);
+        append_operations(generated_code1, generated_code6);
+
+        $$->code = append_operations($3->code, generated_code1);
 	}
 	;
 
@@ -728,6 +766,12 @@ operando: operador
 			ast_add_child($$, $3);
             $$->node_type = new_type($1,$3);
 			//printf("Added operando and operador to operando\n"); // Debug print
+
+            char* temp = generate_temp(temp_counter);
+            operation_t* generated_code = initialize_operation(NULL, OR , strdup($1->temp), strdup($3->temp), strdup(temp));
+            $$->code = append_operations($1->code, $3->code);
+            $$->code = append_operations($$->code, generated_code);
+            $$->temp = temp;
 		}
         ;
 
@@ -745,6 +789,13 @@ operador: comparacao_1
 			ast_add_child($$, $3);
             $$->node_type = new_type($1,$3);
 			//printf("Added operador and comparacao to operador\n"); // Debug print
+
+            char* temp = generate_temp(temp_counter);
+            operation_t* generated_code = initialize_operation(NULL, AND , strdup($1->temp), strdup($3->temp), strdup(temp));
+            $$->code = append_operations($1->code, $3->code);
+            $$->code = append_operations($$->code, generated_code);
+            $$->temp = temp;
+
 		}
         ;
 
@@ -762,16 +813,24 @@ comparacao_1: comparacao_2
 				ast_add_child($$, $3);
                 $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
+
+                char* temp = generate_temp(temp_counter);
+                operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
+                $$->code = append_operations($1->code, $3->code);
+                $$->code = append_operations($$->code, generated_code);
+                $$->temp = temp;
 		  }
           ;
 equal_or_not:  EQUAL
 			 {
 				$$ = $1;
+                current_opcode = CMP_EQ;
 				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
 			 }
              | NOTEQUAL
 			 {
 				$$ = $1;
+                current_opcode = CMP_NE;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -791,26 +850,36 @@ comparacao_2: adicaousub
 				ast_add_child($$, $3);
                 $$->node_type = new_type($1,$3);
 				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
+
+                char* temp = generate_temp(temp_counter);
+                operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
+                $$->code = append_operations($1->code, $3->code);
+                $$->code = append_operations($$->code, generated_code);
+                $$->temp = temp;
 		  }
           ;
 greater_or_less:  GREATEREQUAL
 			 {
 				$$ = $1;
+                current_opcode = CMP_GE;
 				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
 			 }
-             | 	  LESSEQUAL
+             | 	LESSEQUAL
 			 {
 				$$ = $1;
+                current_opcode = CMP_LE;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
-			 | 	  GREATERTHAN
+			 |  GREATERTHAN
 			 {
 				$$ = $1;
+                current_opcode = CMP_GT;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
-			 | 	  LESSTHAN
+			 |  LESSTHAN
 			 {
 				$$ = $1;
+                current_opcode = CMP_LT;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -829,6 +898,14 @@ adicaousub: multoudivoures
 					ast_add_child($$, $3);
                     $$->node_type = new_type($1,$3);
 					//printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
+
+                    char* temp = generate_temp(temp_counter);
+                    operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
+                    $$->code = append_operations($1->code, $3->code);
+                    $$->code = append_operations($$->code, generated_code);
+                    $$->temp = temp;
+
+
 		  }
           ;
 
@@ -837,11 +914,13 @@ adicaousub: multoudivoures
 op_adicaousub: ADD
 			 {
 				$$ = $1;
+                current_opcode = ADD;
 				//printf("Added ADD to op_adicaousub\n"); // Debug print
 			 }
              | SUBTRACT
 			 {
 				$$ = $1;
+                current_opcode = SUB;
 				//printf("Added SUBTRACT to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -860,6 +939,13 @@ multoudivoures: unario
 					ast_add_child($$, $3);
                     $$->node_type = new_type($1,$3);
 					//printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
+
+                    char* temp = generate_temp(temp_counter);
+                    operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
+                    $$->code = append_operations($1->code, $3->code);
+                    $$->code = append_operations($$->code, generated_code);
+                    $$->temp = temp;
+
 			  }
               ;
 
@@ -868,11 +954,13 @@ multoudivoures: unario
 op_multoudivoures: MULTIPLY
 				 {
 					$$ = $1;
+                    current_opcode = MULT;
 					//printf("Added MULTIPLY to op_multoudivoures\n"); // Debug print
 				 }
                  | DIVIDE
 				 {
 					$$ = $1;
+                    current_opcode = DIV;
 					//printf("Added DIVIDE to op_multoudivoures\n"); // Debug print
 				 }
                  | REMAINDER
@@ -915,6 +1003,29 @@ primario: identificador
 			char* new_key = $1->valor_lexico->token_value;
 							  
             symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+
+            table_of_symbols_t* current_scope = search_stack_for_adress(stack_of_tables, new_key);
+
+            int adress = result->adress_displacement;
+
+            char* temp = generate_temp(temp_counter);
+
+            char* op1;
+
+            if(current_scope->is_global)
+                op1 = strdup("rbss");
+            else
+                op1 = strdup("rfp");
+
+            char* op2 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+
+            sprintf(op2, "%d", adress + initial_space);
+
+            operation_t* generated_code = initialize_operation(NULL, LOADAI, op1, op2, strdup(temp));
+
+            $$->temp = temp;
+            $$->code = append_operations($$->code, generated_code);
+
 			if(result == NULL){
                printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
                exit(ERR_UNDECLARED);
@@ -977,6 +1088,32 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
                         exit(ERR_VARIABLE);
                     }
                 }
+                table_of_symbols_t* current_scope = search_stack_for_adress(stack_of_tables, new_key);
+                
+                $$->temp = generate_temp(temp_counter);
+
+                operation_t* generated_code1 = initialize_operation(NULL, LOADI, NULL, generate_temp(temp_counter), NULL);
+
+                operation_t* generated_code2 = initialize_operation(NULL, STOREAI, strdup(generated_code1->op2), strdup("rsp"), strdup("0"));
+
+                append_operations(generated_code1, generated_code2);
+
+                operation_t* generated_code3 = initialize_operation(NULL, STOREAI, strdup("rsp"), strdup("rsp"), strdup("4"));
+                append_operations(generated_code1, generated_code3);
+
+                operation_t* generated_code4 = initialize_operation(NULL, STOREAI, strdup("rfp"), strdup("rsp"), strdup("8"));
+                append_operations(generated_code1, generated_code4);
+
+                char* function_label = strdup(result->label);
+                operation_t* generated_code5 = initialize_operation(NULL, JUMPI, function_label, NULL, NULL);
+                append_operations(generated_code1, generated_code5);
+
+                operation_t* generated_code6 = initialize_operation(NULL, LOADAI, strdup("rsp"), strdup("12"), strdup($$->temp));
+                append_operations(generated_code1, generated_code6);
+
+                if ($3 != NULL) {
+                    $$->code = append_operations($3->code, generated_code1);
+                }
 			  }
 			  | nome_func '('/*vazio*/')'
 			  {
@@ -1003,6 +1140,28 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
                         exit(ERR_VARIABLE);
                     }
                 }
+                table_of_symbols_t* current_scope = search_stack_for_adress(stack_of_tables, new_key);
+                $$->temp = generate_temp(temp_counter);
+
+                operation_t* generated_code1 = initialize_operation(NULL, LOADI, NULL, generate_temp(temp_counter), NULL);
+
+                operation_t* generated_code2 = initialize_operation(NULL, STOREAI, strdup(generated_code1->op2), strdup("rsp"), strdup("0"));
+                append_operations(generated_code1, generated_code2);
+
+                operation_t* generated_code3 = initialize_operation(NULL, STOREAI, strdup("rsp"), strdup("rsp"), strdup("4"));
+                append_operations(generated_code1, generated_code3);
+
+                operation_t* generated_code4 = initialize_operation(NULL, STOREAI, strdup("rfp"), strdup("rsp"), strdup("8"));
+                append_operations(generated_code1, generated_code4);
+
+                char* function_label = strdup(result->label);
+                operation_t* generated_code5 = initialize_operation(NULL, JUMPI, function_label, NULL, NULL);
+                append_operations(generated_code1, generated_code5);
+
+                operation_t* generated_code6 = initialize_operation(NULL, LOADAI, strdup("rsp"), strdup("12"), strdup($$->temp));
+                append_operations(generated_code1, generated_code6);
+
+                $$->code = generated_code1;
 			  }
               ;
 
@@ -1074,12 +1233,12 @@ LITINT: TK_LIT_INT
 	  {
 			$$ = ast_new($1);
             $$->node_type = NODE_TYPE_INT;
-            char* temp = generate_temp(temp_counter)
+            char* temp = generate_temp(temp_counter);
             $$->temp = temp;
 
             char* op1 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
-            sprintf(op1, "%d", $$->valor_lexico->token_value);
-            operation_t* codigoGerado = create_operation(NULL, loadI, op1, strdup(temp), NULL);
+            op1 = $$->valor_lexico->token_value;
+            operation_t* generated_code = initialize_operation(NULL, LOADI, op1, strdup(temp), NULL);
 
 			//printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 	  }

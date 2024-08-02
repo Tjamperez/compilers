@@ -14,9 +14,8 @@ typedef struct tree_node {
     struct tree_node **children;
     int node_type;
     int num_children;
-
-    operation_t * code;
-    char * temp;
+    operation_t *code;
+    char *temp;
 } tree_node_t;
 
 // Cria um nó sem filhos com o valor léxico.

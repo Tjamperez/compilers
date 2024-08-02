@@ -36,6 +36,24 @@ table_of_symbols_t* pop_scope(stack_of_tables_t* stack) {
     return top_table;
 }
 
+table_of_symbols_t* search_stack_for_adress(stack_of_tables_t *stack, char* key) {
+
+    if (stack->size == 0)
+        return NULL;
+    int thisScope = 0;
+    symbol_t* symbol_found = NULL;
+    for(thisScope = stack->size - 1; thisScope >= 0; thisScope--) {
+        
+    	symbol_found = find_symbol(stack->tables[thisScope], key);
+    	
+    	
+    	if(symbol_found != NULL)
+    		break;
+    }
+    
+    return stack->tables[thisScope];
+}
+
 // Limpar memória da pilha.
 void free_stack_of_tables(stack_of_tables_t* stack) {
     while (stack->size > 0) {

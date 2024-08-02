@@ -84,7 +84,7 @@ const char* opcode_to_string(iloc_opcode_t opcode) {
     }
 }
 
-operation_t* append_operation(operation_t* father_operation, operation_t* son_operation) {
+operation_t* append_operations(operation_t* father_operation, operation_t* son_operation) {
 
     if (father_operation == NULL) {
         return son_operation;
@@ -115,14 +115,14 @@ void free_operations_list(operation_t* head) {
 
 // Geradora de Labels
 char* generate_label(int *label_counter) {
-    char* label = (char*)malloc(20 * sizeof(char));
+    char *label = (char*)malloc(20 * sizeof(char));
     snprintf(label, 20, "L%d", (*label_counter)++);
     return label;
 }
 
 // Geradora de Temps
-char* generate_temp(int* temp_counter) {
-    char* temp = (char*)malloc(20 * sizeof(char));
+char* generate_temp(int *temp_counter) {
+    char *temp = (char*)malloc(20 * sizeof(char));
     snprintf(temp, 20, "t%d", (*temp_counter)++);
     return temp;
 }

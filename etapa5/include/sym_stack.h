@@ -37,4 +37,6 @@ int new_type(tree_node_t* destiny_node, tree_node_t* origin_node);
 
 symbol_t* search_symbol_stack(stack_of_tables_t *stack, char* key);
 
+table_of_symbols_t* search_stack_for_adress(stack_of_tables_t *stack, char* key);
+
 #endif // _SYM_STACK_H_

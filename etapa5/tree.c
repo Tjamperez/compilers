@@ -128,6 +128,6 @@ operation_t* append_node_operation(tree_node_t* father_node, tree_node_t* son_no
     if (son_node == NULL) {
         return father_node->code;
     }
-    operation_t* temp = append_operation(father_node->code, son_node->code);
+    operation_t* temp = append_operations(father_node->code, son_node->code);
     return temp;
 }
