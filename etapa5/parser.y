@@ -616,9 +616,7 @@ comando_atribuicao: identificador '=' expressao
                             exit(ERR_FUNCTION);
                         }
                     }
-                    $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante
-//ate aqui tem que ser comentado 
-//pra ver se nao quebrou a arvore em tese funciona                 
+                    $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante             
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
 				  }
                   ;
@@ -675,6 +673,34 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
 				ast_add_child($$, $5); // Adiciona o corpo como filho do nó "if"
                 $$->node_type = $3->node_type;
 				//printf("Added expressao and corpo to condicional\n"); // Debug print
+
+                char * true_label = generate_label(label_counter);
+                char * after_label = generate_label(label_counter);
+                
+                char * temp = generate_temp(temp_counter);
+                char * temp_opaque = generate_temp(temp_counter);
+
+                char* op1 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+                sprintf(op1, "%d", 0);
+                operation_t* generated_code1 = initialize_operation(NULL, LOADI, op1, temp, NULL);
+                
+                operation_t* generated_code2 = initialize_operation(NULL, CMP_NE, strdup($3->temp), strdup(temp), temp_opaque);
+                append_operations(generated_code1, generated_code2);
+                
+                operation_t* generated_code3 = initialize_operation(NULL, CBR, strdup(temp_opaque), true_label, after_label);
+                append_operations(generated_code1, generated_code3);
+                
+                operation_t* generated_code4 = initialize_operation(strdup(true_label), NOP, NULL, NULL, NULL);
+                append_operations(generated_code1, generated_code4);
+
+                if ($6 != NULL)
+                    append_operations(generated_code1, $7->code);
+
+                operation_t* generated_code5 = initialize_operation(strdup(after_label), NOP, NULL, NULL, NULL);
+                append_operations(generated_code1, generated_code5);
+
+                $$->code = append_operations($3->code, generated_code1);
+
 		   }
            | IF '(' expressao ')' criar_escopo corpo fechar_escopo ELSE criar_escopo corpo fechar_escopo
 		   {
@@ -684,6 +710,43 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
 				ast_add_child($$, $7); // Adiciona o nó "else" como filho do nó "if"
                 $$->node_type = $3->node_type;
 				//printf("Added expressao, corpo, and corpo to condicional\n"); // Debug print
+
+                char * true_label = generate_label(label_counter);
+                char * false_label = generate_label(label_counter);
+                char * after_label = generate_label(label_counter);
+                
+                char * temp = generate_temp(temp_counter);
+                char * temp_opaque = generate_temp(temp_counter);
+
+                char* op1 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+                sprintf(op1, "%d", 0);
+                operation_t* generated_code1 = initialize_operation(NULL, LOADI, op1, temp, NULL);
+                
+                operation_t* generated_code2 = initialize_operation(NULL, CMP_NE, strdup($3->temp), strdup(temp), temp_opaque);
+                append_operations(generated_code1, generated_code2);
+                
+                operation_t* generated_code3 = initialize_operation(NULL, CBR, strdup(temp_opaque), true_label, after_label);
+                append_operations(generated_code1, generated_code3);
+                
+                operation_t* generated_code4 = initialize_operation(strdup(true_label), NOP, NULL, NULL, NULL);
+                append_operations(generated_code1, generated_code4);
+
+                if ($6 != NULL)
+                    append_operations(generated_code1, $7->code);
+
+                operation_t* generated_code5 = initialize_operation(NULL, JUMPI, after_label, NULL, NULL);
+                append_operations(generated_code1, generated_code5);
+
+                operation_t* generated_code6 = initialize_operation(strdup(false_label), NOP, NULL, NULL, NULL);
+                append_operations(generated_code1, generated_code6);
+
+                if ($10 != NULL)
+                    append_operations(generated_code1, $11->code);
+
+                operation_t* generated_code7 = initialize_operation(strdup(after_label), NOP, NULL, NULL, NULL);
+				append_operations(generated_code1, generated_code7);
+
+                $$->code = append_operations($3->code, generated_code1);
 		   }
 		   ;
 
