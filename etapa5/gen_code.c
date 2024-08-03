@@ -20,6 +20,31 @@ operation_t* initialize_operation(const char* label, iloc_opcode_t opcode, const
     return operation;
 }
 
+
+//Finalizar a arvore
+operation_t* gen_wrapper_code(operation_t* code, char* main_label) {
+    int op_counter = 0;
+    for (operation_t* op=code; op!=NULL; op=op->next) {
+        op_counter++;
+    }
+
+    operation_t* generated_code = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rfp"), NULL);
+    operation_t* generated_code2 = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rsp"), NULL);
+    char* op1 = malloc(10);
+    sprintf(op1, "%d", op_counter + 4);
+    operation_t* generated_code3 = initialize_operation(NULL, LOADI, op1, strdup("rbss"), NULL);
+    operation_t* generated_code4 = initialize_operation(NULL, JUMPI, main_label, NULL, NULL);
+    //operation_t* generated_code5 = initialize_operation(NULL, HALT, NULL, NULL, NULL); Where Halt???
+
+    append_operations(generated_code, generated_code2);
+    append_operations(generated_code, generated_code3);
+    append_operations(generated_code, generated_code4);
+    append_operations(generated_code, code);
+    //append_operations(generated_code, generated_code5);
+
+    return generated_code;
+}
+
 // Limpar Memória
 void free_operation(operation_t* operation) {
     if (operation->label) free(operation->label);

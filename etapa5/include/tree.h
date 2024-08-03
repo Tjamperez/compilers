@@ -31,7 +31,7 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child);
 void exporta(void *arvore);
 
 //Linkar Nodos
-operation_t* append_node_operation(tree_node_t* father_node, tree_node_t* son_node);
+operation_t* append_node_operations(tree_node_t* father_node, tree_node_t* son_node);
 
 tree_node_t *ast_new_label_only(char *label);
 

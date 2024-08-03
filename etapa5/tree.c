@@ -118,7 +118,7 @@ void exporta(void *arvore) {
 }
 
 //Função para passar os nodos para concatenação
-operation_t* append_node_operation(tree_node_t* father_node, tree_node_t* son_node) {
+operation_t* append_node_operations(tree_node_t* father_node, tree_node_t* son_node) {
     if (father_node == NULL) {
         if (son_node == NULL) {
             return NULL;

@@ -51,4 +51,7 @@ char* generate_temp(int* temp_counter);
 //Gerador de Labels
 char* generate_label(int* label_counter);
 
+//Finalizar a Arvore
+operation_t* gen_wrapper_code(operation_t* code, char* main_label);
+
 #endif // _GEN_CODE_H
