@@ -34,15 +34,27 @@ operation_t* gen_wrapper_code(operation_t* code, char* main_label) {
     sprintf(op1, "%d", op_counter + 4);
     operation_t* generated_code3 = initialize_operation(NULL, LOADI, op1, strdup("rbss"), NULL);
     operation_t* generated_code4 = initialize_operation(NULL, JUMPI, main_label, NULL, NULL);
-    //operation_t* generated_code5 = initialize_operation(NULL, HALT, NULL, NULL, NULL); Where Halt???
+    operation_t* generated_code5 = initialize_operation(NULL, HALT, NULL, NULL, NULL);
 
     append_operations(generated_code, generated_code2);
     append_operations(generated_code, generated_code3);
     append_operations(generated_code, generated_code4);
     append_operations(generated_code, code);
-    //append_operations(generated_code, generated_code5);
+    append_operations(generated_code, generated_code5);
 
     return generated_code;
+}
+
+operation_t* fill_holes(operation_t* code) {
+    int op_counter = 0;
+    for (operation_t* op=code; op!=NULL; op=op->next) {
+        op_counter++;
+        if ((op->opcode == LOADI) && (op->op1 == NULL)) {
+            op->op1 = (char*) malloc(10);
+            sprintf(op->op1, "%d", op_counter+4);
+        }
+    }
+    return code;
 }
 
 // Limpar Memória
@@ -105,12 +117,31 @@ const char* opcode_to_string(iloc_opcode_t opcode) {
         case CMP_GE: return "cmp_GE";
         case CMP_GT: return "cmp_GT";
         case CMP_NE: return "cmp_NE";
+        case HALT: return "halt";
         default: return "unknown";
     }
 }
 
-operation_t* append_operations(operation_t* father_operation, operation_t* son_operation) {
+// operation_t* append_operations(operation_t* father_operation, operation_t* son_operation) {
+//     if (father_operation == NULL) {
+//         return son_operation;
+//     }
 
+//     if (son_operation == NULL) {
+//         return father_operation;
+//     }
+
+//     operation_t* current = father_operation;
+//     while (current->next != NULL) {
+//         //fprintf(stderr, "Current operation: %p\n", current);
+//         current = current->next;
+//     }
+
+//     current->next = son_operation;
+//     return father_operation;
+// }
+
+operation_t* append_operations(operation_t* father_operation, operation_t* son_operation) {
     if (father_operation == NULL) {
         return son_operation;
     }
@@ -119,12 +150,26 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
         return father_operation;
     }
 
-    operation_t* current = father_operation;
+    // Check for circular reference
+    operation_t* current = son_operation;
+    while (current != NULL) {
+        if (current == father_operation) {
+            fprintf(stderr, "Error: Circular reference detected when appending operations.\n");
+            return father_operation;
+        }
+        current = current->next;
+    }
+
+    // Find the end of the father_operation list
+    current = father_operation;
     while (current->next != NULL) {
         current = current->next;
     }
 
     current->next = son_operation;
+
+    fprintf(stderr, "Appended operations: father_operation=%p, son_operation=%p\n", father_operation, son_operation);
+
     return father_operation;
 }
 
@@ -140,6 +185,7 @@ void free_operations_list(operation_t* head) {
 
 // Geradora de Labels
 char* generate_label(int *label_counter) {
+    fprintf(stderr, "Debug message label\n");
     char *label = (char*)malloc(20 * sizeof(char));
     snprintf(label, 20, "L%d", (*label_counter)++);
     return label;
@@ -147,6 +193,7 @@ char* generate_label(int *label_counter) {
 
 // Geradora de Temps
 char* generate_temp(int *temp_counter) {
+    fprintf(stderr, "Debug message temp\n");
     char *temp = (char*)malloc(20 * sizeof(char));
     snprintf(temp, 20, "t%d", (*temp_counter)++);
     return temp;

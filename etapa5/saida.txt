@@ -1,1 +1,17 @@
-[ERR_VARIABLE] Funcao [g] na linha 3 esta sendo usada como variavel
+0x5654ec0f0580 [label="g"];
+0x5654ec0f0580, 0x5654ec0f08f0
+0x5654ec0f0580, 0x5654ec0f1460
+0x5654ec0f08f0 [label="return"];
+0x5654ec0f08f0, 0x5654ec0f0980
+0x5654ec0f0980 [label="0"];
+0x5654ec0f1460 [label="f"];
+0x5654ec0f1460, 0x5654ec0f19c0
+0x5654ec0f19c0 [label="="];
+0x5654ec0f19c0, 0x5654ec0f1810
+0x5654ec0f19c0, 0x5654ec0f1880
+0x5654ec0f19c0, 0x5654ec0f1b60
+0x5654ec0f1810 [label="k"];
+0x5654ec0f1880 [label="0"];
+0x5654ec0f1b60 [label="return"];
+0x5654ec0f1b60, 0x5654ec0f1bf0
+0x5654ec0f1bf0 [label="0"];

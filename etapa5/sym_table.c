@@ -5,33 +5,42 @@
 #include "sym_stack.h"
 
 
-symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type) {
+symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type, char* label) {
     symbol_t *symbol = (symbol_t *)malloc(sizeof(symbol_t));
     symbol->tree_node = tree_node;
     symbol->data_type = data_type;
     symbol->nature = nature;
     symbol->following = NULL;
+    symbol->label = label;
     return symbol;
 }
 
-
-
 int insert_symbol(table_of_symbols_t* table, char* key, symbol_t *symbol) {
+
     if (table->size == table->capacity) {
         table->capacity *= 2;
         table->items = (symbol_dictionary_t **)realloc(table->items, sizeof(symbol_dictionary_t *) * table->capacity);
         if (table->items == NULL) {
-            // Handle realloc failure
             return -1;
         }
     }
-    
-    symbol_dictionary_t *identity = create_symbol_dictionary(key, symbol);
+    //fprintf(stderr, "Debug MISERY\n");
+    symbol->adress_displacement = table->current_adress_displacement;
+
+    symbol_dictionary_t *identity = (symbol_dictionary_t *)malloc(sizeof(symbol_dictionary_t));
     if (identity == NULL) {
         return -1;
     }
-    
+    //fprintf(stderr, "Debug PAIN\n");
+    identity->key = strdup(key);
+    identity->content = symbol;
+
     table->items[table->size++] = identity;
+
+    //fprintf(stderr, "Debug DEATH\n");
+
+    table->current_adress_displacement += sizeof(symbol_t); 
+
     return 0;
 }
 
@@ -44,13 +53,29 @@ symbol_dictionary_t* create_symbol_dictionary(char *key, symbol_t *content) {
 }
 
 
-table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent) {
+table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent , bool globality) {
     table_of_symbols_t *table = (table_of_symbols_t *)malloc(sizeof(table_of_symbols_t));
     table->size = 0;
     table->capacity = 10;
+    table->current_adress_displacement = 0;
+    table-> base_displacement = 0;
     table->items = (symbol_dictionary_t **)malloc(sizeof(symbol_dictionary_t *) * table->capacity);
     table->next = NULL;
     table->parent = parent;
+    table->is_global = globality;
+    return table;
+}
+
+table_of_symbols_t* create_table_of_symbols_global(table_of_symbols_t* parent , bool globality) {
+    table_of_symbols_t *table = (table_of_symbols_t *)malloc(sizeof(table_of_symbols_t));
+    table->size = 0;
+    table->capacity = 10;
+    table->current_adress_displacement = 0;
+    table-> base_displacement = 16;
+    table->items = (symbol_dictionary_t **)malloc(sizeof(symbol_dictionary_t *) * table->capacity);
+    table->next = NULL;
+    table->parent = parent;
+    table->is_global = globality;
     return table;
 }
 
@@ -83,7 +108,7 @@ void free_table_of_symbols(table_of_symbols_t* table) {  // Why does this cause 
 }
 
 table_of_symbols_t* initialize_symbol_table() {
-    return create_table_of_symbols(NULL);
+    return create_table_of_symbols(NULL,false);
 }
 
 void cleanup_symbol_table(table_of_symbols_t* table) {

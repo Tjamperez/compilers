@@ -43,10 +43,13 @@ typedef struct table_of_symbols {
 } table_of_symbols_t;
 
 // Cria e inicializa uma nova tabela de símbolos, possivelmente vinculada a uma tabela pai.
-table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent);
+table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent, bool globality);
+
+// Cria e inicializa uma nova tabela de símbolos,a global
+table_of_symbols_t* create_table_of_symbols_global(table_of_symbols_t* parent, bool globality);
 
 //Funçã opara criar símbolo
-symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type);
+symbol_t* create_symbol(tree_node_t* tree_node, int nature, int data_type, char* label);
 
 // Insere um novo símbolo na tabela de símbolos especificada.
 int insert_symbol(table_of_symbols_t* table, char* key, symbol_t *symbol);

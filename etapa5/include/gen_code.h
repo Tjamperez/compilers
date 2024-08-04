@@ -17,7 +17,8 @@ typedef enum {
     CSTORE, CSTOREAI, CSTOREAO, // Operações de Armazenamento de Caractéres
     I2I, C2C, C2I, I2C, // Operações de Cópia e Mudança de Tipo de Instruções
     JUMPI, JUMP, CBR, // Operações de Pulo
-    CMP_LT, CMP_LE, CMP_EQ, CMP_GE, CMP_GT, CMP_NE // Operações de Comparação
+    CMP_LT, CMP_LE, CMP_EQ, CMP_GE, CMP_GT, CMP_NE, // Operações de Comparação
+    HALT
 } iloc_opcode_t;
 
 typedef struct operation {
@@ -53,5 +54,7 @@ char* generate_label(int* label_counter);
 
 //Finalizar a Arvore
 operation_t* gen_wrapper_code(operation_t* code, char* main_label);
+
+operation_t* fill_holes(operation_t* code);
 
 #endif // _GEN_CODE_H
