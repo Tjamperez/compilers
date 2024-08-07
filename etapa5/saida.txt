@@ -1,17 +1,30 @@
-0x5654ec0f0580 [label="g"];
-0x5654ec0f0580, 0x5654ec0f08f0
-0x5654ec0f0580, 0x5654ec0f1460
-0x5654ec0f08f0 [label="return"];
-0x5654ec0f08f0, 0x5654ec0f0980
-0x5654ec0f0980 [label="0"];
-0x5654ec0f1460 [label="f"];
-0x5654ec0f1460, 0x5654ec0f19c0
-0x5654ec0f19c0 [label="="];
-0x5654ec0f19c0, 0x5654ec0f1810
-0x5654ec0f19c0, 0x5654ec0f1880
-0x5654ec0f19c0, 0x5654ec0f1b60
-0x5654ec0f1810 [label="k"];
-0x5654ec0f1880 [label="0"];
-0x5654ec0f1b60 [label="return"];
-0x5654ec0f1b60, 0x5654ec0f1bf0
-0x5654ec0f1bf0 [label="0"];
+	storeAI	t4	=> rfp, 0
+	loadI	1024, rfp	=> (null)
+	loadI	1024, rsp	=> (null)
+	loadI	28, rbss	=> (null)
+	jumpI		-> (null)
+L0:	nop	
+	i2i	rsp	=> rfp
+	addI	rsp, 16	=> rsp
+	loadI	0, t0	=> (null)
+	storeAI	t0	=> rfp, 12
+	loadAI	rfp, 0	=> t1
+	loadAI	rfp, 4	=> t2
+	loadAI	rfp, 8	=> t3
+	i2i	t2	=> rsp
+	i2i	t3	=> rfp
+	jump		-> t1
+L1:	nop	
+	i2i	rsp	=> rfp
+	addI	rsp, 96	=> rsp
+	loadI	0, t4	=> (null)
+	storeAI	t4	=> rfp, 0
+	loadI	0, t5	=> (null)
+	storeAI	t5	=> rfp, 92
+	loadAI	rfp, 0	=> t6
+	loadAI	rfp, 4	=> t7
+	loadAI	rfp, 8	=> t8
+	i2i	t7	=> rsp
+	i2i	t8	=> rfp
+	jump		-> t6
+	halt	(null), (null)	-> (null)

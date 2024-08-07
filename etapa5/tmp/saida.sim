@@ -1,1 +1,1 @@
-Erro sintático na linha 1 com a instrução ( 0x56467e6b6780 [label="foo"]; )
+Erro sintático na linha 4 com a instrução ( loadI 1024, rfp => (null) )

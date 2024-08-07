@@ -47,14 +47,18 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
 void free_operations_list(operation_t* head);
 
 //Gerador de Temporários
-char* generate_temp(int* temp_counter);
+char* generate_temp();
 
 //Gerador de Labels
-char* generate_label(int* label_counter);
+char* generate_label();
 
 //Finalizar a Arvore
 operation_t* gen_wrapper_code(operation_t* code, char* main_label);
 
 operation_t* fill_holes(operation_t* code);
+
+void print_operations(operation_t* op1);
+
+void print_all_operations(operation_t* operation);
 
 #endif // _GEN_CODE_H
