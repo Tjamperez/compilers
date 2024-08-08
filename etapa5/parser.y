@@ -159,11 +159,11 @@ raiz: criar_pilha criar_escopo_global programa fechar_escopo fechar_pilha
     //fprintf(stderr, "Debug message raiz: criar_pilha criar_escopo_global programa fechar_escopo fechar_pilha\n");
     $$ = $3;
     if ($3 != NULL) {
-        fprintf(stderr, "Before appending programa: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
+        //fprintf(stderr, "Before appending programa: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
         $$->code = append_node_operations($$, $3);
         $$->code = gen_wrapper_code($$->code , main_label);
         $$->code = fill_holes($$->code);
-        fprintf(stderr, "After appending programa: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending programa: $$->code=%p\n\n", $$->code);
     }
     print_all_operations($3->code);
     arvore = $$;
@@ -177,16 +177,16 @@ programa: lista_de_elementos
     //fprintf(stderr, "Debug message programa: lista_de_elementos\n");
     $$ = $1;
     if ($1 != NULL) {
-        fprintf(stderr, "Before appending lista_de_elementos: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+        //fprintf(stderr, "Before appending lista_de_elementos: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
         $$->code = append_operations($$->code, $1->code);
-        fprintf(stderr, "After appending lista_de_elementos: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending lista_de_elementos: $$->code=%p\n\n", $$->code);
     }
 }
 | /* vazio */
 {
     $$ = NULL; // Se não houver elementos, o programa é nulo
     arvore = NULL;
-    fprintf(stderr, "Empty arvore\n"); // Debug print
+    //fprintf(stderr, "Empty arvore\n"); // Debug print
 }
 ;
 
@@ -206,10 +206,10 @@ lista_de_elementos: elemento lista_de_elementos
         }
     }
     if ($$ != NULL) {
-        fprintf(stderr, "Before appending ele lista_ele: $$->code=%p, $1->code=%p, $2->code=%p\n\n", $$->code, $1 != NULL ? $1->code : NULL, $2 != NULL ? $2->code : NULL);
+        //fprintf(stderr, "Before appending ele lista_ele: $$->code=%p, $1->code=%p, $2->code=%p\n\n", $$->code, $1 != NULL ? $1->code : NULL, $2 != NULL ? $2->code : NULL);
         if ($1 != NULL) $$->code = append_operations($$->code, $1->code);
         if ($2 != NULL) $$->code = append_operations($$->code, $2->code);
-        fprintf(stderr, "After appending ele lista_ele: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending ele lista_ele: $$->code=%p\n\n", $$->code);
     }
 }
 | elemento
@@ -217,13 +217,13 @@ lista_de_elementos: elemento lista_de_elementos
     //fprintf(stderr, "Debug message lista_de_elementos: elemento\n");
     $$ = $1;
     if ($$ != NULL) {
-        fprintf(stderr, "Before appending elemento: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+        //fprintf(stderr, "Before appending elemento: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
         if ($$->code != $1->code) {
             $$->code = append_operations($$->code, $1->code);
         } else {
-            fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
+            //fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
         }
-        fprintf(stderr, "After appending elemento: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending elemento: $$->code=%p\n\n", $$->code);
     }
 }
 ;
@@ -235,13 +235,13 @@ elemento: declaracao_global
     //fprintf(stderr, "Debug message elemento: declaracao_global\n");
     $$ = $1;
     if ($$ != NULL) {
-        fprintf(stderr, "Before appending dec_global: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+        //fprintf(stderr, "Before appending dec_global: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
         if ($$->code != $1->code) {
             $$->code = append_operations($$->code, $1->code);
         } else {
-            fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
+            //fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
         }
-        fprintf(stderr, "After appending dec_global: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending dec_global: $$->code=%p\n\n", $$->code);
     }
 }
 | definicao_de_funcao
@@ -249,13 +249,13 @@ elemento: declaracao_global
     //fprintf(stderr, "Debug message elemento: definicao_de_funcao\n");
     $$ = $1;
     if ($$ != NULL) {
-        fprintf(stderr, "Before appending def_func: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+        //fprintf(stderr, "Before appending def_func: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
         if ($$->code != $1->code) {
             $$->code = append_operations($$->code, $1->code);
         } else {
-            fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
+            //fprintf(stderr, "Skipped appending to avoid circular reference.\n\n");
         }
-        fprintf(stderr, "After appending def_func: $$->code=%p\n\n", $$->code);
+        //fprintf(stderr, "After appending def_func: $$->code=%p\n\n", $$->code);
     }
 }
 ;
@@ -398,12 +398,12 @@ lista_identificador: lista_identificador ';' identificador
 definicao_de_funcao: cabecalho corpo fechar_escopo
 				   {
                     //fprintf(stderr, "Debug message definicao_de_funcao: cabecalho corpo fechar_escopo\n");
-                        fprintf(stderr, "Before appending CAB: $$->code=%p, $1->code=%p, $2->code=%p\n\n", $$->code, $1->code, $2->code);
+                        //fprintf(stderr, "Before appending CAB: $$->code=%p, $1->code=%p, $2->code=%p\n\n", $$->code, $1->code, $2->code);
 						$$ = $1; // Define a definição de função como o cabeçalho
 						if ($2 != NULL){
 							ast_add_child($$, $2); // Se houver corpo , adiciona o corpo como filho da definição de função
                             operation_t* generated_code1 = append_operations($1->code, $2->code);
-                            fprintf(stderr, "After appending CAB: $$->code=%p, $1->code=%p, $2->code=%p, generated_code1=%p\n\n", $$->code, $1->code, $2->code, generated_code1);
+                            //fprintf(stderr, "After appending CAB: $$->code=%p, $1->code=%p, $2->code=%p, generated_code1=%p\n\n", $$->code, $1->code, $2->code, generated_code1);
                             $$->code = generated_code1;
 						}
 						//printf("Added cabecalho and corpo to definicao_de_funcao\n"); // Debug print
@@ -439,12 +439,12 @@ cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_
             char* op2 = (char*) malloc(OPCODE_SIZE_OF_BUFFER);
             sprintf(op2, "%d", initial_space + stack_of_tables->top->current_adress_displacement + final_space);
             operation_t* generated_code3 = initialize_operation(NULL, ADDI, strdup("rsp"), op2, strdup("rsp"));
-            fprintf(stderr, "Before appending identfunc: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
+            //fprintf(stderr, "Before appending identfunc: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
             append_operations(generated_code1, generated_code3);
-            fprintf(stderr, "After appending identfunc: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
+            //fprintf(stderr, "After appending identfunc: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
 
             $$->code = generated_code1;
-            fprintf(stderr, "After generating cabecalho: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
+            //fprintf(stderr, "After generating cabecalho: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
 		 }
          ;
 
@@ -623,9 +623,9 @@ comando_simples: declaracao_variavel
                | comando_atribuicao
 			   {
 					$$ = $1;
-                    fprintf(stderr, "Before appending comando: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                    //fprintf(stderr, "Before appending comando: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 					//printf("Added comando_atribuicao to comando_simples\n"); // Debug print
-                    fprintf(stderr, "After appending comando: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                    //fprintf(stderr, "After appending comando: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			   }
                | chamada_funcao
 			   {
@@ -716,7 +716,7 @@ comando_atribuicao: identificador '=' expressao
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
                     table_of_symbols_t *current_scope = search_stack_for_adress(stack_of_tables, new_key);
                     if(result){
-                        fprintf(stderr, "Before appending atribuicao: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
+                        //fprintf(stderr, "Before appending atribuicao: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
                         int adress = result->adress_displacement;
                         char *temp = $3->temp;
                         char* op2;
@@ -732,7 +732,7 @@ comando_atribuicao: identificador '=' expressao
                             print_operations(generated_code);
 
                             $$->code = append_operations($3->code, generated_code);
-                            fprintf(stderr, "After appending atribuicao: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
+                            //fprintf(stderr, "After appending atribuicao: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
                         }
                         else
                             $$->code = $3->code;
@@ -754,35 +754,33 @@ comando_retorno: RETURN expressao
 				char* op3 = (char*) malloc(OPCODE_SIZE_OF_BUFFER);
                 sprintf(op3, "%d", initial_space + stack_of_tables->top->current_adress_displacement);
                 operation_t* generated_code1 = initialize_operation(NULL, STOREAI, strdup($2->temp), strdup("rfp"), op3);
-                fprintf(stderr, "Generated operation 1: %p\n", (void*)generated_code1);
+                //fprintf(stderr, "Generated operation 1: %p\n", (void*)generated_code1);
 
                 operation_t* generated_code2 = initialize_operation(NULL, LOADAI, strdup("rfp"), strdup("0"), generate_temp());
                 append_operations(generated_code1, generated_code2);
-                fprintf(stderr, "Appended operation 2: %p\n", (void*)generated_code2);
+                //fprintf(stderr, "Appended operation 2: %p\n", (void*)generated_code2);
 
                 operation_t* generated_code3 = initialize_operation(NULL, LOADAI, strdup("rfp"), strdup("4"), generate_temp());
                 append_operations(generated_code1, generated_code3);
-                fprintf(stderr, "Appended operation 3: %p\n", (void*)generated_code3);
+                //fprintf(stderr, "Appended operation 3: %p\n", (void*)generated_code3);
 
                 operation_t* generated_code4 = initialize_operation(NULL, LOADAI, strdup("rfp"), strdup("8"), generate_temp());
                 append_operations(generated_code1, generated_code4);
-                fprintf(stderr, "Appended operation 4: %p\n", (void*)generated_code4);
+                //fprintf(stderr, "Appended operation 4: %p\n", (void*)generated_code4);
 
                 operation_t* generated_code5 = initialize_operation(NULL, I2I, strdup(generated_code3->op3), strdup("rsp"), NULL);
                 append_operations(generated_code1, generated_code5);
-                fprintf(stderr, "Appended operation 5: %p\n", (void*)generated_code5);
+                //fprintf(stderr, "Appended operation 5: %p\n", (void*)generated_code5);
 
                 operation_t* generated_code6 = initialize_operation(NULL, I2I, strdup(generated_code4->op3), strdup("rfp"), NULL);
                 append_operations(generated_code1, generated_code6);
-                fprintf(stderr, "Appended operation 6: %p\n", (void*)generated_code6);
+                //fprintf(stderr, "Appended operation 6: %p\n", (void*)generated_code6);
 
-                operation_t* generated_code7 = initialize_operation(NULL, JUMP, strdup(generated_code2->op3), NULL, NULL);
-                append_operations(generated_code1, generated_code7);
-                fprintf(stderr, "Appended operation 7: %p\n", (void*)generated_code7);
+                //operation_t* generated_code7 = initialize_operation(NULL, JUMP, strdup(generated_code2->op3), NULL, NULL);
+                //append_operations(generated_code1, generated_code7);
+                //fprintf(stderr, "Appended operation 7: %p\n", (void*)generated_code7);
 
                 $$->code = append_operations($2->code, generated_code1);
-
-
 			   }
 			   ;
 
@@ -1031,6 +1029,9 @@ comparacao_1: comparacao_2
 				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
 
                 char* temp = generate_temp();
+
+                current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
                 operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
                 $$->code = append_operations($1->code, $3->code);
                 $$->code = append_operations($$->code, generated_code);
@@ -1040,13 +1041,12 @@ comparacao_1: comparacao_2
 equal_or_not:  EQUAL
 			 {
 				$$ = $1;
-                current_opcode = CMP_EQ;
 				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
 			 }
              | NOTEQUAL
 			 {
 				$$ = $1;
-                current_opcode = CMP_NE;
+
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -1069,6 +1069,9 @@ comparacao_2: adicaousub
 				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
 
                 char* temp = generate_temp();
+
+                current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
                 operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
                 $$->code = append_operations($1->code, $3->code);
                 $$->code = append_operations($$->code, generated_code);
@@ -1078,25 +1081,21 @@ comparacao_2: adicaousub
 greater_or_less:  GREATEREQUAL
 			 {
 				$$ = $1;
-                current_opcode = CMP_GE;
 				//printf("Added EQUAL to op_adicaousub\n"); // Debug print
 			 }
              | 	LESSEQUAL
 			 {
 				$$ = $1;
-                current_opcode = CMP_LE;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
 			 |  GREATERTHAN
 			 {
 				$$ = $1;
-                current_opcode = CMP_GT;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
 			 |  LESSTHAN
 			 {
 				$$ = $1;
-                current_opcode = CMP_LT;
 				//printf("Added NOTEQUAL to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -1118,6 +1117,9 @@ adicaousub: multoudivoures
 					//printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
 
                     char* temp = generate_temp();
+
+                    current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
                     operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
                     $$->code = append_operations($1->code, $3->code);
                     $$->code = append_operations($$->code, generated_code);
@@ -1131,14 +1133,12 @@ adicaousub: multoudivoures
 // Operação de adição e subtração
 op_adicaousub: ADD
 			 {
-				$$ = $1;
-                current_opcode = ADD;
+				$$ = $1;;
 				//printf("Added ADD to op_adicaousub\n"); // Debug print
 			 }
              | SUBTRACT
 			 {
 				$$ = $1;
-                current_opcode = SUB;
 				//printf("Added SUBTRACT to op_adicaousub\n"); // Debug print
 			 }
              ;
@@ -1160,6 +1160,9 @@ multoudivoures: unario
 					//printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
 
                     char* temp = generate_temp();
+
+                    current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
                     operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
                     $$->code = append_operations($1->code, $3->code);
                     $$->code = append_operations($$->code, generated_code);
@@ -1173,13 +1176,11 @@ multoudivoures: unario
 op_multoudivoures: MULTIPLY
 				 {
 					$$ = $1;
-                    current_opcode = MULT;
 					//printf("Added MULTIPLY to op_multoudivoures\n"); // Debug print
 				 }
                  | DIVIDE
 				 {
 					$$ = $1;
-                    current_opcode = DIV;
 					//printf("Added DIVIDE to op_multoudivoures\n"); // Debug print
 				 }
                  | REMAINDER
@@ -1193,9 +1194,10 @@ op_multoudivoures: MULTIPLY
 // Operações unárias
 unario: primario
 	  {
-            fprintf(stderr, "Before appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            //fprintf(stderr, "Before appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			$$ = $1;
-            fprintf(stderr, "After appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            
+            //fprintf(stderr, "After appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			//printf("Added primario to unario\n"); // Debug print
 	  }
       | INVERTSIG unario
@@ -1203,6 +1205,13 @@ unario: primario
 			$$ = $1;
 		    ast_add_child($$, $2);
             $$->node_type = $2->node_type;
+
+            char* temp = generate_temp();
+            operation_t* generated_code = initialize_operation(NULL, RSUBI, strdup($2->temp), strdup("0"), strdup(temp));
+            $$->code = append_operations($2->code, generated_code);
+            $$->temp = temp; // Store the result
+
+
 		    //printf("Added INVERTSIG and unario to unario\n"); // Debug print
 	  }
       | NEGATE unario
@@ -1211,6 +1220,11 @@ unario: primario
 		    ast_add_child($$, $2);
             $$->node_type = $2->node_type;
 		    //printf("Added NEGATE and unario to unario\n"); // Debug print
+
+            char* temp = generate_temp();
+            operation_t* generated_code = initialize_operation(NULL, XORI, strdup("true"), strdup($2->temp), strdup(temp));
+            $$->code = append_operations($2->code, generated_code);
+            $$->temp = temp; // Store the result
 	  }
       ;
 
@@ -1252,9 +1266,9 @@ primario: identificador
                 operation_t* generated_code = initialize_operation(NULL, LOADAI, op1, op2, strdup(temp));
 
                 $$->temp = temp;
-                fprintf(stderr, "Before appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                //fprintf(stderr, "Before appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
                 $$->code = append_operations($$->code, generated_code);
-                fprintf(stderr, "After appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                //fprintf(stderr, "After appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
             }
 
 			if(result == NULL){
@@ -1274,9 +1288,9 @@ primario: identificador
 		}
         | literais
 		{
-            fprintf(stderr, "Before appending literais: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            //fprintf(stderr, "Before appending literais: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			$$ = $1;
-            fprintf(stderr, "After appending literais: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            //fprintf(stderr, "After appending literais: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			//printf("Added literais to primario\n"); // Debug print
 		}
         | chamada_funcao
@@ -1354,10 +1368,10 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
 // Lista de expressões
 lista_de_argumentos: expressao
 			   {
-                fprintf(stderr, "Before appending express: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                //fprintf(stderr, "Before appending express: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
                 //fprintf(stderr, "Debug message lista_de_argumentos: expressao\n");
 				$$ = $1;
-                fprintf(stderr, "After appending express: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                //fprintf(stderr, "After appending express: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 				//printf("Added expressao to lista_de_argumentos\n"); // Debug print
 			   }
                |  expressao ';'  lista_de_argumentos
@@ -1371,12 +1385,12 @@ lista_de_argumentos: expressao
 				{
 					if ($1 == NULL)
 					{
-                        fprintf(stderr, "Else 1 Debug lista_de_argumentos: expressao ';'  lista_de_argumentos;\n");
+                        //fprintf(stderr, "Else 1 Debug lista_de_argumentos: expressao ';'  lista_de_argumentos;\n");
 						$$ = $3;
 					}
 					else
 					{
-                        fprintf(stderr, "Else 2 Debug lista_de_argumentos: expressao ';'  lista_de_argumentos;\n");
+                        //fprintf(stderr, "Else 2 Debug lista_de_argumentos: expressao ';'  lista_de_argumentos;\n");
 						$$ = $1;
 						ast_add_child($1, $3);
 					}
@@ -1399,9 +1413,9 @@ nome_func: call_identificador
 // Literais (tokens)
 literais: LITINT
 		{
-            fprintf(stderr, "Before appending LITINT: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            //fprintf(stderr, "Before appending LITINT: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			$$ = $1;
-            fprintf(stderr, "After appending LITINT: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+            //fprintf(stderr, "After appending LITINT: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
 			//printf("Added LITINT to literais\n"); // Debug print
 		}
         | LITFLOAT

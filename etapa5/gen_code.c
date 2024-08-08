@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "gen_code.h"
 
 // Inicializar Operação
 operation_t* initialize_operation(const char* label, iloc_opcode_t opcode, const char* op1, const char* op2, const char* op3) {
     operation_t* operation = (operation_t*)malloc(sizeof(operation_t));
     if (!operation) {
-        fprintf(stderr, "Memory allocation failed\n");
+        //fprintf(stderr, "Memory allocation failed\n");
         exit(1);
     }
     operation->label = label ? strdup(label) : NULL;
@@ -159,6 +160,35 @@ void print_operations(operation_t* generated_code) {
     printf("%s\n", buffer);
 }
 
+int get_opcode_from_string(const char* op) {
+    // Convert to uppercase
+    char uppercase_op[20];
+    for (int i = 0; op[i] != '\0'; i++) {
+        uppercase_op[i] = toupper(op[i]);
+    }
+    uppercase_op[strlen(op)] = '\0';
+
+    // Match with enum values
+    if (strcmp(uppercase_op, "+") == 0) return ADD;
+    else if (strcmp(uppercase_op, "-") == 0) return SUB;
+    else if (strcmp(uppercase_op, "*") == 0) return MULT;
+    else if (strcmp(uppercase_op, "/") == 0) return DIV;
+    else if (strcmp(uppercase_op, "ADDI") == 0) return ADDI;
+    else if (strcmp(uppercase_op, "SUBI") == 0) return SUBI;
+    else if (strcmp(uppercase_op, "RSUBI") == 0) return RSUBI;
+    else if (strcmp(uppercase_op, "MULTI") == 0) return MULTI;
+    else if (strcmp(uppercase_op, "DIVI") == 0) return DIVI;
+    else if (strcmp(uppercase_op, "RDIVI") == 0) return RDIVI;
+    else if (strcmp(uppercase_op, "<") == 0) return CMP_LT;
+    else if (strcmp(uppercase_op, "<=") == 0) return CMP_LE;
+    else if (strcmp(uppercase_op, "==") == 0) return CMP_EQ;
+    else if (strcmp(uppercase_op, ">=") == 0) return CMP_GE;
+    else if (strcmp(uppercase_op, ">") == 0) return CMP_GT;
+    else if (strcmp(uppercase_op, "!=") == 0) return CMP_NE;
+    else if (strcmp(uppercase_op, "!") == 0) return CMP_NE;
+
+    return -1;
+}
 
 
 //Finalizar a arvore
@@ -294,7 +324,7 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
     operation_t* current = son_operation;
     while (current != NULL) {
         if (current == father_operation) {
-            fprintf(stderr, "Error: Circular reference detected when appending operations.\n");
+            //fprintf(stderr, "Error: Circular reference detected when appending operations.\n");
             return father_operation;
         }
         current = current->next;
@@ -308,7 +338,7 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
 
     current->next = son_operation;
 
-    fprintf(stderr, "Appended operations: father_operation=%p, son_operation=%p\n", (void*)father_operation, (void*)son_operation);
+    //fprintf(stderr, "Appended operations: father_operation=%p, son_operation=%p\n", (void*)father_operation, (void*)son_operation);
 
     return father_operation;
 }

@@ -34,6 +34,12 @@ typedef struct operation {
 // Inicializar Operação
 operation_t* initialize_operation(const char* label, iloc_opcode_t opcode, const char* op1, const char* op2, const char* op3);
 
+int get_opcode_from_string(const char* op);
+
+void print_with_ascii(const char* str);
+
+int compare_strings(const char* str1, const char* str2);
+
 // Limpar Memória
 void free_operation(operation_t* operation);
 

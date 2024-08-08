@@ -47,7 +47,7 @@ tree_node_t *ast_new_call_func(val_lex_t *valor_lexico) {
             ret->num_children = 0;
         }
     } else {
-        fprintf(stderr, "Failed to allocate memory for result.\n");
+        //fprintf(stderr, "Failed to allocate memory for result.\n");
         free(aux_val);
         free(ret);
         ret = NULL;
@@ -77,7 +77,7 @@ void ast_add_child(tree_node_t *parent, tree_node_t *child) {
     parent->num_children++;
     parent->children = realloc(parent->children, parent->num_children * sizeof(tree_node_t *));
     if (!parent->children) {
-        fprintf(stderr, "Error: Falha ao realocar memória\n");
+        //fprintf(stderr, "Error: Falha ao realocar memória\n");
         exit(EXIT_FAILURE);
     }
     parent->children[parent->num_children - 1] = child;

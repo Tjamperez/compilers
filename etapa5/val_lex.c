@@ -10,7 +10,7 @@ val_lex_t *gen_val(int line, int type, char *token) {
     
     // Verificamos se a alocação foi bem-sucedida
     if (new_val == NULL) {
-        fprintf(stderr, "Erro: Falha ao alocar memória para val_lex_t\n");
+        //fprintf(stderr, "Erro: Falha ao alocar memória para val_lex_t\n");
         return NULL;
     }
     
@@ -22,7 +22,7 @@ val_lex_t *gen_val(int line, int type, char *token) {
     
     // Verificamos se a cópia do token_value foi bem-sucedida
     if (new_val->token_value == NULL) {
-        fprintf(stderr, "Erro: Falha ao alocar memória para token_value\n");
+        //fprintf(stderr, "Erro: Falha ao alocar memória para token_value\n");
         free(new_val);  // Libera a memória alocada para new_val
         return NULL;
     }
