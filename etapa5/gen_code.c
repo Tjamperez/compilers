@@ -33,125 +33,131 @@ void print_all_operations(operation_t* operation) {
 
 //Print incorreto mas com o contexto de LoadI
 //Print operations
-void print_operations(operation_t* generated_code){
-    char buffer[256];
-    iloc_opcode_t generated_code_opcode = generated_code->opcode;
-    size_t label_len = 0;
-    if(generated_code->label != NULL){
-        label_len = snprintf(buffer, sizeof(buffer), "%s:", generated_code->label);
-    }
-
-    const char* opcode_str = opcode_to_string(generated_code->opcode);
-
-    if (generated_code_opcode <= NOP) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t", opcode_str);
-    } else if (generated_code_opcode <= CLOADA0) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-    } else if (generated_code_opcode <= STOREAO) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-    } else if (generated_code_opcode <= I2C) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
-    } else if (generated_code_opcode <= JUMP) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t\t-> %s", opcode_str, generated_code->op1);
-    } else if (generated_code_opcode <= CBR) {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t-> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-    } else {
-        snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t-> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-    }
-    printf("%s\n", buffer);
-    return;
-}
-
-
-//Print correto mas perde o contexto de LoadI
-
-// void print_operations(operation_t* generated_code) {
+// void print_operations(operation_t* generated_code){
 //     char buffer[256];
 //     iloc_opcode_t generated_code_opcode = generated_code->opcode;
 //     size_t label_len = 0;
-
-//     if (generated_code->label != NULL) {
+//     if(generated_code->label != NULL){
 //         label_len = snprintf(buffer, sizeof(buffer), "%s:", generated_code->label);
 //     }
 
 //     const char* opcode_str = opcode_to_string(generated_code->opcode);
 
-//     switch (generated_code_opcode) {
-//         case NOP:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s", opcode_str);
-//             break;
-
-//         case ADD: case SUB: case MULT: case DIV:
-//         case LSHIFT: case RSHIFT: case AND: case OR: case XOR:
-//         case CMP_LT: case CMP_LE: case CMP_EQ: case CMP_GE: case CMP_GT: case CMP_NE:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case ADDI: case SUBI: case RSUBI: case MULTI: case DIVI: case RDIVI:
-//         case LSHIFTI: case RSHIFTI: case ANDI: case ORI: case XORI:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case LOADI:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op3);
-//             break;
-
-//         case LOAD:
-//         case CLOAD:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
-//             break;
-
-//         case LOADAI:
-//         case CLOADAI:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case LOADA0:
-//         case CLOADA0:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case STORE:
-//         case CSTORE:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
-//             break;
-
-//         case STOREAI:
-//         case CSTOREAI:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case STOREAO:
-//         case CSTOREAO:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         case I2I:
-//         case C2C:
-//         case C2I:
-//         case I2C:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
-//             break;
-
-//         case JUMPI:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t\t-> %s", opcode_str, generated_code->op1);
-//             break;
-
-//         case JUMP:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t\t-> %s", opcode_str, generated_code->op1);
-//             break;
-
-//         case CBR:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t-> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
-
-//         default:
-//             snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t-> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//             break;
+//     if (generated_code_opcode <= NOP) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t", opcode_str);
+//     } else if (generated_code_opcode == LOADI) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+//     } else if (generated_code_opcode <= CLOADA0) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+//     } else if (generated_code_opcode <= STOREAO) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+//     } else if (generated_code_opcode <= I2C) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
+//     } else if (generated_code_opcode <= JUMP) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t\t-> %s", opcode_str, generated_code->op1);
+//     } else if (generated_code_opcode <= CBR) {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t-> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+//     } else {
+//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t-> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
 //     }
-
 //     printf("%s\n", buffer);
+//     return;
 // }
+
+
+//Print correto mas perde o contexto de LoadI
+
+void print_operations(operation_t* generated_code) {
+    char buffer[256];
+    iloc_opcode_t generated_code_opcode = generated_code->opcode;
+    size_t label_len = 0;
+
+    if (generated_code->label != NULL) {
+        label_len = snprintf(buffer, sizeof(buffer), "%s:", generated_code->label);
+    }
+
+    const char* opcode_str = opcode_to_string(generated_code->opcode);
+
+    switch (generated_code_opcode) {
+        case NOP:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s", opcode_str);
+            break;
+
+        case ADD: case SUB: case MULT: case DIV:
+        case LSHIFT: case RSHIFT: case AND: case OR: case XOR:
+        case CMP_LT: case CMP_LE: case CMP_EQ: case CMP_GE: case CMP_GT: case CMP_NE:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case ADDI: case SUBI: case RSUBI: case MULTI: case DIVI: case RDIVI:
+        case LSHIFTI: case RSHIFTI: case ANDI: case ORI: case XORI:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case LOADI:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
+            break;
+
+        case LOAD:
+        case CLOAD:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
+            break;
+
+        case LOADAI:
+        case CLOADAI:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case LOADA0:
+        case CLOADA0:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case STORE:
+        case CSTORE:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
+            break;
+
+        case STOREAI:
+        case CSTOREAI:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case STOREAO:
+        case CSTOREAO:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+
+        case I2I:
+        case C2C:
+        case C2I:
+        case I2C:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
+            break;
+
+        case JUMPI:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t\t-> %s", opcode_str, generated_code->op1);
+            break;
+
+        case JUMP:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t\t-> %s", opcode_str, generated_code->op1);
+            break;
+
+        case CBR:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s\t-> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+        
+        case HALT:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s", opcode_str);
+            break;
+
+        default:
+            snprintf(buffer + label_len, sizeof(buffer) - label_len, "\t%s\t%s, %s\t-> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
+            break;
+    }
+
+    printf("%s\n", buffer);
+}
 
 
 
@@ -288,7 +294,7 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
     operation_t* current = son_operation;
     while (current != NULL) {
         if (current == father_operation) {
-            //fprintf(stderr, "Error: Circular reference detected when appending operations.\n");
+            fprintf(stderr, "Error: Circular reference detected when appending operations.\n");
             return father_operation;
         }
         current = current->next;
@@ -302,10 +308,11 @@ operation_t* append_operations(operation_t* father_operation, operation_t* son_o
 
     current->next = son_operation;
 
-    //fprintf(stderr, "Appended operations: father_operation=%p, son_operation=%p\n", father_operation, son_operation);
+    fprintf(stderr, "Appended operations: father_operation=%p, son_operation=%p\n", (void*)father_operation, (void*)son_operation);
 
     return father_operation;
 }
+
 
 void free_operations_list(operation_t* head) {
     operation_t* current = head;

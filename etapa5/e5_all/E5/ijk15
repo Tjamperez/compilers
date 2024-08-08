@@ -1,0 +1,8 @@
+//O comando unário -
+() | int / main {
+  int a,
+  int z,  
+  z = 393,
+  a = - z,
+  return 0,
+}

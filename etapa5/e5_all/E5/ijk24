@@ -1,0 +1,12 @@
+//A expressão relacional binária "or"
+int a,
+() | int / main {
+  int z,
+  int w,
+  int b,
+  z = 1,
+  w = 0,
+  a = z | w,
+  b = a + 5,
+  return 0,
+}
