@@ -1,0 +1,8 @@
+{
+    "C_Cpp.dimInactiveRegions": false,
+    "files.associations": {
+        "sym_stack.h": "c",
+        "execinfo.h": "c",
+        "stdio.h": "c"
+    }
+}

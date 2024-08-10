@@ -1,0 +1,30 @@
+	storeAI	r0	=> rfp, 0
+	storeAI	r1	=> rfp, 40
+	storeAI	r4	=> rbss, 0
+	storeAI	r7	=> rfp, 80
+	loadI	1024	=> rfp
+	loadI	1024	=> rsp
+	loadI	25	=> rbss
+	jumpI		-> L0
+L0:	nop
+	addI	rsp, 0	=> rsp
+	loadI	1	=> r0
+	storeAI	r0	=> rfp, 0
+	loadI	0	=> r1
+	storeAI	r1	=> rfp, 40
+	loadAI	rfp, 0	=> r2
+	loadAI	rfp, 40	=> r3
+	or	r2, r3	=> r4
+	storeAI	r4	=> rbss, 0
+	loadAI	rbss, 0	=> r5
+	loadI	5	=> r6
+	add	r5, r6	=> r7
+	storeAI	r7	=> rfp, 80
+	loadI	0	=> r8
+	storeAI	r8	=> rfp, 120
+	loadAI	rfp, 0	=> r9
+	loadAI	rfp, 4	=> r10
+	loadAI	rfp, 8	=> r11
+	i2i	r10	=> rsp
+	i2i	r11	=> rfp
+	halt
