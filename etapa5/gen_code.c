@@ -200,7 +200,7 @@ operation_t* gen_wrapper_code(operation_t* code, char* main_label) {
 
     operation_t* generated_code = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rfp"), NULL);
     operation_t* generated_code2 = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rsp"), NULL);
-    char* op1 = malloc(10);
+    char* op1 = malloc(20);
     sprintf(op1, "%d", op_counter + 4);
     operation_t* generated_code3 = initialize_operation(NULL, LOADI, op1, strdup("rbss"), NULL);
     operation_t* generated_code4 = initialize_operation(NULL, JUMPI, main_label, NULL, NULL);

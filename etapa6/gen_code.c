@@ -32,42 +32,6 @@ void print_all_operations(operation_t* operation) {
     }
 }
 
-//Print incorreto mas com o contexto de LoadI
-//Print operations
-// void print_operations(operation_t* generated_code){
-//     char buffer[256];
-//     iloc_opcode_t generated_code_opcode = generated_code->opcode;
-//     size_t label_len = 0;
-//     if(generated_code->label != NULL){
-//         label_len = snprintf(buffer, sizeof(buffer), "%s:", generated_code->label);
-//     }
-
-//     const char* opcode_str = opcode_to_string(generated_code->opcode);
-
-//     if (generated_code_opcode <= NOP) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t", opcode_str);
-//     } else if (generated_code_opcode == LOADI) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//     } else if (generated_code_opcode <= CLOADA0) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t=> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//     } else if (generated_code_opcode <= STOREAO) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//     } else if (generated_code_opcode <= I2C) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t=> %s", opcode_str, generated_code->op1, generated_code->op2);
-//     } else if (generated_code_opcode <= JUMP) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t\t-> %s", opcode_str, generated_code->op1);
-//     } else if (generated_code_opcode <= CBR) {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s\t-> %s, %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//     } else {
-//         snprintf(buffer+label_len, sizeof(buffer), "\t%s\t%s, %s\t-> %s", opcode_str, generated_code->op1, generated_code->op2, generated_code->op3);
-//     }
-//     printf("%s\n", buffer);
-//     return;
-// }
-
-
-//Print correto mas perde o contexto de LoadI
-
 void print_operations(operation_t* generated_code) {
     char buffer[256];
     iloc_opcode_t generated_code_opcode = generated_code->opcode;
@@ -185,7 +149,6 @@ int get_opcode_from_string(const char* op) {
     else if (strcmp(uppercase_op, ">=") == 0) return CMP_GE;
     else if (strcmp(uppercase_op, ">") == 0) return CMP_GT;
     else if (strcmp(uppercase_op, "!=") == 0) return CMP_NE;
-    else if (strcmp(uppercase_op, "!") == 0) return CMP_NE;
 
     return -1;
 }
@@ -200,7 +163,7 @@ operation_t* gen_wrapper_code(operation_t* code, char* main_label) {
 
     operation_t* generated_code = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rfp"), NULL);
     operation_t* generated_code2 = initialize_operation(NULL, LOADI, strdup("1024"), strdup("rsp"), NULL);
-    char* op1 = malloc(10);
+    char* op1 = malloc(20);
     sprintf(op1, "%d", op_counter + 4);
     operation_t* generated_code3 = initialize_operation(NULL, LOADI, op1, strdup("rbss"), NULL);
     operation_t* generated_code4 = initialize_operation(NULL, JUMPI, main_label, NULL, NULL);

@@ -39,7 +39,6 @@ int initial_space = 0;
 int final_space = 0;
 int current_opcode = 0;
 char* main_label;
-char* last_reg;
 char assembly_code[OPCODE_SIZE_OF_BUFFER] = {0};
 %}
 
@@ -370,12 +369,30 @@ definicao_de_funcao: cabecalho corpo fechar_escopo //////Somewhere here creates 
     $$ = $1; // Define a definição de função como o cabeçalho
     if ($2 != NULL) {
         ast_add_child($$, $2); // Se houver corpo, adiciona o corpo como filho da definição de função
+
+        //char *reg1 = allocate_register();
+        //char *reg2 = allocate_register();
+
+        //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+        //append_assembly_code(global_code_list, assembly_code);
+
+        //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg2);
+        //append_assembly_code(global_code_list, assembly_code);
+
+        //$$->temp = strdup(reg2);
         
-        generate_assembly_prologue(current_function_label);
+        //free_register(reg1);
+        //free_register(reg2);
 
     } else {
-        generate_assembly_prologue(current_function_label);
-        generate_epilogue(current_function_label);
+        //char *reg1 = allocate_register();
+
+        //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+        //append_assembly_code(global_code_list, assembly_code);
+
+        //$$->temp = strdup(reg1);
+
+        //free_register(reg1);
     }
 }
 ;
@@ -1252,7 +1269,6 @@ unario: primario
 primario: identificador
 {
     $$ = $1;
-    $$->temp = last_reg;
     
     char* new_key = $1->valor_lexico->token_value;
     symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
@@ -1436,7 +1452,7 @@ LITINT: TK_LIT_INT
     $$ = ast_new($1);
     $$->node_type = NODE_TYPE_INT;
     
-    char* reg = allocate_register();
+    //char* reg = allocate_register();
     //fprintf(stderr,"%s\n",reg);
 
     char* int_assembly = strdup($$->valor_lexico->token_value);
@@ -1446,11 +1462,15 @@ LITINT: TK_LIT_INT
     strcpy(dollar, "$");
     strcat(dollar,int_assembly);
 
+    snprintf(assembly_code, sizeof(assembly_code), "\tmovq\t %s, %s", src, dest);  
+    append_assembly_code(global_code_list, assembly_code);
+}
+
     generate_movq(dollar, reg, global_code_list); // PARA TESTE IJK15 ESSE É o
     //	movq	 $393, %rax // PRIMEIRA ATRIBUICAO
 	//  movq	 $0, %rcx // ISSO É O RETURN DA MAIN
-    last_reg = reg;
-    $$->temp = reg;
+    
+    //$$->temp = reg;
 
 
     //fprintf(stderr, "Debug message LITINT %s:\n",//$$->temp);

@@ -13,7 +13,6 @@
 
 %{
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include "sym_stack.h"
 #include "sym_table.h"
@@ -26,7 +25,6 @@
 int yylex(void);
 int yyerror(char const *s);
 extern int get_line_number(void);
-extern const char* global_filename;
 
 int symbol_type_now; // Mantemos conta de quem é o tipo do símbolo no momento
 
@@ -39,8 +37,8 @@ int initial_space = 0;
 int final_space = 0;
 int current_opcode = 0;
 char* main_label;
-char* last_reg;
-char assembly_code[OPCODE_SIZE_OF_BUFFER] = {0};
+char assembly_code[OPCODE_SIZE_OF_BUFFER];
+
 %}
 
 %token  TK_PR_INT
@@ -155,31 +153,40 @@ char assembly_code[OPCODE_SIZE_OF_BUFFER] = {0};
 //##########################
 raiz: criar_pilha criar_escopo_global programa fechar_escopo fechar_pilha
 {
+    fprintf(stderr, "Debug: Entrou em raiz\n");
     $$ = $3;
     if ($3 != NULL) {
-        //char* reg = allocate_register();
-        //generate_movq($3->temp, reg,global_code_list);
-        //free_register(reg);
+        char* reg = allocate_register();
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg);  // Use movq for 64-bit registers
+        append_assembly_code(global_code_list, assembly_code);
+        free_register(reg); // Remember to free the register after use
     }
     print_all_assembly(global_code_list);
     arvore = $$;
+    fprintf(stderr, "Debug: Saindo de raiz\n");
 }
+;
 
 //##########################
 // Definição de programa
 programa: lista_de_elementos
 {
+    fprintf(stderr, "Debug: Entrou em programa com lista_de_elementos\n");
     $$ = $1;
     if ($1 != NULL) {
-        //char* reg = allocate_register();
-        //generate_movq($1->temp, reg,global_code_list);
-        //free_register(reg);
+        char* reg = allocate_register();
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
+        append_assembly_code(global_code_list, assembly_code);
+        free_register(reg); // Free the register after use
     }
+    fprintf(stderr, "Debug: Saindo de programa com lista_de_elementos\n");
 }
 | /* vazio */
 {
+    fprintf(stderr, "Debug: Entrou em programa vazio\n");
     $$ = NULL; // Se não houver elementos, o programa é nulo
     arvore = NULL;
+    fprintf(stderr, "Debug: Saindo de programa vazio\n");
 }
 ;
 
@@ -187,31 +194,46 @@ programa: lista_de_elementos
 // Lista de elementos
 lista_de_elementos: elemento lista_de_elementos
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_elementos com 2 elementos\n");
     if ($1 == NULL) {
         $$ = $2;
-    } else if ($2 == NULL) {
-        $$ = $1;
     } else {
-        $$ = $1;
-        ast_add_child($$, $2);
+        if ($2 == NULL) {
+            $$ = $1;
+        } else {
+            $$ = $1;
+            ast_add_child($$, $2);
+        }
     }
-    //char* temps[] = { $1->temp, $2->temp };
-    //for (int i = 0; i < 2; i++) {
-    //    if (temps[i] != NULL) {
-    //        //char* reg = allocate_register();
-    //        generate_movq(temps[i], reg,global_code_list);
-    //        //free_register(reg);
-    //    }
-    //}
+
+    if ($$ != NULL) {
+        if ($1 != NULL && $1->temp != NULL) {
+
+            char* reg = allocate_register();
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
+            append_assembly_code(global_code_list, assembly_code);
+            free_register(reg);
+        }
+        if ($2 != NULL && $2->temp != NULL) {
+            char* reg = allocate_register();
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg);  // Use movq for 64-bit registers
+            append_assembly_code(global_code_list, assembly_code);
+            free_register(reg);
+        }
+    }
+    fprintf(stderr, "Debug: Saindo de lista_de_elementos com 2 elementos\n");
 }
 | elemento
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_elementos com 1 elemento\n");
     $$ = $1;
     if ($$ != NULL && $1->temp != NULL) {
-        //char* reg = allocate_register();
-        //generate_movq($1->temp, reg, global_code_list);
-        //free_register(reg);
+        char* reg = allocate_register();
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
+        append_assembly_code(global_code_list, assembly_code);
+        free_register(reg);
     }
+    fprintf(stderr, "Debug: Saindo de lista_de_elementos com 1 elemento\n");
 }
 ;
 
@@ -219,25 +241,27 @@ lista_de_elementos: elemento lista_de_elementos
 // Elemento do programa
 elemento: declaracao_global
 {
+    fprintf(stderr, "Debug: Entrou em elemento declaracao_global\n");
     $$ = $1;
     if ($$ != NULL) {
-        //char* reg = allocate_register();
-       //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
-        //append_assembly_code(global_code_list, assembly_code);
-        //free_register(reg);
+        char* reg = allocate_register();
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
+        append_assembly_code(global_code_list, assembly_code);
+        free_register(reg);
     }
-    generate_global_variables(stack_of_tables, global_code_list); // globals that need appended at the top
-    generate_assembly_prologue(global_filename);
+    fprintf(stderr, "Debug: Saindo de elemento declaracao_global\n");
 }
 | definicao_de_funcao
 {
+    fprintf(stderr, "Debug: Entrou em elemento definicao_de_funcao\n");
     $$ = $1;
     if ($$ != NULL) {
-        //char* reg = allocate_register();
-        //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
-        //append_assembly_code(global_code_list, assembly_code);
-        //free_register(reg);
+        char* reg = allocate_register();
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg);  // Use movq for 64-bit registers
+        append_assembly_code(global_code_list, assembly_code);
+        free_register(reg);
     }
+    fprintf(stderr, "Debug: Saindo de elemento definicao_de_funcao\n");
 }
 ;
 
@@ -245,7 +269,9 @@ elemento: declaracao_global
 // Declaração global de variável
 declaracao_global: tipo lista_identificador ','
 {
+    fprintf(stderr, "Debug: Entrou em declaracao_global\n");
     $$ = NULL; // Não há ações associadas à declaração global
+    fprintf(stderr, "Debug: Saindo de declaracao_global\n");
 }
 ;
 
@@ -253,7 +279,9 @@ declaracao_global: tipo lista_identificador ','
 // Identificador
 identificador: TK_IDENTIFICADOR
 {
+    fprintf(stderr, "Debug: Entrou em identificador\n");
     $$ = ast_new($1); // Cria um novo nó na árvore com o identificador
+    fprintf(stderr, "Debug: Saindo de identificador\n");
 }
 ;
 
@@ -261,6 +289,7 @@ identificador: TK_IDENTIFICADOR
 // Identificador para pegar nome da função e inserir na tabela global
 identificador_func: TK_IDENTIFICADOR
 {
+    fprintf(stderr, "Debug: Entrou em identificador_func\n");
     $$ = ast_new($1); // Cria um novo nó na árvore com o identificador
 
     char *new_key = strdup($$->valor_lexico->token_value);
@@ -281,12 +310,15 @@ identificador_func: TK_IDENTIFICADOR
         initial_space = 12;
         final_space = 4;
     }
+    fprintf(stderr, "Debug: Saindo de identificador_func\n");
 }
 ;
 
 call_identificador: TK_IDENTIFICADOR
 {
+    fprintf(stderr, "Debug: Entrou em call_identificador\n");
     $$ = ast_new_call_func($1); // Cria um novo nó representando uma chamada de função com o identificador
+    fprintf(stderr, "Debug: Saindo de call_identificador\n");
 }
 ;
 
@@ -294,18 +326,24 @@ call_identificador: TK_IDENTIFICADOR
 // Tipos de dados
 tipo: INT
 {
+    fprintf(stderr, "Debug: Entrou em tipo INT\n");
     $$ = $1;
     symbol_type_now = TYPE_INT;
+    fprintf(stderr, "Debug: Saindo de tipo INT\n");
 }
 | FLOAT
 {
+    fprintf(stderr, "Debug: Entrou em tipo FLOAT\n");
     $$ = $1;
     symbol_type_now = TYPE_FLOAT;
+    fprintf(stderr, "Debug: Saindo de tipo FLOAT\n");
 }
 | BOOL
 {
+    fprintf(stderr, "Debug: Entrou em tipo BOOL\n");
     $$ = $1;
     symbol_type_now = TYPE_BOOL;
+    fprintf(stderr, "Debug: Saindo de tipo BOOL\n");
 }
 ;
 
@@ -313,7 +351,9 @@ tipo: INT
 // Token INT
 INT: TK_PR_INT
 {
+    fprintf(stderr, "Debug: Entrou em INT\n");
     $$ = NULL; // Espero que seja null mesmo.
+    fprintf(stderr, "Debug: Saindo de INT\n");
 }
 ;
 
@@ -321,7 +361,9 @@ INT: TK_PR_INT
 // Token FLOAT
 FLOAT: TK_PR_FLOAT
 {
+    fprintf(stderr, "Debug: Entrou em FLOAT\n");
     $$ = NULL; // Espero que seja null mesmo.
+    fprintf(stderr, "Debug: Saindo de FLOAT\n");
 }
 ;
 
@@ -329,7 +371,9 @@ FLOAT: TK_PR_FLOAT
 // Token BOOL
 BOOL: TK_PR_BOOL
 {
+    fprintf(stderr, "Debug: Entrou em BOOL\n");
     $$ = NULL; // Espero que seja null mesmo.
+    fprintf(stderr, "Debug: Saindo de BOOL\n");
 }
 ;
 
@@ -337,46 +381,63 @@ BOOL: TK_PR_BOOL
 // Lista de identificadores
 lista_identificador: lista_identificador ';' identificador
 {
+    fprintf(stderr, "Debug: Entrou em lista_identificador com 2 elementos\n");
     $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
     char* new_key = strdup($3->valor_lexico->token_value);
-
-    if(find_symbol(stack_of_tables->top, new_key) != NULL){
-                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
-                            exit(ERR_DECLARED);
+    if(find_symbol(stack_of_tables->top, new_key) != NULL) {
+        printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+        exit(ERR_DECLARED);
     }
-
     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($3,TOKEN_NATURE_IDENTIFIER, symbol_type_now, NULL));
+    fprintf(stderr, "Debug: Saindo de lista_identificador com 2 elementos\n");
 }
 | identificador
 {
+    fprintf(stderr, "Debug: Entrou em lista_identificador com 1 elemento\n");
     $$ = $1;
     char* new_key = strdup($1->valor_lexico->token_value);
-
-    if(find_symbol(stack_of_tables->top, new_key) != NULL){
-                            printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
-                            exit(ERR_DECLARED);
+    if(find_symbol(stack_of_tables->top, new_key) != NULL) {
+        printf("[ERR_DECLARED] Var [%s] na linha %d ja foi declarada neste escopo\n", new_key, get_line_number());
+        exit(ERR_DECLARED);
     }
-
     insert_symbol(stack_of_tables->tables[0], new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now, NULL));
-
+    fprintf(stderr, "Debug: Saindo de lista_identificador com 1 elemento\n");
 }
 ;
 
 //##########################
 // Definição de função
-definicao_de_funcao: cabecalho corpo fechar_escopo //////Somewhere here creates the null
+definicao_de_funcao: cabecalho corpo fechar_escopo
 {
-
+    fprintf(stderr, "Debug: Entrou em definicao_de_funcao\n");
     $$ = $1; // Define a definição de função como o cabeçalho
     if ($2 != NULL) {
         ast_add_child($$, $2); // Se houver corpo, adiciona o corpo como filho da definição de função
-        
-        generate_assembly_prologue(current_function_label);
 
+        char *reg1 = allocate_register();
+        char *reg2 = allocate_register();
+
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
+
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg2);
+        append_assembly_code(global_code_list, assembly_code);
+
+        $$->temp = strdup(reg1);
+        
+        free_register(reg1);
+        free_register(reg2);
     } else {
-        generate_assembly_prologue(current_function_label);
-        generate_epilogue(current_function_label);
+        char *reg1 = allocate_register();
+
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
+
+        $$->temp = strdup(reg1);
+
+        free_register(reg1);
     }
+    fprintf(stderr, "Debug: Saindo de definicao_de_funcao\n");
 }
 ;
 
@@ -385,6 +446,7 @@ definicao_de_funcao: cabecalho corpo fechar_escopo //////Somewhere here creates 
 // Cabeçalho da função
 cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_func
 {
+    fprintf(stderr, "Debug: Entrou em cabecalho\n");
     $$ = $8; // Define o cabeçalho como o identificador
 
     char* identifier_key = strdup($8->valor_lexico->token_value);
@@ -394,17 +456,21 @@ cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_
         main_label = strdup(function_label);
     }
 
-    //print_assembly_code_list(global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", function_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //append_assembly_code(global_code_list, assembly_code);
+    // Function prologue for non-main functions
     if (strcmp(identifier_key, "main") != 0) {
-        //snprintf(assembly_code, sizeof(assembly_code), "push %%rbp");
-        //append_assembly_code(global_code_list, assembly_code);
-        //snprintf(assembly_code, sizeof(assembly_code), "mov %%rsp, %%rbp");
-        //append_assembly_code(global_code_list, assembly_code);
+        snprintf(assembly_code, sizeof(assembly_code), "push %%rbp");
+        append_assembly_code(global_code_list, assembly_code);
+        snprintf(assembly_code, sizeof(assembly_code), "mov %%rsp, %%rbp");
+        append_assembly_code(global_code_list, assembly_code);
     }
-    //snprintf(assembly_code, sizeof(assembly_code), "subq $%d, %%rsp", initial_space + stack_of_tables->top->current_address_displacement + final_space);
-    //append_assembly_code(global_code_list, assembly_code);
+
+    // Adjust stack space for local variables
+    snprintf(assembly_code, sizeof(assembly_code), "sub $%d, %%rsp", initial_space + stack_of_tables->top->current_address_displacement + final_space);
+    append_assembly_code(global_code_list, assembly_code);
+    fprintf(stderr, "Debug: Saindo de cabecalho\n");
 }
 ;
 
@@ -412,29 +478,85 @@ cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_
 // Criar novo scope
 criar_escopo_global: 
 {
-    //fprintf(stderr, "Debug: Entrou em criar_escopo_global\n");
+    fprintf(stderr, "Debug: Entrou em criar_escopo_global\n");
     $$ = NULL;
     table_of_symbols_t *new_scope = create_table_of_symbols_global(stack_of_tables->top,true);
     push_scope(stack_of_tables,new_scope);
+    assembly_code_list_t* global_code_list = create_assembly_code_list();
     init_register_pool();
 
-    global_code_list = create_assembly_code_list();
+    table_of_symbols_t* global_table = stack_of_tables->tables[0];
 
     char* function_name = "main";
-    generate_prologue("main");
-    
-    //fprintf(stderr, "Debug: Saindo de criar_escopo_global\n");
+
+    if (function_name == NULL) {
+    fprintf(stderr, "Error: function_name is NULL\n");
+    exit(EXIT_FAILURE);
+    }
+
+    snprintf(assembly_code, sizeof(assembly_code), ".globl %s", function_name);
+
+    if (global_code_list == NULL) {
+    fprintf(stderr, "Error: global_code_list is NULL\n");
+    exit(EXIT_FAILURE);
+    }
+
+    append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), ".type %s, @function", function_name);
+    append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", function_name);
+    append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), "push %%rbp");
+    append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), "mov %%rsp, %%rbp");
+    append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), "sub $16, %%rsp");
+    append_assembly_code(global_code_list, assembly_code);
+
+
+    for (int i = 0; i < global_table->size; i++) {
+        symbol_t* symbol = global_table->items[i]->content;
+
+        if (symbol->nature == 1) {
+
+            snprintf(assembly_code, sizeof(assembly_code), ".globl %s", symbol->label);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), ".data");
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), ".align 4");
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), ".type %s, @object", symbol->label);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), ".size %s, %d", symbol->label, 4);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), "%s:", symbol->label);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), ".zero 4");
+        }
+    }
+    fprintf(stderr, "Debug: Saindo de criar_escopo_global\n");
 
 }
 ;
 
 criar_escopo: 
 {
-    //print_assembly_code_list(global_code_list);
-    //fprintf(stderr, "Debug: Entrou em criar_escopo\n");
+    fprintf(stderr, "Debug: Entrou em criar_escopo\n");
     $$ = NULL;
     table_of_symbols_t *new_scope = create_table_of_symbols(stack_of_tables->top,false);
     push_scope(stack_of_tables,new_scope);
+    fprintf(stderr, "Debug: Saindo de criar_escopo\n");
 }
 ;
 
@@ -442,8 +564,10 @@ criar_escopo:
 // Fechar Escopo
 fechar_escopo: 
 {
+    fprintf(stderr, "Debug: Entrou em fechar_escopo\n");
     $$ = NULL;
     pop_scope(stack_of_tables);
+    fprintf(stderr, "Debug: Saindo de fechar_escopo\n");
 }
 ;		   
 
@@ -451,8 +575,10 @@ fechar_escopo:
 // Criar primeira pilha
 criar_pilha:
 {   
+    fprintf(stderr, "Debug: Entrou em criar_pilha\n");
     $$ = NULL;
     stack_of_tables = create_stack_of_tables();
+    fprintf(stderr, "Debug: Saindo de criar_pilha\n");
 }
 ;
 
@@ -460,9 +586,11 @@ criar_pilha:
 // Fechar primeira pilha
 fechar_pilha:
 {   
+    fprintf(stderr, "Debug: Entrou em fechar_pilha\n");
     $$ = NULL;
     generate_epilogue();
     free_stack_of_tables(stack_of_tables);
+    fprintf(stderr, "Debug: Saindo de fechar_pilha\n");
 }
 ;
 
@@ -470,7 +598,9 @@ fechar_pilha:
 // Token OR
 OR: TK_OC_OR
 {
+    fprintf(stderr, "Debug: Entrou em OR\n");
     $$ = ast_new_label_only("|");
+    fprintf(stderr, "Debug: Saindo de OR\n");
 }
 ;
 
@@ -478,6 +608,7 @@ OR: TK_OC_OR
 // Lista de parâmetros
 lista_de_parametros: lista_de_parametros ';' parametro
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_parametros com 2 parâmetros\n");
     if ($1 == NULL){ // Se não houver parâmetros existentes
         $$ = $3; // O resultado é o parâmetro atual
     }
@@ -492,14 +623,19 @@ lista_de_parametros: lista_de_parametros ';' parametro
              $$ = $1; // O resultado é a lista de parâmetros existentes
         }
     }
+    fprintf(stderr, "Debug: Saindo de lista_de_parametros com 2 parâmetros\n");
 }
 | parametro
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_parametros com 1 parâmetro\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de lista_de_parametros com 1 parâmetro\n");
 }
 | /* vazio */ // Se não houver parâmetros
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_parametros vazio\n");
     $$ = NULL;
+    fprintf(stderr, "Debug: Saindo de lista_de_parametros vazio\n");
 }
 ;
                    
@@ -508,6 +644,7 @@ lista_de_parametros: lista_de_parametros ';' parametro
 // Parâmetro da função
 parametro: tipo identificador // Define o parâmetro como um tipo e um identificador
 {
+    fprintf(stderr, "Debug: Entrou em parametro\n");
     $$ = $1;
     ast_add_child($$, $2);
     char *new_key = strdup($2->valor_lexico->token_value);
@@ -517,6 +654,7 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
         exit(ERR_DECLARED);
     }
     insert_symbol(stack_of_tables->top, new_key, create_symbol($2,TOKEN_NATURE_IDENTIFIER, symbol_type_now, NULL));
+    fprintf(stderr, "Debug: Saindo de parametro\n");
 }
 ;
 
@@ -524,12 +662,16 @@ parametro: tipo identificador // Define o parâmetro como um tipo e um identific
 // Corpo da função
 corpo: '{' bloco_de_comandos '}' // Define o corpo como um bloco de comandos dentro de chaves
 {
+    fprintf(stderr, "Debug: Entrou em corpo\n");
     $$ = $2;
+    fprintf(stderr, "Debug: Saindo de corpo\n");
 }
 | corpo'{' bloco_de_comandos '}'
 {
+    fprintf(stderr, "Debug: Entrou em corpo com bloco de comandos\n");
     $$ = $1;
     ast_add_child($$, $3);
+    fprintf(stderr, "Debug: Saindo de corpo com bloco de comandos\n");
 }
 ;
 	 
@@ -537,22 +679,29 @@ corpo: '{' bloco_de_comandos '}' // Define o corpo como um bloco de comandos den
 // Bloco de Comandos que aceita vazio
 bloco_de_comandos: /* vazio */ // Se o bloco de comandos estiver vazio
 {
+    fprintf(stderr, "Debug: Entrou em bloco_de_comandos vazio\n");
     $$ = NULL;
+    fprintf(stderr, "Debug: Saindo de bloco_de_comandos vazio\n");
 }
 | lista_de_comandos // Se houver uma lista de comandos
 {
+    fprintf(stderr, "Debug: Entrou em bloco_de_comandos com lista_de_comandos\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de bloco_de_comandos com lista_de_comandos\n");
 }
 ;
 
 //##########################
 // Definição de lista de comandos simples
-lista_de_comandos: comando_simples ','  // Se houver apenas um comando simples ////// Aqui estava criando repetição do código...
+lista_de_comandos: comando_simples ','  // Se houver apenas um comando simples
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_comandos com 1 comando\n");
     $$ = $1; // O resultado é o comando simples
+    fprintf(stderr, "Debug: Saindo de lista_de_comandos com 1 comando\n");
 }
 | comando_simples ',' lista_de_comandos // Se houver mais de um comando simples
 {
+    fprintf(stderr, "Debug: Entrou em lista_de_comandos com mais de 1 comando\n");
     if ($3 == NULL)  // Se não houver mais comandos na lista
     {
         $$ = $1; // O resultado é o primeiro comando simples
@@ -568,19 +717,20 @@ lista_de_comandos: comando_simples ','  // Se houver apenas um comando simples /
             $$ = $1; // O resultado é o primeiro comando simples
             ast_add_child($1, $3); // Adiciona a lista restante de comandos como filho do primeiro comando simples
 
-            //char* reg1 = allocate_register();
-            //char* reg2 = allocate_register();
+            char* reg1 = allocate_register();
+            char* reg2 = allocate_register();
 
-            //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
-            //append_assembly_code(global_code_list, assembly_code);
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+            append_assembly_code(global_code_list, assembly_code);
 
-            //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
-            //append_assembly_code(global_code_list, assembly_code);
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+            append_assembly_code(global_code_list, assembly_code);
 
-            //free_register(reg1);
-            //free_register(reg2);
+            free_register(reg1);
+            free_register(reg2);
         }
     } 	
+    fprintf(stderr, "Debug: Saindo de lista_de_comandos com mais de 1 comando\n");
 }
 ;
 
@@ -588,28 +738,39 @@ lista_de_comandos: comando_simples ','  // Se houver apenas um comando simples /
 // Definição de comando simples
 comando_simples: declaracao_variavel
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples declaracao_variavel\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de comando_simples declaracao_variavel\n");
 }
 | comando_atribuicao
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples comando_atribuicao\n");
     $$ = $1;
-    //append_assembly_code(global_code_list, assembly_code); //THIS HERE IS REALLY POWERFUL, IT WILL DOUBLE APPEND MOST OPERATIONS!!!
+    fprintf(stderr, "Debug: Saindo de comando_simples comando_atribuicao\n");
 }
 | chamada_funcao
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples chamada_funcao\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de comando_simples chamada_funcao\n");
 }
 | comando_retorno
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples comando_retorno\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de comando_simples comando_retorno\n");
 }
 | comando_controle_fluxo
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples comando_controle_fluxo\n");
     $$ = $1;
+    fprintf(stderr, "Debug: Saindo de comando_simples comando_controle_fluxo\n");
 }
 | criar_escopo corpo fechar_escopo
 {
+    fprintf(stderr, "Debug: Entrou em comando_simples criar_escopo corpo fechar_escopo\n");
     $$ = $2;
+    fprintf(stderr, "Debug: Saindo de comando_simples criar_escopo corpo fechar_escopo\n");
 }
 ;
 
@@ -617,7 +778,9 @@ comando_simples: declaracao_variavel
 // Declaração de variável
 declaracao_variavel: tipo lista_identificador_local
 {
+    fprintf(stderr, "Debug: Entrou em declaracao_variavel\n");
     $$ = NULL;
+    fprintf(stderr, "Debug: Saindo de declaracao_variavel\n");
 }
 ;
 
@@ -625,6 +788,7 @@ declaracao_variavel: tipo lista_identificador_local
 // Lista de identificadores locais
 lista_identificador_local: lista_identificador_local ';' identificador
 {
+    fprintf(stderr, "Debug: Entrou em lista_identificador_local com 2 elementos\n");
     $$ = $1; // Se houver uma lista de identificadores existente nós as mantemos
     char* new_key = strdup($3->valor_lexico->token_value);
     if(find_symbol(stack_of_tables->top, new_key) != NULL){
@@ -632,9 +796,11 @@ lista_identificador_local: lista_identificador_local ';' identificador
         exit(ERR_DECLARED);
      }
     insert_symbol(stack_of_tables->top, new_key, create_symbol($3,TOKEN_NATURE_IDENTIFIER, symbol_type_now, NULL));
+    fprintf(stderr, "Debug: Saindo de lista_identificador_local com 2 elementos\n");
 }
 | identificador
 {
+    fprintf(stderr, "Debug: Entrou em lista_identificador_local com 1 elemento\n");
     $$ = $1;
     char* new_key = strdup($1->valor_lexico->token_value);
   
@@ -643,12 +809,13 @@ lista_identificador_local: lista_identificador_local ';' identificador
         exit(ERR_DECLARED);
     }
     insert_symbol(stack_of_tables->top, new_key, create_symbol($1,TOKEN_NATURE_IDENTIFIER, symbol_type_now, NULL));
+    fprintf(stderr, "Debug: Saindo de lista_identificador_local com 1 elemento\n");
 }
 ;
 
 //##########################
 // Comando de atribuição
-comando_atribuicao: identificador '=' expressao // Recursion of expressao is causing all kinds of issues with the assembly generation.
+comando_atribuicao: identificador '=' expressao 
 {
     $$ = ast_new_label_only("=");
     ast_add_child($$, $1); // Add the identifier as a child of the node
@@ -671,38 +838,22 @@ comando_atribuicao: identificador '=' expressao // Recursion of expressao is cau
         }
 
         int address = result->address_displacement;
+        char* reg = allocate_register();
         char* base_reg;
 
-        //generate_movq($3->temp, reg, global_code_list); //Causes code duplication
-
         // Different handling for global and local variables
-        if (!(address == 0 || $3->temp == NULL)){
-            if (current_scope->is_global) {
-                base_reg = "rip";
-
-                //snprintf(assembly_code, sizeof(assembly_code), "Fuck You"); // WATCH OUT WITH APPENDS HERE
-                //append_assembly_code(global_code_list, assembly_code);
-
-                snprintf(assembly_code, sizeof(assembly_code), "\tmovq\t %s, %s(%%%s)", $3->temp, new_key, base_reg);
-            } else {
-                base_reg = "rbp";
-
-                snprintf(assembly_code, sizeof(assembly_code), "Fuck You"); // WATCH OUT WITH APPENDS HERE
-                //append_assembly_code(global_code_list, assembly_code);
-
-                //snprintf(assembly_code, sizeof(assembly_code), "Address: %d\n", address); // WATCH OUT WITH APPENDS HERE
-                //append_assembly_code(global_code_list, assembly_code);
-
-                //snprintf(assembly_code, sizeof(assembly_code), "$3->temp: %s\n", $3->temp); // WATCH OUT WITH APPENDS HERE
-                //append_assembly_code(global_code_list, assembly_code);
-
-                snprintf(assembly_code, sizeof(assembly_code), "\tmovq\t %s, %d(%%rbp)", $3->temp, address);
-            }
+        if (current_scope->is_global) {
+            base_reg = "rip";
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s(%%%s)", $3->temp, new_key, base_reg);
+        } else {
+            base_reg = "rbp";
+            snprintf(assembly_code, sizeof(assembly_code), "movq %s, %d(%%rbp)", $3->temp, address + initial_space);
         }
 
-        //append_assembly_code(global_code_list, assembly_code); //THIS HERE IS REALLY POWERFUL, IT WILL DOUBLE APPEND MOST OPERATIONS!!!
-        //$$->temp = strdup(reg);
+        append_assembly_code(global_code_list, assembly_code);
+        $$->temp = strdup(reg);
 
+        free_register(reg);
     }
 }
 ;
@@ -714,18 +865,25 @@ RETURN: TK_PR_RETURN
     $$ = ast_new_label_only("return"); // Cria um novo nó com o rótulo "return"
 }
 ;
-comando_retorno: RETURN TK_LIT_INT // Probably causing most of the errors...
+comando_retorno: RETURN expressao
 {
-    //char* reg1 = allocate_register();
+    fprintf(stderr, "Debug: Entrou em comando_retorno\n");
 
-    //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg1);
-    //append_assembly_code(global_code_list, assembly_code);
+    char* reg1 = allocate_register();
 
-    //snprintf(assembly_code, sizeof(assembly_code), "movq %s, %%rax", reg1);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_epilogue();
-    //$$->temp = strdup(reg1);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %%rax", reg1);
+    append_assembly_code(global_code_list, assembly_code);
+
+    generate_epilogue();
+
+    free_register(reg1);
+
+    $$->temp = strdup(reg1);
+
+    fprintf(stderr, "Debug: Saindo de comando_retorno\n");
 }
 ;
 
@@ -754,7 +912,10 @@ ELSE: TK_PR_ELSE
 ;
 condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
 {
-    $$ = $3; // Define a condicional como o nó "if"
+
+    fprintf(stderr, "Debug: Entrou em condicional\n");
+
+    $$ = $1; // Define a condicional como o nó "if"
     ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
     ast_add_child($$, $5); // Adiciona o corpo como filho do nó "if"
     $$->node_type = $3->node_type;
@@ -765,32 +926,41 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
     char *reg1 = allocate_register();
     char *reg2 = allocate_register();
 
-    //generate_movq($3->temp, reg1, global_code_list);
-    
-    //generate_movq("$0", reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq $0, %s", reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tcmpq\t %s, %s", reg2, reg1);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "cmpq %s, %s", reg2, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tje\t %s", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "je %s", false_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", true_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", true_label);
+    append_assembly_code(global_code_list, assembly_code);
 
     if ($6 != NULL) {
-        //generate_movq($6->temp, reg1, global_code_list);
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $6->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
     }
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", false_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //free_register(reg2);
-    //$$->temp = strdup(reg1);
+    free_register(reg1);
+    free_register(reg2);
+    $$->temp = strdup(reg1);
+
+    fprintf(stderr, "Debug: Saindo de condicional\n");
+
 }
 | IF '(' expressao ')' criar_escopo corpo fechar_escopo ELSE criar_escopo corpo fechar_escopo
 {
-    $$ = $3;
+    fprintf(stderr, "Debug: Entrando em condicional\n");
+
+
+    $$ = $1;
     ast_add_child($$, $3); // Adiciona a expressão como filho do nó "if"
     ast_add_child($$, $5); // Adiciona o corpo do "if" como filho do nó "if"
     ast_add_child($$, $7); // Adiciona o nó "else" como filho do nó "if"
@@ -803,37 +973,45 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
     char *reg1 = allocate_register();
     char *reg2 = allocate_register();
 
-    //generate_movq($3->temp, reg1, global_code_list);
-    //generate_movq("$0", reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq $0, %s", reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tcmpq\t %s, %s", reg2, reg1);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "cmpq %s, %s", reg2, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tje\t %s", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "je %s", false_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", true_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", true_label);
+    append_assembly_code(global_code_list, assembly_code);
 
     if ($6 != NULL) {
-        //generate_movq($6->temp, reg1, global_code_list);
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $6->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
     }
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tjmp\t %s", after_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "jmp %s", after_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", false_label);
+    append_assembly_code(global_code_list, assembly_code);
 
     if ($10 != NULL) {
-        //generate_movq($10->temp, reg1, global_code_list);
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $10->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
     }
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", after_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", after_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(reg1);
-    //free_register(reg2);
+    free_register(reg1);
+    free_register(reg2);
+    $$->temp = strdup(reg1);
+
+    fprintf(stderr, "Debug: Saindo de condicional\n");
+
 }
 ;
 
@@ -846,7 +1024,10 @@ WHILE: TK_PR_WHILE
 ;
 loop: WHILE '(' expressao ')' criar_escopo corpo fechar_escopo
 {
-    $$ = $3;
+    fprintf(stderr, "Debug: Entrando em loop\n");
+
+
+    $$ = $1;
     ast_add_child($$, $3); // Adiciona a expressão como filho do nó "while"
     ast_add_child($$, $5); // Adiciona o corpo como filho do nó "while"
     $$->node_type = $3->node_type;
@@ -855,39 +1036,44 @@ loop: WHILE '(' expressao ')' criar_escopo corpo fechar_escopo
     char* true_label = generate_label();
     char* false_label = generate_label();
 
-    //char* reg1 = allocate_register(); 
-    //char* reg2 = allocate_register();
+    char* reg1 = allocate_register(); 
+    char* reg2 = allocate_register();
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", loop_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", loop_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_movq($3->temp, reg1, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq $0, %s", reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_movq("$0", reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "cmpq %s, %s", reg2, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tcmpq\t %s, %s", reg2, reg1);
-    //append_assembly_code(global_code_list, assembly_code);
-
-    //snprintf(assembly_code, sizeof(assembly_code), "\tje\t %s", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "je %s", false_label);
+    append_assembly_code(global_code_list, assembly_code);
    
-    //snprintf(assembly_code, sizeof(assembly_code), "%s\t:", true_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", true_label);
+    append_assembly_code(global_code_list, assembly_code);
 
     if ($6 != NULL) {
-        //snprintf(assembly_code, sizeof(assembly_code), "\tmovq\t %s, %s", $6->temp, reg1);
-        //append_assembly_code(global_code_list, assembly_code);
+        snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $6->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
     }
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\tjmp\t %s", loop_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "jmp %s", loop_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "%s:\t", false_label);
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "%s:", false_label);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //free_register(reg2);
+    free_register(reg1);
+    free_register(reg2);
+    $$->temp = strdup(reg1);
 
-    //$$->temp = strdup(reg1);
+    fprintf(stderr, "Debug: Saindo de loop\n");
+
+
 }
 ;
 
@@ -911,25 +1097,29 @@ operando: operador
 }
 | operando OR operador
 {
-    $$ = $3;
+    fprintf(stderr, "Debug: Entrou em OP\n");
+    $$ = $2;
     ast_add_child($$, $1);
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
     //printf("Added operando and operador to operando\n"); // Debug print
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
+    char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
-
-    //generate_movq($3->temp, reg2, global_code_list);
-
-    snprintf(assembly_code, sizeof(assembly_code), "\torq\t %s, %s", $1->temp, $3->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(reg1);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //free_register(reg2);
+    snprintf(assembly_code, sizeof(assembly_code), "orq %s, %s", reg2, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+
+    $$->temp = strdup(reg1);
+
+    free_register(reg2);
 }
 ;
 
@@ -943,25 +1133,30 @@ operador: comparacao_1
 }
 | operador AND comparacao_1
 {
-    $$ = $3;
+
+    fprintf(stderr, "Debug: Entrou em comp1\n");
+    $$ = $2;
     ast_add_child($$, $1);
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
     //printf("Added operador and comparacao to operador\n"); // Debug print
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
+    char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
-
-    //generate_movq($3->temp, reg2, global_code_list);
-
-    snprintf(assembly_code, sizeof(assembly_code), "\tandq\t %s, %s", $1->temp, $3->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(reg1);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //free_register(reg2);
+    snprintf(assembly_code, sizeof(assembly_code), "andq %s, %s", reg2, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+
+    $$->temp = strdup(reg1);
+
+    free_register(reg2);
 }
 ;
 
@@ -975,39 +1170,41 @@ comparacao_1: comparacao_2
 }
 | comparacao_1 equal_or_not comparacao_2
 {
-    $$ = $3;
+    fprintf(stderr, "Debug: Entrou em comp2\n");
+    $$ = $2;
     ast_add_child($$, $1);
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
     char* result_reg = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
-
-    //generate_movq($3->temp, reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
     char* current_opcode = $2->valor_lexico->token_value;
 
-    snprintf(assembly_code, sizeof(assembly_code), "\tcmpq\t %s, %s", $1->temp, $3->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "cmpq %s, %s", reg2, reg1);
     append_assembly_code(global_code_list, assembly_code);
 
     if (strcmp(current_opcode, "CMP_EQ") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsete\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "sete %%al");
     } else if (strcmp(current_opcode, "CMP_NE") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsetne\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "setne %%al");
     }
     append_assembly_code(global_code_list, assembly_code);
 
-    snprintf(assembly_code, sizeof(assembly_code), "\tmovzbq\t %%al, %s", result_reg);
+    snprintf(assembly_code, sizeof(assembly_code), "movzbq %%al, %s", result_reg);
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(result_reg);
+    $$->temp = strdup(result_reg);
 
-    //free_register(reg1);
-    //free_register(reg2);
-    // result_reg is still in use in //$$->temp, so don't free it
+    free_register(reg1);
+    free_register(reg2);
+    // result_reg is still in use in $$->temp, so don't free it
 }
 ;
 
@@ -1033,43 +1230,44 @@ comparacao_2: adicaousub
 }
 | comparacao_2 greater_or_less adicaousub
 {
-    $$ = $3;
+    $$ = $2;
     ast_add_child($$, $1);
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
     char* result_reg = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_movq($3->temp, reg2, global_code_list);
-
-    snprintf(assembly_code, sizeof(assembly_code), "\tcmpq\t %s, %s", $1->temp, $3->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "cmpq %s, %s", reg2, reg1);
     append_assembly_code(global_code_list, assembly_code);
 
     char* current_opcode = $2->valor_lexico->token_value;
 
     if (strcmp(current_opcode, "CMP_GE") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsetge\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "setge %%al");
     } else if (strcmp(current_opcode, "CMP_LE") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsetle\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "setle %%al");
     } else if (strcmp(current_opcode, "CMP_GT") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsetg\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "setg %%al");
     } else if (strcmp(current_opcode, "CMP_LT") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsetl\t %%al");
+        snprintf(assembly_code, sizeof(assembly_code), "setl %%al");
     }
     append_assembly_code(global_code_list, assembly_code);
 
-    snprintf(assembly_code, sizeof(assembly_code), "\tmovzbq %%al, %s", result_reg);
+    snprintf(assembly_code, sizeof(assembly_code), "movzbq %%al, %s", result_reg);
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(result_reg);
+    $$->temp = strdup(result_reg);
 
-    //free_register(reg1);
-    //free_register(reg2);
-    // result_reg is still in use in //$$->temp, so don't free it
+    free_register(reg1);
+    free_register(reg2);
+    // result_reg is still in use in $$->temp, so don't free it
 }
 ;
 
@@ -1105,30 +1303,33 @@ adicaousub: multoudivoures
 }
 | adicaousub op_adicaousub multoudivoures
 {
-    $$ = $3;
+    $$ = $2;
     ast_add_child($$, $1);
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
+    char* result_reg = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_movq($3->temp, reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
     char* current_opcode = $2->valor_lexico->token_value;
 
     if (strcmp(current_opcode, "+") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\taddq\t %s, %s",$1->temp, $3->temp);
+        snprintf(assembly_code, sizeof(assembly_code), "addq %s, %s", reg2, reg1);
     } else if (strcmp(current_opcode, "-") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\tsubq\t %s, %s", $1->temp, $3->temp);
+        snprintf(assembly_code, sizeof(assembly_code), "subq %s, %s", reg2, reg1);
     }
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(reg1);
+    $$->temp = strdup(reg1);
 
-    //free_register(reg2);
+    free_register(reg2);
 }
 ;
 
@@ -1136,7 +1337,7 @@ adicaousub: multoudivoures
 // Operação de adição e subtração
 op_adicaousub: ADD
 {
-    $$ = $1;
+    $$ = $1;;
     //printf("Added ADD to op_adicaousub\n"); // Debug print
 }
 | SUBTRACT
@@ -1161,29 +1362,31 @@ multoudivoures: unario
     ast_add_child($$, $3);
     $$->node_type = new_type($1, $3);
 
-    //char* reg1 = allocate_register();
-    //char* reg2 = allocate_register();
-    //char* result_reg = allocate_register();
+    char* reg1 = allocate_register();
+    char* reg2 = allocate_register();
+    char* result_reg = allocate_register();
 
-    //generate_movq($1->temp, reg1, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $1->temp, reg1);
+    append_assembly_code(global_code_list, assembly_code);
 
-    //generate_movq($3->temp, reg2, global_code_list);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $3->temp, reg2);
+    append_assembly_code(global_code_list, assembly_code);
 
     char* current_opcode = $2->valor_lexico->token_value;
 
     if (strcmp(current_opcode, "*") == 0) {
-        snprintf(assembly_code, sizeof(assembly_code), "\timulq\t %s, %s", $1->temp, $3->temp);
+        snprintf(assembly_code, sizeof(assembly_code), "imulq %s, %s", reg2, reg1);
     } else if (strcmp(current_opcode, "/") == 0) {
-        
-        snprintf(assembly_code, sizeof(assembly_code), "\tcqto\t");
+        snprintf(assembly_code, sizeof(assembly_code), "cqto");
         append_assembly_code(global_code_list, assembly_code);
-        snprintf(assembly_code, sizeof(assembly_code), "\tidivq\t %s", $1->temp);
+
+        snprintf(assembly_code, sizeof(assembly_code), "idivq %s", reg2);
     }
     append_assembly_code(global_code_list, assembly_code);
 
-    //$$->temp = strdup(reg1);
+    $$->temp = strdup(reg1);
 
-    //free_register(reg2);
+    free_register(reg2);
 }
 ;
 
@@ -1216,33 +1419,36 @@ unario: primario
 }
 | INVERTSIG unario
 {
-    $$ = $2;
+    $$ = $1;
     ast_add_child($$, $2);
     $$->node_type = $2->node_type;
 
-    int count = 0;
+    char* reg = allocate_register();
 
-    //generate_movq($2->temp, reg, global_code_list);
-
-    //fprintf(stderr, "Debug message Invert %s:\n",$2->temp); // $2 due to ascendancy $2 is the one that contains reg
-
-    snprintf(assembly_code, sizeof(assembly_code), "\tnegq\t %s", $2->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg);
     append_assembly_code(global_code_list, assembly_code);
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\t%d", count++); // Debug contador para descobrir recursão
-    //append_assembly_code(global_code_list, assembly_code);
+    snprintf(assembly_code, sizeof(assembly_code), "negq %s", reg);
+    append_assembly_code(global_code_list, assembly_code);
+
+    $$->temp = strdup(reg);
 
 }
 | NEGATE unario
 {
-    $$ = $2;
+    $$ = $1;
     ast_add_child($$, $2);
     $$->node_type = $2->node_type;
 
-    //generate_movq($2->temp, reg, global_code_list);
+    char* reg = allocate_register();
 
-    //snprintf(assembly_code, sizeof(assembly_code), "\txorq\t $1, %s", $2->temp);
+    snprintf(assembly_code, sizeof(assembly_code), "movq %s, %s", $2->temp, reg);
     append_assembly_code(global_code_list, assembly_code);
+
+    snprintf(assembly_code, sizeof(assembly_code), "xorq $1, %s", reg);
+    append_assembly_code(global_code_list, assembly_code);
+
+    $$->temp = strdup(reg);
 }
 ;
 
@@ -1252,7 +1458,6 @@ unario: primario
 primario: identificador
 {
     $$ = $1;
-    $$->temp = last_reg;
     
     char* new_key = $1->valor_lexico->token_value;
     symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
@@ -1261,13 +1466,13 @@ primario: identificador
     if (result) {
         int address = result->address_displacement;
 
-        char* base_reg = current_scope->is_global ? "%rbp" : "%rsp";
+        char* reg = allocate_register();
+        char* base_reg = current_scope->is_global ? "%rbss" : "%rbp";
 
-        snprintf(assembly_code, sizeof(assembly_code), "\tmovq\t %d(%s), %s", address, base_reg, $1->temp);
+        snprintf(assembly_code, sizeof(assembly_code), "movq %d(%s), %s", address + initial_space, base_reg, reg);
         append_assembly_code(global_code_list, assembly_code);
 
-        //$$->temp = strdup(reg); // NECESSARY TO PASS UPWARDS THE REGISTERS
-        //fprintf(stderr, "Debug message identificador %s:\n",//$$->temp);
+        $$->temp = strdup(reg);
     }
 
     if (result == NULL) {
@@ -1410,6 +1615,13 @@ literais: LITINT
 {
     $$ = $1;
     $$->node_type = NODE_TYPE_INT;
+    
+    char* reg = allocate_register();
+    
+    sprintf(assembly_code, "movq $%s, %s", $$->valor_lexico->token_value, reg);
+    append_assembly_code(global_code_list, assembly_code);
+
+    $$->temp = reg;
 }
 | LITFLOAT
 {
@@ -1437,23 +1649,14 @@ LITINT: TK_LIT_INT
     $$->node_type = NODE_TYPE_INT;
     
     char* reg = allocate_register();
-    //fprintf(stderr,"%s\n",reg);
+    
+    sprintf(assembly_code, "movq %s, %s", reg, $$->valor_lexico->token_value);
 
-    char* int_assembly = strdup($$->valor_lexico->token_value);
+    append_assembly_code(global_code_list, assembly_code);
 
-    char* dollar = malloc(strlen(int_assembly) + 2);
-
-    strcpy(dollar, "$");
-    strcat(dollar,int_assembly);
-
-    generate_movq(dollar, reg, global_code_list); // PARA TESTE IJK15 ESSE É o
-    //	movq	 $393, %rax // PRIMEIRA ATRIBUICAO
-	//  movq	 $0, %rcx // ISSO É O RETURN DA MAIN
-    last_reg = reg;
     $$->temp = reg;
 
-
-    //fprintf(stderr, "Debug message LITINT %s:\n",//$$->temp);
+    free_register(reg);
     //printf("Added TK_LIT_INT to LITINT\n"); // Debug print
 }
 ;

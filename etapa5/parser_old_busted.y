@@ -18,11 +18,7 @@
 #include "sym_table.h"
 #include "tree.h"
 #include "gen_code.h"
-
-
-//Tamanho do Buffer para Operações
-
-#define OPCODE_SIZE_OF_BUFFER 64
+#include "gen_assembly.h"
 
 
 // Protótipos das funções necessárias
@@ -437,7 +433,7 @@ cabecalho:   criar_escopo '(' lista_de_parametros ')' OR tipo '/' identificador_
             }
 
             char* op2 = (char*) malloc(OPCODE_SIZE_OF_BUFFER);
-            sprintf(op2, "%d", initial_space + stack_of_tables->top->current_adress_displacement + final_space);
+            sprintf(op2, "%d", initial_space + stack_of_tables->top->current_address_displacement + final_space);
             operation_t* generated_code3 = initialize_operation(NULL, ADDI, strdup("rsp"), op2, strdup("rsp"));
             //fprintf(stderr, "Before appending identfunc: $$->code=%p, $8->code=%p, generated_code1=%p\n\n", $$->code, $8->code, generated_code1);
             append_operations(generated_code1, generated_code3);
@@ -714,10 +710,10 @@ comando_atribuicao: identificador '=' expressao
                     }
                     $$->node_type = new_type($1,$3); // Adiciona novo tipo resultante             
 					//printf("Added expressao to comando_atribuicao\n"); // Debug print
-                    table_of_symbols_t *current_scope = search_stack_for_adress(stack_of_tables, new_key);
+                    table_of_symbols_t *current_scope = search_stack_for_address(stack_of_tables, new_key);
                     if(result){
                         //fprintf(stderr, "Before appending atribuicao: $$->code=%p, $3->code=%p\n\n", $$->code, $3->code);
-                        int adress = result->adress_displacement;
+                        int address = result->address_displacement;
                         char *temp = $3->temp;
                         char* op2;
                         if(current_scope->is_global)
@@ -725,7 +721,7 @@ comando_atribuicao: identificador '=' expressao
                         else
                             op2 = strdup("rfp");
                         char* op3 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
-                        sprintf(op3, "%d", adress);
+                        sprintf(op3, "%d", address);
                         if(temp){
                             operation_t* generated_code = initialize_operation(NULL, STOREAI, strdup(temp), op2, op3);
 
@@ -752,7 +748,7 @@ comando_retorno: RETURN expressao
 			   {
                 //fprintf(stderr, "Debug message comando_retorno: RETURN expressao\n");
 				char* op3 = (char*) malloc(OPCODE_SIZE_OF_BUFFER);
-                sprintf(op3, "%d", initial_space + stack_of_tables->top->current_adress_displacement);
+                sprintf(op3, "%d", initial_space + stack_of_tables->top->current_address_displacement);
                 operation_t* generated_code1 = initialize_operation(NULL, STOREAI, strdup($2->temp), strdup("rfp"), op3);
                 //fprintf(stderr, "Generated operation 1: %p\n", (void*)generated_code1);
 
@@ -776,8 +772,8 @@ comando_retorno: RETURN expressao
                 append_operations(generated_code1, generated_code6);
                 //fprintf(stderr, "Appended operation 6: %p\n", (void*)generated_code6);
 
-                //operation_t* generated_code7 = initialize_operation(NULL, JUMP, strdup(generated_code2->op3), NULL, NULL);
-                //append_operations(generated_code1, generated_code7);
+                operation_t* generated_code7 = initialize_operation(NULL, JUMP, strdup(generated_code2->op3), NULL, NULL);
+                append_operations(generated_code1, generated_code7);
                 //fprintf(stderr, "Appended operation 7: %p\n", (void*)generated_code7);
 
                 $$->code = append_operations($2->code, generated_code1);
@@ -879,7 +875,7 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
                 append_operations(generated_code1, generated_code4);
 
                 if ($6 != NULL)
-                    append_operations(generated_code1, $6->code);
+                    append_operations(generated_code1, $7->code);
 
                 operation_t* generated_code5 = initialize_operation(NULL, JUMPI, after_label, NULL, NULL);
                 append_operations(generated_code1, generated_code5);
@@ -888,7 +884,7 @@ condicional: IF '(' expressao ')' criar_escopo corpo fechar_escopo
                 append_operations(generated_code1, generated_code6);
 
                 if ($10 != NULL)
-                    append_operations(generated_code1, $10->code);
+                    append_operations(generated_code1, $11->code);
 
                 operation_t* generated_code7 = initialize_operation(strdup(after_label), NOP, NULL, NULL, NULL);
 				append_operations(generated_code1, generated_code7);
@@ -915,37 +911,47 @@ loop: WHILE '(' expressao ')' criar_escopo corpo fechar_escopo
 		//printf("Added expressao and corpo to loop\n"); // Debug print
 
         char* test_label = generate_label();
-        char* true_label = generate_label();
+        char* loop_body_label = generate_label();
         char* after_label = generate_label();
-        
-        char* temp = generate_temp();
-        char* temp_opaque = generate_temp();
-        char* op1 = strdup("0");
-        operation_t* generated_code1 = initialize_operation(NULL, LOADI, op1, temp, NULL);
 
-        operation_t* generated_code_test = initialize_operation(strdup(test_label), NOP, NULL, NULL, NULL);
-        append_operations(generated_code1, generated_code_test);
-        
-        operation_t* generated_code2 = initialize_operation(NULL, CMP_NE, strdup($3->temp), strdup(temp), temp_opaque);
-        append_operations(generated_code1, generated_code2);
-        
-        operation_t* generated_code3 = initialize_operation(NULL, CBR, strdup(temp_opaque), true_label, after_label);
-        append_operations(generated_code1, generated_code3);
-        
-        operation_t* generated_code4 = initialize_operation(true_label, NOP, NULL, NULL, NULL);
-        append_operations(generated_code1, generated_code4);
+        char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
-        if ($6 != NULL)
-            append_operations(generated_code1, $6->code);
+        char* reg1 = allocate_register(); 
+        char* reg2 = allocate_register();
 
-        operation_t* generated_code5 = initialize_operation(NULL, JUMPI, test_label, NULL, NULL);
-        append_operations(generated_code1, generated_code5);
+        snprintf(assembly_code, sizeof(assembly_code), "%s:", test_label);
+        append_assembly_code(global_code_list, "%s:", test_label);
 
-        operation_t* generated_code6 = initialize_operation(strdup(after_label), NOP, NULL, NULL, NULL);
-        append_operations(generated_code1, generated_code6);
+        snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg1);
+        append_assembly_code(global_code_list, assembly_code);
+        snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", 0, reg3);
+        append_assembly_code(global_code_list, assembly_code);
 
-        $$->code = append_operations($3->code, generated_code1);
-	}
+        snprintf(assembly_code, sizeof(assembly_code), "cmp %s, %s", reg2, reg1);
+        append_assembly_code(global_code_list, assembly_code);
+
+        snprintf(assembly_code, sizeof(assembly_code), "je %s", after_label);
+        append_assembly_code(global_code_list, assembly_code);
+   
+        snprintf(assembly_code, sizeof(assembly_code), "%s:", loop_body_label);
+        append_assembly_code(global_code_list, "%s:", assembly_code);
+
+        if ($6 != NULL) {
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $6->temp, reg1);
+            append_assembly_code(global_code_list, assembly_code);
+        }
+
+        snprintf(assembly_code, sizeof(assembly_code), "jmp %s", test_label);
+        append_assembly_code(global_code_list, assembly_code);
+
+        snprintf(assembly_code, sizeof(assembly_code), "%s:", after_label);
+        append_assembly_code(global_code_list, assembly_code);
+
+
+        free_register(reg1);
+        free_register(reg2);
+        $$->temp = strdup(reg1)
+    }
 	;
 
 //##########################
@@ -979,11 +985,22 @@ operando: operador
             $$->node_type = new_type($1,$3);
 			//printf("Added operando and operador to operando\n"); // Debug print
 
-            char* temp = generate_temp();
-            operation_t* generated_code = initialize_operation(NULL, OR , strdup($1->temp), strdup($3->temp), strdup(temp));
-            $$->code = append_operations($1->code, $3->code);
-            $$->code = append_operations($$->code, generated_code);
-            $$->temp = temp;
+            char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+
+            char* reg1 = allocate_register();
+            char* reg2 = allocate_register();
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+            append_assembly_code(global_code_list, assembly_code);
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), "or %s, %s", reg2, reg1);
+            append_assembly_code(global_code_list, assembly_code);
+
+            $$->temp = strdup(reg1);
+
+            free_register(reg1);
+            free_register(reg2);
 		}
         ;
 
@@ -996,6 +1013,7 @@ operador: comparacao_1
 		}
         | operador AND comparacao_1
 		{
+
             //fprintf(stderr, "Debug message operador: operador AND comparacao_1\n");
 			$$ = $2;
 			ast_add_child($$, $1);
@@ -1003,13 +1021,24 @@ operador: comparacao_1
             $$->node_type = new_type($1,$3);
 			//printf("Added operador and comparacao to operador\n"); // Debug print
 
-            char* temp = generate_temp();
-            operation_t* generated_code = initialize_operation(NULL, AND , strdup($1->temp), strdup($3->temp), strdup(temp));
-            $$->code = append_operations($1->code, $3->code);
-            $$->code = append_operations($$->code, generated_code);
-            $$->temp = temp;
+            char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
-		}
+            char* reg1 = allocate_register();
+            char* reg2 = allocate_register();
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+            append_assembly_code(global_code_list, assembly_code);
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+            append_assembly_code(global_code_list, assembly_code);
+
+            snprintf(assembly_code, sizeof(assembly_code), "and %s, %s", reg2, reg1);
+
+            $$->temp = strdup(reg1);
+            append_assembly_code(global_code_list, assembly_code);
+
+            free_register(reg1);
+            free_register(reg2);
+
+        }
         ;
 
 //##########################
@@ -1021,21 +1050,45 @@ comparacao_1: comparacao_2
 		  }
           |   comparacao_1 equal_or_not comparacao_2
 		  {
+            $$ = $2;
+            ast_add_child($$, $1);
+            ast_add_child($$, $3);
+            $$->node_type = new_type($1,$3);
+
+            char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+
             //fprintf(stderr, "Debug message comparacao_1: comparacao_1 equal_or_not comparacao_2\n");
-				$$ = $2;
-				ast_add_child($$, $1);
-				ast_add_child($$, $3);
-                $$->node_type = new_type($1,$3);
-				//printf("Added comparacao_1, equal_or_not, and comparacao_2 to comparacao_1\n"); // Debug print
+			char* reg1 = allocate_register();
+            char* reg2 = allocate_register();
+            char* result_reg = allocate_register();
 
-                char* temp = generate_temp();
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+            append_assembly_code(global_code_list, assembly_code);
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+            append_assembly_code(global_code_list, assembly_code);
 
-                current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+            char* current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
 
-                operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
-                $$->code = append_operations($1->code, $3->code);
-                $$->code = append_operations($$->code, generated_code);
-                $$->temp = temp;
+            if (strcmp(current_opcode, "cmp_eq") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "sete %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+            } else if (strcmp(current_opcode, "cmp_ne") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "setle %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code); 
+            }
+            $$->temp = strdup(result_reg);
+
+            free_register(reg1);
+            free_register(reg2);
+            free_register(result_reg);
 		  }
           ;
 equal_or_not:  EQUAL
@@ -1056,26 +1109,62 @@ equal_or_not:  EQUAL
 comparacao_2: adicaousub
 		  {
 				$$ = $1;
-				//printf("Added adicaousub to comparacao_2\n"); // Debug print
+				//printf("Added adicaousub to comparacao_2\n");
 		  }
           |   comparacao_2 greater_or_less adicaousub
 
 		  {
-            //fprintf(stderr, "Debug message comparacao_2: comparacao_2 greater_or_less adicaousub\n");
-				$$ = $2;
-				ast_add_child($$, $1);
-				ast_add_child($$, $3);
-                $$->node_type = new_type($1,$3);
-				//printf("Added comparacao_2, greater_or_less, and adicaousub to comparacao_2\n"); // Debug print
+            $$ = $2;
+            ast_add_child($$, $1);
+            ast_add_child($$, $3);
+            $$->node_type = new_type($1,$3);
 
-                char* temp = generate_temp();
+            char* reg1 = allocate_register();
+            char* reg2 = allocate_register();
+            char* result_reg = allocate_register();
 
-                current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+            char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
-                operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
-                $$->code = append_operations($1->code, $3->code);
-                $$->code = append_operations($$->code, generated_code);
-                $$->temp = temp;
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+            snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+
+            char* current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
+            if (strcmp(current_opcode, "cmp_ge") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                append_assembly_code(global_code_list, "setge %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+            } else if (strcmp(current_opcode, "cmp_le") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "setle %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+            } else if (strcmp(current_opcode, "cmp_gt") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "setg %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+            } else if (strcmp(current_opcode, "cmp_lt") == 0) {
+                snprintf(assembly_code, sizeof(assembly_code), "cmpl %s, %s", reg2, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "setl %s", result_reg);
+                append_assembly_code(global_code_list, assembly_code);
+            }
+
+            $$->temp = strdup(result_reg);
+
+            free_register(reg1);
+            free_register(reg2);
+            free_register(result_reg);
 		  }
           ;
 greater_or_less:  GREATEREQUAL
@@ -1109,25 +1198,46 @@ adicaousub: multoudivoures
 		  }
           | adicaousub op_adicaousub multoudivoures
 		  {
-            //fprintf(stderr, "Debug message adicaousub: adicaousub op_adicaousub multoudivoures\n");
-					$$ = $2;
-					ast_add_child($$, $1);
-					ast_add_child($$, $3);
-                    $$->node_type = new_type($1,$3);
-					//printf("Added adicaousub, op_adicaousub, and multoudivoures to adicaousub\n"); // Debug print
+                //fprintf(stderr, "Debug message adicaousub: adicaousub op_adicaousub multoudivoures\n");
 
-                    char* temp = generate_temp();
+                $$ = $2;
+                ast_add_child($$, $1);
+                ast_add_child($$, $3);
+                $$->node_type = new_type($1,$3);
 
-                    current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+                char* reg1 = allocate_register();
+                char* reg2 = allocate_register();
+                char* result_reg = allocate_register();
 
-                    operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
-                    $$->code = append_operations($1->code, $3->code);
-                    $$->code = append_operations($$->code, generated_code);
-                    $$->temp = temp;
+                char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+                append_assembly_code(global_code_list, assembly_code);
+                snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+                append_assembly_code(global_code_list, assembly_code);
 
+                char* current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+
+                if (strcmp(current_opcode "add") == 0) {
+                    snprintf(assembly_code, sizeof(assembly_code), "add %s, %s",reg2, reg1);
+                    append_assembly_code(global_code_list, assembly_code);
+                    snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                    append_assembly_code(global_code_list, assembly_code);
+
+                } else if (strcmp($2->valor_lexico->token_value, "sub") == 0) {
+                    snprintf(assembly_code, sizeof(assembly_code), "sub %s, %s",reg2, reg1);
+                    append_assembly_code(global_code_list, assembly_code);
+                    snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                    append_assembly_code(global_code_list, assembly_code);
+                } 
+                $$->temp = strdup(result_reg);
+
+                free_register(reg1);
+                free_register(reg2);
+                free_register(result_reg);
 		  }
           ;
+          
 
 //##########################
 // Operação de adição e subtração
@@ -1146,30 +1256,54 @@ op_adicaousub: ADD
 //##########################
 // Multiplicação, divisão ou resto
 multoudivoures: unario
-			  {
-					$$ = $1;
-					//printf("Added unario to multoudivoures\n"); // Debug print
-			  }
+              {
+                  $$ = $1;
+              }
               | multoudivoures op_multoudivoures unario
-			  {
-                //fprintf(stderr, "Debug message multoudivoures: multoudivoures op_multoudivoures unario\n");
-					$$ = $2;
-					ast_add_child($$, $1);
-					ast_add_child($$, $3);
-                    $$->node_type = new_type($1,$3);
-					//printf("Added multoudivoures, op_multoudivoures, and unario to multoudivoures\n"); // Debug print
+              {
+                  $$ = $2;
+                  ast_add_child($$, $1);
+                  ast_add_child($$, $3);
+                  $$->node_type = new_type($1,$3);
+  
+                  char* reg1 = allocate_register();
+                  char* reg2 = allocate_register();
+                  char* result_reg = allocate_register();
 
-                    char* temp = generate_temp();
+                  char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+                  
 
-                    current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+                  snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $1->temp, reg1);
+                  append_assembly_code(global_code_list, assembly_code);
+                  snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $3->temp, reg2);
+                  append_assembly_code(global_code_list, assembly_code);
+  
+                  char* current_opcode = get_opcode_from_string($2->valor_lexico->token_value);
+  
+                  char* result_reg = allocate_register();
 
-                    operation_t* generated_code = initialize_operation(NULL, current_opcode, strdup($1->temp), strdup($3->temp), strdup(temp));
-                    $$->code = append_operations($1->code, $3->code);
-                    $$->code = append_operations($$->code, generated_code);
-                    $$->temp = temp;
+                  if (strcmp(current_opcode, "mul") == 0) {
+                    snprintf(assembly_code, sizeof(assembly_code), "imull %s, %s", reg2, reg1);
+                    append_assembly_code(global_code_list, assembly_code);
+                    snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                    append_assembly_code(global_code_list, assembly_code);
+                  } else if (strcmp(current_opcode, "div") == 0) {
+                      snprintf(assembly_code, sizeof(assembly_code), "cdq");
+                      append_assembly_code(global_code_list, assembly_code);
+                      snprintf(assembly_code, sizeof(assembly_code), "idiv %s, %s", reg2, reg1);
+                      append_assembly_code(global_code_list, assembly_code);
+                      snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", reg1, result_reg);
+                      append_assembly_code(global_code_list, assembly_code);
+                  }
+                  $$->temp = strdup(result_reg);
+                  append_assembly_code(global_code_list, assembly_code);
 
-			  }
+                  free_register(reg1);
+                  free_register(reg2);
+                  free_register(result_reg);
+              }
               ;
+
 
 //##########################
 // Operação de multiplicação,divisão ou resto
@@ -1193,99 +1327,105 @@ op_multoudivoures: MULTIPLY
 //##########################
 // Operações unárias
 unario: primario
-	  {
-            //fprintf(stderr, "Before appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
-			$$ = $1;
-            
-            //fprintf(stderr, "After appending primario: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
-			//printf("Added primario to unario\n"); // Debug print
-	  }
+      {
+          $$ = $1;
+      }
       | INVERTSIG unario
-	  {
-			$$ = $1;
-		    ast_add_child($$, $2);
-            $$->node_type = $2->node_type;
+      {
+          $$ = $1;
+          ast_add_child($$, $2);
+          $$->node_type = $2->node_type;
+  
+          char* reg = allocate_register();
 
-            char* temp = generate_temp();
-            operation_t* generated_code = initialize_operation(NULL, RSUBI, strdup($2->temp), strdup("0"), strdup(temp));
-            $$->code = append_operations($2->code, generated_code);
-            $$->temp = temp; // Store the result
-
-
-		    //printf("Added INVERTSIG and unario to unario\n"); // Debug print
-	  }
+          char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
+  
+          snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $2->temp, reg);
+          append_assembly_code(global_code_list, assembly_code);
+  
+          snprintf(assembly_code, sizeof(assembly_code), "neg %s", reg);
+          append_assembly_code(global_code_list, assembly_code);
+  
+          $$->temp = strdup(reg);
+          free_register(reg);
+      }
       | NEGATE unario
-	  {
-			$$ = $1;
-		    ast_add_child($$, $2);
-            $$->node_type = $2->node_type;
-		    //printf("Added NEGATE and unario to unario\n"); // Debug print
-
-            char* temp = generate_temp();
-            operation_t* generated_code = initialize_operation(NULL, XORI, strdup("true"), strdup($2->temp), strdup(temp)); //CAUSES SEGFAULT
-            $$->code = append_operations($2->code, generated_code);
-            $$->temp = temp; // Store the result
-	  }
+      {
+          $$ = $1;
+          ast_add_child($$, $2);
+          $$->node_type = $2->node_type;
+  
+          char* reg = allocate_register();
+          char assembly_code[OPCODE_SIZE_OF_BUFFER];
+  
+          snprintf(assembly_code, sizeof(assembly_code), "movl %s, %s", $2->temp, reg);
+          append_assembly_code(global_code_list, assembly_code);
+  
+          snprintf(assembly_code, sizeof(assembly_code), "xor $1, %s", reg);
+          append_assembly_code(global_code_list, assembly_code);
+  
+          $$->temp = strdup(reg);
+          free_register(reg);
+      }
       ;
-
+  
 //##########################
 // Expressões primarias
-primario: identificador
-		{
-            //fprintf(stderr, "Debug message primario: identificador\n");
+        primario: identificador
+        {
             $$ = $1;
-			//printf("Added identificador to primario\n");
             
-			char* new_key = $1->valor_lexico->token_value;
-							  
+            char* new_key = $1->valor_lexico->token_value;
             symbol_t* result = search_symbol_stack(stack_of_tables, new_key);
+            table_of_symbols_t* current_scope = search_stack_for_address(stack_of_tables, new_key);
 
-            table_of_symbols_t* current_scope = search_stack_for_adress(stack_of_tables, new_key);
+            if (result) {
+                int address = result->address_displacement;
 
-            //fprintf(stderr, "Debug message primario: identificadorPost\n");
+                char* reg = allocate_register();
+                char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
-            if(result){
+                char* base_reg;
+                if (current_scope->is_global) {
+                    base_reg = "rbss";
+                } else {
+                    base_reg = "rfp";
+                }
 
-                int adress = result->adress_displacement;
+                snprintf(assembly_code, sizeof(assembly_code), "movl %d(%s), %s", address + initial_space, base_reg, reg);
+                append_assembly_code(global_code_list, assembly_code);
 
-                //fprintf(stderr, "Debug message primario: identificadorResult\n");
-
-                char* temp = generate_temp();
-
-                char* op1;
-
-                if(current_scope->is_global)
-                    op1 = strdup("rbss");
-                else
-                    op1 = strdup("rfp");
-
-                char* op2 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
-
-                sprintf(op2, "%d", adress + initial_space);
-
-                operation_t* generated_code = initialize_operation(NULL, LOADAI, op1, op2, strdup(temp));
-
-                $$->temp = temp;
-                //fprintf(stderr, "Before appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
-                $$->code = append_operations($$->code, generated_code);
-                //fprintf(stderr, "After appending Identificador: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
+                $$->temp = strdup(reg);
+                free_register(reg);
             }
 
-			if(result == NULL){
-               printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
-               exit(ERR_UNDECLARED);
-            }
-            else {
+            if (result == NULL) {
+                printf("[ERR_UNDECLARED] Var [%s] na linha %d nao foi declarada\n", new_key, get_line_number());
+                exit(ERR_UNDECLARED);
+            } else {
                 int nature = result->nature;
-                //printf("Nature: [%d]\n\n", nature);
                 $$->node_type = result->data_type;
-                    
-                if(nature == TOKEN_NATURE_FUNCTION){
+
+                if (nature == TOKEN_NATURE_FUNCTION) {
                     printf("[ERR_VARIABLE] Funcao [%s] na linha %d esta sendo usada como variavel\n", new_key, get_line_number());
                     exit(ERR_FUNCTION);
                 }
             }
-		}
+        }
+        | literais
+        {
+            $$ = $1;
+        }
+        | chamada_funcao
+        {
+            $$ = $1;
+        }
+        | '(' expressao ')'
+        {
+            $$ = $2;
+            $$->node_type = $2->node_type;
+        }
+        ;
         | literais
 		{
             //fprintf(stderr, "Before appending literais: $$->code=%p, $1->code=%p\n\n", $$->code, $1->code);
@@ -1323,7 +1463,9 @@ chamada_funcao: nome_func '(' lista_de_argumentos ')'
                     printf("[ERR_UNDECLARED] Funcao [%s] na linha %d nao foi declarada\n", parsed_key, get_line_number());
     				exit(ERR_UNDECLARED);
                 }
+
 				//printf("Added nome_func and lista_de_argumentos to chamada_funcao\n"); // Debug print
+
                 else
                 {
                     int nature = result->nature;
@@ -1438,22 +1580,23 @@ literais: LITINT
 //##########################
 // Token LITINT
 LITINT: TK_LIT_INT
-	  {
-            //fprintf(stderr, "Debug message LITINT: TK_LIT_INT\n");
-			$$ = ast_new($1);
-            $$->node_type = NODE_TYPE_INT;
-            char* temp = generate_temp();
-            $$->temp = temp;
+      {
+          //fprintf(stderr, "Debug message LITINT: TK_LIT_INT\n");
+          $$ = ast_new($1);
+          $$->node_type = NODE_TYPE_INT;
+          
+          char* reg = allocate_register();
+          
+          char* assembly_code = (char*)malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
 
-            char* op1 = (char*) malloc(sizeof(char) * OPCODE_SIZE_OF_BUFFER);
-            op1 = $$->valor_lexico->token_value;
-            operation_t* generated_code = initialize_operation(NULL, LOADI, op1, strdup(temp), NULL);
-
-            $$->code = append_operations($$->code, generated_code);
-
-			//printf("Added TK_LIT_INT to LITINT\n"); // Debug print
-	  }
-	  ;
+          sprintf(assembly_code, "movl %s, %s", reg, $$->valor_lexico->token_value);
+  
+          append_assembly_code(global_code_list, assembly_code);
+          $$->temp = reg;
+          free_register(reg);
+          //printf("Added TK_LIT_INT to LITINT\n"); // Debug print
+      }
+      ;
 
 //##########################
 // Token LITFLOAT

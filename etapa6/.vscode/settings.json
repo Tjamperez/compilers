@@ -3,6 +3,11 @@
     "files.associations": {
         "sym_stack.h": "c",
         "execinfo.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "gen_code.h": "c",
+        "sym_table.h": "c",
+        "stdbool.h": "c",
+        "compare": "c",
+        "type_traits": "c"
     }
 }

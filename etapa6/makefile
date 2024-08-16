@@ -26,9 +26,9 @@ $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Default target to execute make
-all: etapa5
+all: etapa6
 
-etapa5: $(OBJ)
+etapa6: $(OBJ)
 	$(CC) -g -o $@ $^ $(CFLAGS)
 
 # Rule to generate parser using Bison
@@ -82,5 +82,5 @@ clean_comments:
 
 # Clean build artifacts
 clean:
-	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa5 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ etapa6 lex.yy.c $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h $(LDIR)/parser.tab.c $(IDIR)/parser.tab.h
 

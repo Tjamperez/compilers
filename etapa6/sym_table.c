@@ -24,22 +24,19 @@ int insert_symbol(table_of_symbols_t* table, char* key, symbol_t *symbol) {
             return -1;
         }
     }
-    //fprintf(stderr, "Debug MISERY\n");
-    symbol->adress_displacement = table->current_adress_displacement;
+    symbol->address_displacement = table->current_address_displacement;
 
     symbol_dictionary_t *identity = (symbol_dictionary_t *)malloc(sizeof(symbol_dictionary_t));
     if (identity == NULL) {
         return -1;
     }
-    //fprintf(stderr, "Debug PAIN\n");
+    //fprintf(stderr, "Debug %s\n" , key);
     identity->key = strdup(key);
     identity->content = symbol;
 
     table->items[table->size++] = identity;
 
-    //fprintf(stderr, "Debug DEATH\n");
-
-    table->current_adress_displacement += sizeof(symbol_t); 
+    table->current_address_displacement -= 8; //sizeof(symbol_t)
 
     return 0;
 }
@@ -57,7 +54,7 @@ table_of_symbols_t* create_table_of_symbols(table_of_symbols_t* parent , bool gl
     table_of_symbols_t *table = (table_of_symbols_t *)malloc(sizeof(table_of_symbols_t));
     table->size = 0;
     table->capacity = 10;
-    table->current_adress_displacement = 0;
+    table->current_address_displacement = 0;
     table-> base_displacement = 0;
     table->items = (symbol_dictionary_t **)malloc(sizeof(symbol_dictionary_t *) * table->capacity);
     table->next = NULL;
@@ -70,7 +67,7 @@ table_of_symbols_t* create_table_of_symbols_global(table_of_symbols_t* parent , 
     table_of_symbols_t *table = (table_of_symbols_t *)malloc(sizeof(table_of_symbols_t));
     table->size = 0;
     table->capacity = 10;
-    table->current_adress_displacement = 0;
+    table->current_address_displacement = 0;
     table-> base_displacement = 16;
     table->items = (symbol_dictionary_t **)malloc(sizeof(symbol_dictionary_t *) * table->capacity);
     table->next = NULL;

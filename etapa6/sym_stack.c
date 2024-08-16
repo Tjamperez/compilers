@@ -17,10 +17,14 @@ stack_of_tables_t* create_stack_of_tables() {
 
 // Inserir na pilha.
 int push_scope(stack_of_tables_t* stack, table_of_symbols_t *new_table) {
+
     if (stack->size == stack->capacity) {
         stack->capacity *= 2;
         stack->tables = (table_of_symbols_t **)realloc(stack->tables, sizeof(table_of_symbols_t *) * stack->capacity);
     }
+
+
+
     stack->tables[stack->size++] = new_table;
     stack->top = new_table;
     return 0;
@@ -36,7 +40,7 @@ table_of_symbols_t* pop_scope(stack_of_tables_t* stack) {
     return top_table;
 }
 
-table_of_symbols_t* search_stack_for_adress(stack_of_tables_t *stack, char* key) {
+table_of_symbols_t* search_stack_for_address(stack_of_tables_t *stack, char* key) {
 
     if (stack->size == 0)
         return NULL;
